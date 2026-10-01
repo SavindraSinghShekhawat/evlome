@@ -88,7 +88,7 @@ const renderHome = () => `
     <main class="apps-grid">
       <a href="#/calculator" class="app-card" style="text-decoration:none;">
         <div class="app-icon-container">
-          <img src="/icons/calculator.png" alt="Calculator+ App" class="app-icon" />
+          <img src="./icons/calculator.png" alt="Calculator+ App" class="app-icon" />
         </div>
         <h2 class="app-title">Calculator+</h2>
         <p class="app-desc">A powerful standard calculator featuring a vast marketplace of specialized calculators. Manage favorites, browse by categories, and customize with dynamic themes.</p>
@@ -96,7 +96,7 @@ const renderHome = () => `
 
       <a href="#/cycle" class="app-card" style="text-decoration:none;">
         <div class="app-icon-container">
-          <img src="/icons/cycle.png" alt="Cycle App" class="app-icon" />
+          <img src="./icons/cycle.png" alt="Cycle App" class="app-icon" />
         </div>
         <h2 class="app-title">Cycle</h2>
         <p class="app-desc">Comprehensive cycle tracking featuring an interactive calendar, daily symptom logging, personalized insights, and an intuitive tracking dashboard.</p>
@@ -105,7 +105,7 @@ const renderHome = () => `
       <div class="app-card coming-soon">
         <div class="badge">In Development</div>
         <div class="app-icon-container">
-          <img src="/icons/activity.png" alt="Activity App" class="app-icon" />
+          <img src="./icons/activity.png" alt="Activity App" class="app-icon" />
         </div>
         <h2 class="app-title">Activity</h2>
         <p class="app-desc">Track your daily movements, record detailed workouts, and stay active with real-time performance insights.</p>
@@ -114,7 +114,7 @@ const renderHome = () => `
       <div class="app-card coming-soon">
         <div class="badge">In Development</div>
         <div class="app-icon-container">
-          <img src="/icons/nutrition.png" alt="Nutrition App" class="app-icon" />
+          <img src="./icons/nutrition.png" alt="Nutrition App" class="app-icon" />
         </div>
         <h2 class="app-title">Nutrition</h2>
         <p class="app-desc">Monitor your daily caloric intake, discover healthy recipes, and maintain a perfectly balanced diet effortlessly.</p>
@@ -350,7 +350,7 @@ const router = () => {
       'calculator',
       'Calculator+',
       'A powerful standard calculator featuring a vast marketplace of specialized calculators. Manage favorites, browse by categories, and customize with dynamic themes.',
-      '/icons/calculator.png',
+      './icons/calculator.png',
       { apple: '#', google: '#' },
       '#/privacy/calculator'
     );
@@ -359,7 +359,7 @@ const router = () => {
       'cycle',
       'Cycle',
       'Comprehensive cycle tracking featuring an interactive calendar, daily symptom logging, personalized insights, and an intuitive tracking dashboard.',
-      '/icons/cycle.png',
+      './icons/cycle.png',
       { apple: '#', google: '#' },
       '#/privacy/cycle'
     );
