@@ -77,7 +77,7 @@ const renderHome = () => `
     <h1>The future of<br>personal health.</h1>
     <p class="subtitle">An ecosystem of beautifully crafted, intelligent applications designed to elevate your daily routine, fitness, and wellness.</p>
     <div class="hero-ctas">
-      <a href="/beta" class="btn-primary">Join the Beta</a>
+      <a href="#/beta" class="btn-primary">Join the Beta</a>
       <a href="javascript:void(0)" class="btn-secondary" onclick="document.querySelector('.apps-section').scrollIntoView({behavior: 'smooth'})">Explore the Suite</a>
     </div>
   </header>
@@ -86,7 +86,7 @@ const renderHome = () => `
     <h3 class="section-title">The Suite</h3>
     
     <main class="apps-grid">
-      <a href="/calculator" class="app-card" style="text-decoration:none;">
+      <a href="#/calculator" class="app-card" style="text-decoration:none;">
         <div class="app-icon-container">
           <img src="/icons/calculator.png" alt="Calculator+ App" class="app-icon" />
         </div>
@@ -94,7 +94,7 @@ const renderHome = () => `
         <p class="app-desc">A powerful standard calculator featuring a vast marketplace of specialized calculators. Manage favorites, browse by categories, and customize with dynamic themes.</p>
       </a>
 
-      <a href="/cycle" class="app-card" style="text-decoration:none;">
+      <a href="#/cycle" class="app-card" style="text-decoration:none;">
         <div class="app-icon-container">
           <img src="/icons/cycle.png" alt="Cycle App" class="app-icon" />
         </div>
@@ -162,7 +162,7 @@ const renderHome = () => `
       <h3 class="beta-massive-text">Shape<br>the future.</h3>
       <div class="beta-cta-right">
         <p class="beta-desc">Join our exclusive beta testing program. Get early access to new features and directly influence our product roadmap.</p>
-        <a href="/beta" class="btn-primary">Apply for Beta ↗</a>
+        <a href="#/beta" class="btn-primary">Apply for Beta ↗</a>
       </div>
     </div>
   </section>
@@ -170,7 +170,7 @@ const renderHome = () => `
 
 const renderBetaPage = () => `
   <div class="page-container beta-page">
-    <a href="/" class="back-link">← Back to Suite</a>
+    <a href="#/" class="back-link">← Back to Suite</a>
     
     <div class="beta-header">
       <h1 class="app-page-title">Beta Testing Program</h1>
@@ -280,7 +280,7 @@ const renderBetaPage = () => `
 
 const renderAppPage = (appId, title, desc, icon, stores, privacyLink) => `
   <div class="page-container app-detail-page">
-    <a href="/" class="back-link">
+    <a href="#/" class="back-link">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
       Back to Suite
     </a>
@@ -321,7 +321,7 @@ const renderAppPage = (appId, title, desc, icon, stores, privacyLink) => `
 
 const renderPrivacyPolicy = (title) => `
   <div class="page-container">
-    <a href="/" class="back-link">← Back to Suite</a>
+    <a href="#/" class="back-link">← Back to Suite</a>
     <div class="privacy-content">
       <h1>Privacy Policy for ${title}</h1>
       <p>Last updated: October 2026</p>
@@ -335,7 +335,7 @@ const renderPrivacyPolicy = (title) => `
 `;
 
 const router = () => {
-  const path = window.location.pathname;
+  const hash = window.location.hash || '#/';
   const contentDiv = document.getElementById('content-area');
   
   // Force scroll to top on every navigation
@@ -343,56 +343,46 @@ const router = () => {
   
   if (!contentDiv) return;
 
-  if (path === '/calculator') {
+  if (hash === '#/') {
+    contentDiv.innerHTML = renderHome();
+  } else if (hash === '#/calculator') {
     contentDiv.innerHTML = renderAppPage(
       'calculator',
       'Calculator+',
       'A powerful standard calculator featuring a vast marketplace of specialized calculators. Manage favorites, browse by categories, and customize with dynamic themes.',
       '/icons/calculator.png',
       { apple: '#', google: '#' },
-      '/privacy/calculator'
+      '#/privacy/calculator'
     );
-  } else if (path === '/cycle') {
+  } else if (hash === '#/cycle') {
     contentDiv.innerHTML = renderAppPage(
       'cycle',
       'Cycle',
       'Comprehensive cycle tracking featuring an interactive calendar, daily symptom logging, personalized insights, and an intuitive tracking dashboard.',
       '/icons/cycle.png',
       { apple: '#', google: '#' },
-      '/privacy/cycle'
+      '#/privacy/cycle'
     );
-  } else if (path === '/privacy/calculator') {
+  } else if (hash === '#/privacy/calculator') {
     contentDiv.innerHTML = renderPrivacyPolicy('Calculator+');
-  } else if (path === '/privacy/cycle') {
+  } else if (hash === '#/privacy/cycle') {
     contentDiv.innerHTML = renderPrivacyPolicy('Cycle');
-  } else if (path === '/beta') {
+  } else if (hash === '#/beta') {
     contentDiv.innerHTML = renderBetaPage();
   } else {
     contentDiv.innerHTML = renderHome();
   }
 };
 
-window.addEventListener('popstate', router);
+window.addEventListener('hashchange', router);
 window.addEventListener('DOMContentLoaded', router);
-
-document.addEventListener('click', e => {
-  const a = e.target.closest('a');
-  if (a) {
-    const href = a.getAttribute('href');
-    if (href && href.startsWith('/') && !href.startsWith('//')) {
-      e.preventDefault();
-      history.pushState(null, '', href);
-      router();
-    }
-  }
-});
 
 document.querySelector('#app').innerHTML = `
   <div class="ambient-glow top"></div>
   <div class="ambient-glow bottom"></div>
 
   <nav>
-    <a href="/" class="logo" style="text-decoration:none; color:white;">EVLOME</a>
+    <a href="#/" class="logo" style="text-decoration:none; color:white;">EVLOME</a>
   </nav>
 
   <div id="content-area"></div>
