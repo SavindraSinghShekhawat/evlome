@@ -123,35 +123,42 @@ const renderHome = () => `
   </section>
 
   <section class="values-section">
-    <h3 class="section-label">Our Philosophy</h3>
+    <h3 class="section-title">Our Philosophy</h3>
     
     <div class="values-list">
       <div class="value-item">
         <span class="value-num">01</span>
         <div class="value-text">
-          <h4 class="value-title">Be Accessible</h4>
-          <p class="value-desc">Health and wellness tools should be available to everyone, designed with absolute clarity and ease of use.</p>
+          <h4 class="value-title">Make It Understandable</h4>
+          <p class="value-desc"><strong>Health can be complicated. EVLOME should not be.</strong><br>We turn complex information into clear, approachable tools that anyone can understand and use.</p>
         </div>
       </div>
       <div class="value-item">
         <span class="value-num">02</span>
         <div class="value-text">
-          <h4 class="value-title">Be Useful</h4>
-          <p class="value-desc">Every feature we build serves a clear, practical purpose to genuinely improve your daily routine.</p>
+          <h4 class="value-title">Make It Useful</h4>
+          <p class="value-desc"><strong>Every feature should earn its place.</strong><br>We build tools that solve real problems, support everyday decisions, and make taking care of yourself easier.</p>
         </div>
       </div>
       <div class="value-item">
         <span class="value-num">03</span>
         <div class="value-text">
-          <h4 class="value-title">Listen & Improve</h4>
-          <p class="value-desc">We are always open to feedback. We iterate and refine our products relentlessly based on real user needs.</p>
+          <h4 class="value-title">Put People First</h4>
+          <p class="value-desc"><strong>Technology should adapt to people — not the other way around.</strong><br>We listen, learn, and continuously improve through the needs, experiences, and feedback of the people who use EVLOME.</p>
         </div>
       </div>
       <div class="value-item">
         <span class="value-num">04</span>
         <div class="value-text">
-          <h4 class="value-title">Expand to Help</h4>
-          <p class="value-desc">As your needs grow, so does our ecosystem. We evolve to support you across all aspects of your well-being.</p>
+          <h4 class="value-title">Connect the Pieces</h4>
+          <p class="value-desc"><strong>Well-being is not one number, one habit, or one part of life.</strong><br>Our ecosystem brings different perspectives together so the whole picture becomes more meaningful than its individual parts.</p>
+        </div>
+      </div>
+      <div class="value-item">
+        <span class="value-num">05</span>
+        <div class="value-text">
+          <h4 class="value-title">Evolve With You</h4>
+          <p class="value-desc"><strong>Your needs change. Your life changes.</strong><br>EVLOME evolves with you — expanding, improving, and creating new ways to help you understand yourself and move toward a healthier you.</p>
         </div>
       </div>
     </div>
@@ -382,7 +389,9 @@ document.querySelector('#app').innerHTML = `
   <div class="ambient-glow bottom"></div>
 
   <nav>
-    <a href="#/" class="logo" style="text-decoration:none; color:white;">EVLOME</a>
+    <a href="#/" class="logo-link">
+      <img src="./logo-wordmark.png" alt="EVLOME" class="nav-logo" />
+    </a>
   </nav>
 
   <div id="content-area"></div>
