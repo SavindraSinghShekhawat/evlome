@@ -72,6 +72,41 @@ window.clearBetaError = function(event) {
   }
   input.classList.remove('has-error');
 };
+const appsData = [
+  {
+    id: 'calculator',
+    title: 'Calculator+',
+    desc: 'A powerful standard calculator featuring a vast marketplace of specialized calculators. Manage favorites, browse by categories, and customize with dynamic themes.',
+    icon: './icons/calculator.png',
+    status: 'beta',
+    stores: { apple: '#', google: '#' },
+    privacyLink: '#/privacy/calculator'
+  },
+  {
+    id: 'cycle',
+    title: 'Cycle',
+    desc: 'Comprehensive cycle tracking featuring an interactive calendar, daily symptom logging, personalized insights, and an intuitive tracking dashboard.',
+    icon: './icons/cycle.png',
+    status: 'beta',
+    stores: { apple: '#', google: '#' },
+    privacyLink: '#/privacy/cycle'
+  },
+  {
+    id: 'activity',
+    title: 'Activity',
+    desc: 'Track your daily movements, record detailed workouts, and stay active with real-time performance insights.',
+    icon: './icons/activity.png',
+    status: 'development'
+  },
+  {
+    id: 'nutrition',
+    title: 'Nutrition',
+    desc: 'Monitor your daily caloric intake, discover healthy recipes, and maintain a perfectly balanced diet effortlessly.',
+    icon: './icons/nutrition.png',
+    status: 'development'
+  }
+];
+
 const renderHome = () => `
   <header class="hero-section">
     <h1>The future of<br>personal health.</h1>
@@ -86,39 +121,29 @@ const renderHome = () => `
     <h3 class="section-title">The Suite</h3>
     
     <main class="apps-grid">
-      <a href="#/calculator" class="app-card" style="text-decoration:none;">
-        <div class="app-icon-container">
-          <img src="./icons/calculator.png" alt="Calculator+ App" class="app-icon" />
-        </div>
-        <h2 class="app-title">Calculator+</h2>
-        <p class="app-desc">A powerful standard calculator featuring a vast marketplace of specialized calculators. Manage favorites, browse by categories, and customize with dynamic themes.</p>
-      </a>
-
-      <a href="#/cycle" class="app-card" style="text-decoration:none;">
-        <div class="app-icon-container">
-          <img src="./icons/cycle.png" alt="Cycle App" class="app-icon" />
-        </div>
-        <h2 class="app-title">Cycle</h2>
-        <p class="app-desc">Comprehensive cycle tracking featuring an interactive calendar, daily symptom logging, personalized insights, and an intuitive tracking dashboard.</p>
-      </a>
-
-      <div class="app-card coming-soon">
-        <div class="badge">In Development</div>
-        <div class="app-icon-container">
-          <img src="./icons/activity.png" alt="Activity App" class="app-icon" />
-        </div>
-        <h2 class="app-title">Activity</h2>
-        <p class="app-desc">Track your daily movements, record detailed workouts, and stay active with real-time performance insights.</p>
-      </div>
-
-      <div class="app-card coming-soon">
-        <div class="badge">In Development</div>
-        <div class="app-icon-container">
-          <img src="./icons/nutrition.png" alt="Nutrition App" class="app-icon" />
-        </div>
-        <h2 class="app-title">Nutrition</h2>
-        <p class="app-desc">Monitor your daily caloric intake, discover healthy recipes, and maintain a perfectly balanced diet effortlessly.</p>
-      </div>
+      ${appsData.map(app => {
+        if (app.status === 'development') {
+          return `
+          <div class="app-card coming-soon">
+            <div class="badge">In Development</div>
+            <div class="app-icon-container">
+              <img src="${app.icon}" alt="${app.title} App" class="app-icon" />
+            </div>
+            <h2 class="app-title">${app.title}</h2>
+            <p class="app-desc">${app.desc}</p>
+          </div>`;
+        }
+        return `
+          <a href="#/${app.id}" class="app-card" style="text-decoration:none;">
+            ${app.status === 'beta' ? '<div class="badge">Beta</div>' : ''}
+            <div class="app-icon-container">
+              <img src="${app.icon}" alt="${app.title} App" class="app-icon" />
+            </div>
+            <h2 class="app-title">${app.title}</h2>
+            <p class="app-desc">${app.desc}</p>
+          </a>
+        `;
+      }).join('')}
     </main>
   </section>
 
@@ -232,32 +257,42 @@ const renderBetaPage = () => `
           </div>
 
           <div class="form-group">
-            <label>Which EVLOME apps would you like to test?</label>
-            <div class="checkbox-group">
+            <label>Which apps would you like early access to?</label>
+            <div class="radio-group" style="margin-bottom: 1.5rem;">
+              <label class="custom-radio">
+                <input type="radio" name="app_selection_type" value="all" checked onchange="document.getElementById('specific-apps-list').style.display = 'none'; document.getElementById('all-apps-hidden').checked = true; Array.from(document.querySelectorAll('.specific-app-checkbox')).forEach(cb => cb.checked = false);" />
+                <span class="radio-dot"></span>
+                <span class="radio-text">All EVLOME apps</span>
+              </label>
+              <label class="custom-radio">
+                <input type="radio" name="app_selection_type" value="specific" id="specific-apps-radio" onchange="document.getElementById('specific-apps-list').style.display = 'flex'; document.getElementById('all-apps-hidden').checked = false;" />
+                <span class="radio-dot"></span>
+                <span class="radio-text">Specific apps</span>
+              </label>
+            </div>
+            
+            <input type="checkbox" name="entry.610551536" value="All EVLOME apps" id="all-apps-hidden" style="display:none;" checked />
+
+            <div id="specific-apps-list" class="checkbox-group" style="display: none; margin-left: 1rem; padding-left: 1rem; border-left: 1px solid rgba(255,255,255,0.1);">
               <label class="custom-checkbox">
-                <input type="checkbox" name="entry.610551536" value="EVLOME Calculator+" />
+                <input type="checkbox" name="entry.610551536" value="EVLOME Calculator+" class="specific-app-checkbox" />
                 <span class="checkbox-box"></span>
                 <span class="checkbox-text">Calculator+</span>
               </label>
               <label class="custom-checkbox">
-                <input type="checkbox" name="entry.610551536" value="EVLOME Cycle" />
+                <input type="checkbox" name="entry.610551536" value="EVLOME Cycle" class="specific-app-checkbox" />
                 <span class="checkbox-box"></span>
                 <span class="checkbox-text">Cycle</span>
               </label>
               <label class="custom-checkbox">
-                <input type="checkbox" name="entry.610551536" value="EVLOME Nutrition" />
+                <input type="checkbox" name="entry.610551536" value="EVLOME Nutrition" class="specific-app-checkbox" />
                 <span class="checkbox-box"></span>
                 <span class="checkbox-text">Nutrition</span>
               </label>
               <label class="custom-checkbox">
-                <input type="checkbox" name="entry.610551536" value="EVLOME Activity" />
+                <input type="checkbox" name="entry.610551536" value="EVLOME Activity" class="specific-app-checkbox" />
                 <span class="checkbox-box"></span>
                 <span class="checkbox-text">Activity</span>
-              </label>
-              <label class="custom-checkbox">
-                <input type="checkbox" name="entry.610551536" value="Future EVLOME apps" />
-                <span class="checkbox-box"></span>
-                <span class="checkbox-text">Future Apps</span>
               </label>
             </div>
           </div>
@@ -285,7 +320,7 @@ const renderBetaPage = () => `
   </div>
 `;
 
-const renderAppPage = (appId, title, desc, icon, stores, privacyLink) => `
+const renderAppPage = (app) => `
   <div class="page-container app-detail-page">
     <a href="#/" class="back-link">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
@@ -295,14 +330,15 @@ const renderAppPage = (appId, title, desc, icon, stores, privacyLink) => `
     <div class="app-detail-hero">
       <div class="app-detail-icon-wrapper">
         <div class="app-detail-glow"></div>
-        <img src="${icon}" alt="${title} icon" class="app-detail-icon">
+        <img src="${app.icon}" alt="${app.title} icon" class="app-detail-icon">
       </div>
-      <h1 class="app-page-title">${title}</h1>
-      <p class="app-page-desc">${desc}</p>
+      <h1 class="app-page-title">${app.title}</h1>
+      <p class="app-page-desc">${app.desc}</p>
       
+      ${app.status === 'production' && app.stores ? `
       <div class="store-links centered-stores">
-        ${stores.apple ? `
-          <a href="${stores.apple}" target="_blank" class="store-badge">
+        ${app.stores.apple ? `
+          <a href="${app.stores.apple}" target="_blank" class="store-badge">
             <svg viewBox="0 0 384 512" fill="currentColor"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
             <div class="store-text">
               <span class="store-small">Download on the</span>
@@ -310,8 +346,8 @@ const renderAppPage = (appId, title, desc, icon, stores, privacyLink) => `
             </div>
           </a>
         ` : ''}
-        ${stores.google ? `
-          <a href="${stores.google}" target="_blank" class="store-badge">
+        ${app.stores.google ? `
+          <a href="${app.stores.google}" target="_blank" class="store-badge">
             <svg viewBox="0 0 512 512" fill="currentColor"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>
             <div class="store-text">
               <span class="store-small">GET IT ON</span>
@@ -320,8 +356,15 @@ const renderAppPage = (appId, title, desc, icon, stores, privacyLink) => `
           </a>
         ` : ''}
       </div>
+      ` : ''}
 
-      ${privacyLink ? `<div class="privacy-link-container"><a href="${privacyLink}" class="privacy-link">Privacy Policy</a></div>` : ''}
+      ${app.status === 'beta' ? `
+        <div style="margin-top: 2rem; display: flex; justify-content: center;">
+          <a href="#/beta?app=${app.id}" class="btn-primary" style="text-decoration: none;">Join the Beta</a>
+        </div>
+      ` : ''}
+
+      ${app.privacyLink ? `<div class="privacy-link-container"><a href="${app.privacyLink}" class="privacy-link">Privacy Policy</a></div>` : ''}
     </div>
   </div>
 `;
@@ -352,32 +395,51 @@ const router = () => {
 
   if (hash === '#/') {
     contentDiv.innerHTML = renderHome();
-  } else if (hash === '#/calculator') {
-    contentDiv.innerHTML = renderAppPage(
-      'calculator',
-      'Calculator+',
-      'A powerful standard calculator featuring a vast marketplace of specialized calculators. Manage favorites, browse by categories, and customize with dynamic themes.',
-      './icons/calculator.png',
-      { apple: '#', google: '#' },
-      '#/privacy/calculator'
-    );
-  } else if (hash === '#/cycle') {
-    contentDiv.innerHTML = renderAppPage(
-      'cycle',
-      'Cycle',
-      'Comprehensive cycle tracking featuring an interactive calendar, daily symptom logging, personalized insights, and an intuitive tracking dashboard.',
-      './icons/cycle.png',
-      { apple: '#', google: '#' },
-      '#/privacy/cycle'
-    );
-  } else if (hash === '#/privacy/calculator') {
-    contentDiv.innerHTML = renderPrivacyPolicy('Calculator+');
-  } else if (hash === '#/privacy/cycle') {
-    contentDiv.innerHTML = renderPrivacyPolicy('Cycle');
-  } else if (hash === '#/beta') {
+  } else if (hash.startsWith('#/beta')) {
     contentDiv.innerHTML = renderBetaPage();
+    const appMatch = hash.match(/^#\/beta\?app=([a-z0-9-]+)$/);
+    if (appMatch) {
+      const appId = appMatch[1];
+      const valMap = {
+        'calculator': 'EVLOME Calculator+',
+        'cycle': 'EVLOME Cycle',
+        'nutrition': 'EVLOME Nutrition',
+        'activity': 'EVLOME Activity'
+      };
+      if (valMap[appId]) {
+        const specificRadio = document.getElementById('specific-apps-radio');
+        if (specificRadio) {
+          specificRadio.checked = true;
+          document.getElementById('specific-apps-list').style.display = 'flex';
+          Array.from(document.querySelectorAll('input[name="entry.610551536"]')).forEach(cb => cb.checked = false);
+        }
+        const checkbox = document.querySelector(`input[value="${valMap[appId]}"]`);
+        if (checkbox) checkbox.checked = true;
+      }
+    }
   } else {
-    contentDiv.innerHTML = renderHome();
+    // Dynamic matching for apps and privacy policies
+    const appMatch = hash.match(/^#\/([a-z0-9-]+)$/);
+    const privacyMatch = hash.match(/^#\/privacy\/([a-z0-9-]+)$/);
+
+    if (privacyMatch) {
+      const app = appsData.find(a => a.id === privacyMatch[1]);
+      if (app) {
+        contentDiv.innerHTML = renderPrivacyPolicy(app.title);
+      } else {
+        contentDiv.innerHTML = renderHome();
+      }
+    } else if (appMatch) {
+      const app = appsData.find(a => a.id === appMatch[1]);
+      // Only render app page if it exists and is NOT in development
+      if (app && app.status !== 'development') {
+        contentDiv.innerHTML = renderAppPage(app);
+      } else {
+        contentDiv.innerHTML = renderHome();
+      }
+    } else {
+      contentDiv.innerHTML = renderHome();
+    }
   }
 };
 
