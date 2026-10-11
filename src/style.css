@@ -689,10 +689,16 @@ body::after {
 /* ==========================================================================
    App Cards (Echoing Image 2 & 3: 3D Squircle Widgets)
    ========================================================================== */
-.apps-section,
-.values-section,
-.beta-cta-section {
+.apps-section {
   scroll-margin-top: 8.5rem;
+}
+
+.values-section {
+  scroll-margin-top: 4rem;
+}
+
+.beta-cta-section {
+  scroll-margin-top: 5.5rem;
 }
 
 .apps-grid {
@@ -902,7 +908,7 @@ body::after {
    Philosophy & Values Section
    ========================================================================== */
 .values-section {
-  padding: 6rem 0 7rem;
+  padding: 4.5rem 0 7rem;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 

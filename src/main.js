@@ -306,7 +306,7 @@ const renderHome = () => `
 
 const renderBetaPage = () => `
   <div class="page-container beta-page">
-    <a href="/#suite-section" class="back-link" onclick="if (window.history.length > 1) { event.preventDefault(); window.history.back(); }">
+    <a href="/#suite-section" class="back-link" onclick="window.handleBackToSuite(event)">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
       Back to Suite
     </a>
@@ -429,7 +429,7 @@ const renderBetaPage = () => `
 
 const renderAppPage = (app) => `
   <div class="page-container app-detail-page" style="--app-glow: ${app.glowColor || 'rgba(168, 85, 247, 0.4)'}; --app-accent: ${app.accentColor || '#ec4899'};">
-    <a href="/#suite-section" class="back-link" onclick="if (window.history.length > 1) { event.preventDefault(); window.history.back(); }">
+    <a href="/#suite-section" class="back-link" onclick="window.handleBackToSuite(event)">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
       Back to Suite
     </a>
@@ -484,7 +484,7 @@ const renderAppPage = (app) => `
 
 const renderPrivacyPolicy = (title) => `
   <div class="page-container">
-    <a href="/#suite-section" class="back-link" onclick="if (window.history.length > 1) { event.preventDefault(); window.history.back(); }">← Back to Suite</a>
+    <a href="/#suite-section" class="back-link" onclick="window.handleBackToSuite(event)">← Back to Suite</a>
     <div class="privacy-content">
       <h1>Privacy Policy for ${title}</h1>
       <p>Last updated: October 2026</p>
@@ -501,6 +501,9 @@ const renderPrivacyPolicy = (title) => `
 if ('scrollRestoration' in history) {
   history.scrollRestoration = 'manual';
 }
+
+// Track in-app navigation history count to ensure Back returns to previous view without exiting app
+let inAppHistoryDepth = 0;
 
 // Track scroll positions per route so back navigation restores exact scroll
 const scrollPositions = new Map();
@@ -534,7 +537,32 @@ const restoreScrollTo = (targetY) => {
   setTimeout(apply, 80);
 };
 
+// Centralized back handler for Beta, Apps, and Privacy views
+window.handleBackToSuite = (e) => {
+  if (e) e.preventDefault();
+  if (inAppHistoryDepth > 0) {
+    window.history.back();
+  } else {
+    navigate('/');
+  }
+};
+
 export const navigate = (url) => {
+  const currentBase = window.location.pathname === '/' ? '/' : window.location.pathname.replace(/\/$/, '');
+  const targetBase = (url.split('?')[0].startsWith('/') ? url.split('?')[0] : '/' + url.split('?')[0]).replace(/\/$/, '') || '/';
+
+  // EDGE CASE: If already on this exact page (e.g. clicking Join Beta while already on /beta),
+  // completely ignore and stop duplicate navigation and history pushes.
+  if (currentBase === targetBase) {
+    // If target has specific search query different from current, update URL without adding history depth
+    if (url.includes('?') && window.location.search !== ('?' + url.split('?')[1])) {
+      window.history.replaceState({ scrollY: 0 }, '', url);
+      router({ isBack: false });
+    }
+    return;
+  }
+
+  // Save current scroll position in active history state before leaving
   if (currentRoute) {
     scrollPositions.set(currentRoute, window.scrollY);
     try {
@@ -542,6 +570,8 @@ export const navigate = (url) => {
       window.history.replaceState({ ...state, scrollY: window.scrollY }, '');
     } catch (e) {}
   }
+
+  inAppHistoryDepth++;
   window.history.pushState({ scrollY: 0 }, '', url);
   router({ isBack: false });
 };
@@ -634,6 +664,9 @@ const router = (options = { isBack: false }) => {
 };
 
 window.addEventListener('popstate', (e) => {
+  if (inAppHistoryDepth > 0) {
+    inAppHistoryDepth--;
+  }
   const targetY = e.state?.scrollY ?? scrollPositions.get(window.location.pathname) ?? 0;
   router({ isBack: true, targetY });
 });
@@ -647,16 +680,25 @@ document.addEventListener('click', (e) => {
   const href = link.getAttribute('href');
   if (!href) return;
 
-  // Let browser handle external links, target="_blank", mailto, javascript, or hash-only anchors
+  // Let browser handle external links, target="_blank", mailto, javascript
   if (
     link.target === '_blank' ||
     href.startsWith('http://') ||
     href.startsWith('https://') ||
     href.startsWith('mailto:') ||
-    href.startsWith('javascript:') ||
-    (href.startsWith('#') && !href.startsWith('#/'))
+    href.startsWith('javascript:')
   ) {
     return;
+  }
+
+  // Handle in-page hash anchors like #suite-section or /#suite-section
+  if (href.startsWith('#') || href.startsWith('/#')) {
+    const hashId = href.replace(/^\/?#/, '');
+    if (window.location.pathname === '/' && hashId) {
+      e.preventDefault();
+      scrollToSection(hashId);
+      return;
+    }
   }
 
   // Handle clean internal paths
@@ -667,17 +709,18 @@ document.addEventListener('click', (e) => {
 });
 
 export const scrollToSection = (sectionId) => {
-  if (window.location.pathname !== '/') {
-    window.history.pushState(null, '', '/');
-    router();
-    // Wait for DOM render then scroll
-    setTimeout(() => {
-      const el = document.getElementById(sectionId);
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
-    }, 60);
-  } else {
+  const performScroll = () => {
     const el = document.getElementById(sectionId);
     if (el) el.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  if (window.location.pathname !== '/') {
+    inAppHistoryDepth++;
+    window.history.pushState({ scrollY: 0 }, '', '/');
+    router({ isBack: false });
+    setTimeout(performScroll, 60);
+  } else {
+    performScroll();
   }
 };
 
