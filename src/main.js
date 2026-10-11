@@ -306,7 +306,10 @@ const renderHome = () => `
 
 const renderBetaPage = () => `
   <div class="page-container beta-page">
-    <a href="/" class="back-link">← Back to Suite</a>
+    <a href="/#suite-section" class="back-link" onclick="if (window.history.length > 1) { event.preventDefault(); window.history.back(); }">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Back to Suite
+    </a>
     
     <div class="beta-header">
       <h1 class="app-page-title">Beta Testing Program</h1>
@@ -502,9 +505,14 @@ if ('scrollRestoration' in history) {
 // Track scroll positions per route so back navigation restores exact scroll
 const scrollPositions = new Map();
 
+// Continuously sync active page scroll position into both Map and history.state
 window.addEventListener('scroll', () => {
   if (currentRoute) {
     scrollPositions.set(currentRoute, window.scrollY);
+    try {
+      const state = window.history.state || {};
+      window.history.replaceState({ ...state, scrollY: window.scrollY }, '');
+    } catch (e) {}
   }
 }, { passive: true });
 
@@ -522,14 +530,19 @@ const restoreScrollTo = (targetY) => {
   };
   apply();
   requestAnimationFrame(apply);
-  setTimeout(apply, 30);
+  setTimeout(apply, 20);
+  setTimeout(apply, 80);
 };
 
 export const navigate = (url) => {
   if (currentRoute) {
     scrollPositions.set(currentRoute, window.scrollY);
+    try {
+      const state = window.history.state || {};
+      window.history.replaceState({ ...state, scrollY: window.scrollY }, '');
+    } catch (e) {}
   }
-  window.history.pushState({ scrollY: window.scrollY }, '', url);
+  window.history.pushState({ scrollY: 0 }, '', url);
   router({ isBack: false });
 };
 
@@ -610,9 +623,9 @@ const router = (options = { isBack: false }) => {
     }
   }
 
-  // If going back, restore previous scroll position; otherwise start clean at top (scroll 0)
+  // If going back, restore previous scroll position from state; otherwise start clean at top (scroll 0)
   if (options.isBack) {
-    const targetY = scrollPositions.get(path) ?? window.history.state?.scrollY ?? 0;
+    const targetY = options.targetY ?? window.history.state?.scrollY ?? scrollPositions.get(path) ?? 0;
     restoreScrollTo(targetY);
   } else {
     resetScrollToTop();
@@ -621,7 +634,8 @@ const router = (options = { isBack: false }) => {
 };
 
 window.addEventListener('popstate', (e) => {
-  router({ isBack: true });
+  const targetY = e.state?.scrollY ?? scrollPositions.get(window.location.pathname) ?? 0;
+  router({ isBack: true, targetY });
 });
 window.addEventListener('DOMContentLoaded', () => router({ isBack: false }));
 
