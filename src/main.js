@@ -551,9 +551,17 @@ export const navigate = (url) => {
   const currentBase = window.location.pathname === '/' ? '/' : window.location.pathname.replace(/\/$/, '');
   const targetBase = (url.split('?')[0].startsWith('/') ? url.split('?')[0] : '/' + url.split('?')[0]).replace(/\/$/, '') || '/';
 
-  // EDGE CASE: If already on this exact page (e.g. clicking Join Beta while already on /beta),
-  // completely ignore and stop duplicate navigation and history pushes.
+  // EDGE CASE: If already on this exact page
   if (currentBase === targetBase) {
+    // If we are already on the main page ('/'), smoothly scroll to 0 (top)
+    if (targetBase === '/') {
+      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+      scrollPositions.set('/', 0);
+      try {
+        const state = window.history.state || {};
+        window.history.replaceState({ ...state, scrollY: 0 }, '');
+      } catch (e) {}
+    }
     // If target has specific search query different from current, update URL without adding history depth
     if (url.includes('?') && window.location.search !== ('?' + url.split('?')[1])) {
       window.history.replaceState({ scrollY: 0 }, '', url);
