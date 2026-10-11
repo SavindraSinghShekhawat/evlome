@@ -35,9 +35,9 @@ window.handleBetaSubmit = function(event) {
     }
   });
 
-  const deviceRadios = form.querySelectorAll('input[name="entry.261106749"]');
-  if (!Array.from(deviceRadios).some(r => r.checked)) {
-    showError(form.querySelector('.radio-group'), 'Please select a device');
+  const deviceCheckboxes = form.querySelectorAll('input[name="entry.261106749"]');
+  if (!Array.from(deviceCheckboxes).some(cb => cb.checked)) {
+    showError(form.querySelector('input[name="entry.261106749"]').closest('.checkbox-group'), 'Please select at least one device');
     isValid = false;
   }
 
@@ -60,6 +60,14 @@ window.handleBetaSubmit = function(event) {
       firstError.closest('.form-group').scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
     return false;
+  }
+
+  // If "The Entire EVLOME Suite (All Apps)" is chosen, ensure all 4 apps are submitted
+  // so Google Form receives the required values for entry.610551536
+  if (selectedSuiteRadio.value === 'The Entire EVLOME Suite (All Apps)') {
+    form.querySelectorAll('input[name="entry.610551536"]').forEach(cb => {
+      cb.checked = true;
+    });
   }
 
   window.betaSubmitted = true;
@@ -357,16 +365,16 @@ const renderBetaPage = () => `
 
           <div class="form-group">
             <label>What device do you use?</label>
-            <div class="radio-group">
-              <label class="custom-radio">
-                <input type="radio" name="entry.261106749" value="iOS" required />
-                <span class="radio-dot"></span>
-                <span class="radio-text">iOS</span>
+            <div class="checkbox-group" style="flex-direction: row; flex-wrap: wrap;">
+              <label class="custom-checkbox">
+                <input type="checkbox" name="entry.261106749" value="iOS" />
+                <span class="checkbox-box"></span>
+                <span class="checkbox-text">iOS</span>
               </label>
-              <label class="custom-radio">
-                <input type="radio" name="entry.261106749" value="Android" required />
-                <span class="radio-dot"></span>
-                <span class="radio-text">Android</span>
+              <label class="custom-checkbox">
+                <input type="checkbox" name="entry.261106749" value="Android" />
+                <span class="checkbox-box"></span>
+                <span class="checkbox-text">Android</span>
               </label>
             </div>
           </div>
