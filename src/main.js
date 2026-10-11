@@ -76,125 +76,229 @@ const appsData = [
   {
     id: 'calculator',
     title: 'Calculator+',
+    category: 'Health Tools',
+    badge: 'BETA',
+    tagline: 'Standard & specialized health math',
     desc: 'A powerful standard calculator featuring a vast marketplace of specialized calculators. Manage favorites, browse by categories, and customize with dynamic themes.',
     icon: './icons/calculator.png',
+    accentColor: '#8b5cf6',
+    glowColor: 'rgba(139, 92, 246, 0.45)',
     status: 'beta',
     stores: { apple: '#', google: '#' },
-    privacyLink: '#/privacy/calculator'
+    privacyLink: '/privacy/calculator'
   },
   {
     id: 'cycle',
     title: 'Cycle',
+    category: "Women's Health",
+    badge: 'BETA',
+    tagline: 'Intelligent rhythm & symptom tracking',
     desc: 'Comprehensive cycle tracking featuring an interactive calendar, daily symptom logging, personalized insights, and an intuitive tracking dashboard.',
     icon: './icons/cycle.png',
+    accentColor: '#f43f5e',
+    glowColor: 'rgba(244, 63, 94, 0.45)',
     status: 'beta',
     stores: { apple: '#', google: '#' },
-    privacyLink: '#/privacy/cycle'
+    privacyLink: '/privacy/cycle'
   },
   {
     id: 'activity',
     title: 'Activity',
-    desc: 'Track your daily movements, record detailed workouts, and stay active with real-time performance insights.',
+    category: 'Fitness & Motion',
+    badge: 'COMING SOON',
+    tagline: 'Real-time performance metrics',
+    desc: 'Track your daily movements, record detailed workouts, and stay active with effortless progress metrics and real-time performance insights.',
     icon: './icons/activity.png',
+    accentColor: '#38bdf8',
+    glowColor: 'rgba(56, 189, 248, 0.4)',
     status: 'development'
   },
   {
     id: 'nutrition',
     title: 'Nutrition',
-    desc: 'Monitor your daily caloric intake, discover healthy recipes, and maintain a perfectly balanced diet effortlessly.',
+    category: 'Diet & Vitality',
+    badge: 'COMING SOON',
+    tagline: 'Effortless caloric & nutrient balance',
+    desc: 'Monitor your daily caloric intake, discover wholesome recipes, and maintain a perfectly balanced diet effortlessly.',
     icon: './icons/nutrition.png',
+    accentColor: '#fb923c',
+    glowColor: 'rgba(251, 146, 60, 0.4)',
     status: 'development'
   }
 ];
 
 const renderHome = () => `
-  <header class="hero-section">
-    <h1>The future of<br>personal health.</h1>
-    <p class="subtitle">An ecosystem of beautifully crafted, intelligent applications designed to elevate your daily routine, fitness, and wellness.</p>
-    <div class="hero-ctas">
-      <a href="#/beta" class="btn-primary">Join the Beta</a>
-      <a href="javascript:void(0)" class="btn-secondary" onclick="document.querySelector('.apps-section').scrollIntoView({behavior: 'smooth'})">Explore the Suite</a>
+  <!-- Architectural Portal Hero Section -->
+  <header class="hero-portal">
+    <div class="hero-portal-media">
+      <img src="./hero-bg.jpg" alt="EVLOME Architectural Horizon" class="hero-backdrop" />
+      <div class="hero-vignette"></div>
+      <div class="hero-sun-glow"></div>
+    </div>
+
+    <div class="hero-portal-content">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-text">REAL TOOLS. REAL PROGRESS.</span>
+        <span class="eyebrow-bar"></span>
+      </div>
+
+      <h1 class="hero-title">
+        BETA TESTING<br>
+        <span class="gradient-headline">IS LIVE.</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        Meet <strong>Calculator+</strong> and <strong>Cycle</strong>.<br>
+        Be among the first to experience EVLOME.
+      </p>
+
+      <div class="hero-ctas">
+        <a href="/beta" class="btn-primary glow-pill">Join the Beta &rarr;</a>
+        <a href="javascript:void(0)" class="btn-secondary glass-pill" onclick="document.getElementById('suite-section').scrollIntoView({behavior: 'smooth'})">Explore the Suite</a>
+      </div>
+
+      <div class="hero-pillars">
+        <span class="pillar-item">MIND</span>
+        <span class="pillar-divider">/</span>
+        <span class="pillar-item">BODY</span>
+        <span class="pillar-divider">/</span>
+        <span class="pillar-item">HABITS</span>
+        <span class="pillar-divider">/</span>
+        <span class="pillar-item">PEOPLE</span>
+      </div>
     </div>
   </header>
 
-  <section class="apps-section">
-    <h3 class="section-title">The Suite</h3>
+  <!-- The Suite Showcase -->
+  <section id="suite-section" class="apps-section">
+    <div class="section-tag-wrap">
+      <span class="pill-tag">THE ECOSYSTEM</span>
+    </div>
+    <h2 class="section-heading">Two new apps.<br><span class="gradient-text-sub">Available now in Beta.</span></h2>
+    <p class="section-description">Beautifully crafted tools that connect the pieces of your daily well-being.</p>
     
-    <main class="apps-grid">
-      ${appsData.map(app => {
-        if (app.status === 'development') {
-          return `
-          <div class="app-card coming-soon">
-            <div class="badge">In Development</div>
-            <div class="app-icon-container">
-              <img src="${app.icon}" alt="${app.title} App" class="app-icon" />
+    <!-- Featured Beta Apps -->
+    <div class="apps-grid beta-featured-grid">
+      ${appsData.filter(app => app.status === 'beta').map(app => `
+        <a href="/${app.id}" class="app-card featured-app-card" style="--accent-glow: ${app.glowColor}; --accent-color: ${app.accentColor};">
+          <div class="card-ambient-glow"></div>
+          <div class="card-glass-panel">
+            <div class="app-badge-pill">${app.badge}</div>
+            
+            <div class="app-icon-squircle">
+              <img src="${app.icon}" alt="${app.title} App Icon" class="app-icon-img" />
             </div>
-            <h2 class="app-title">${app.title}</h2>
-            <p class="app-desc">${app.desc}</p>
-          </div>`;
-        }
-        return `
-          <a href="#/${app.id}" class="app-card" style="text-decoration:none;">
-            ${app.status === 'beta' ? '<div class="badge">Beta</div>' : ''}
-            <div class="app-icon-container">
-              <img src="${app.icon}" alt="${app.title} App" class="app-icon" />
+
+            <div class="app-card-meta">
+              <h3 class="app-card-title">${app.title}</h3>
+              <div class="app-category-label">${app.category}</div>
             </div>
-            <h2 class="app-title">${app.title}</h2>
+
             <p class="app-desc">${app.desc}</p>
-          </a>
-        `;
-      }).join('')}
-    </main>
+            
+            <div class="card-cta-footer">
+              <span class="card-cta-link">Explore ${app.title} &rarr;</span>
+            </div>
+          </div>
+        </a>
+      `).join('')}
+    </div>
+
+    <!-- Coming Soon Apps -->
+    <div class="coming-soon-divider">
+      <div class="cs-divider-line"></div>
+      <span class="cs-divider-label">COMING SOON</span>
+      <div class="cs-divider-line"></div>
+    </div>
+
+    <div class="apps-grid coming-soon-grid">
+      ${appsData.filter(app => app.status === 'development').map(app => `
+        <div class="app-card in-dev-card" style="--accent-glow: ${app.glowColor}; --accent-color: ${app.accentColor};">
+          <div class="card-ambient-glow"></div>
+          <div class="card-glass-panel">
+            <div class="app-badge-pill pill-subtle">${app.badge}</div>
+            
+            <div class="app-icon-squircle in-dev-squircle">
+              <img src="${app.icon}" alt="${app.title} App Icon" class="app-icon-img" />
+            </div>
+
+            <div class="app-card-meta">
+              <h3 class="app-card-title">${app.title}</h3>
+              <div class="app-category-label">${app.category}</div>
+            </div>
+
+            <p class="app-desc">${app.desc}</p>
+            
+            <div class="card-cta-footer">
+              <span class="card-status-label">In Active Development</span>
+            </div>
+          </div>
+        </div>
+      `).join('')}
+    </div>
   </section>
 
-  <section class="values-section">
-    <h3 class="section-title">Our Philosophy</h3>
+  <!-- Philosophy & Principles Section -->
+  <section id="philosophy-section" class="values-section">
+    <div class="section-tag-wrap">
+      <span class="pill-tag">OUR PHILOSOPHY</span>
+    </div>
+    <h2 class="section-heading">Tools. Insights. Progress.</h2>
+    <p class="section-description">Five foundational pillars guiding every algorithm and interaction we create.</p>
     
-    <div class="values-list">
-      <div class="value-item">
-        <span class="value-num">01</span>
-        <div class="value-text">
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-num-pill">01</div>
+        <div class="value-body">
           <h4 class="value-title">Make It Understandable</h4>
-          <p class="value-desc"><strong>Health can be complicated. EVLOME should not be.</strong><br>We turn complex information into clear, approachable tools that anyone can understand and use.</p>
+          <p class="value-text"><strong>Health can be complicated. EVLOME should not be.</strong> We turn dense data into approachable, intuitive tools that anyone can use.</p>
         </div>
       </div>
-      <div class="value-item">
-        <span class="value-num">02</span>
-        <div class="value-text">
+
+      <div class="value-card">
+        <div class="value-num-pill">02</div>
+        <div class="value-body">
           <h4 class="value-title">Make It Useful</h4>
-          <p class="value-desc"><strong>Every feature should earn its place.</strong><br>We build tools that solve real problems, support everyday decisions, and make taking care of yourself easier.</p>
+          <p class="value-text"><strong>Every feature should earn its place.</strong> We build utilities that solve real everyday problems and support thoughtful decisions.</p>
         </div>
       </div>
-      <div class="value-item">
-        <span class="value-num">03</span>
-        <div class="value-text">
+
+      <div class="value-card">
+        <div class="value-num-pill">03</div>
+        <div class="value-body">
           <h4 class="value-title">Put People First</h4>
-          <p class="value-desc"><strong>Technology should adapt to people — not the other way around.</strong><br>We listen, learn, and continuously improve through the needs, experiences, and feedback of the people who use EVLOME.</p>
+          <p class="value-text"><strong>Technology should adapt to people.</strong> We listen, iterate, and evolve continuously based on the real lived experiences of our members.</p>
         </div>
       </div>
-      <div class="value-item">
-        <span class="value-num">04</span>
-        <div class="value-text">
+
+      <div class="value-card">
+        <div class="value-num-pill">04</div>
+        <div class="value-body">
           <h4 class="value-title">Connect the Pieces</h4>
-          <p class="value-desc"><strong>Well-being is not one number, one habit, or one part of life.</strong><br>Our ecosystem brings different perspectives together so the whole picture becomes more meaningful than its individual parts.</p>
+          <p class="value-text"><strong>Well-being is an interconnected web.</strong> Our ecosystem unifies motion, rhythm, nutrition, and mental space into one harmonious picture.</p>
         </div>
       </div>
-      <div class="value-item">
-        <span class="value-num">05</span>
-        <div class="value-text">
+
+      <div class="value-card">
+        <div class="value-num-pill">05</div>
+        <div class="value-body">
           <h4 class="value-title">Evolve With You</h4>
-          <p class="value-desc"><strong>Your needs change. Your life changes.</strong><br>EVLOME evolves with you — expanding, improving, and creating new ways to help you understand yourself and move toward a healthier you.</p>
+          <p class="value-text"><strong>Your needs change as you grow.</strong> EVLOME evolves alongside your journey — unlocking deeper insights for a healthier tomorrow.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="beta-cta-section">
-    <div class="beta-cta-minimal">
-      <h3 class="beta-massive-text">Shape<br>the future.</h3>
-      <div class="beta-cta-right">
-        <p class="beta-desc">Join our exclusive beta testing program. Get early access to new features and directly influence our product roadmap.</p>
-        <a href="#/beta" class="btn-primary">Apply for Beta ↗</a>
+  <!-- Beta CTA Banner -->
+  <section id="beta-section" class="beta-cta-section">
+    <div class="beta-banner-card">
+      <div class="beta-banner-backdrop"></div>
+      <div class="beta-banner-glow"></div>
+      <div class="beta-banner-content">
+        <span class="pill-tag">BETA ACCESS</span>
+        <h3 class="beta-banner-title">Shape the future<br>of personal health.</h3>
+        <p class="beta-banner-desc">Join our testing community. Experience new capabilities before anyone else and guide our product roadmap.</p>
+        <a href="/beta" class="btn-primary glow-pill">Apply for Beta Testing &rarr;</a>
       </div>
     </div>
   </section>
@@ -202,7 +306,7 @@ const renderHome = () => `
 
 const renderBetaPage = () => `
   <div class="page-container beta-page">
-    <a href="#/" class="back-link">← Back to Suite</a>
+    <a href="/" class="back-link">← Back to Suite</a>
     
     <div class="beta-header">
       <h1 class="app-page-title">Beta Testing Program</h1>
@@ -321,20 +425,32 @@ const renderBetaPage = () => `
 `;
 
 const renderAppPage = (app) => `
-  <div class="page-container app-detail-page">
-    <a href="#/" class="back-link">
+  <div class="page-container app-detail-page" style="--app-glow: ${app.glowColor || 'rgba(168, 85, 247, 0.4)'}; --app-accent: ${app.accentColor || '#ec4899'};">
+    <a href="/" class="back-link">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
       Back to Suite
     </a>
     
     <div class="app-detail-hero">
+      <div class="app-detail-badge-wrap">
+        <span class="pill-tag">${app.category || 'HEALTH ECOSYSTEM'}</span>
+        ${app.status === 'beta' ? '<span class="app-badge-pill inline-pill">BETA</span>' : ''}
+      </div>
+
       <div class="app-detail-icon-wrapper">
-        <div class="app-detail-glow"></div>
+        <div class="app-detail-glow" style="background: radial-gradient(circle, var(--app-glow) 0%, transparent 70%);"></div>
         <img src="${app.icon}" alt="${app.title} icon" class="app-detail-icon">
       </div>
+      
       <h1 class="app-page-title">${app.title}</h1>
       <p class="app-page-desc">${app.desc}</p>
       
+      ${app.status === 'beta' ? `
+        <div class="app-detail-actions">
+          <a href="/beta?app=${app.id}" class="btn-primary glow-pill">Join the Beta &rarr;</a>
+        </div>
+      ` : ''}
+
       ${app.status === 'production' && app.stores ? `
       <div class="store-links centered-stores">
         ${app.stores.apple ? `
@@ -358,12 +474,6 @@ const renderAppPage = (app) => `
       </div>
       ` : ''}
 
-      ${app.status === 'beta' ? `
-        <div style="margin-top: 2rem; display: flex; justify-content: center;">
-          <a href="#/beta?app=${app.id}" class="btn-primary" style="text-decoration: none;">Join the Beta</a>
-        </div>
-      ` : ''}
-
       ${app.privacyLink ? `<div class="privacy-link-container"><a href="${app.privacyLink}" class="privacy-link">Privacy Policy</a></div>` : ''}
     </div>
   </div>
@@ -371,7 +481,7 @@ const renderAppPage = (app) => `
 
 const renderPrivacyPolicy = (title) => `
   <div class="page-container">
-    <a href="#/" class="back-link">← Back to Suite</a>
+    <a href="/" class="back-link">← Back to Suite</a>
     <div class="privacy-content">
       <h1>Privacy Policy for ${title}</h1>
       <p>Last updated: October 2026</p>
@@ -384,22 +494,44 @@ const renderPrivacyPolicy = (title) => `
   </div>
 `;
 
+export const navigate = (url) => {
+  window.history.pushState(null, '', url);
+  router();
+};
+
+let currentRoute = null;
+
 const router = () => {
-  const hash = window.location.hash || '#/';
+  // Support both clean pathname and legacy hash fallback seamlessly
+  let path = window.location.pathname;
+  if (path.length > 1 && path.endsWith('/')) {
+    path = path.slice(0, -1);
+  }
+
+  // Handle any legacy hash if incoming external link used it
+  if (window.location.hash && window.location.hash.startsWith('#/')) {
+    const cleanUrl = window.location.hash.slice(1);
+    window.history.replaceState(null, '', cleanUrl);
+    path = cleanUrl.split('?')[0];
+  }
+
+  const searchParams = new URLSearchParams(window.location.search);
   const contentDiv = document.getElementById('content-area');
   
-  // Force scroll to top on every navigation
-  window.scrollTo(0, 0);
+  // Only scroll to top on explicit navigation between different routes, preserving scroll position on page refresh
+  if (currentRoute !== null && currentRoute !== path) {
+    window.scrollTo(0, 0);
+  }
+  currentRoute = path;
   
   if (!contentDiv) return;
 
-  if (hash === '#/') {
+  if (path === '' || path === '/') {
     contentDiv.innerHTML = renderHome();
-  } else if (hash.startsWith('#/beta')) {
+  } else if (path === '/beta') {
     contentDiv.innerHTML = renderBetaPage();
-    const appMatch = hash.match(/^#\/beta\?app=([a-z0-9-]+)$/);
-    if (appMatch) {
-      const appId = appMatch[1];
+    const appId = searchParams.get('app');
+    if (appId) {
       const valMap = {
         'calculator': 'EVLOME Calculator+',
         'cycle': 'EVLOME Cycle',
@@ -417,58 +549,163 @@ const router = () => {
         if (checkbox) checkbox.checked = true;
       }
     }
+  } else if (path.startsWith('/privacy/')) {
+    const appId = path.replace('/privacy/', '');
+    const app = appsData.find(a => a.id === appId);
+    if (app) {
+      contentDiv.innerHTML = renderPrivacyPolicy(app.title);
+    } else {
+      contentDiv.innerHTML = renderHome();
+    }
   } else {
-    // Dynamic matching for apps and privacy policies
-    const appMatch = hash.match(/^#\/([a-z0-9-]+)$/);
-    const privacyMatch = hash.match(/^#\/privacy\/([a-z0-9-]+)$/);
-
-    if (privacyMatch) {
-      const app = appsData.find(a => a.id === privacyMatch[1]);
-      if (app) {
-        contentDiv.innerHTML = renderPrivacyPolicy(app.title);
-      } else {
-        contentDiv.innerHTML = renderHome();
-      }
-    } else if (appMatch) {
-      const app = appsData.find(a => a.id === appMatch[1]);
-      // Only render app page if it exists and is NOT in development
-      if (app && app.status !== 'development') {
-        contentDiv.innerHTML = renderAppPage(app);
-      } else {
-        contentDiv.innerHTML = renderHome();
-      }
+    // Dynamic matching for apps: /calculator, /cycle, etc.
+    const appId = path.slice(1);
+    const app = appsData.find(a => a.id === appId);
+    if (app && app.status !== 'development') {
+      contentDiv.innerHTML = renderAppPage(app);
     } else {
       contentDiv.innerHTML = renderHome();
     }
   }
 };
 
-window.addEventListener('hashchange', router);
+window.addEventListener('popstate', router);
 window.addEventListener('DOMContentLoaded', router);
 
-document.querySelector('#app').innerHTML = `
-  <div class="ambient-glow top"></div>
-  <div class="ambient-glow bottom"></div>
+// Intercept clicks on internal links to provide smooth client-side SPA navigation
+document.addEventListener('click', (e) => {
+  const link = e.target.closest('a');
+  if (!link) return;
 
-  <nav>
-    <a href="#/" class="logo-link">
-      <img src="./logo-wordmark.png" alt="EVLOME" class="nav-logo" />
-    </a>
+  const href = link.getAttribute('href');
+  if (!href) return;
+
+  // Let browser handle external links, target="_blank", mailto, javascript, or hash-only anchors
+  if (
+    link.target === '_blank' ||
+    href.startsWith('http://') ||
+    href.startsWith('https://') ||
+    href.startsWith('mailto:') ||
+    href.startsWith('javascript:') ||
+    (href.startsWith('#') && !href.startsWith('#/'))
+  ) {
+    return;
+  }
+
+  // Handle clean internal paths
+  if (href.startsWith('/')) {
+    e.preventDefault();
+    navigate(href);
+  }
+});
+
+export const scrollToSection = (sectionId) => {
+  if (window.location.pathname !== '/') {
+    window.history.pushState(null, '', '/');
+    router();
+    // Wait for DOM render then scroll
+    setTimeout(() => {
+      const el = document.getElementById(sectionId);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }, 60);
+  } else {
+    const el = document.getElementById(sectionId);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  }
+};
+
+window.scrollToSection = scrollToSection;
+
+window.toggleMobileMenu = () => {
+  const nav = document.querySelector('.site-nav');
+  const btn = document.querySelector('.nav-burger-btn');
+  if (nav) {
+    nav.classList.toggle('menu-open');
+    const isOpen = nav.classList.contains('menu-open');
+    if (btn) btn.classList.toggle('active', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  }
+};
+
+window.closeMobileMenu = () => {
+  const nav = document.querySelector('.site-nav');
+  const btn = document.querySelector('.nav-burger-btn');
+  if (nav && nav.classList.contains('menu-open')) {
+    nav.classList.remove('menu-open');
+    if (btn) btn.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+};
+
+document.querySelector('#app').innerHTML = `
+  <div class="ambient-glow glow-top-left"></div>
+  <div class="ambient-glow glow-top-right"></div>
+  <div class="ambient-glow glow-sunset-center"></div>
+
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="/" class="logo-link" onclick="window.closeMobileMenu()">
+        <img src="./logo-wordmark.png" alt="EVLOME" class="nav-logo" />
+      </a>
+      
+      <!-- Desktop Menu -->
+      <div class="nav-menu">
+        <button type="button" class="nav-link-btn" onclick="window.scrollToSection('suite-section')">Suite</button>
+        <button type="button" class="nav-link-btn" onclick="window.scrollToSection('philosophy-section')">Philosophy</button>
+        <a href="/beta" class="nav-pill-btn">Join Beta</a>
+      </div>
+
+      <!-- Mobile Hamburger Button (3 horizontal lines morphing into X) -->
+      <button type="button" class="nav-burger-btn" id="nav-burger-btn" aria-label="Toggle navigation menu" onclick="window.toggleMobileMenu()">
+        <span class="burger-box">
+          <span class="burger-line line-top"></span>
+          <span class="burger-line line-middle"></span>
+          <span class="burger-line line-bottom"></span>
+        </span>
+      </button>
+    </div>
+
+    <!-- Mobile Drawer Overlay -->
+    <div class="mobile-nav-drawer" onclick="if(event.target === this) window.closeMobileMenu();">
+      <!-- Dedicated Drawer Close Button at top right -->
+      <button type="button" class="mobile-drawer-close-btn" aria-label="Close navigation menu" onclick="window.closeMobileMenu()">
+        <span class="drawer-close-icon">
+          <span class="close-line close-line-1"></span>
+          <span class="close-line close-line-2"></span>
+        </span>
+      </button>
+
+      <div class="mobile-drawer-content">
+        <button type="button" class="mobile-drawer-link" onclick="window.closeMobileMenu(); window.scrollToSection('suite-section');">Suite</button>
+        <button type="button" class="mobile-drawer-link" onclick="window.closeMobileMenu(); window.scrollToSection('philosophy-section');">Philosophy</button>
+        <a href="/beta" class="btn-primary glow-pill mobile-drawer-cta" onclick="window.closeMobileMenu();">Join the Beta &rarr;</a>
+        
+        <div class="mobile-drawer-footer">
+          <div class="mobile-drawer-domain">evlome.com</div>
+        </div>
+      </div>
+    </div>
   </nav>
 
   <div id="content-area"></div>
 
-  <footer>
+  <footer class="site-footer">
+    <div class="footer-brand-signature">
+      <span class="signature-line"></span>
+      <span class="signature-domain">evlome.com</span>
+      <span class="signature-line"></span>
+    </div>
+
     <div class="footer-content">
       <div class="footer-brand">&copy; ${new Date().getFullYear()} Evlome. All rights reserved.</div>
       <div class="footer-contact">
-        <a href="mailto:hello@evlome.com" class="social-link">
+        <a href="mailto:hello@evlome.com" class="social-pill">
           <svg viewBox="0 0 512 512" fill="currentColor"><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/></svg>
-          hello@evlome.com
+          <span>hello@evlome.com</span>
         </a>
-        <a href="https://instagram.com/evlomeofficial" target="_blank" class="social-link">
+        <a href="https://instagram.com/evlomeofficial" target="_blank" rel="noopener noreferrer" class="social-pill">
           <svg viewBox="0 0 448 512" fill="currentColor"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
-          @evlomeofficial
+          <span>@evlomeofficial</span>
         </a>
       </div>
     </div>
