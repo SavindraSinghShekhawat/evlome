@@ -41,10 +41,17 @@ window.handleBetaSubmit = function(event) {
     isValid = false;
   }
 
-  const appCheckboxes = form.querySelectorAll('input[name="entry.610551536"]');
-  if (!Array.from(appCheckboxes).some(c => c.checked)) {
-    showError(form.querySelector('.checkbox-group'), 'Please select at least one app');
+  const suiteRadios = form.querySelectorAll('input[name="entry.923244053"]');
+  const selectedSuiteRadio = Array.from(suiteRadios).find(r => r.checked);
+  if (!selectedSuiteRadio) {
+    showError(form.querySelector('input[name="entry.923244053"]').closest('.radio-group'), 'Please choose what you would like to test');
     isValid = false;
+  } else if (selectedSuiteRadio.value === 'Specific Apps Only') {
+    const appCheckboxes = form.querySelectorAll('input[name="entry.610551536"]');
+    if (!Array.from(appCheckboxes).some(c => c.checked)) {
+      showError(form.querySelector('#specific-apps-list'), 'Please select at least one specific app to test');
+      isValid = false;
+    }
   }
 
   if (!isValid) {
@@ -344,6 +351,7 @@ const renderBetaPage = () => `
 
           <div class="form-group">
             <label>Email Address</label>
+            <span class="form-helper-text">Use the email associated with your Apple ID (App Store) or Google Play Store for TestFlight/beta access.</span>
             <input type="email" name="entry.1247363008" required placeholder="jane@example.com" class="form-input" />
           </div>
 
@@ -364,42 +372,40 @@ const renderBetaPage = () => `
           </div>
 
           <div class="form-group">
-            <label>Which apps would you like early access to?</label>
+            <label>What would you like to test?</label>
             <div class="radio-group" style="margin-bottom: 1.5rem;">
               <label class="custom-radio">
-                <input type="radio" name="app_selection_type" value="all" checked onchange="document.getElementById('specific-apps-list').style.display = 'none'; document.getElementById('all-apps-hidden').checked = true; Array.from(document.querySelectorAll('.specific-app-checkbox')).forEach(cb => cb.checked = false);" />
+                <input type="radio" name="entry.923244053" value="The Entire EVLOME Suite (All Apps)" checked onchange="document.getElementById('specific-apps-list').style.display = 'none'; Array.from(document.querySelectorAll('.specific-app-checkbox')).forEach(cb => cb.checked = false);" />
                 <span class="radio-dot"></span>
-                <span class="radio-text">All EVLOME apps</span>
+                <span class="radio-text">The Entire EVLOME Suite (All Apps)</span>
               </label>
               <label class="custom-radio">
-                <input type="radio" name="app_selection_type" value="specific" id="specific-apps-radio" onchange="document.getElementById('specific-apps-list').style.display = 'flex'; document.getElementById('all-apps-hidden').checked = false;" />
+                <input type="radio" name="entry.923244053" value="Specific Apps Only" id="specific-apps-radio" onchange="document.getElementById('specific-apps-list').style.display = 'flex';" />
                 <span class="radio-dot"></span>
-                <span class="radio-text">Specific apps</span>
+                <span class="radio-text">Specific Apps Only</span>
               </label>
             </div>
-            
-            <input type="checkbox" name="entry.610551536" value="All EVLOME apps" id="all-apps-hidden" style="display:none;" checked />
 
             <div id="specific-apps-list" class="checkbox-group" style="display: none; margin-left: 1rem; padding-left: 1rem; border-left: 1px solid rgba(255,255,255,0.1);">
               <label class="custom-checkbox">
                 <input type="checkbox" name="entry.610551536" value="EVLOME Calculator+" class="specific-app-checkbox" />
                 <span class="checkbox-box"></span>
-                <span class="checkbox-text">Calculator+</span>
+                <span class="checkbox-text">EVLOME Calculator+</span>
               </label>
               <label class="custom-checkbox">
                 <input type="checkbox" name="entry.610551536" value="EVLOME Cycle" class="specific-app-checkbox" />
                 <span class="checkbox-box"></span>
-                <span class="checkbox-text">Cycle</span>
+                <span class="checkbox-text">EVLOME Cycle</span>
               </label>
               <label class="custom-checkbox">
                 <input type="checkbox" name="entry.610551536" value="EVLOME Nutrition" class="specific-app-checkbox" />
                 <span class="checkbox-box"></span>
-                <span class="checkbox-text">Nutrition</span>
+                <span class="checkbox-text">EVLOME Nutrition</span>
               </label>
               <label class="custom-checkbox">
                 <input type="checkbox" name="entry.610551536" value="EVLOME Activity" class="specific-app-checkbox" />
                 <span class="checkbox-box"></span>
-                <span class="checkbox-text">Activity</span>
+                <span class="checkbox-text">EVLOME Activity</span>
               </label>
             </div>
           </div>
