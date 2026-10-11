@@ -494,8 +494,20 @@ const renderPrivacyPolicy = (title) => `
   </div>
 `;
 
+// Disable automatic browser scroll restoration so new pages consistently start at top
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
+
+const resetScrollToTop = () => {
+  window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+};
+
 export const navigate = (url) => {
   window.history.pushState(null, '', url);
+  resetScrollToTop();
   router();
 };
 
@@ -518,10 +530,6 @@ const router = () => {
   const searchParams = new URLSearchParams(window.location.search);
   const contentDiv = document.getElementById('content-area');
   
-  // Only scroll to top on explicit navigation between different routes, preserving scroll position on page refresh
-  if (currentRoute !== null && currentRoute !== path) {
-    window.scrollTo(0, 0);
-  }
   currentRoute = path;
   
   if (!contentDiv) return;
@@ -567,9 +575,16 @@ const router = () => {
       contentDiv.innerHTML = renderHome();
     }
   }
+
+  // Always ensure all pages start at scroll 0 (top)
+  resetScrollToTop();
+  requestAnimationFrame(resetScrollToTop);
 };
 
-window.addEventListener('popstate', router);
+window.addEventListener('popstate', () => {
+  resetScrollToTop();
+  router();
+});
 window.addEventListener('DOMContentLoaded', router);
 
 // Intercept clicks on internal links to provide smooth client-side SPA navigation
