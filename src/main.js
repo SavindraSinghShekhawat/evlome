@@ -94,7 +94,7 @@ const appsData = [
     category: 'Health Tools',
     badge: 'BETA',
     tagline: 'Standard & specialized health math',
-    desc: 'A powerful standard calculator featuring a vast marketplace of specialized calculators. Manage favorites, browse by categories, and customize with dynamic themes.',
+    desc: 'The only calculator app you need. A comprehensive collection of everyday, health, fitness, finance, math, conversion, and other useful calculators — all in one place.',
     icon: './icons/calculator.png',
     accentColor: '#8b5cf6',
     glowColor: 'rgba(139, 92, 246, 0.45)',
@@ -108,7 +108,7 @@ const appsData = [
     category: "Women's Health",
     badge: 'BETA',
     tagline: 'Intelligent rhythm & symptom tracking',
-    desc: 'Comprehensive cycle tracking featuring an interactive calendar, daily symptom logging, personalized insights, and an intuitive tracking dashboard.',
+    desc: 'A discrete menstrual cycle and fertility tracking app with period predictions, ovulation tracking, basal body temperature, and physical and emotional symptom tracking.',
     icon: './icons/cycle.png',
     accentColor: '#f43f5e',
     glowColor: 'rgba(244, 63, 94, 0.45)',
@@ -122,7 +122,7 @@ const appsData = [
     category: 'Fitness & Motion',
     badge: 'COMING SOON',
     tagline: 'Real-time performance metrics',
-    desc: 'Track your daily movements, record detailed workouts, and stay active with effortless progress metrics and real-time performance insights.',
+    desc: 'A versatile workout logger for gym, home workouts, and calisthenics, with workout templates, set/rep/weight tracking, rest timers, and progress tracking.',
     icon: './icons/activity.png',
     accentColor: '#38bdf8',
     glowColor: 'rgba(56, 189, 248, 0.4)',
@@ -134,7 +134,7 @@ const appsData = [
     category: 'Diet & Vitality',
     badge: 'COMING SOON',
     tagline: 'Effortless caloric & nutrient balance',
-    desc: 'Monitor your daily caloric intake, discover wholesome recipes, and maintain a perfectly balanced diet effortlessly.',
+    desc: 'A premium calorie, macro, and nutrient tracker with food logging, calorie goals, fasting timers, water tracking, and custom foods.',
     icon: './icons/nutrition.png',
     accentColor: '#fb923c',
     glowColor: 'rgba(251, 146, 60, 0.4)',
@@ -498,15 +498,45 @@ const renderAppPage = (app) => `
 
 const renderPrivacyPolicy = (title) => `
   <div class="page-container">
-    <a href="/#suite-section" class="back-link" onclick="window.handleBackToSuite(event)">← Back to Suite</a>
+    <a href="/#suite-section" class="back-link" onclick="window.handleBackToSuite(event)">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Back to Suite
+    </a>
     <div class="privacy-content">
+      <div class="app-detail-badge-wrap" style="margin-bottom: 1.5rem;">
+        <span class="pill-tag">LEGAL & PRIVACY</span>
+        <span class="app-badge-pill inline-pill" style="border-color: rgba(139, 92, 246, 0.4); background: rgba(139, 92, 246, 0.1); color: #c4b5fd;">BETA NOTICE</span>
+      </div>
+      
       <h1>Privacy Policy for ${title}</h1>
-      <p>Last updated: October 2026</p>
-      <br>
-      <p>This is a placeholder for the full privacy policy. You can store your detailed terms and privacy information here.</p>
-      <br>
-      <p><strong>1. Information Collection</strong></p>
-      <p>We believe in privacy first. Your data is stored locally on your device whenever possible...</p>
+      <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 2.5rem;">Status: In Preparation &bull; Last Revised: October 2026</p>
+
+      <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 16px; padding: 2rem; margin-bottom: 2.5rem;">
+        <h3 style="color: #ffffff; font-size: 1.2rem; font-weight: 600; margin-bottom: 0.8rem; letter-spacing: -0.01em;">Notice of Upcoming Policy Update</h3>
+        <p style="color: var(--text-secondary); line-height: 1.7; font-size: 1rem; margin-bottom: 0;">
+          The full, binding Privacy Policy and Terms of Service for <strong>${title}</strong> are currently under legal review and will be published prior to our official public production release on the App Store and Google Play.
+        </p>
+      </div>
+
+      <h3 style="color: #ffffff; font-size: 1.25rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem;">Core Privacy Principles</h3>
+      <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.5rem;">
+        At EVLOME, our architectural foundation is built on personal privacy, agency, and data sovereignty:
+      </p>
+
+      <ul style="color: var(--text-secondary); line-height: 1.8; margin-left: 1.5rem; margin-bottom: 2.5rem; display: flex; flex-direction: column; gap: 0.8rem;">
+        <li><strong style="color: #ffffff;">Local-First Data Storage:</strong> Sensitive metrics, logs, and personal calculations reside directly on your device rather than unencrypted remote servers whenever possible.</li>
+        <li><strong style="color: #ffffff;">Beta Testing Discretion:</strong> Throughout the closed beta phase, we explicitly encourage testers to utilize fictional, non-sensitive test entries.</li>
+        <li><strong style="color: #ffffff;">No Data Commercialization:</strong> We do not sell, rent, or trade your personal health, rhythm, or diagnostic information to third-party data brokers or advertisers.</li>
+        <li><strong style="color: #ffffff;">Transparent Controls:</strong> When production synchronization is enabled, users will maintain granular controls to export or purge their data at any time.</li>
+      </ul>
+
+      <h3 style="color: #ffffff; font-size: 1.25rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem;">Questions or Legal Inquiries</h3>
+      <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem;">
+        If you have questions regarding data handling practices during the beta testing period or wish to inquire about our compliance roadmap, please reach out to our team:
+      </p>
+      <p>
+        <a href="mailto:hello@evlome.com" style="color: #ec4899; text-decoration: none; font-weight: 500;">hello@evlome.com</a>
+      </p>
     </div>
   </div>
 `;
