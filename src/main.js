@@ -426,7 +426,7 @@ const renderBetaPage = () => `
 
 const renderAppPage = (app) => `
   <div class="page-container app-detail-page" style="--app-glow: ${app.glowColor || 'rgba(168, 85, 247, 0.4)'}; --app-accent: ${app.accentColor || '#ec4899'};">
-    <a href="/" class="back-link">
+    <a href="/#suite-section" class="back-link" onclick="if (window.history.length > 1) { event.preventDefault(); window.history.back(); }">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
       Back to Suite
     </a>
@@ -481,7 +481,7 @@ const renderAppPage = (app) => `
 
 const renderPrivacyPolicy = (title) => `
   <div class="page-container">
-    <a href="/" class="back-link">← Back to Suite</a>
+    <a href="/#suite-section" class="back-link" onclick="if (window.history.length > 1) { event.preventDefault(); window.history.back(); }">← Back to Suite</a>
     <div class="privacy-content">
       <h1>Privacy Policy for ${title}</h1>
       <p>Last updated: October 2026</p>
@@ -494,10 +494,19 @@ const renderPrivacyPolicy = (title) => `
   </div>
 `;
 
-// Disable automatic browser scroll restoration so new pages consistently start at top
+// Disable automatic browser scroll restoration so we have full, precise control
 if ('scrollRestoration' in history) {
   history.scrollRestoration = 'manual';
 }
+
+// Track scroll positions per route so back navigation restores exact scroll
+const scrollPositions = new Map();
+
+window.addEventListener('scroll', () => {
+  if (currentRoute) {
+    scrollPositions.set(currentRoute, window.scrollY);
+  }
+}, { passive: true });
 
 const resetScrollToTop = () => {
   window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
@@ -505,15 +514,28 @@ const resetScrollToTop = () => {
   document.body.scrollTop = 0;
 };
 
+const restoreScrollTo = (targetY) => {
+  const apply = () => {
+    window.scrollTo({ top: targetY, left: 0, behavior: 'instant' });
+    document.documentElement.scrollTop = targetY;
+    document.body.scrollTop = targetY;
+  };
+  apply();
+  requestAnimationFrame(apply);
+  setTimeout(apply, 30);
+};
+
 export const navigate = (url) => {
-  window.history.pushState(null, '', url);
-  resetScrollToTop();
-  router();
+  if (currentRoute) {
+    scrollPositions.set(currentRoute, window.scrollY);
+  }
+  window.history.pushState({ scrollY: window.scrollY }, '', url);
+  router({ isBack: false });
 };
 
 let currentRoute = null;
 
-const router = () => {
+const router = (options = { isBack: false }) => {
   // Support both clean pathname and legacy hash fallback seamlessly
   let path = window.location.pathname;
   if (path.length > 1 && path.endsWith('/')) {
@@ -576,16 +598,32 @@ const router = () => {
     }
   }
 
-  // Always ensure all pages start at scroll 0 (top)
-  resetScrollToTop();
-  requestAnimationFrame(resetScrollToTop);
+  // Handle section hash scrolling if present (e.g. #suite-section or #philosophy-section)
+  if (window.location.hash && !window.location.hash.startsWith('#/')) {
+    const hashId = window.location.hash.slice(1);
+    const targetEl = document.getElementById(hashId);
+    if (targetEl) {
+      setTimeout(() => {
+        targetEl.scrollIntoView({ behavior: 'smooth' });
+      }, 50);
+      return;
+    }
+  }
+
+  // If going back, restore previous scroll position; otherwise start clean at top (scroll 0)
+  if (options.isBack) {
+    const targetY = scrollPositions.get(path) ?? window.history.state?.scrollY ?? 0;
+    restoreScrollTo(targetY);
+  } else {
+    resetScrollToTop();
+    requestAnimationFrame(resetScrollToTop);
+  }
 };
 
-window.addEventListener('popstate', () => {
-  resetScrollToTop();
-  router();
+window.addEventListener('popstate', (e) => {
+  router({ isBack: true });
 });
-window.addEventListener('DOMContentLoaded', router);
+window.addEventListener('DOMContentLoaded', () => router({ isBack: false }));
 
 // Intercept clicks on internal links to provide smooth client-side SPA navigation
 document.addEventListener('click', (e) => {
