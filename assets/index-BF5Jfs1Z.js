@@ -1,4 +1,4 @@
-(function(){let e=document.createElement(`link`).relList;if(e&&e.supports&&e.supports(`modulepreload`))return;for(let e of document.querySelectorAll(`link[rel="modulepreload"]`))n(e);new MutationObserver(e=>{for(let t of e)if(t.type===`childList`)for(let e of t.addedNodes)e.tagName===`LINK`&&e.rel===`modulepreload`&&n(e)}).observe(document,{childList:!0,subtree:!0});function t(e){let t={};return e.integrity&&(t.integrity=e.integrity),e.referrerPolicy&&(t.referrerPolicy=e.referrerPolicy),t.credentials=e.crossOrigin===`use-credentials`?`include`:e.crossOrigin===`anonymous`?`omit`:`same-origin`,t}function n(e){if(e.ep)return;e.ep=!0;let n=t(e);fetch(e.href,n)}})(),window.handleBetaSubmit=function(e){e.preventDefault();let t=e.target,n=!0,r=null;t.querySelectorAll(`.error-msg`).forEach(e=>e.remove()),t.querySelectorAll(`.has-error`).forEach(e=>e.classList.remove(`has-error`));let i=(e,t,n)=>{let i=document.createElement(`div`);i.className=`error-msg`,i.innerText=t,e.classList.contains(`radio-group`)||e.classList.contains(`checkbox-group`)?e.parentElement.appendChild(i):(e.parentElement.appendChild(i),e.classList.add(`has-error`)),r||=n||e.closest(`.form-group`)};t.querySelectorAll(`input[type="text"], input[type="email"], select`).forEach(e=>{e.value.trim()?e.type===`email`&&!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(e.value)&&(i(e,`Please enter a valid email address`),n=!1):(i(e,`This field is required`),n=!1)});let a=t.querySelectorAll(`input[name="entry.261106749"]`);Array.from(a).some(e=>e.checked)||(i(t.querySelector(`.radio-group`),`Please select a device`),n=!1);let o=t.querySelectorAll(`input[name="entry.610551536"]`);if(Array.from(o).some(e=>e.checked)||(i(t.querySelector(`.checkbox-group`),`Please select at least one app`),n=!1),!n){let e=t.querySelector(`.error-msg`);return e&&e.closest(`.form-group`).scrollIntoView({behavior:`smooth`,block:`center`}),!1}window.betaSubmitted=!0;let s=document.getElementById(`submit-btn`);s.innerHTML=`Submitting...`,s.style.opacity=`0.5`,s.disabled=!0,t.submit()},window.clearBetaError=function(e){let t=e.target,n=t.closest(`.form-group`);if(n){let e=n.querySelector(`.error-msg`);e&&e.remove()}t.classList.remove(`has-error`)};var e=[{id:`calculator`,title:`Calculator+`,category:`Health Tools`,badge:`BETA`,tagline:`Standard & specialized health math`,desc:`A powerful standard calculator featuring a vast marketplace of specialized calculators. Manage favorites, browse by categories, and customize with dynamic themes.`,icon:`./icons/calculator.png`,accentColor:`#8b5cf6`,glowColor:`rgba(139, 92, 246, 0.45)`,status:`beta`,stores:{apple:`#`,google:`#`},privacyLink:`/privacy/calculator`},{id:`cycle`,title:`Cycle`,category:`Women's Health`,badge:`BETA`,tagline:`Intelligent rhythm & symptom tracking`,desc:`Comprehensive cycle tracking featuring an interactive calendar, daily symptom logging, personalized insights, and an intuitive tracking dashboard.`,icon:`./icons/cycle.png`,accentColor:`#f43f5e`,glowColor:`rgba(244, 63, 94, 0.45)`,status:`beta`,stores:{apple:`#`,google:`#`},privacyLink:`/privacy/cycle`},{id:`activity`,title:`Activity`,category:`Fitness & Motion`,badge:`COMING SOON`,tagline:`Real-time performance metrics`,desc:`Track your daily movements, record detailed workouts, and stay active with effortless progress metrics and real-time performance insights.`,icon:`./icons/activity.png`,accentColor:`#38bdf8`,glowColor:`rgba(56, 189, 248, 0.4)`,status:`development`},{id:`nutrition`,title:`Nutrition`,category:`Diet & Vitality`,badge:`COMING SOON`,tagline:`Effortless caloric & nutrient balance`,desc:`Monitor your daily caloric intake, discover wholesome recipes, and maintain a perfectly balanced diet effortlessly.`,icon:`./icons/nutrition.png`,accentColor:`#fb923c`,glowColor:`rgba(251, 146, 60, 0.4)`,status:`development`}],t=()=>`
+(function(){let e=document.createElement(`link`).relList;if(e&&e.supports&&e.supports(`modulepreload`))return;for(let e of document.querySelectorAll(`link[rel="modulepreload"]`))n(e);new MutationObserver(e=>{for(let t of e)if(t.type===`childList`)for(let e of t.addedNodes)e.tagName===`LINK`&&e.rel===`modulepreload`&&n(e)}).observe(document,{childList:!0,subtree:!0});function t(e){let t={};return e.integrity&&(t.integrity=e.integrity),e.referrerPolicy&&(t.referrerPolicy=e.referrerPolicy),t.credentials=e.crossOrigin===`use-credentials`?`include`:e.crossOrigin===`anonymous`?`omit`:`same-origin`,t}function n(e){if(e.ep)return;e.ep=!0;let n=t(e);fetch(e.href,n)}})(),window.handleBetaSubmit=function(e){e.preventDefault();let t=e.target,n=!0,r=null;t.querySelectorAll(`.error-msg`).forEach(e=>e.remove()),t.querySelectorAll(`.has-error`).forEach(e=>e.classList.remove(`has-error`));let i=(e,t,n)=>{let i=document.createElement(`div`);i.className=`error-msg`,i.innerText=t,e.classList.contains(`radio-group`)||e.classList.contains(`checkbox-group`)?e.parentElement.appendChild(i):(e.parentElement.appendChild(i),e.classList.add(`has-error`)),r||=n||e.closest(`.form-group`)};t.querySelectorAll(`input[type="text"], input[type="email"], select`).forEach(e=>{e.value.trim()?e.type===`email`&&!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(e.value)&&(i(e,`Please enter a valid email address`),n=!1):(i(e,`This field is required`),n=!1)});let a=t.querySelectorAll(`input[name="entry.261106749"]`);Array.from(a).some(e=>e.checked)||(i(t.querySelector(`.radio-group`),`Please select a device`),n=!1);let o=t.querySelectorAll(`input[name="entry.923244053"]`),s=Array.from(o).find(e=>e.checked);if(!s)i(t.querySelector(`input[name="entry.923244053"]`).closest(`.radio-group`),`Please choose what you would like to test`),n=!1;else if(s.value===`Specific Apps Only`){let e=t.querySelectorAll(`input[name="entry.610551536"]`);Array.from(e).some(e=>e.checked)||(i(t.querySelector(`#specific-apps-list`),`Please select at least one specific app to test`),n=!1)}if(!n){let e=t.querySelector(`.error-msg`);return e&&e.closest(`.form-group`).scrollIntoView({behavior:`smooth`,block:`center`}),!1}window.betaSubmitted=!0;let c=document.getElementById(`submit-btn`);c.innerHTML=`Submitting...`,c.style.opacity=`0.5`,c.disabled=!0,t.submit()},window.clearBetaError=function(e){let t=e.target,n=t.closest(`.form-group`);if(n){let e=n.querySelector(`.error-msg`);e&&e.remove()}t.classList.remove(`has-error`)};var e=[{id:`calculator`,title:`Calculator+`,category:`Health Tools`,badge:`BETA`,tagline:`Standard & specialized health math`,desc:`A powerful standard calculator featuring a vast marketplace of specialized calculators. Manage favorites, browse by categories, and customize with dynamic themes.`,icon:`./icons/calculator.png`,accentColor:`#8b5cf6`,glowColor:`rgba(139, 92, 246, 0.45)`,status:`beta`,stores:{apple:`#`,google:`#`},privacyLink:`/privacy/calculator`},{id:`cycle`,title:`Cycle`,category:`Women's Health`,badge:`BETA`,tagline:`Intelligent rhythm & symptom tracking`,desc:`Comprehensive cycle tracking featuring an interactive calendar, daily symptom logging, personalized insights, and an intuitive tracking dashboard.`,icon:`./icons/cycle.png`,accentColor:`#f43f5e`,glowColor:`rgba(244, 63, 94, 0.45)`,status:`beta`,stores:{apple:`#`,google:`#`},privacyLink:`/privacy/cycle`},{id:`activity`,title:`Activity`,category:`Fitness & Motion`,badge:`COMING SOON`,tagline:`Real-time performance metrics`,desc:`Track your daily movements, record detailed workouts, and stay active with effortless progress metrics and real-time performance insights.`,icon:`./icons/activity.png`,accentColor:`#38bdf8`,glowColor:`rgba(56, 189, 248, 0.4)`,status:`development`},{id:`nutrition`,title:`Nutrition`,category:`Diet & Vitality`,badge:`COMING SOON`,tagline:`Effortless caloric & nutrient balance`,desc:`Monitor your daily caloric intake, discover wholesome recipes, and maintain a perfectly balanced diet effortlessly.`,icon:`./icons/nutrition.png`,accentColor:`#fb923c`,glowColor:`rgba(251, 146, 60, 0.4)`,status:`development`}],t=()=>`
   <!-- Architectural Portal Hero Section -->
   <header class="hero-portal">
     <div class="hero-portal-media">
@@ -213,6 +213,7 @@
 
           <div class="form-group">
             <label>Email Address</label>
+            <span class="form-helper-text">Use the email associated with your Apple ID (App Store) or Google Play Store for TestFlight/beta access.</span>
             <input type="email" name="entry.1247363008" required placeholder="jane@example.com" class="form-input" />
           </div>
 
@@ -233,42 +234,40 @@
           </div>
 
           <div class="form-group">
-            <label>Which apps would you like early access to?</label>
+            <label>What would you like to test?</label>
             <div class="radio-group" style="margin-bottom: 1.5rem;">
               <label class="custom-radio">
-                <input type="radio" name="app_selection_type" value="all" checked onchange="document.getElementById('specific-apps-list').style.display = 'none'; document.getElementById('all-apps-hidden').checked = true; Array.from(document.querySelectorAll('.specific-app-checkbox')).forEach(cb => cb.checked = false);" />
+                <input type="radio" name="entry.923244053" value="The Entire EVLOME Suite (All Apps)" checked onchange="document.getElementById('specific-apps-list').style.display = 'none'; Array.from(document.querySelectorAll('.specific-app-checkbox')).forEach(cb => cb.checked = false);" />
                 <span class="radio-dot"></span>
-                <span class="radio-text">All EVLOME apps</span>
+                <span class="radio-text">The Entire EVLOME Suite (All Apps)</span>
               </label>
               <label class="custom-radio">
-                <input type="radio" name="app_selection_type" value="specific" id="specific-apps-radio" onchange="document.getElementById('specific-apps-list').style.display = 'flex'; document.getElementById('all-apps-hidden').checked = false;" />
+                <input type="radio" name="entry.923244053" value="Specific Apps Only" id="specific-apps-radio" onchange="document.getElementById('specific-apps-list').style.display = 'flex';" />
                 <span class="radio-dot"></span>
-                <span class="radio-text">Specific apps</span>
+                <span class="radio-text">Specific Apps Only</span>
               </label>
             </div>
-            
-            <input type="checkbox" name="entry.610551536" value="All EVLOME apps" id="all-apps-hidden" style="display:none;" checked />
 
             <div id="specific-apps-list" class="checkbox-group" style="display: none; margin-left: 1rem; padding-left: 1rem; border-left: 1px solid rgba(255,255,255,0.1);">
               <label class="custom-checkbox">
                 <input type="checkbox" name="entry.610551536" value="EVLOME Calculator+" class="specific-app-checkbox" />
                 <span class="checkbox-box"></span>
-                <span class="checkbox-text">Calculator+</span>
+                <span class="checkbox-text">EVLOME Calculator+</span>
               </label>
               <label class="custom-checkbox">
                 <input type="checkbox" name="entry.610551536" value="EVLOME Cycle" class="specific-app-checkbox" />
                 <span class="checkbox-box"></span>
-                <span class="checkbox-text">Cycle</span>
+                <span class="checkbox-text">EVLOME Cycle</span>
               </label>
               <label class="custom-checkbox">
                 <input type="checkbox" name="entry.610551536" value="EVLOME Nutrition" class="specific-app-checkbox" />
                 <span class="checkbox-box"></span>
-                <span class="checkbox-text">Nutrition</span>
+                <span class="checkbox-text">EVLOME Nutrition</span>
               </label>
               <label class="custom-checkbox">
                 <input type="checkbox" name="entry.610551536" value="EVLOME Activity" class="specific-app-checkbox" />
                 <span class="checkbox-box"></span>
-                <span class="checkbox-text">Activity</span>
+                <span class="checkbox-text">EVLOME Activity</span>
               </label>
             </div>
           </div>
