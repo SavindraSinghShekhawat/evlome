@@ -1,4 +1,4 @@
-(function(){let e=document.createElement(`link`).relList;if(e&&e.supports&&e.supports(`modulepreload`))return;for(let e of document.querySelectorAll(`link[rel="modulepreload"]`))n(e);new MutationObserver(e=>{for(let t of e)if(t.type===`childList`)for(let e of t.addedNodes)e.tagName===`LINK`&&e.rel===`modulepreload`&&n(e)}).observe(document,{childList:!0,subtree:!0});function t(e){let t={};return e.integrity&&(t.integrity=e.integrity),e.referrerPolicy&&(t.referrerPolicy=e.referrerPolicy),t.credentials=e.crossOrigin===`use-credentials`?`include`:e.crossOrigin===`anonymous`?`omit`:`same-origin`,t}function n(e){if(e.ep)return;e.ep=!0;let n=t(e);fetch(e.href,n)}})(),window.handleBetaSubmit=function(e){e.preventDefault();let t=e.target,n=!0,r=null;t.querySelectorAll(`.error-msg`).forEach(e=>e.remove()),t.querySelectorAll(`.has-error`).forEach(e=>e.classList.remove(`has-error`));let i=(e,t,n)=>{let i=document.createElement(`div`);i.className=`error-msg`,i.innerText=t,e.classList.contains(`radio-group`)||e.classList.contains(`checkbox-group`)?e.parentElement.appendChild(i):(e.parentElement.appendChild(i),e.classList.add(`has-error`)),r||=n||e.closest(`.form-group`)};t.querySelectorAll(`input[type="text"], input[type="email"], select`).forEach(e=>{e.value.trim()?e.type===`email`&&!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(e.value)&&(i(e,`Please enter a valid email address`),n=!1):(i(e,`This field is required`),n=!1)});let a=t.querySelectorAll(`input[name="entry.261106749"]`);Array.from(a).some(e=>e.checked)||(i(t.querySelector(`input[name="entry.261106749"]`).closest(`.checkbox-group`),`Please select at least one device`),n=!1);let o=t.querySelectorAll(`input[name="entry.923244053"]`),s=Array.from(o).find(e=>e.checked);if(!s)i(t.querySelector(`input[name="entry.923244053"]`).closest(`.radio-group`),`Please choose what you would like to test`),n=!1;else if(s.value===`Specific Apps Only`){let e=t.querySelectorAll(`input[name="entry.610551536"]`);Array.from(e).some(e=>e.checked)||(i(t.querySelector(`#specific-apps-list`),`Please select at least one specific app to test`),n=!1)}if(!n){let e=t.querySelector(`.error-msg`);return e&&e.closest(`.form-group`).scrollIntoView({behavior:`smooth`,block:`center`}),!1}s.value===`The Entire EVLOME Suite (All Apps)`&&t.querySelectorAll(`input[name="entry.610551536"]`).forEach(e=>{e.checked=!0}),window.betaSubmitted=!0;let c=document.getElementById(`submit-btn`);c.innerHTML=`Submitting...`,c.style.opacity=`0.5`,c.disabled=!0,t.submit()},window.clearBetaError=function(e){let t=e.target,n=t.closest(`.form-group`);if(n){let e=n.querySelector(`.error-msg`);e&&e.remove()}t.classList.remove(`has-error`)};var e=[{id:`calculator`,title:`Calculator+`,category:`Health Tools`,badge:`BETA`,tagline:`Standard & specialized health math`,desc:`The only calculator app you need. A comprehensive collection of everyday, health, fitness, finance, math, conversion, and other useful calculators — all in one place.`,icon:`./icons/calculator.png`,accentColor:`#8b5cf6`,glowColor:`rgba(139, 92, 246, 0.45)`,status:`beta`,stores:{apple:`#`,google:`#`},privacyLink:`/privacy/calculator`},{id:`cycle`,title:`Cycle`,category:`Women's Health`,badge:`BETA`,tagline:`Intelligent rhythm & symptom tracking`,desc:`A discrete menstrual cycle and fertility tracking app with period predictions, ovulation tracking, basal body temperature, and physical and emotional symptom tracking.`,icon:`./icons/cycle.png`,accentColor:`#f43f5e`,glowColor:`rgba(244, 63, 94, 0.45)`,status:`beta`,stores:{apple:`#`,google:`#`},privacyLink:`/privacy/cycle`},{id:`activity`,title:`Activity`,category:`Fitness & Motion`,badge:`COMING SOON`,tagline:`Real-time performance metrics`,desc:`A versatile workout logger for gym, home workouts, and calisthenics, with workout templates, set/rep/weight tracking, rest timers, and progress tracking.`,icon:`./icons/activity.png`,accentColor:`#38bdf8`,glowColor:`rgba(56, 189, 248, 0.4)`,status:`development`},{id:`nutrition`,title:`Nutrition`,category:`Diet & Vitality`,badge:`COMING SOON`,tagline:`Effortless caloric & nutrient balance`,desc:`A premium calorie, macro, and nutrient tracker with food logging, calorie goals, fasting timers, water tracking, and custom foods.`,icon:`./icons/nutrition.png`,accentColor:`#fb923c`,glowColor:`rgba(251, 146, 60, 0.4)`,status:`development`}],t=()=>`
+(function(){let e=document.createElement(`link`).relList;if(e&&e.supports&&e.supports(`modulepreload`))return;for(let e of document.querySelectorAll(`link[rel="modulepreload"]`))n(e);new MutationObserver(e=>{for(let t of e)if(t.type===`childList`)for(let e of t.addedNodes)e.tagName===`LINK`&&e.rel===`modulepreload`&&n(e)}).observe(document,{childList:!0,subtree:!0});function t(e){let t={};return e.integrity&&(t.integrity=e.integrity),e.referrerPolicy&&(t.referrerPolicy=e.referrerPolicy),t.credentials=e.crossOrigin===`use-credentials`?`include`:e.crossOrigin===`anonymous`?`omit`:`same-origin`,t}function n(e){if(e.ep)return;e.ep=!0;let n=t(e);fetch(e.href,n)}})(),window.handleBetaSubmit=function(e){e.preventDefault();let t=e.target,n=!0,r=null;t.querySelectorAll(`.error-msg`).forEach(e=>e.remove()),t.querySelectorAll(`.has-error`).forEach(e=>e.classList.remove(`has-error`));let i=(e,t,n)=>{let i=document.createElement(`div`);i.className=`error-msg`,i.setAttribute(`role`,`alert`),i.innerText=t,e.classList.contains(`radio-group`)||e.classList.contains(`checkbox-group`)?e.parentElement.appendChild(i):(e.parentElement.appendChild(i),e.classList.add(`has-error`)),r||=n||e.closest(`.form-group`)};t.querySelectorAll(`input[type="text"], input[type="email"], select`).forEach(e=>{e.value.trim()?e.type===`email`&&!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(e.value)&&(i(e,`Please enter a valid email address`),n=!1):(i(e,`This field is required`),n=!1)});let a=t.querySelectorAll(`input[name="entry.261106749"]`);Array.from(a).some(e=>e.checked)||(i(t.querySelector(`input[name="entry.261106749"]`).closest(`.checkbox-group`),`Please select at least one device`),n=!1);let o=t.querySelectorAll(`input[name="entry.923244053"]`),s=Array.from(o).find(e=>e.checked);if(!s)i(t.querySelector(`input[name="entry.923244053"]`).closest(`.radio-group`),`Please choose what you would like to test`),n=!1;else if(s.value===`Specific Apps Only`){let e=t.querySelectorAll(`input[name="entry.610551536"]`);Array.from(e).some(e=>e.checked)||(i(t.querySelector(`#specific-apps-list`),`Please select at least one specific app to test`),n=!1)}if(!n){let e=t.querySelector(`.error-msg`);return e&&e.closest(`.form-group`).scrollIntoView({behavior:`smooth`,block:`center`}),!1}s.value===`The Entire EVLOME Suite (All Apps)`&&t.querySelectorAll(`input[name="entry.610551536"]`).forEach(e=>{e.checked=!0}),window.betaSubmitted=!0;let c=document.getElementById(`submit-btn`);c.innerHTML=`<span class="submit-spinner"></span> Submitting Application...`,c.style.opacity=`0.7`,c.disabled=!0,window.betaTimeout=setTimeout(()=>{if(window.betaSubmitted&&document.getElementById(`beta-form-wrap`).style.display!==`none`){let e=document.getElementById(`beta-form-wrap`),t=document.getElementById(`success-message`);e&&t&&(e.style.display=`none`,t.style.display=`flex`,window.scrollTo({top:0,behavior:`smooth`}))}},4500),t.submit()},window.clearBetaError=function(e){let t=e.target,n=t.closest(`.form-group`);if(n){let e=n.querySelector(`.error-msg`);e&&e.remove()}t.classList.remove(`has-error`)};var e=[{id:`calculator`,title:`Calculator+`,category:`Health Tools`,badge:`BETA`,tagline:`Standard & specialized health math`,desc:`The only calculator app you need. A comprehensive collection of everyday, health, fitness, finance, math, conversion, and other useful calculators — all in one place.`,highlights:[{title:`Everyday & Scientific Math`,desc:`Sleek standard and formula computations with complete calculation history and export.`},{title:`Health & Fitness Metrics`,desc:`Accurate BMI, BMR, TDEE, body fat, target heart rate, and caloric balance algorithms.`},{title:`Financial & Unit Conversions`,desc:`Currency rates, loan schedules, discounts, tip calculation, speed, and metric conversions.`}],icon:`./icons/calculator.png`,accentColor:`#8b5cf6`,glowColor:`rgba(139, 92, 246, 0.45)`,status:`beta`,stores:{apple:`#`,google:`#`},privacyLink:`/calculator/privacy`},{id:`cycle`,title:`Cycle`,category:`Women's Health`,badge:`BETA`,tagline:`Intelligent rhythm & symptom tracking`,desc:`A discrete menstrual cycle and fertility tracking app with period predictions, ovulation tracking, basal body temperature, and physical and emotional symptom tracking.`,highlights:[{title:`Period & Ovulation Forecasts`,desc:`Predictive rhythm modelling based on personal cycle lengths and symptom logs.`},{title:`Holistic Symptom Journal`,desc:`Log energy, cramps, sleep, mood shifts, basal temperature, and medication reminders.`},{title:`Privacy & Discreet Security`,desc:`On-device local-first storage with biometrics and private screen concealing.`}],icon:`./icons/cycle.png`,accentColor:`#f43f5e`,glowColor:`rgba(244, 63, 94, 0.45)`,status:`beta`,stores:{apple:`#`,google:`#`},privacyLink:`/cycle/privacy`},{id:`activity`,title:`Activity`,category:`Fitness & Motion`,badge:`COMING SOON`,tagline:`Real-time performance metrics`,desc:`A versatile workout logger for gym, home workouts, and calisthenics, with workout templates, set/rep/weight tracking, rest timers, and progress tracking.`,highlights:[{title:`Custom Workout Routines`,desc:`Pre-loaded compound programs or design your own bespoke lifting and HIIT splits.`},{title:`Rest & Plate Calculators`,desc:`Integrated barbell plate math and haptic countdown timers between sets.`}],icon:`./icons/activity.png`,accentColor:`#38bdf8`,glowColor:`rgba(56, 189, 248, 0.4)`,status:`development`},{id:`nutrition`,title:`Nutrition`,category:`Diet & Vitality`,badge:`COMING SOON`,tagline:`Effortless caloric & nutrient balance`,desc:`A premium calorie, macro, and nutrient tracker with food logging, calorie goals, fasting timers, water tracking, and custom foods.`,highlights:[{title:`Macro & Micronutrient Targets`,desc:`Visual rings for protein, carbohydrates, healthy fats, fiber, and sodium.`},{title:`Intermittent Fasting Timer`,desc:`Preset 16:8, 18:6, and custom schedules with real-time zone stages.`}],icon:`./icons/nutrition.png`,accentColor:`#fb923c`,glowColor:`rgba(251, 146, 60, 0.4)`,status:`development`}],t=()=>`
   <!-- Architectural Portal Hero Section -->
   <header class="hero-portal">
     <div class="hero-portal-media">
@@ -25,7 +25,7 @@
 
       <div class="hero-ctas">
         <a href="/beta" class="btn-primary glow-pill">Join the Beta &rarr;</a>
-        <a href="javascript:void(0)" class="btn-secondary glass-pill" onclick="document.getElementById('suite-section').scrollIntoView({behavior: 'smooth'})">Explore the Suite</a>
+        <a href="#suite-section" class="btn-secondary glass-pill">Explore the Suite</a>
       </div>
 
       <div class="hero-pillars">
@@ -175,10 +175,21 @@
   </section>
 `,n=()=>`
   <div class="page-container beta-page">
-    <a href="/#suite-section" class="back-link" onclick="window.handleBackToSuite(event)">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-      Back to Suite
-    </a>
+    <div class="page-nav-bar">
+      <a href="/#suite-section" class="back-pill-btn" onclick="if(event) { event.preventDefault(); navigate('/#suite-section'); }" aria-label="Return to Suite">
+        <svg class="back-arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span>Back</span>
+      </a>
+      <span class="nav-bar-divider" aria-hidden="true"></span>
+      <div class="nav-bar-trail">
+        <a href="/" class="nav-bar-parent-link" onclick="if(event) { event.preventDefault(); navigate('/'); }">Home</a>
+        <svg class="trail-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        <span class="nav-bar-active">Beta Testing</span>
+      </div>
+    </div>
     
     <div class="beta-header">
       <h1 class="app-page-title">Beta Testing Program</h1>
@@ -187,14 +198,15 @@
     
     <div class="beta-form-container">
       <!-- Hidden iframe to capture the Google Forms redirect invisibly -->
-      <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(window.betaSubmitted) { document.getElementById('beta-form-wrap').style.display='none'; document.getElementById('success-message').style.display='flex'; window.scrollTo({top: 0, behavior: 'smooth'}); }"></iframe>
+      <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(window.betaSubmitted) { if(window.betaTimeout) clearTimeout(window.betaTimeout); document.getElementById('beta-form-wrap').style.display='none'; document.getElementById('success-message').style.display='flex'; window.scrollTo({top: 0, behavior: 'smooth'}); }"></iframe>
       
-      <div id="success-message" style="display:none; flex-direction: column; align-items: center; justify-content: center; padding: 6rem 2rem; text-align: center;">
-        <div class="success-icon" style="width: 80px; height: 80px; border-radius: 50%; background: rgba(0, 255, 128, 0.1); color: #00ff80; display: flex; align-items: center; justify-content: center; margin-bottom: 2rem;">
-          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+      <div id="success-message" role="status" aria-live="polite" style="display:none; flex-direction: column; align-items: center; justify-content: center; padding: 6rem 2rem; text-align: center;">
+        <div class="success-icon" style="width: 84px; height: 84px; border-radius: 50%; background: rgba(52, 211, 153, 0.12); color: #34d399; display: flex; align-items: center; justify-content: center; margin-bottom: 2rem; box-shadow: 0 0 30px rgba(52, 211, 153, 0.25);">
+          <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
         </div>
         <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: var(--text-primary); font-weight: 800; letter-spacing: -0.05em;">Application Received</h2>
-        <p style="color: var(--text-secondary); max-width: 400px; line-height: 1.6; font-size: 1.2rem; font-weight: 300;">Thank you for your interest in the EVLOME Beta Program. We will be in touch soon.</p>
+        <p style="color: var(--text-secondary); max-width: 440px; line-height: 1.6; font-size: 1.15rem; font-weight: 300;">Thank you for your interest in the EVLOME Beta Program. We review applications continuously and will reach out with TestFlight and Google Play Beta instructions.</p>
+        <a href="/" class="btn-secondary glass-pill" style="margin-top: 2rem;">Back to Home</a>
       </div>
 
       <div id="beta-form-wrap">
@@ -202,79 +214,79 @@
           
           <div class="form-row">
             <div class="form-group">
-              <label>First Name</label>
-              <input type="text" name="entry.1026423473" required placeholder="Jane" class="form-input" />
+              <label for="beta-first-name">First Name <span class="required-star">*</span></label>
+              <input type="text" id="beta-first-name" name="entry.1026423473" required placeholder="Jane" autocomplete="given-name" class="form-input" />
             </div>
             <div class="form-group">
-              <label>Last Name</label>
-              <input type="text" name="entry.2072277110" required placeholder="Doe" class="form-input" />
+              <label for="beta-last-name">Last Name <span class="required-star">*</span></label>
+              <input type="text" id="beta-last-name" name="entry.2072277110" required placeholder="Doe" autocomplete="family-name" class="form-input" />
             </div>
           </div>
 
           <div class="form-group">
-            <label>Email Address</label>
+            <label for="beta-email">Email Address <span class="required-star">*</span></label>
             <span class="form-helper-text">Use the email associated with your Apple ID (App Store) or Google Play Store for TestFlight/beta access.</span>
-            <input type="email" name="entry.1247363008" required placeholder="jane@example.com" class="form-input" />
+            <input type="email" id="beta-email" name="entry.1247363008" required placeholder="jane@example.com" autocomplete="email" class="form-input" />
           </div>
 
           <div class="form-group">
-            <label>What device do you use?</label>
+            <label>What device do you use? <span class="required-star">*</span></label>
             <div class="checkbox-group" style="flex-direction: row; flex-wrap: wrap;">
               <label class="custom-checkbox">
                 <input type="checkbox" name="entry.261106749" value="iOS" />
-                <span class="checkbox-box"></span>
-                <span class="checkbox-text">iOS</span>
+                <span class="checkbox-box" aria-hidden="true"></span>
+                <span class="checkbox-text">iOS (iPhone / iPad)</span>
               </label>
               <label class="custom-checkbox">
                 <input type="checkbox" name="entry.261106749" value="Android" />
-                <span class="checkbox-box"></span>
+                <span class="checkbox-box" aria-hidden="true"></span>
                 <span class="checkbox-text">Android</span>
               </label>
             </div>
           </div>
 
           <div class="form-group">
-            <label>What would you like to test?</label>
+            <label>What would you like to test? <span class="required-star">*</span></label>
             <div class="radio-group" style="margin-bottom: 1.5rem;">
               <label class="custom-radio">
                 <input type="radio" name="entry.923244053" value="The Entire EVLOME Suite (All Apps)" checked onchange="document.getElementById('specific-apps-list').style.display = 'none'; Array.from(document.querySelectorAll('.specific-app-checkbox')).forEach(cb => cb.checked = false);" />
-                <span class="radio-dot"></span>
+                <span class="radio-dot" aria-hidden="true"></span>
                 <span class="radio-text">The Entire EVLOME Suite (All Apps)</span>
               </label>
               <label class="custom-radio">
                 <input type="radio" name="entry.923244053" value="Specific Apps Only" id="specific-apps-radio" onchange="document.getElementById('specific-apps-list').style.display = 'flex';" />
-                <span class="radio-dot"></span>
+                <span class="radio-dot" aria-hidden="true"></span>
                 <span class="radio-text">Specific Apps Only</span>
               </label>
             </div>
 
-            <div id="specific-apps-list" class="checkbox-group" style="display: none; margin-left: 1rem; padding-left: 1rem; border-left: 1px solid rgba(255,255,255,0.1);">
+            <div id="specific-apps-list" class="checkbox-group" style="display: none; margin-left: 0.5rem; padding-left: 1rem; border-left: 2px solid rgba(255,255,255,0.12);">
               <label class="custom-checkbox">
                 <input type="checkbox" name="entry.610551536" value="EVLOME Calculator+" class="specific-app-checkbox" />
-                <span class="checkbox-box"></span>
+                <span class="checkbox-box" aria-hidden="true"></span>
                 <span class="checkbox-text">EVLOME Calculator+</span>
               </label>
               <label class="custom-checkbox">
                 <input type="checkbox" name="entry.610551536" value="EVLOME Cycle" class="specific-app-checkbox" />
-                <span class="checkbox-box"></span>
+                <span class="checkbox-box" aria-hidden="true"></span>
                 <span class="checkbox-text">EVLOME Cycle</span>
               </label>
               <label class="custom-checkbox">
                 <input type="checkbox" name="entry.610551536" value="EVLOME Nutrition" class="specific-app-checkbox" />
-                <span class="checkbox-box"></span>
+                <span class="checkbox-box" aria-hidden="true"></span>
                 <span class="checkbox-text">EVLOME Nutrition</span>
               </label>
               <label class="custom-checkbox">
                 <input type="checkbox" name="entry.610551536" value="EVLOME Activity" class="specific-app-checkbox" />
-                <span class="checkbox-box"></span>
+                <span class="checkbox-box" aria-hidden="true"></span>
                 <span class="checkbox-text">EVLOME Activity</span>
               </label>
             </div>
           </div>
 
           <div class="form-group">
-            <label>How often would you be willing to test the apps?</label>
-            <select name="entry.454575922" required class="form-input custom-select">
+            <label for="beta-frequency">How often would you be willing to test the apps? <span class="required-star">*</span></label>
+            <select id="beta-frequency" name="entry.454575922" required class="form-input custom-select">
               <option value="" disabled selected>Select frequency...</option>
               <option value="Daily">Daily</option>
               <option value="A few times a week">A few times a week</option>
@@ -284,8 +296,8 @@
           </div>
 
           <div class="form-group">
-            <label>Anything you'd like us to know? (Optional)</label>
-            <textarea name="entry.1265301105" rows="4" placeholder="Share your feedback, ideas, aspirations, or anything else..." class="form-input"></textarea>
+            <label for="beta-feedback">Anything you'd like us to know? <span class="optional-tag">(Optional)</span></label>
+            <textarea id="beta-feedback" name="entry.1265301105" rows="4" placeholder="Share your feedback, ideas, aspirations, or anything else..." class="form-input"></textarea>
           </div>
 
           <button id="submit-btn" type="submit" class="btn-primary form-submit">Submit Application</button>
@@ -295,10 +307,21 @@
   </div>
 `,r=e=>`
   <div class="page-container app-detail-page" style="--app-glow: ${e.glowColor||`rgba(168, 85, 247, 0.4)`}; --app-accent: ${e.accentColor||`#ec4899`};">
-    <a href="/#suite-section" class="back-link" onclick="window.handleBackToSuite(event)">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-      Back to Suite
-    </a>
+    <div class="page-nav-bar">
+      <a href="/#suite-section" class="back-pill-btn" onclick="if(event) { event.preventDefault(); navigate('/#suite-section'); }" aria-label="Return to Suite">
+        <svg class="back-arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span>Back</span>
+      </a>
+      <span class="nav-bar-divider" aria-hidden="true"></span>
+      <div class="nav-bar-trail">
+        <a href="/" class="nav-bar-parent-link" onclick="if(event) { event.preventDefault(); navigate('/'); }">Home</a>
+        <svg class="trail-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        <span class="nav-bar-active">${e.title}</span>
+      </div>
+    </div>
     
     <div class="app-detail-hero">
       <div class="app-detail-badge-wrap">
@@ -312,18 +335,19 @@
       </div>
       
       <h1 class="app-page-title">${e.title}</h1>
+      <p class="app-page-tagline">${e.tagline||``}</p>
       <p class="app-page-desc">${e.desc}</p>
       
       ${e.status===`beta`?`
         <div class="app-detail-actions">
-          <a href="/beta?app=${e.id}" class="btn-primary glow-pill">Join the Beta &rarr;</a>
+          <a href="/beta?app=${e.id}" class="btn-primary glow-pill">Join the ${e.title} Beta &rarr;</a>
         </div>
       `:``}
 
       ${e.status===`production`&&e.stores?`
       <div class="store-links centered-stores">
         ${e.stores.apple?`
-          <a href="${e.stores.apple}" target="_blank" class="store-badge">
+          <a href="${e.stores.apple}" target="_blank" rel="noopener noreferrer" class="store-badge">
             <svg viewBox="0 0 384 512" fill="currentColor"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
             <div class="store-text">
               <span class="store-small">Download on the</span>
@@ -332,7 +356,7 @@
           </a>
         `:``}
         ${e.stores.google?`
-          <a href="${e.stores.google}" target="_blank" class="store-badge">
+          <a href="${e.stores.google}" target="_blank" rel="noopener noreferrer" class="store-badge">
             <svg viewBox="0 0 512 512" fill="currentColor"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>
             <div class="store-text">
               <span class="store-small">GET IT ON</span>
@@ -346,25 +370,40 @@
       ${e.privacyLink?`<div class="privacy-link-container"><a href="${e.privacyLink}" class="privacy-link">Privacy Policy</a></div>`:``}
     </div>
   </div>
-`,i=e=>`
+`,i=e=>{let t=e?e.title:`EVLOME Apps`,n=e?e.id:``,r=n?`/${n}`:`/`;return`
   <div class="page-container">
-    <a href="/#suite-section" class="back-link" onclick="window.handleBackToSuite(event)">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-      Back to Suite
-    </a>
+    <div class="page-nav-bar">
+      <a href="${r}" class="back-pill-btn" onclick="if(event) { event.preventDefault(); navigate('${r}'); }" aria-label="Return to ${t}">
+        <svg class="back-arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span>Back</span>
+      </a>
+      <span class="nav-bar-divider" aria-hidden="true"></span>
+      <div class="nav-bar-trail">
+        <a href="/" class="nav-bar-parent-link" onclick="if(event) { event.preventDefault(); navigate('/'); }">Home</a>
+        <svg class="trail-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        ${e?`
+          <a href="/${e.id}" class="nav-bar-parent-link" onclick="if(event) { event.preventDefault(); navigate('/${e.id}'); }">${e.title}</a>
+          <svg class="trail-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        `:``}
+        <span class="nav-bar-active">Privacy Policy</span>
+      </div>
+    </div>
     <div class="privacy-content">
       <div class="app-detail-badge-wrap" style="margin-bottom: 1.5rem;">
         <span class="pill-tag">LEGAL & PRIVACY</span>
         <span class="app-badge-pill inline-pill" style="border-color: rgba(139, 92, 246, 0.4); background: rgba(139, 92, 246, 0.1); color: #c4b5fd;">BETA NOTICE</span>
       </div>
       
-      <h1>Privacy Policy for ${e}</h1>
+      <h1>Privacy Policy for ${t}</h1>
       <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 2.5rem;">Status: In Preparation &bull; Last Revised: October 2026</p>
 
       <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 16px; padding: 2rem; margin-bottom: 2.5rem;">
         <h3 style="color: #ffffff; font-size: 1.2rem; font-weight: 600; margin-bottom: 0.8rem; letter-spacing: -0.01em;">Notice of Upcoming Policy Update</h3>
         <p style="color: var(--text-secondary); line-height: 1.7; font-size: 1rem; margin-bottom: 0;">
-          The full, binding Privacy Policy and Terms of Service for <strong>${e}</strong> are currently under legal review and will be published prior to our official public production release on the App Store and Google Play.
+          The full, binding Privacy Policy and Terms of Service for <strong>${t}</strong> are currently under legal review and will be published prior to our official public production release on the App Store and Google Play.
         </p>
       </div>
 
@@ -389,7 +428,7 @@
       </p>
     </div>
   </div>
-`;`scrollRestoration`in history&&(history.scrollRestoration=`manual`);var a=0,o=new Map;window.addEventListener(`scroll`,()=>{if(u){o.set(u,window.scrollY);try{let e=window.history.state||{};window.history.replaceState({...e,scrollY:window.scrollY},``)}catch{}}},{passive:!0});var s=()=>{window.scrollTo({top:0,left:0,behavior:`instant`}),document.documentElement.scrollTop=0,document.body.scrollTop=0},c=e=>{let t=()=>{window.scrollTo({top:e,left:0,behavior:`instant`}),document.documentElement.scrollTop=e,document.body.scrollTop=e};t(),requestAnimationFrame(t),setTimeout(t,20),setTimeout(t,80)};window.handleBackToSuite=e=>{e&&e.preventDefault(),a>0?window.history.back():l(`/`)};var l=e=>{let t=window.location.pathname===`/`?`/`:window.location.pathname.replace(/\/$/,``),n=(e.split(`?`)[0].startsWith(`/`)?e.split(`?`)[0]:`/`+e.split(`?`)[0]).replace(/\/$/,``)||`/`;if(t===n){if(n===`/`){window.scrollTo({top:0,left:0,behavior:`smooth`}),o.set(`/`,0);try{let e=window.history.state||{};window.history.replaceState({...e,scrollY:0},``)}catch{}}e.includes(`?`)&&window.location.search!==`?`+e.split(`?`)[1]&&(window.history.replaceState({scrollY:0},``,e),d({isBack:!1}));return}if(u){o.set(u,window.scrollY);try{let e=window.history.state||{};window.history.replaceState({...e,scrollY:window.scrollY},``)}catch{}}a++,window.history.pushState({scrollY:0},``,e),d({isBack:!1})},u=null,d=(a={isBack:!1})=>{let l=window.location.pathname;if(l.length>1&&l.endsWith(`/`)&&(l=l.slice(0,-1)),window.location.hash&&window.location.hash.startsWith(`#/`)){let e=window.location.hash.slice(1);window.history.replaceState(null,``,e),l=e.split(`?`)[0]}let d=new URLSearchParams(window.location.search),f=document.getElementById(`content-area`);if(u=l,f){if(l===``||l===`/`)f.innerHTML=t();else if(l===`/beta`){f.innerHTML=n();let e=d.get(`app`);if(e){let t={calculator:`EVLOME Calculator+`,cycle:`EVLOME Cycle`,nutrition:`EVLOME Nutrition`,activity:`EVLOME Activity`};if(t[e]){let n=document.getElementById(`specific-apps-radio`);n&&(n.checked=!0,document.getElementById(`specific-apps-list`).style.display=`flex`,Array.from(document.querySelectorAll(`input[name="entry.610551536"]`)).forEach(e=>e.checked=!1));let r=document.querySelector(`input[value="${t[e]}"]`);r&&(r.checked=!0)}}}else if(l.startsWith(`/privacy/`)){let n=l.replace(`/privacy/`,``),r=e.find(e=>e.id===n);f.innerHTML=r?i(r.title):t()}else{let n=l.slice(1),i=e.find(e=>e.id===n);f.innerHTML=i&&i.status!==`development`?r(i):t()}if(window.location.hash&&!window.location.hash.startsWith(`#/`)){let e=window.location.hash.slice(1),t=document.getElementById(e);if(t){setTimeout(()=>{t.scrollIntoView({behavior:`smooth`})},50);return}}a.isBack?c(a.targetY??window.history.state?.scrollY??o.get(l)??0):(s(),requestAnimationFrame(s))}};window.addEventListener(`popstate`,e=>{a>0&&a--,d({isBack:!0,targetY:e.state?.scrollY??o.get(window.location.pathname)??0})}),window.addEventListener(`DOMContentLoaded`,()=>d({isBack:!1})),document.addEventListener(`click`,e=>{let t=e.target.closest(`a`);if(!t)return;let n=t.getAttribute(`href`);if(n&&!(t.target===`_blank`||n.startsWith(`http://`)||n.startsWith(`https://`)||n.startsWith(`mailto:`)||n.startsWith(`javascript:`))){if(n.startsWith(`#`)||n.startsWith(`/#`)){let t=n.replace(/^\/?#/,``);if(window.location.pathname===`/`&&t){e.preventDefault(),f(t);return}}n.startsWith(`/`)&&(e.preventDefault(),l(n))}});var f=e=>{let t=()=>{let t=document.getElementById(e);t&&t.scrollIntoView({behavior:`smooth`})};window.location.pathname===`/`?t():(a++,window.history.pushState({scrollY:0},``,`/`),d({isBack:!1}),setTimeout(t,60))};window.scrollToSection=f,window.toggleMobileMenu=()=>{let e=document.querySelector(`.site-nav`),t=document.querySelector(`.nav-burger-btn`);if(e){e.classList.toggle(`menu-open`);let n=e.classList.contains(`menu-open`);t&&t.classList.toggle(`active`,n),document.body.style.overflow=n?`hidden`:``}},window.closeMobileMenu=()=>{let e=document.querySelector(`.site-nav`),t=document.querySelector(`.nav-burger-btn`);e&&e.classList.contains(`menu-open`)&&(e.classList.remove(`menu-open`),t&&t.classList.remove(`active`),document.body.style.overflow=``)},document.querySelector(`#app`).innerHTML=`
+`},a=e=>{if(e){if(e.startsWith(`/#`)||e.startsWith(`#`)){let t=e.replace(/^\/?#/,``);if(window.location.pathname===`/`){let e=document.getElementById(t);e&&e.scrollIntoView({behavior:`smooth`});return}}window.history.pushState({},``,e),o(),window.scrollTo({top:0,left:0,behavior:`instant`})}};window.handleBackToSuite=e=>{e&&e.preventDefault(),a(`/#suite-section`)};var o=()=>{let a=window.location.pathname;if(a.length>1&&a.endsWith(`/`)&&(a=a.slice(0,-1)),window.location.hash&&window.location.hash.startsWith(`#/`)){let e=window.location.hash.slice(1).split(`?`)[0];window.history.replaceState({},``,e),a=e}let o=new URLSearchParams(window.location.search),s=document.getElementById(`content-area`);if(s){if(a===``||a===`/`)s.innerHTML=t();else if(a===`/beta`){s.innerHTML=n();let e=o.get(`app`);if(e){let t={calculator:`EVLOME Calculator+`,cycle:`EVLOME Cycle`,nutrition:`EVLOME Nutrition`,activity:`EVLOME Activity`};if(t[e]){let n=document.getElementById(`specific-apps-radio`);if(n){n.checked=!0;let e=document.getElementById(`specific-apps-list`);e&&(e.style.display=`flex`),Array.from(document.querySelectorAll(`input[name="entry.610551536"]`)).forEach(e=>e.checked=!1)}let r=document.querySelector(`input[value="${t[e]}"]`);r&&(r.checked=!0)}}}else if(a.endsWith(`/privacy`)||a.startsWith(`/privacy/`)){let t=``;t=a.endsWith(`/privacy`)?a.replace(/^\//,``).replace(/\/privacy$/,``):a.replace(`/privacy/`,``),s.innerHTML=i(e.find(e=>e.id===t)||null)}else{let n=a.slice(1),i=e.find(e=>e.id===n);s.innerHTML=i&&i.status!==`development`?r(i):t()}if(window.location.hash&&!window.location.hash.startsWith(`#/`)){let e=window.location.hash.slice(1),t=document.getElementById(e);t&&setTimeout(()=>{t.scrollIntoView({behavior:`smooth`})},50)}}};window.addEventListener(`popstate`,()=>{o()}),window.addEventListener(`DOMContentLoaded`,()=>{o()}),document.addEventListener(`click`,e=>{let t=e.target.closest(`a`);if(!t)return;let n=t.getAttribute(`href`);if(n&&!(t.target===`_blank`||n.startsWith(`http://`)||n.startsWith(`https://`)||n.startsWith(`mailto:`)||n.startsWith(`tel:`))&&!n.startsWith(`javascript:`)){if(n.startsWith(`#`)||n.startsWith(`/#`)){let t=n.replace(/^\/?#/,``);if(window.location.pathname===`/`||window.location.pathname===``){e.preventDefault();let n=document.getElementById(t);n&&n.scrollIntoView({behavior:`smooth`});return}}n.startsWith(`/`)&&(e.preventDefault(),a(n))}}),window.scrollToSection=e=>{if(window.location.pathname!==`/`&&window.location.pathname!==``)window.history.pushState({},``,`/`),o(),setTimeout(()=>{let t=document.getElementById(e);t&&t.scrollIntoView({behavior:`smooth`})},60);else{let t=document.getElementById(e);t&&t.scrollIntoView({behavior:`smooth`})}},window.toggleMobileMenu=()=>{let e=document.querySelector(`.site-nav`),t=document.querySelector(`.nav-burger-btn`);if(e){e.classList.toggle(`menu-open`);let n=e.classList.contains(`menu-open`);t&&t.classList.toggle(`active`,n),document.body.style.overflow=n?`hidden`:``}},window.closeMobileMenu=()=>{let e=document.querySelector(`.site-nav`),t=document.querySelector(`.nav-burger-btn`);e&&e.classList.contains(`menu-open`)&&(e.classList.remove(`menu-open`),t&&t.classList.remove(`active`),document.body.style.overflow=``)},document.querySelector(`#app`).innerHTML=`
   <div class="ambient-glow glow-top-left"></div>
   <div class="ambient-glow glow-top-right"></div>
   <div class="ambient-glow glow-sunset-center"></div>
@@ -407,7 +446,7 @@
         <a href="/beta" class="nav-pill-btn">Join Beta</a>
       </div>
 
-      <!-- Mobile Hamburger Button (3 horizontal lines morphing into X) -->
+      <!-- Mobile Hamburger Button -->
       <button type="button" class="nav-burger-btn" id="nav-burger-btn" aria-label="Toggle navigation menu" onclick="window.toggleMobileMenu()">
         <span class="burger-box">
           <span class="burger-line line-top"></span>
@@ -462,4 +501,4 @@
       </div>
     </div>
   </footer>
-`,d();
+`,router();
