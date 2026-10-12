@@ -641,19 +641,25 @@ body::after {
 
 /* Brand Pillars: EXACT match to Image 1 ("MIND / BODY / HABITS / PEOPLE") */
 .hero-pillars {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 1.4rem;
-  color: rgba(255, 255, 255, 0.65);
-  font-size: 0.82rem;
+  justify-content: center;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  gap: clamp(0.45rem, 2vw, 1.4rem);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: clamp(0.64rem, 1.8vw, 0.82rem);
   font-weight: 600;
-  letter-spacing: 0.28em;
+  letter-spacing: clamp(0.12em, 0.6vw, 0.28em);
   text-transform: uppercase;
-  padding: 0.75rem 1.8rem;
+  padding: 0.65rem clamp(0.85rem, 2.5vw, 1.8rem);
   border-radius: var(--radius-pill);
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.35);
   backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.08);
+  max-width: 100%;
+  box-sizing: border-box;
 }
 .pillar-divider {
   color: rgba(255, 255, 255, 0.25);
@@ -1776,11 +1782,14 @@ textarea.form-input {
     justify-content: center;
   }
   .hero-pillars {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.8rem;
-    padding: 0.6rem 1.2rem;
-    font-size: 0.75rem;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    gap: 0.55rem;
+    padding: 0.5rem 0.95rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+    max-width: calc(100vw - 2.5rem);
+    overflow: hidden;
   }
   .card-glass-panel {
     padding: 2.2rem 1.8rem;
@@ -1822,5 +1831,14 @@ textarea.form-input {
   .app-detail-actions a {
     width: 100%;
     justify-content: center;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero-pillars {
+    gap: 0.38rem;
+    padding: 0.45rem 0.65rem;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
   }
 }
