@@ -12,6 +12,7 @@ window.handleBetaSubmit = function(event) {
   const showError = (element, message, scrollTarget) => {
     const errorDiv = document.createElement('div');
     errorDiv.className = 'error-msg';
+    errorDiv.setAttribute('role', 'alert');
     errorDiv.innerText = message;
     
     if (element.classList.contains('radio-group') || element.classList.contains('checkbox-group')) {
@@ -72,9 +73,23 @@ window.handleBetaSubmit = function(event) {
 
   window.betaSubmitted = true;
   const btn = document.getElementById('submit-btn');
-  btn.innerHTML = 'Submitting...';
-  btn.style.opacity = '0.5';
+  btn.innerHTML = '<span class="submit-spinner"></span> Submitting Application...';
+  btn.style.opacity = '0.7';
   btn.disabled = true;
+
+  // Fallback safety timeout if Google Forms response event fails or is blocked by client
+  window.betaTimeout = setTimeout(() => {
+    if (window.betaSubmitted && document.getElementById('beta-form-wrap').style.display !== 'none') {
+      const formWrap = document.getElementById('beta-form-wrap');
+      const successMsg = document.getElementById('success-message');
+      if (formWrap && successMsg) {
+        formWrap.style.display = 'none';
+        successMsg.style.display = 'flex';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+  }, 4500);
+
   form.submit();
 };
 
@@ -95,12 +110,17 @@ const appsData = [
     badge: 'BETA',
     tagline: 'Standard & specialized health math',
     desc: 'The only calculator app you need. A comprehensive collection of everyday, health, fitness, finance, math, conversion, and other useful calculators — all in one place.',
+    highlights: [
+      { title: 'Everyday & Scientific Math', desc: 'Sleek standard and formula computations with complete calculation history and export.' },
+      { title: 'Health & Fitness Metrics', desc: 'Accurate BMI, BMR, TDEE, body fat, target heart rate, and caloric balance algorithms.' },
+      { title: 'Financial & Unit Conversions', desc: 'Currency rates, loan schedules, discounts, tip calculation, speed, and metric conversions.' }
+    ],
     icon: './icons/calculator.png',
     accentColor: '#8b5cf6',
     glowColor: 'rgba(139, 92, 246, 0.45)',
     status: 'beta',
     stores: { apple: '#', google: '#' },
-    privacyLink: '/privacy/calculator'
+    privacyLink: '/calculator/privacy'
   },
   {
     id: 'cycle',
@@ -109,12 +129,17 @@ const appsData = [
     badge: 'BETA',
     tagline: 'Intelligent rhythm & symptom tracking',
     desc: 'A discrete menstrual cycle and fertility tracking app with period predictions, ovulation tracking, basal body temperature, and physical and emotional symptom tracking.',
+    highlights: [
+      { title: 'Period & Ovulation Forecasts', desc: 'Predictive rhythm modelling based on personal cycle lengths and symptom logs.' },
+      { title: 'Holistic Symptom Journal', desc: 'Log energy, cramps, sleep, mood shifts, basal temperature, and medication reminders.' },
+      { title: 'Privacy & Discreet Security', desc: 'On-device local-first storage with biometrics and private screen concealing.' }
+    ],
     icon: './icons/cycle.png',
     accentColor: '#f43f5e',
     glowColor: 'rgba(244, 63, 94, 0.45)',
     status: 'beta',
     stores: { apple: '#', google: '#' },
-    privacyLink: '/privacy/cycle'
+    privacyLink: '/cycle/privacy'
   },
   {
     id: 'activity',
@@ -123,6 +148,10 @@ const appsData = [
     badge: 'COMING SOON',
     tagline: 'Real-time performance metrics',
     desc: 'A versatile workout logger for gym, home workouts, and calisthenics, with workout templates, set/rep/weight tracking, rest timers, and progress tracking.',
+    highlights: [
+      { title: 'Custom Workout Routines', desc: 'Pre-loaded compound programs or design your own bespoke lifting and HIIT splits.' },
+      { title: 'Rest & Plate Calculators', desc: 'Integrated barbell plate math and haptic countdown timers between sets.' }
+    ],
     icon: './icons/activity.png',
     accentColor: '#38bdf8',
     glowColor: 'rgba(56, 189, 248, 0.4)',
@@ -135,6 +164,10 @@ const appsData = [
     badge: 'COMING SOON',
     tagline: 'Effortless caloric & nutrient balance',
     desc: 'A premium calorie, macro, and nutrient tracker with food logging, calorie goals, fasting timers, water tracking, and custom foods.',
+    highlights: [
+      { title: 'Macro & Micronutrient Targets', desc: 'Visual rings for protein, carbohydrates, healthy fats, fiber, and sodium.' },
+      { title: 'Intermittent Fasting Timer', desc: 'Preset 16:8, 18:6, and custom schedules with real-time zone stages.' }
+    ],
     icon: './icons/nutrition.png',
     accentColor: '#fb923c',
     glowColor: 'rgba(251, 146, 60, 0.4)',
@@ -169,7 +202,7 @@ const renderHome = () => `
 
       <div class="hero-ctas">
         <a href="/beta" class="btn-primary glow-pill">Join the Beta &rarr;</a>
-        <a href="javascript:void(0)" class="btn-secondary glass-pill" onclick="document.getElementById('suite-section').scrollIntoView({behavior: 'smooth'})">Explore the Suite</a>
+        <a href="#suite-section" class="btn-secondary glass-pill">Explore the Suite</a>
       </div>
 
       <div class="hero-pillars">
@@ -321,10 +354,21 @@ const renderHome = () => `
 
 const renderBetaPage = () => `
   <div class="page-container beta-page">
-    <a href="/#suite-section" class="back-link" onclick="window.handleBackToSuite(event)">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-      Back to Suite
-    </a>
+    <div class="page-nav-bar">
+      <a href="/#suite-section" class="back-pill-btn" onclick="if(event) { event.preventDefault(); navigate('/#suite-section'); }" aria-label="Return to Suite">
+        <svg class="back-arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span>Back</span>
+      </a>
+      <span class="nav-bar-divider" aria-hidden="true"></span>
+      <div class="nav-bar-trail">
+        <a href="/" class="nav-bar-parent-link" onclick="if(event) { event.preventDefault(); navigate('/'); }">Home</a>
+        <svg class="trail-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        <span class="nav-bar-active">Beta Testing</span>
+      </div>
+    </div>
     
     <div class="beta-header">
       <h1 class="app-page-title">Beta Testing Program</h1>
@@ -333,14 +377,15 @@ const renderBetaPage = () => `
     
     <div class="beta-form-container">
       <!-- Hidden iframe to capture the Google Forms redirect invisibly -->
-      <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(window.betaSubmitted) { document.getElementById('beta-form-wrap').style.display='none'; document.getElementById('success-message').style.display='flex'; window.scrollTo({top: 0, behavior: 'smooth'}); }"></iframe>
+      <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(window.betaSubmitted) { if(window.betaTimeout) clearTimeout(window.betaTimeout); document.getElementById('beta-form-wrap').style.display='none'; document.getElementById('success-message').style.display='flex'; window.scrollTo({top: 0, behavior: 'smooth'}); }"></iframe>
       
-      <div id="success-message" style="display:none; flex-direction: column; align-items: center; justify-content: center; padding: 6rem 2rem; text-align: center;">
-        <div class="success-icon" style="width: 80px; height: 80px; border-radius: 50%; background: rgba(0, 255, 128, 0.1); color: #00ff80; display: flex; align-items: center; justify-content: center; margin-bottom: 2rem;">
-          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+      <div id="success-message" role="status" aria-live="polite" style="display:none; flex-direction: column; align-items: center; justify-content: center; padding: 6rem 2rem; text-align: center;">
+        <div class="success-icon" style="width: 84px; height: 84px; border-radius: 50%; background: rgba(52, 211, 153, 0.12); color: #34d399; display: flex; align-items: center; justify-content: center; margin-bottom: 2rem; box-shadow: 0 0 30px rgba(52, 211, 153, 0.25);">
+          <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
         </div>
         <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: var(--text-primary); font-weight: 800; letter-spacing: -0.05em;">Application Received</h2>
-        <p style="color: var(--text-secondary); max-width: 400px; line-height: 1.6; font-size: 1.2rem; font-weight: 300;">Thank you for your interest in the EVLOME Beta Program. We will be in touch soon.</p>
+        <p style="color: var(--text-secondary); max-width: 440px; line-height: 1.6; font-size: 1.15rem; font-weight: 300;">Thank you for your interest in the EVLOME Beta Program. We review applications continuously and will reach out with TestFlight and Google Play Beta instructions.</p>
+        <a href="/" class="btn-secondary glass-pill" style="margin-top: 2rem;">Back to Home</a>
       </div>
 
       <div id="beta-form-wrap">
@@ -348,79 +393,79 @@ const renderBetaPage = () => `
           
           <div class="form-row">
             <div class="form-group">
-              <label>First Name</label>
-              <input type="text" name="entry.1026423473" required placeholder="Jane" class="form-input" />
+              <label for="beta-first-name">First Name <span class="required-star">*</span></label>
+              <input type="text" id="beta-first-name" name="entry.1026423473" required placeholder="Jane" autocomplete="given-name" class="form-input" />
             </div>
             <div class="form-group">
-              <label>Last Name</label>
-              <input type="text" name="entry.2072277110" required placeholder="Doe" class="form-input" />
+              <label for="beta-last-name">Last Name <span class="required-star">*</span></label>
+              <input type="text" id="beta-last-name" name="entry.2072277110" required placeholder="Doe" autocomplete="family-name" class="form-input" />
             </div>
           </div>
 
           <div class="form-group">
-            <label>Email Address</label>
+            <label for="beta-email">Email Address <span class="required-star">*</span></label>
             <span class="form-helper-text">Use the email associated with your Apple ID (App Store) or Google Play Store for TestFlight/beta access.</span>
-            <input type="email" name="entry.1247363008" required placeholder="jane@example.com" class="form-input" />
+            <input type="email" id="beta-email" name="entry.1247363008" required placeholder="jane@example.com" autocomplete="email" class="form-input" />
           </div>
 
           <div class="form-group">
-            <label>What device do you use?</label>
+            <label>What device do you use? <span class="required-star">*</span></label>
             <div class="checkbox-group" style="flex-direction: row; flex-wrap: wrap;">
               <label class="custom-checkbox">
                 <input type="checkbox" name="entry.261106749" value="iOS" />
-                <span class="checkbox-box"></span>
-                <span class="checkbox-text">iOS</span>
+                <span class="checkbox-box" aria-hidden="true"></span>
+                <span class="checkbox-text">iOS (iPhone / iPad)</span>
               </label>
               <label class="custom-checkbox">
                 <input type="checkbox" name="entry.261106749" value="Android" />
-                <span class="checkbox-box"></span>
+                <span class="checkbox-box" aria-hidden="true"></span>
                 <span class="checkbox-text">Android</span>
               </label>
             </div>
           </div>
 
           <div class="form-group">
-            <label>What would you like to test?</label>
+            <label>What would you like to test? <span class="required-star">*</span></label>
             <div class="radio-group" style="margin-bottom: 1.5rem;">
               <label class="custom-radio">
                 <input type="radio" name="entry.923244053" value="The Entire EVLOME Suite (All Apps)" checked onchange="document.getElementById('specific-apps-list').style.display = 'none'; Array.from(document.querySelectorAll('.specific-app-checkbox')).forEach(cb => cb.checked = false);" />
-                <span class="radio-dot"></span>
+                <span class="radio-dot" aria-hidden="true"></span>
                 <span class="radio-text">The Entire EVLOME Suite (All Apps)</span>
               </label>
               <label class="custom-radio">
                 <input type="radio" name="entry.923244053" value="Specific Apps Only" id="specific-apps-radio" onchange="document.getElementById('specific-apps-list').style.display = 'flex';" />
-                <span class="radio-dot"></span>
+                <span class="radio-dot" aria-hidden="true"></span>
                 <span class="radio-text">Specific Apps Only</span>
               </label>
             </div>
 
-            <div id="specific-apps-list" class="checkbox-group" style="display: none; margin-left: 1rem; padding-left: 1rem; border-left: 1px solid rgba(255,255,255,0.1);">
+            <div id="specific-apps-list" class="checkbox-group" style="display: none; margin-left: 0.5rem; padding-left: 1rem; border-left: 2px solid rgba(255,255,255,0.12);">
               <label class="custom-checkbox">
                 <input type="checkbox" name="entry.610551536" value="EVLOME Calculator+" class="specific-app-checkbox" />
-                <span class="checkbox-box"></span>
+                <span class="checkbox-box" aria-hidden="true"></span>
                 <span class="checkbox-text">EVLOME Calculator+</span>
               </label>
               <label class="custom-checkbox">
                 <input type="checkbox" name="entry.610551536" value="EVLOME Cycle" class="specific-app-checkbox" />
-                <span class="checkbox-box"></span>
+                <span class="checkbox-box" aria-hidden="true"></span>
                 <span class="checkbox-text">EVLOME Cycle</span>
               </label>
               <label class="custom-checkbox">
                 <input type="checkbox" name="entry.610551536" value="EVLOME Nutrition" class="specific-app-checkbox" />
-                <span class="checkbox-box"></span>
+                <span class="checkbox-box" aria-hidden="true"></span>
                 <span class="checkbox-text">EVLOME Nutrition</span>
               </label>
               <label class="custom-checkbox">
                 <input type="checkbox" name="entry.610551536" value="EVLOME Activity" class="specific-app-checkbox" />
-                <span class="checkbox-box"></span>
+                <span class="checkbox-box" aria-hidden="true"></span>
                 <span class="checkbox-text">EVLOME Activity</span>
               </label>
             </div>
           </div>
 
           <div class="form-group">
-            <label>How often would you be willing to test the apps?</label>
-            <select name="entry.454575922" required class="form-input custom-select">
+            <label for="beta-frequency">How often would you be willing to test the apps? <span class="required-star">*</span></label>
+            <select id="beta-frequency" name="entry.454575922" required class="form-input custom-select">
               <option value="" disabled selected>Select frequency...</option>
               <option value="Daily">Daily</option>
               <option value="A few times a week">A few times a week</option>
@@ -430,8 +475,8 @@ const renderBetaPage = () => `
           </div>
 
           <div class="form-group">
-            <label>Anything you'd like us to know? (Optional)</label>
-            <textarea name="entry.1265301105" rows="4" placeholder="Share your feedback, ideas, aspirations, or anything else..." class="form-input"></textarea>
+            <label for="beta-feedback">Anything you'd like us to know? <span class="optional-tag">(Optional)</span></label>
+            <textarea id="beta-feedback" name="entry.1265301105" rows="4" placeholder="Share your feedback, ideas, aspirations, or anything else..." class="form-input"></textarea>
           </div>
 
           <button id="submit-btn" type="submit" class="btn-primary form-submit">Submit Application</button>
@@ -443,10 +488,21 @@ const renderBetaPage = () => `
 
 const renderAppPage = (app) => `
   <div class="page-container app-detail-page" style="--app-glow: ${app.glowColor || 'rgba(168, 85, 247, 0.4)'}; --app-accent: ${app.accentColor || '#ec4899'};">
-    <a href="/#suite-section" class="back-link" onclick="window.handleBackToSuite(event)">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-      Back to Suite
-    </a>
+    <div class="page-nav-bar">
+      <a href="/#suite-section" class="back-pill-btn" onclick="if(event) { event.preventDefault(); navigate('/#suite-section'); }" aria-label="Return to Suite">
+        <svg class="back-arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span>Back</span>
+      </a>
+      <span class="nav-bar-divider" aria-hidden="true"></span>
+      <div class="nav-bar-trail">
+        <a href="/" class="nav-bar-parent-link" onclick="if(event) { event.preventDefault(); navigate('/'); }">Home</a>
+        <svg class="trail-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        <span class="nav-bar-active">${app.title}</span>
+      </div>
+    </div>
     
     <div class="app-detail-hero">
       <div class="app-detail-badge-wrap">
@@ -460,18 +516,19 @@ const renderAppPage = (app) => `
       </div>
       
       <h1 class="app-page-title">${app.title}</h1>
+      <p class="app-page-tagline">${app.tagline || ''}</p>
       <p class="app-page-desc">${app.desc}</p>
       
       ${app.status === 'beta' ? `
         <div class="app-detail-actions">
-          <a href="/beta?app=${app.id}" class="btn-primary glow-pill">Join the Beta &rarr;</a>
+          <a href="/beta?app=${app.id}" class="btn-primary glow-pill">Join the ${app.title} Beta &rarr;</a>
         </div>
       ` : ''}
 
       ${app.status === 'production' && app.stores ? `
       <div class="store-links centered-stores">
         ${app.stores.apple ? `
-          <a href="${app.stores.apple}" target="_blank" class="store-badge">
+          <a href="${app.stores.apple}" target="_blank" rel="noopener noreferrer" class="store-badge">
             <svg viewBox="0 0 384 512" fill="currentColor"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
             <div class="store-text">
               <span class="store-small">Download on the</span>
@@ -480,7 +537,7 @@ const renderAppPage = (app) => `
           </a>
         ` : ''}
         ${app.stores.google ? `
-          <a href="${app.stores.google}" target="_blank" class="store-badge">
+          <a href="${app.stores.google}" target="_blank" rel="noopener noreferrer" class="store-badge">
             <svg viewBox="0 0 512 512" fill="currentColor"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>
             <div class="store-text">
               <span class="store-small">GET IT ON</span>
@@ -496,12 +553,32 @@ const renderAppPage = (app) => `
   </div>
 `;
 
-const renderPrivacyPolicy = (title) => `
+const renderPrivacyPolicy = (app) => {
+  const title = app ? app.title : 'EVLOME Apps';
+  const appId = app ? app.id : '';
+  const appLink = appId ? `/${appId}` : '/';
+
+  return `
   <div class="page-container">
-    <a href="/#suite-section" class="back-link" onclick="window.handleBackToSuite(event)">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-      Back to Suite
-    </a>
+    <div class="page-nav-bar">
+      <a href="${appLink}" class="back-pill-btn" onclick="if(event) { event.preventDefault(); navigate('${appLink}'); }" aria-label="Return to ${title}">
+        <svg class="back-arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span>Back</span>
+      </a>
+      <span class="nav-bar-divider" aria-hidden="true"></span>
+      <div class="nav-bar-trail">
+        <a href="/" class="nav-bar-parent-link" onclick="if(event) { event.preventDefault(); navigate('/'); }">Home</a>
+        <svg class="trail-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        ${app ? `
+          <a href="/${app.id}" class="nav-bar-parent-link" onclick="if(event) { event.preventDefault(); navigate('/${app.id}'); }">${app.title}</a>
+          <svg class="trail-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        ` : ''}
+        <span class="nav-bar-active">Privacy Policy</span>
+      </div>
+    </div>
     <div class="privacy-content">
       <div class="app-detail-badge-wrap" style="margin-bottom: 1.5rem;">
         <span class="pill-tag">LEGAL & PRIVACY</span>
@@ -540,115 +617,47 @@ const renderPrivacyPolicy = (title) => `
     </div>
   </div>
 `;
+};
 
-// Disable automatic browser scroll restoration so we have full, precise control
-if ('scrollRestoration' in history) {
-  history.scrollRestoration = 'manual';
-}
+// Simple clean router and navigation
+export const navigate = (url) => {
+  if (!url) return;
 
-// Track in-app navigation history count to ensure Back returns to previous view without exiting app
-let inAppHistoryDepth = 0;
-
-// Track scroll positions per route so back navigation restores exact scroll
-const scrollPositions = new Map();
-
-// Continuously sync active page scroll position into both Map and history.state
-window.addEventListener('scroll', () => {
-  if (currentRoute) {
-    scrollPositions.set(currentRoute, window.scrollY);
-    try {
-      const state = window.history.state || {};
-      window.history.replaceState({ ...state, scrollY: window.scrollY }, '');
-    } catch (e) {}
+  // If internal clean path or hash
+  if (url.startsWith('/#') || url.startsWith('#')) {
+    const hashId = url.replace(/^\/?#/, '');
+    if (window.location.pathname === '/') {
+      const el = document.getElementById(hashId);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+      return;
+    }
   }
-}, { passive: true });
 
-const resetScrollToTop = () => {
+  window.history.pushState({}, '', url);
+  renderCurrentRoute();
   window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-  document.documentElement.scrollTop = 0;
-  document.body.scrollTop = 0;
 };
 
-const restoreScrollTo = (targetY) => {
-  const apply = () => {
-    window.scrollTo({ top: targetY, left: 0, behavior: 'instant' });
-    document.documentElement.scrollTop = targetY;
-    document.body.scrollTop = targetY;
-  };
-  apply();
-  requestAnimationFrame(apply);
-  setTimeout(apply, 20);
-  setTimeout(apply, 80);
-};
-
-// Centralized back handler for Beta, Apps, and Privacy views
 window.handleBackToSuite = (e) => {
   if (e) e.preventDefault();
-  if (inAppHistoryDepth > 0) {
-    window.history.back();
-  } else {
-    navigate('/');
-  }
+  navigate('/#suite-section');
 };
 
-export const navigate = (url) => {
-  const currentBase = window.location.pathname === '/' ? '/' : window.location.pathname.replace(/\/$/, '');
-  const targetBase = (url.split('?')[0].startsWith('/') ? url.split('?')[0] : '/' + url.split('?')[0]).replace(/\/$/, '') || '/';
-
-  // EDGE CASE: If already on this exact page
-  if (currentBase === targetBase) {
-    // If we are already on the main page ('/'), smoothly scroll to 0 (top)
-    if (targetBase === '/') {
-      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-      scrollPositions.set('/', 0);
-      try {
-        const state = window.history.state || {};
-        window.history.replaceState({ ...state, scrollY: 0 }, '');
-      } catch (e) {}
-    }
-    // If target has specific search query different from current, update URL without adding history depth
-    if (url.includes('?') && window.location.search !== ('?' + url.split('?')[1])) {
-      window.history.replaceState({ scrollY: 0 }, '', url);
-      router({ isBack: false });
-    }
-    return;
-  }
-
-  // Save current scroll position in active history state before leaving
-  if (currentRoute) {
-    scrollPositions.set(currentRoute, window.scrollY);
-    try {
-      const state = window.history.state || {};
-      window.history.replaceState({ ...state, scrollY: window.scrollY }, '');
-    } catch (e) {}
-  }
-
-  inAppHistoryDepth++;
-  window.history.pushState({ scrollY: 0 }, '', url);
-  router({ isBack: false });
-};
-
-let currentRoute = null;
-
-const router = (options = { isBack: false }) => {
-  // Support both clean pathname and legacy hash fallback seamlessly
+const renderCurrentRoute = () => {
   let path = window.location.pathname;
   if (path.length > 1 && path.endsWith('/')) {
     path = path.slice(0, -1);
   }
 
-  // Handle any legacy hash if incoming external link used it
+  // Support legacy hash routing fallback if someone opens a #/link
   if (window.location.hash && window.location.hash.startsWith('#/')) {
-    const cleanUrl = window.location.hash.slice(1);
-    window.history.replaceState(null, '', cleanUrl);
-    path = cleanUrl.split('?')[0];
+    const cleanPath = window.location.hash.slice(1).split('?')[0];
+    window.history.replaceState({}, '', cleanPath);
+    path = cleanPath;
   }
 
   const searchParams = new URLSearchParams(window.location.search);
   const contentDiv = document.getElementById('content-area');
-  
-  currentRoute = path;
-  
   if (!contentDiv) return;
 
   if (path === '' || path === '/') {
@@ -667,23 +676,30 @@ const router = (options = { isBack: false }) => {
         const specificRadio = document.getElementById('specific-apps-radio');
         if (specificRadio) {
           specificRadio.checked = true;
-          document.getElementById('specific-apps-list').style.display = 'flex';
+          const list = document.getElementById('specific-apps-list');
+          if (list) list.style.display = 'flex';
           Array.from(document.querySelectorAll('input[name="entry.610551536"]')).forEach(cb => cb.checked = false);
         }
         const checkbox = document.querySelector(`input[value="${valMap[appId]}"]`);
         if (checkbox) checkbox.checked = true;
       }
     }
-  } else if (path.startsWith('/privacy/')) {
-    const appId = path.replace('/privacy/', '');
+  } else if (path.endsWith('/privacy') || path.startsWith('/privacy/')) {
+    // Supports both modern /calculator/privacy and legacy /privacy/calculator
+    let appId = '';
+    if (path.endsWith('/privacy')) {
+      appId = path.replace(/^\//, '').replace(/\/privacy$/, '');
+    } else {
+      appId = path.replace('/privacy/', '');
+    }
     const app = appsData.find(a => a.id === appId);
     if (app) {
-      contentDiv.innerHTML = renderPrivacyPolicy(app.title);
+      contentDiv.innerHTML = renderPrivacyPolicy(app);
     } else {
-      contentDiv.innerHTML = renderHome();
+      contentDiv.innerHTML = renderPrivacyPolicy(null);
     }
   } else {
-    // Dynamic matching for apps: /calculator, /cycle, etc.
+    // Dynamic app detail page (e.g., /calculator, /cycle)
     const appId = path.slice(1);
     const app = appsData.find(a => a.id === appId);
     if (app && app.status !== 'development') {
@@ -693,7 +709,7 @@ const router = (options = { isBack: false }) => {
     }
   }
 
-  // Handle section hash scrolling if present (e.g. #suite-section or #philosophy-section)
+  // Handle in-page anchor hash scroll
   if (window.location.hash && !window.location.hash.startsWith('#/')) {
     const hashId = window.location.hash.slice(1);
     const targetEl = document.getElementById(hashId);
@@ -701,30 +717,19 @@ const router = (options = { isBack: false }) => {
       setTimeout(() => {
         targetEl.scrollIntoView({ behavior: 'smooth' });
       }, 50);
-      return;
     }
-  }
-
-  // If going back, restore previous scroll position from state; otherwise start clean at top (scroll 0)
-  if (options.isBack) {
-    const targetY = options.targetY ?? window.history.state?.scrollY ?? scrollPositions.get(path) ?? 0;
-    restoreScrollTo(targetY);
-  } else {
-    resetScrollToTop();
-    requestAnimationFrame(resetScrollToTop);
   }
 };
 
-window.addEventListener('popstate', (e) => {
-  if (inAppHistoryDepth > 0) {
-    inAppHistoryDepth--;
-  }
-  const targetY = e.state?.scrollY ?? scrollPositions.get(window.location.pathname) ?? 0;
-  router({ isBack: true, targetY });
+window.addEventListener('popstate', () => {
+  renderCurrentRoute();
 });
-window.addEventListener('DOMContentLoaded', () => router({ isBack: false }));
 
-// Intercept clicks on internal links to provide smooth client-side SPA navigation
+window.addEventListener('DOMContentLoaded', () => {
+  renderCurrentRoute();
+});
+
+// Single clean event listener for all navigation clicks
 document.addEventListener('click', (e) => {
   const link = e.target.closest('a');
   if (!link) return;
@@ -732,28 +737,34 @@ document.addEventListener('click', (e) => {
   const href = link.getAttribute('href');
   if (!href) return;
 
-  // Let browser handle external links, target="_blank", mailto, javascript
+  // Let browser naturally handle external links, emails, and tel
   if (
     link.target === '_blank' ||
     href.startsWith('http://') ||
     href.startsWith('https://') ||
     href.startsWith('mailto:') ||
-    href.startsWith('javascript:')
+    href.startsWith('tel:')
   ) {
     return;
   }
 
-  // Handle in-page hash anchors like #suite-section or /#suite-section
+  // Handle javascript:void(0) or empty
+  if (href.startsWith('javascript:')) {
+    return;
+  }
+
+  // In-page hash scroll (e.g. #suite-section or /#suite-section)
   if (href.startsWith('#') || href.startsWith('/#')) {
     const hashId = href.replace(/^\/?#/, '');
-    if (window.location.pathname === '/' && hashId) {
+    if (window.location.pathname === '/' || window.location.pathname === '') {
       e.preventDefault();
-      scrollToSection(hashId);
+      const el = document.getElementById(hashId);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
       return;
     }
   }
 
-  // Handle clean internal paths
+  // Clean internal SPA route (e.g., /beta, /calculator, /)
   if (href.startsWith('/')) {
     e.preventDefault();
     navigate(href);
@@ -761,18 +772,16 @@ document.addEventListener('click', (e) => {
 });
 
 export const scrollToSection = (sectionId) => {
-  const performScroll = () => {
+  if (window.location.pathname !== '/' && window.location.pathname !== '') {
+    window.history.pushState({}, '', '/');
+    renderCurrentRoute();
+    setTimeout(() => {
+      const el = document.getElementById(sectionId);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }, 60);
+  } else {
     const el = document.getElementById(sectionId);
     if (el) el.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  if (window.location.pathname !== '/') {
-    inAppHistoryDepth++;
-    window.history.pushState({ scrollY: 0 }, '', '/');
-    router({ isBack: false });
-    setTimeout(performScroll, 60);
-  } else {
-    performScroll();
   }
 };
 
@@ -817,7 +826,7 @@ document.querySelector('#app').innerHTML = `
         <a href="/beta" class="nav-pill-btn">Join Beta</a>
       </div>
 
-      <!-- Mobile Hamburger Button (3 horizontal lines morphing into X) -->
+      <!-- Mobile Hamburger Button -->
       <button type="button" class="nav-burger-btn" id="nav-burger-btn" aria-label="Toggle navigation menu" onclick="window.toggleMobileMenu()">
         <span class="burger-box">
           <span class="burger-line line-top"></span>
