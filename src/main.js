@@ -202,7 +202,7 @@ const renderHome = () => `
 
       <div class="hero-ctas">
         <a href="/beta" class="btn-primary glow-pill">Join the Beta &rarr;</a>
-        <a href="#suite-section" class="btn-secondary glass-pill">Explore the Suite</a>
+        <button type="button" class="btn-secondary glass-pill" onclick="window.scrollToSection('suite-section')">Explore the Suite</button>
       </div>
 
       <div class="hero-pillars">
@@ -355,7 +355,7 @@ const renderHome = () => `
 const renderBetaPage = () => `
   <div class="page-container beta-page">
     <div class="page-nav-bar">
-      <a href="/#suite-section" class="back-pill-btn" onclick="window.handleBackToSuite(event)" aria-label="Return to Suite">
+      <a href="/" class="back-pill-btn" onclick="window.handleBackToSuite(event)" aria-label="Return to Suite">
         <svg class="back-arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
           <line x1="19" y1="12" x2="5" y2="12"></line>
           <polyline points="12 19 5 12 12 5"></polyline>
@@ -489,7 +489,7 @@ const renderBetaPage = () => `
 const renderAppPage = (app) => `
   <div class="page-container app-detail-page" style="--app-glow: ${app.glowColor || 'rgba(168, 85, 247, 0.4)'}; --app-accent: ${app.accentColor || '#ec4899'};">
     <div class="page-nav-bar">
-      <a href="/#suite-section" class="back-pill-btn" onclick="window.handleBackToSuite(event)" aria-label="Return to Suite">
+      <a href="/" class="back-pill-btn" onclick="window.handleBackToSuite(event)" aria-label="Return to Suite">
         <svg class="back-arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
           <line x1="19" y1="12" x2="5" y2="12"></line>
           <polyline points="12 19 5 12 12 5"></polyline>
@@ -623,7 +623,34 @@ const renderPrivacyPolicy = (app) => {
 const routeScrollPositions = new Map();
 
 const getCurrentRouteKey = () => {
-  return window.location.pathname + window.location.search;
+  return window.location.pathname || '/';
+};
+
+// Continuous scroll tracking so exact scroll position is always remembered
+window.addEventListener('scroll', () => {
+  const key = getCurrentRouteKey();
+  routeScrollPositions.set(key, window.scrollY);
+}, { passive: true });
+
+// Check if home view is currently rendered in content area
+const isHomeMounted = () => {
+  return document.getElementById('suite-section') !== null;
+};
+
+// Reliable scroll position restoration after DOM paint
+const restoreScrollPosition = (targetKey) => {
+  if (routeScrollPositions.has(targetKey)) {
+    const savedY = routeScrollPositions.get(targetKey);
+    // Double-frame delay ensures innerHTML DOM layout, images, and dimensions are painted
+    requestAnimationFrame(() => {
+      window.scrollTo({ top: savedY, left: 0, behavior: 'instant' });
+      setTimeout(() => {
+        window.scrollTo({ top: savedY, left: 0, behavior: 'instant' });
+      }, 30);
+    });
+  } else {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }
 };
 
 // Simple clean router and navigation
@@ -644,26 +671,28 @@ export const navigate = (url, options = {}) => {
     }
   }
 
+  // Smooth scroll to top if already on home content and clicking home
+  if (url === '/' && isHomeMounted()) {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    return;
+  }
+
   window.history.pushState({}, '', url);
   renderCurrentRoute();
 
   const targetKey = getCurrentRouteKey();
-  // If moving back to a page we previously visited and no specific hash requested
-  if (!url.includes('#') && routeScrollPositions.has(targetKey)) {
-    const savedY = routeScrollPositions.get(targetKey);
-    window.scrollTo({ top: savedY, left: 0, behavior: 'instant' });
-  } else if (!url.includes('#')) {
-    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  if (!url.includes('#')) {
+    restoreScrollPosition(targetKey);
   }
 };
 
 window.handleBackToSuite = (e) => {
   if (e) e.preventDefault();
-  // If we came from the home page, restore previous scroll position
-  if (routeScrollPositions.has('/')) {
-    navigate('/');
+  // Use browser history back if history exists, otherwise navigate home
+  if (window.history.length > 1) {
+    window.history.back();
   } else {
-    navigate('/#suite-section');
+    navigate('/');
   }
 };
 
@@ -686,6 +715,24 @@ const renderCurrentRoute = () => {
 
   if (path === '' || path === '/') {
     contentDiv.innerHTML = renderHome();
+  } else if (path === '/ecosystem' || path === '/suite') {
+    // If home is already rendered, just scroll smoothly
+    if (!isHomeMounted()) {
+      contentDiv.innerHTML = renderHome();
+    }
+    requestAnimationFrame(() => {
+      const el = document.getElementById('suite-section');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    });
+  } else if (path === '/philosophy') {
+    // If home is already rendered, just scroll smoothly
+    if (!isHomeMounted()) {
+      contentDiv.innerHTML = renderHome();
+    }
+    requestAnimationFrame(() => {
+      const el = document.getElementById('philosophy-section');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    });
   } else if (path === '/beta') {
     contentDiv.innerHTML = renderBetaPage();
     const appId = searchParams.get('app');
@@ -745,12 +792,14 @@ const renderCurrentRoute = () => {
   }
 };
 
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
+
 window.addEventListener('popstate', () => {
   renderCurrentRoute();
   const targetKey = getCurrentRouteKey();
-  if (routeScrollPositions.has(targetKey)) {
-    window.scrollTo({ top: routeScrollPositions.get(targetKey), left: 0, behavior: 'instant' });
-  }
+  restoreScrollPosition(targetKey);
 });
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -792,6 +841,15 @@ document.addEventListener('click', (e) => {
     }
   }
 
+  // If clicking Home link or logo while already on home page, scroll smoothly to top
+  if (href === '/' || href === '/#') {
+    if (window.location.pathname === '/' || window.location.pathname === '') {
+      e.preventDefault();
+      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+      return;
+    }
+  }
+
   // Clean internal SPA route (e.g., /beta, /calculator, /)
   if (href.startsWith('/')) {
     e.preventDefault();
@@ -800,13 +858,14 @@ document.addEventListener('click', (e) => {
 });
 
 export const scrollToSection = (sectionId) => {
-  if (window.location.pathname !== '/' && window.location.pathname !== '') {
-    window.history.pushState({}, '', '/');
-    renderCurrentRoute();
-    setTimeout(() => {
+  window.closeMobileMenu();
+  const currentPath = window.location.pathname;
+  if (currentPath !== '/' && currentPath !== '') {
+    navigate('/');
+    requestAnimationFrame(() => {
       const el = document.getElementById(sectionId);
       if (el) el.scrollIntoView({ behavior: 'smooth' });
-    }, 60);
+    });
   } else {
     const el = document.getElementById(sectionId);
     if (el) el.scrollIntoView({ behavior: 'smooth' });
@@ -836,6 +895,18 @@ window.closeMobileMenu = () => {
   }
 };
 
+window.handleLogoClick = (e) => {
+  if (e) e.preventDefault();
+  window.closeMobileMenu();
+  const currentPath = window.location.pathname;
+  if (currentPath === '/' || currentPath === '') {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+  } else {
+    navigate('/');
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }
+};
+
 document.querySelector('#app').innerHTML = `
   <div class="ambient-glow glow-top-left"></div>
   <div class="ambient-glow glow-top-right"></div>
@@ -843,7 +914,7 @@ document.querySelector('#app').innerHTML = `
 
   <nav class="site-nav">
     <div class="nav-inner">
-      <a href="/" class="logo-link" onclick="window.closeMobileMenu()">
+      <a href="/" class="logo-link" onclick="window.handleLogoClick(event)" aria-label="Evlome Home">
         <img src="./logo-wordmark.png" alt="EVLOME" class="nav-logo" />
       </a>
       
@@ -875,12 +946,12 @@ document.querySelector('#app').innerHTML = `
       </button>
 
       <div class="mobile-drawer-content">
-        <button type="button" class="mobile-drawer-link" onclick="window.closeMobileMenu(); window.scrollToSection('suite-section');">Suite</button>
-        <button type="button" class="mobile-drawer-link" onclick="window.closeMobileMenu(); window.scrollToSection('philosophy-section');">Philosophy</button>
+        <button type="button" class="mobile-drawer-link" onclick="window.scrollToSection('suite-section');">Suite</button>
+        <button type="button" class="mobile-drawer-link" onclick="window.scrollToSection('philosophy-section');">Philosophy</button>
         <a href="/beta" class="btn-primary glow-pill mobile-drawer-cta" onclick="window.closeMobileMenu();">Join the Beta &rarr;</a>
         
         <div class="mobile-drawer-footer">
-          <div class="mobile-drawer-domain">evlome.com</div>
+          <a href="/" class="mobile-drawer-domain" onclick="window.handleLogoClick(event)">evlome.com</a>
         </div>
       </div>
     </div>
@@ -889,11 +960,11 @@ document.querySelector('#app').innerHTML = `
   <div id="content-area"></div>
 
   <footer class="site-footer">
-    <div class="footer-brand-signature">
+    <a href="/" class="footer-brand-signature" onclick="window.handleLogoClick(event)" style="text-decoration: none; cursor: pointer;">
       <span class="signature-line"></span>
       <span class="signature-domain">evlome.com</span>
       <span class="signature-line"></span>
-    </div>
+    </a>
 
     <div class="footer-content">
       <div class="footer-brand">&copy; ${new Date().getFullYear()} Evlome. All rights reserved.</div>
@@ -912,5 +983,5 @@ document.querySelector('#app').innerHTML = `
 `;
 
 // Initial route
-router();
+renderCurrentRoute();
 
