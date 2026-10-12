@@ -355,7 +355,7 @@ const renderHome = () => `
 const renderBetaPage = () => `
   <div class="page-container beta-page">
     <div class="page-nav-bar">
-      <a href="/#suite-section" class="back-pill-btn" onclick="if(event) { event.preventDefault(); navigate('/#suite-section'); }" aria-label="Return to Suite">
+      <a href="/#suite-section" class="back-pill-btn" onclick="window.handleBackToSuite(event)" aria-label="Return to Suite">
         <svg class="back-arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
           <line x1="19" y1="12" x2="5" y2="12"></line>
           <polyline points="12 19 5 12 12 5"></polyline>
@@ -489,7 +489,7 @@ const renderBetaPage = () => `
 const renderAppPage = (app) => `
   <div class="page-container app-detail-page" style="--app-glow: ${app.glowColor || 'rgba(168, 85, 247, 0.4)'}; --app-accent: ${app.accentColor || '#ec4899'};">
     <div class="page-nav-bar">
-      <a href="/#suite-section" class="back-pill-btn" onclick="if(event) { event.preventDefault(); navigate('/#suite-section'); }" aria-label="Return to Suite">
+      <a href="/#suite-section" class="back-pill-btn" onclick="window.handleBackToSuite(event)" aria-label="Return to Suite">
         <svg class="back-arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
           <line x1="19" y1="12" x2="5" y2="12"></line>
           <polyline points="12 19 5 12 12 5"></polyline>
@@ -619,14 +619,25 @@ const renderPrivacyPolicy = (app) => {
 `;
 };
 
+// Store scroll position per route to restore exact scroll position when returning
+const routeScrollPositions = new Map();
+
+const getCurrentRouteKey = () => {
+  return window.location.pathname + window.location.search;
+};
+
 // Simple clean router and navigation
-export const navigate = (url) => {
+export const navigate = (url, options = {}) => {
   if (!url) return;
 
-  // If internal clean path or hash
+  const currentKey = getCurrentRouteKey();
+  // Save current scroll position before leaving
+  routeScrollPositions.set(currentKey, window.scrollY);
+
+  // If internal in-page hash on the same root page
   if (url.startsWith('/#') || url.startsWith('#')) {
     const hashId = url.replace(/^\/?#/, '');
-    if (window.location.pathname === '/') {
+    if (window.location.pathname === '/' || window.location.pathname === '') {
       const el = document.getElementById(hashId);
       if (el) el.scrollIntoView({ behavior: 'smooth' });
       return;
@@ -635,12 +646,25 @@ export const navigate = (url) => {
 
   window.history.pushState({}, '', url);
   renderCurrentRoute();
-  window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+
+  const targetKey = getCurrentRouteKey();
+  // If moving back to a page we previously visited and no specific hash requested
+  if (!url.includes('#') && routeScrollPositions.has(targetKey)) {
+    const savedY = routeScrollPositions.get(targetKey);
+    window.scrollTo({ top: savedY, left: 0, behavior: 'instant' });
+  } else if (!url.includes('#')) {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }
 };
 
 window.handleBackToSuite = (e) => {
   if (e) e.preventDefault();
-  navigate('/#suite-section');
+  // If we came from the home page, restore previous scroll position
+  if (routeScrollPositions.has('/')) {
+    navigate('/');
+  } else {
+    navigate('/#suite-section');
+  }
 };
 
 const renderCurrentRoute = () => {
@@ -723,6 +747,10 @@ const renderCurrentRoute = () => {
 
 window.addEventListener('popstate', () => {
   renderCurrentRoute();
+  const targetKey = getCurrentRouteKey();
+  if (routeScrollPositions.has(targetKey)) {
+    window.scrollTo({ top: routeScrollPositions.get(targetKey), left: 0, behavior: 'instant' });
+  }
 });
 
 window.addEventListener('DOMContentLoaded', () => {
