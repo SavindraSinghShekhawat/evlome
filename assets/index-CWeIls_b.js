@@ -25,7 +25,7 @@
 
       <div class="hero-ctas">
         <a href="/beta" class="btn-primary glow-pill">Join the Beta &rarr;</a>
-        <a href="#suite-section" class="btn-secondary glass-pill">Explore the Suite</a>
+        <button type="button" class="btn-secondary glass-pill" onclick="window.scrollToSection('suite-section')">Explore the Suite</button>
       </div>
 
       <div class="hero-pillars">
@@ -176,7 +176,7 @@
 `,n=()=>`
   <div class="page-container beta-page">
     <div class="page-nav-bar">
-      <a href="/#suite-section" class="back-pill-btn" onclick="window.handleBackToSuite(event)" aria-label="Return to Suite">
+      <a href="/" class="back-pill-btn" onclick="window.handleBackToSuite(event)" aria-label="Return to Suite">
         <svg class="back-arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
           <line x1="19" y1="12" x2="5" y2="12"></line>
           <polyline points="12 19 5 12 12 5"></polyline>
@@ -308,7 +308,7 @@
 `,r=e=>`
   <div class="page-container app-detail-page" style="--app-glow: ${e.glowColor||`rgba(168, 85, 247, 0.4)`}; --app-accent: ${e.accentColor||`#ec4899`};">
     <div class="page-nav-bar">
-      <a href="/#suite-section" class="back-pill-btn" onclick="window.handleBackToSuite(event)" aria-label="Return to Suite">
+      <a href="/" class="back-pill-btn" onclick="window.handleBackToSuite(event)" aria-label="Return to Suite">
         <svg class="back-arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
           <line x1="19" y1="12" x2="5" y2="12"></line>
           <polyline points="12 19 5 12 12 5"></polyline>
@@ -428,14 +428,14 @@
       </p>
     </div>
   </div>
-`},a=new Map,o=()=>window.location.pathname+window.location.search,s=(e,t={})=>{if(!e)return;let n=o();if(a.set(n,window.scrollY),e.startsWith(`/#`)||e.startsWith(`#`)){let t=e.replace(/^\/?#/,``);if(window.location.pathname===`/`||window.location.pathname===``){let e=document.getElementById(t);e&&e.scrollIntoView({behavior:`smooth`});return}}window.history.pushState({},``,e),c();let r=o();if(!e.includes(`#`)&&a.has(r)){let e=a.get(r);window.scrollTo({top:e,left:0,behavior:`instant`})}else e.includes(`#`)||window.scrollTo({top:0,left:0,behavior:`instant`})};window.handleBackToSuite=e=>{e&&e.preventDefault(),a.has(`/`)?s(`/`):s(`/#suite-section`)};var c=()=>{let a=window.location.pathname;if(a.length>1&&a.endsWith(`/`)&&(a=a.slice(0,-1)),window.location.hash&&window.location.hash.startsWith(`#/`)){let e=window.location.hash.slice(1).split(`?`)[0];window.history.replaceState({},``,e),a=e}let o=new URLSearchParams(window.location.search),s=document.getElementById(`content-area`);if(s){if(a===``||a===`/`)s.innerHTML=t();else if(a===`/beta`){s.innerHTML=n();let e=o.get(`app`);if(e){let t={calculator:`EVLOME Calculator+`,cycle:`EVLOME Cycle`,nutrition:`EVLOME Nutrition`,activity:`EVLOME Activity`};if(t[e]){let n=document.getElementById(`specific-apps-radio`);if(n){n.checked=!0;let e=document.getElementById(`specific-apps-list`);e&&(e.style.display=`flex`),Array.from(document.querySelectorAll(`input[name="entry.610551536"]`)).forEach(e=>e.checked=!1)}let r=document.querySelector(`input[value="${t[e]}"]`);r&&(r.checked=!0)}}}else if(a.endsWith(`/privacy`)||a.startsWith(`/privacy/`)){let t=``;t=a.endsWith(`/privacy`)?a.replace(/^\//,``).replace(/\/privacy$/,``):a.replace(`/privacy/`,``),s.innerHTML=i(e.find(e=>e.id===t)||null)}else{let n=a.slice(1),i=e.find(e=>e.id===n);s.innerHTML=i&&i.status!==`development`?r(i):t()}if(window.location.hash&&!window.location.hash.startsWith(`#/`)){let e=window.location.hash.slice(1),t=document.getElementById(e);t&&setTimeout(()=>{t.scrollIntoView({behavior:`smooth`})},50)}}};window.addEventListener(`popstate`,()=>{c();let e=o();a.has(e)&&window.scrollTo({top:a.get(e),left:0,behavior:`instant`})}),window.addEventListener(`DOMContentLoaded`,()=>{c()}),document.addEventListener(`click`,e=>{let t=e.target.closest(`a`);if(!t)return;let n=t.getAttribute(`href`);if(n&&!(t.target===`_blank`||n.startsWith(`http://`)||n.startsWith(`https://`)||n.startsWith(`mailto:`)||n.startsWith(`tel:`))&&!n.startsWith(`javascript:`)){if(n.startsWith(`#`)||n.startsWith(`/#`)){let t=n.replace(/^\/?#/,``);if(window.location.pathname===`/`||window.location.pathname===``){e.preventDefault();let n=document.getElementById(t);n&&n.scrollIntoView({behavior:`smooth`});return}}n.startsWith(`/`)&&(e.preventDefault(),s(n))}}),window.scrollToSection=e=>{if(window.location.pathname!==`/`&&window.location.pathname!==``)window.history.pushState({},``,`/`),c(),setTimeout(()=>{let t=document.getElementById(e);t&&t.scrollIntoView({behavior:`smooth`})},60);else{let t=document.getElementById(e);t&&t.scrollIntoView({behavior:`smooth`})}},window.toggleMobileMenu=()=>{let e=document.querySelector(`.site-nav`),t=document.querySelector(`.nav-burger-btn`);if(e){e.classList.toggle(`menu-open`);let n=e.classList.contains(`menu-open`);t&&t.classList.toggle(`active`,n),document.body.style.overflow=n?`hidden`:``}},window.closeMobileMenu=()=>{let e=document.querySelector(`.site-nav`),t=document.querySelector(`.nav-burger-btn`);e&&e.classList.contains(`menu-open`)&&(e.classList.remove(`menu-open`),t&&t.classList.remove(`active`),document.body.style.overflow=``)},document.querySelector(`#app`).innerHTML=`
+`},a=new Map,o=()=>window.location.pathname||`/`;window.addEventListener(`scroll`,()=>{let e=o();a.set(e,window.scrollY)},{passive:!0});var s=()=>document.getElementById(`suite-section`)!==null,c=e=>{if(a.has(e)){let t=a.get(e);requestAnimationFrame(()=>{window.scrollTo({top:t,left:0,behavior:`instant`}),setTimeout(()=>{window.scrollTo({top:t,left:0,behavior:`instant`})},30)})}else window.scrollTo({top:0,left:0,behavior:`instant`})},l=(e,t={})=>{if(!e)return;let n=o();if(a.set(n,window.scrollY),e.startsWith(`/#`)||e.startsWith(`#`)){let t=e.replace(/^\/?#/,``);if(window.location.pathname===`/`||window.location.pathname===``){let e=document.getElementById(t);e&&e.scrollIntoView({behavior:`smooth`});return}}if(e===`/`&&s()){window.scrollTo({top:0,left:0,behavior:`smooth`});return}window.history.pushState({},``,e),u();let r=o();e.includes(`#`)||c(r)};window.handleBackToSuite=e=>{e&&e.preventDefault(),window.history.length>1?window.history.back():l(`/`)};var u=()=>{let a=window.location.pathname;if(a.length>1&&a.endsWith(`/`)&&(a=a.slice(0,-1)),window.location.hash&&window.location.hash.startsWith(`#/`)){let e=window.location.hash.slice(1).split(`?`)[0];window.history.replaceState({},``,e),a=e}let o=new URLSearchParams(window.location.search),c=document.getElementById(`content-area`);if(c){if(a===``||a===`/`)c.innerHTML=t();else if(a===`/ecosystem`||a===`/suite`)s()||(c.innerHTML=t()),requestAnimationFrame(()=>{let e=document.getElementById(`suite-section`);e&&e.scrollIntoView({behavior:`smooth`})});else if(a===`/philosophy`)s()||(c.innerHTML=t()),requestAnimationFrame(()=>{let e=document.getElementById(`philosophy-section`);e&&e.scrollIntoView({behavior:`smooth`})});else if(a===`/beta`){c.innerHTML=n();let e=o.get(`app`);if(e){let t={calculator:`EVLOME Calculator+`,cycle:`EVLOME Cycle`,nutrition:`EVLOME Nutrition`,activity:`EVLOME Activity`};if(t[e]){let n=document.getElementById(`specific-apps-radio`);if(n){n.checked=!0;let e=document.getElementById(`specific-apps-list`);e&&(e.style.display=`flex`),Array.from(document.querySelectorAll(`input[name="entry.610551536"]`)).forEach(e=>e.checked=!1)}let r=document.querySelector(`input[value="${t[e]}"]`);r&&(r.checked=!0)}}}else if(a.endsWith(`/privacy`)||a.startsWith(`/privacy/`)){let t=``;t=a.endsWith(`/privacy`)?a.replace(/^\//,``).replace(/\/privacy$/,``):a.replace(`/privacy/`,``),c.innerHTML=i(e.find(e=>e.id===t)||null)}else{let n=a.slice(1),i=e.find(e=>e.id===n);c.innerHTML=i&&i.status!==`development`?r(i):t()}if(window.location.hash&&!window.location.hash.startsWith(`#/`)){let e=window.location.hash.slice(1),t=document.getElementById(e);t&&setTimeout(()=>{t.scrollIntoView({behavior:`smooth`})},50)}}};`scrollRestoration`in history&&(history.scrollRestoration=`manual`),window.addEventListener(`popstate`,()=>{u(),c(o())}),window.addEventListener(`DOMContentLoaded`,()=>{u()}),document.addEventListener(`click`,e=>{let t=e.target.closest(`a`);if(!t)return;let n=t.getAttribute(`href`);if(n&&!(t.target===`_blank`||n.startsWith(`http://`)||n.startsWith(`https://`)||n.startsWith(`mailto:`)||n.startsWith(`tel:`))&&!n.startsWith(`javascript:`)){if(n.startsWith(`#`)||n.startsWith(`/#`)){let t=n.replace(/^\/?#/,``);if(window.location.pathname===`/`||window.location.pathname===``){e.preventDefault();let n=document.getElementById(t);n&&n.scrollIntoView({behavior:`smooth`});return}}if((n===`/`||n===`/#`)&&(window.location.pathname===`/`||window.location.pathname===``)){e.preventDefault(),window.scrollTo({top:0,left:0,behavior:`smooth`});return}n.startsWith(`/`)&&(e.preventDefault(),l(n))}}),window.scrollToSection=e=>{window.closeMobileMenu();let t=window.location.pathname;if(t!==`/`&&t!==``)l(`/`),requestAnimationFrame(()=>{let t=document.getElementById(e);t&&t.scrollIntoView({behavior:`smooth`})});else{let t=document.getElementById(e);t&&t.scrollIntoView({behavior:`smooth`})}},window.toggleMobileMenu=()=>{let e=document.querySelector(`.site-nav`),t=document.querySelector(`.nav-burger-btn`);if(e){e.classList.toggle(`menu-open`);let n=e.classList.contains(`menu-open`);t&&t.classList.toggle(`active`,n),document.body.style.overflow=n?`hidden`:``}},window.closeMobileMenu=()=>{let e=document.querySelector(`.site-nav`),t=document.querySelector(`.nav-burger-btn`);e&&e.classList.contains(`menu-open`)&&(e.classList.remove(`menu-open`),t&&t.classList.remove(`active`),document.body.style.overflow=``)},window.handleLogoClick=e=>{e&&e.preventDefault(),window.closeMobileMenu();let t=window.location.pathname;t===`/`||t===``?window.scrollTo({top:0,left:0,behavior:`smooth`}):(l(`/`),window.scrollTo({top:0,left:0,behavior:`instant`}))},document.querySelector(`#app`).innerHTML=`
   <div class="ambient-glow glow-top-left"></div>
   <div class="ambient-glow glow-top-right"></div>
   <div class="ambient-glow glow-sunset-center"></div>
 
   <nav class="site-nav">
     <div class="nav-inner">
-      <a href="/" class="logo-link" onclick="window.closeMobileMenu()">
+      <a href="/" class="logo-link" onclick="window.handleLogoClick(event)" aria-label="Evlome Home">
         <img src="./logo-wordmark.png" alt="EVLOME" class="nav-logo" />
       </a>
       
@@ -467,12 +467,12 @@
       </button>
 
       <div class="mobile-drawer-content">
-        <button type="button" class="mobile-drawer-link" onclick="window.closeMobileMenu(); window.scrollToSection('suite-section');">Suite</button>
-        <button type="button" class="mobile-drawer-link" onclick="window.closeMobileMenu(); window.scrollToSection('philosophy-section');">Philosophy</button>
+        <button type="button" class="mobile-drawer-link" onclick="window.scrollToSection('suite-section');">Suite</button>
+        <button type="button" class="mobile-drawer-link" onclick="window.scrollToSection('philosophy-section');">Philosophy</button>
         <a href="/beta" class="btn-primary glow-pill mobile-drawer-cta" onclick="window.closeMobileMenu();">Join the Beta &rarr;</a>
         
         <div class="mobile-drawer-footer">
-          <div class="mobile-drawer-domain">evlome.com</div>
+          <a href="/" class="mobile-drawer-domain" onclick="window.handleLogoClick(event)">evlome.com</a>
         </div>
       </div>
     </div>
@@ -481,11 +481,11 @@
   <div id="content-area"></div>
 
   <footer class="site-footer">
-    <div class="footer-brand-signature">
+    <a href="/" class="footer-brand-signature" onclick="window.handleLogoClick(event)" style="text-decoration: none; cursor: pointer;">
       <span class="signature-line"></span>
       <span class="signature-domain">evlome.com</span>
       <span class="signature-line"></span>
-    </div>
+    </a>
 
     <div class="footer-content">
       <div class="footer-brand">&copy; ${new Date().getFullYear()} Evlome. All rights reserved.</div>
@@ -501,4 +501,4 @@
       </div>
     </div>
   </footer>
-`,router();
+`,u();
