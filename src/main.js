@@ -462,23 +462,13 @@ const renderBetaPage = (parentApp = null) => {
   `;
 };
 
-const renderPrivacyPolicy = (app, previousPath = '') => {
-  const title = app ? app.title : 'EVLOME Apps';
-  let parentUrl = '/';
-  let parentLabel = 'Suite';
+// ============================================================================
+// Legal & Policy Renderers (Dedicated & Segregated per App)
+// ============================================================================
 
-  if (app) {
-    if (previousPath === '/privacy') {
-      parentUrl = '/privacy';
-      parentLabel = 'Privacy';
-    } else {
-      parentUrl = `/${app.id}`;
-      parentLabel = app.title;
-    }
-  }
-
-  const termsLink = app ? (app.termsLink || '/terms') : '/terms';
-  const termsLabel = app ? `${app.title} Terms of Service` : 'Terms of Service';
+const renderCalculatorPrivacy = (previousPath = '') => {
+  const parentUrl = previousPath === '/privacy' ? '/privacy' : '/calculator';
+  const parentLabel = previousPath === '/privacy' ? 'Privacy' : 'Calculator+';
 
   return `
     <div class="page-container privacy-page">
@@ -494,106 +484,72 @@ const renderPrivacyPolicy = (app, previousPath = '') => {
 
       <div class="privacy-wrap">
         <div class="privacy-hero">
-          <span class="section-label">LEGAL & PRIVACY</span>
-          <h1 class="gradient-headline privacy-title">Privacy Policy for ${title}</h1>
-          <p class="privacy-subtitle">Effective Date: October 15, 2026 &bull; Official Privacy Notice</p>
+          <span class="section-label">LEGAL & PRIVACY &bull; CALCULATOR+</span>
+          <h1 class="gradient-headline privacy-title">Privacy Policy for EVLOME Calculator+</h1>
+          <p class="privacy-subtitle">Effective Date: October 15, 2026 &bull; Official Application Privacy Notice</p>
           <div style="margin-top: 0.75rem;">
-            <a href="${termsLink}" class="quiet-link" onclick="if(event) { event.preventDefault(); navigate('${termsLink}'); }">
-              View ${termsLabel} &rarr;
+            <a href="/calculator/terms" class="quiet-link" onclick="if(event) { event.preventDefault(); navigate('/calculator/terms'); }">
+              View Calculator+ Terms of Service &rarr;
             </a>
           </div>
         </div>
 
-        ${!app ? `
-          <section class="privacy-apps-section">
-            <h2 class="privacy-section-title">App-Specific Privacy Notices</h2>
-            <p class="privacy-section-desc">Each application is engineered with isolated on-device vaults and zero third-party telemetry.</p>
-            
-            <div class="privacy-app-pills">
-              ${appsData.filter(a => a.privacyLink).map(a => `
-                <a href="${a.privacyLink}" class="privacy-app-pill" onclick="if(event) { event.preventDefault(); navigate('${a.privacyLink}'); }">
-                  <span>${a.title}</span>
-                  <span class="privacy-pill-arrow" aria-hidden="true">&rarr;</span>
-                </a>
-              `).join('')}
-            </div>
-          </section>
-        ` : ''}
-
         <div class="privacy-callout-card">
           <p class="privacy-callout-text">
-            ${app && app.id === 'cycle' ? `
-              <strong>Zero Health Data Brokering:</strong> EVLOME Cycle stores your menstrual cycle records, Basal Body Temperature (BBT), sympto-thermal observations, and intimate health journals strictly in an encrypted vault on your device. We operate zero trackers, zero advertising SDKs, and will never sell or broker your reproductive health data.
-            ` : app && app.id === 'calculator' ? `
-              <strong>On-Device Mathematical Vault:</strong> EVLOME Calculator+ processes all arithmetic, clinical biometrics (Mifflin-St Jeor BMR/TDEE, Navy body fat %, macro distribution), and financial amortization schedules exclusively on your device. We never transmit your biometric inputs or calculations to external advertising or analytics networks.
-            ` : `
-              <strong>Privacy-First Architecture:</strong> EVLOME apps store your data locally on your device by default. We do not sell, rent, or broker your personal information to third parties, and we operate zero third-party ad networks or tracking trackers.
-            `}
+            <strong>On-Device Mathematical Vault:</strong> EVLOME Calculator+ processes all arithmetic, clinical biometrics (Mifflin-St Jeor BMR/TDEE, Navy body fat %, macro distribution), and financial amortization schedules exclusively on your device. We never transmit your biometric inputs or calculations to external advertising or analytics networks.
           </p>
         </div>
 
         <div class="privacy-content-block">
-          <h2 class="privacy-block-heading">Core Commitments</h2>
+          <h2 class="privacy-block-heading">Core Commitments for Calculator+</h2>
           <div class="privacy-commitments-grid">
             <div class="privacy-commitment-card">
               <div class="commitment-badge">01</div>
-              <h3 class="commitment-title">Local-First Storage</h3>
-              <p class="commitment-desc">Biometrics, cycle entries, calculation history, and custom logs are stored directly on your personal device using local database encryption.</p>
+              <h3 class="commitment-title">On-Device Processing</h3>
+              <p class="commitment-desc">Biometric measurements (height, weight, body circumferences) and calculations are computed locally using your hardware processor and stored in your device's private vault.</p>
             </div>
             <div class="privacy-commitment-card">
               <div class="commitment-badge">02</div>
-              <h3 class="commitment-title">Zero Data Selling</h3>
-              <p class="commitment-desc">We never sell, rent, share, or broker your reproductive health, physiological logs, or personal metrics with advertisers or data brokers.</p>
+              <h3 class="commitment-title">Zero Biometric Brokering</h3>
+              <p class="commitment-desc">We never sell, rent, monetize, or transmit your physical measurements, caloric targets, or financial calculations to third parties, advertisers, or health data brokers.</p>
             </div>
             <div class="privacy-commitment-card">
               <div class="commitment-badge">03</div>
-              <h3 class="commitment-title">Optional Accounts</h3>
-              <p class="commitment-desc">You are free to use our applications offline as a guest without creating an account. Sign-in is optional and only used for cross-device authentication and cloud backup.</p>
+              <h3 class="commitment-title">100% Offline &amp; Guest Access</h3>
+              <p class="commitment-desc">Access all clinical biometrics, everyday math, financial models, and conversion tools completely offline without ever being required to create an account.</p>
             </div>
             <div class="privacy-commitment-card">
               <div class="commitment-badge">04</div>
-              <h3 class="commitment-title">Complete Sovereignty</h3>
-              <p class="commitment-desc">You retain unconditional ownership over your records. You may export or permanently delete your local database and remote account data at any time.</p>
+              <h3 class="commitment-title">Instant Local Purging</h3>
+              <p class="commitment-desc">You retain unconditional ownership over your numbers. Clear your calculation history, custom presets, or cached variables at any time with a single tap in Settings.</p>
             </div>
           </div>
         </div>
 
         <div class="privacy-content-block" style="margin-top: 32px;">
-          <h2 class="privacy-block-heading">1. Information We Collect</h2>
+          <h2 class="privacy-block-heading">1. Information Handled by Calculator+</h2>
           <p class="privacy-section-desc" style="margin-bottom: 16px;">
-            ${app && app.id === 'cycle' ? `
-              <strong>Cycle & Symptom Data:</strong> Flow intensity, Roetzer biphasic Basal Body Temperature (BBT) readings, cervical mucus consistency, LH surge records, sexual activity dates, and 13 daily physical/mood symptom categories are stored exclusively within your on-device local database.<br/><br/>
-            ` : app && app.id === 'calculator' ? `
-              <strong>Biometric & Calculation Records:</strong> Height, weight, neck, waist, and hip circumference measurements, calculation presets, and amortization schedules are retained strictly in your device's local memory.<br/><br/>
-            ` : `
-              <strong>On-Device Data:</strong> Calculations, menstrual cycle telemetry, symptom logs, body measurements, and user preferences are recorded strictly in your local device vault.<br/><br/>
-            `}
-            <strong>Account Data (Optional):</strong> If you choose to authenticate with Email, Apple, or Google, we store your account email and authentication user ID securely using industry-standard encrypted authentication solely to manage your session.<br/><br/>
-            <strong>Crash & Diagnostic Telemetry:</strong> Anonymized OS crash reports provided via Apple App Store and Google Play console (which you may opt out of via device settings).
+            <strong>Biometrics &amp; Physical Measurements:</strong> Anthropometric inputs you enter (height, weight, age, biological sex, neck, waist, and hip circumferences for Mifflin-St Jeor and US Navy body fat equations) are stored strictly within your local on-device database.<br/><br/>
+            <strong>Calculation &amp; Financial Records:</strong> Calculation history, loan principal/amortization variables, compound interest models, unit conversions, and custom tally counts remain on-device.<br/><br/>
+            <strong>Account Data (Optional):</strong> If you choose to authenticate to enable EVLOME One cross-device history synchronization, we store your account email and authentication user ID securely solely to maintain your session.<br/><br/>
+            <strong>Diagnostics:</strong> Anonymized OS crash reports provided via Apple App Store or Google Play console (which you may opt out of via operating system settings).
           </p>
 
-          <h2 class="privacy-block-heading" style="margin-top: 24px;">2. Medical Notice & Disclaimer</h2>
+          <h2 class="privacy-block-heading" style="margin-top: 24px;">2. Health &amp; Non-Clinical Disclaimers</h2>
           <p class="privacy-section-desc" style="margin-bottom: 16px;">
-            ${app && app.id === 'cycle' ? `
-              <strong>EVLOME Cycle</strong> is designed solely for informational, wellness, and menstrual cycle tracking purposes. <strong>It is not intended as a form of contraception or birth control, nor as a substitute for professional medical advice, clinical diagnosis, or medical treatment.</strong>
-            ` : app && app.id === 'calculator' ? `
-              <strong>EVLOME Calculator+</strong> provides general arithmetic, financial, and wellness approximations (such as BMI, BMR, and TDEE). These figures are informational estimates and must not replace professional clinical advice or nutritional prescriptions.
-            ` : `
-              <strong>EVLOME Cycle</strong> is designed solely for informational, wellness, and menstrual cycle tracking purposes. <strong>It is not intended as a form of contraception or birth control, nor as a substitute for professional medical advice, clinical diagnosis, or medical treatment.</strong><br/><br/>
-              <strong>EVLOME Calculator+</strong> provides general arithmetic, financial, and wellness approximations (such as BMI, BMR, and TDEE). These figures are informational estimates and must not replace professional clinical advice or nutritional prescriptions.
-            `}
+            Calculations provided by EVLOME Calculator+ (such as BMR, TDEE, body fat percentage, and macronutrient allocations) are statistical estimates derived from standard scientific equations. They are intended strictly for educational and fitness self-tracking reference and do not constitute certified clinical diagnosis, dietary prescriptions, or medical advice.
           </p>
 
-          <h2 class="privacy-block-heading" style="margin-top: 24px;">3. Data Retention & Deletion</h2>
+          <h2 class="privacy-block-heading" style="margin-top: 24px;">3. Data Retention &amp; Deletion</h2>
           <p class="privacy-section-desc" style="margin-bottom: 16px;">
-            You can delete your on-device data instantly by clearing app storage or through the in-app settings. If you created a cloud account, you can permanently delete your account and all associated cloud records at any time via Account Settings or by contacting us.
+            You can clear all calculation records and biometric profiles instantly by resetting history in Settings or deleting the application. If you created an optional cloud account, you can permanently delete your account and all associated cloud records at any time in Account Settings or by contacting us.
           </p>
         </div>
 
         <div class="privacy-contact-block">
           <h2 class="privacy-block-heading">Contact Us</h2>
           <p class="privacy-contact-text">
-            For privacy requests, data deletion, or questions, reach our team at <a href="mailto:hello@evlome.com" class="privacy-email-link">hello@evlome.com</a>.
+            For privacy requests, data deletion, or questions regarding Calculator+, contact us at <a href="mailto:hello@evlome.com" class="privacy-email-link">hello@evlome.com</a>.
           </p>
         </div>
       </div>
@@ -601,23 +557,9 @@ const renderPrivacyPolicy = (app, previousPath = '') => {
   `;
 };
 
-const renderTermsOfService = (app = null, previousPath = '') => {
-  const title = app ? app.title : 'EVLOME Apps';
-  let parentUrl = '/';
-  let parentLabel = 'Suite';
-
-  if (app) {
-    if (previousPath === '/terms') {
-      parentUrl = '/terms';
-      parentLabel = 'Terms';
-    } else {
-      parentUrl = `/${app.id}`;
-      parentLabel = app.title;
-    }
-  }
-
-  const privacyLink = app ? (app.privacyLink || '/privacy') : '/privacy';
-  const privacyLabel = app ? `${app.title} Privacy Policy` : 'Privacy Policy';
+const renderCalculatorTerms = (previousPath = '') => {
+  const parentUrl = previousPath === '/terms' ? '/terms' : '/calculator';
+  const parentLabel = previousPath === '/terms' ? 'Terms' : 'Calculator+';
 
   return `
     <div class="page-container privacy-page">
@@ -633,35 +575,423 @@ const renderTermsOfService = (app = null, previousPath = '') => {
 
       <div class="privacy-wrap">
         <div class="privacy-hero">
-          <span class="section-label">LEGAL & TERMS</span>
-          <h1 class="gradient-headline privacy-title">Terms of Service ${app ? `for ${title}` : ''}</h1>
-          <p class="privacy-subtitle">Effective Date: October 15, 2026 &bull; Official Terms of Service</p>
+          <span class="section-label">LEGAL & TERMS &bull; CALCULATOR+</span>
+          <h1 class="gradient-headline privacy-title">Terms of Service for EVLOME Calculator+</h1>
+          <p class="privacy-subtitle">Effective Date: October 15, 2026 &bull; Official Application Terms</p>
           <div style="margin-top: 0.75rem;">
-            <a href="${privacyLink}" class="quiet-link" onclick="if(event) { event.preventDefault(); navigate('${privacyLink}'); }">
-              View ${privacyLabel} &rarr;
+            <a href="/calculator/privacy" class="quiet-link" onclick="if(event) { event.preventDefault(); navigate('/calculator/privacy'); }">
+              View Calculator+ Privacy Policy &rarr;
             </a>
           </div>
         </div>
 
-        ${!app ? `
-          <section class="privacy-apps-section">
-            <h2 class="privacy-section-title">App-Specific Terms of Service</h2>
-            <p class="privacy-section-desc">Review specific terms, calculation disclosures, and health notices for each EVLOME application.</p>
-            
-            <div class="privacy-app-pills">
-              ${appsData.filter(a => a.termsLink).map(a => `
-                <a href="${a.termsLink}" class="privacy-app-pill" onclick="if(event) { event.preventDefault(); navigate('${a.termsLink}'); }">
-                  <span>${a.title}</span>
-                  <span class="privacy-pill-arrow" aria-hidden="true">&rarr;</span>
-                </a>
-              `).join('')}
+        <div class="privacy-callout-card">
+          <p class="privacy-callout-text">
+            By downloading, accessing, or using EVLOME Calculator+, you agree to be bound by these Terms of Service and our <a href="/calculator/privacy" class="privacy-email-link" onclick="if(event) { event.preventDefault(); navigate('/calculator/privacy'); }">Calculator+ Privacy Policy</a>.
+          </p>
+        </div>
+
+        <div class="privacy-content-block">
+          <h2 class="privacy-block-heading">Core Operating Principles</h2>
+          <div class="privacy-commitments-grid">
+            <div class="privacy-commitment-card">
+              <div class="commitment-badge">01</div>
+              <h3 class="commitment-title">Offline-First Autonomy</h3>
+              <p class="commitment-desc">Full arithmetic, clinical formulas, and conversion tools operate locally on your device without mandatory sign-ins or internet paywalls.</p>
             </div>
-          </section>
-        ` : ''}
+            <div class="privacy-commitment-card">
+              <div class="commitment-badge">02</div>
+              <h3 class="commitment-title">Zero Ad Monetization</h3>
+              <p class="commitment-desc">No commercial advertising, banner tracking, or monetization of your physical metrics and calculation history.</p>
+            </div>
+            <div class="privacy-commitment-card">
+              <div class="commitment-badge">03</div>
+              <h3 class="commitment-title">Transparent Subscriptions</h3>
+              <p class="commitment-desc">Optional EVLOME One cross-device history sync is billed directly through your Apple App Store or Google Play account with effortless cancellation.</p>
+            </div>
+            <div class="privacy-commitment-card">
+              <div class="commitment-badge">04</div>
+              <h3 class="commitment-title">Unconditional Ownership</h3>
+              <p class="commitment-desc">You retain full ownership over all calculations, custom variables, and notes created in Calculator+.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="privacy-content-block" style="margin-top: 32px;">
+          <h2 class="privacy-block-heading">1. License &amp; Permitted Use</h2>
+          <p class="privacy-section-desc" style="margin-bottom: 16px;">
+            EVLOME grants you a personal, non-transferable, revocable license to use Calculator+ on compatible iOS and Android devices for individual, non-commercial purposes in compliance with these Terms and platform store policies.
+          </p>
+
+          <h2 class="privacy-block-heading" style="margin-top: 24px;">2. Clinical Biometric &amp; Financial Disclaimers</h2>
+          <p class="privacy-section-desc" style="margin-bottom: 16px;">
+            <strong>Biometric &amp; Fitness Estimations:</strong> Formulas including Mifflin-St Jeor (BMR &amp; TDEE), US Navy Circumference Body Fat %, and target macronutrient splits provide statistical approximations based on generalized population formulas. They are provided solely for educational reference and fitness tracking. They do NOT constitute medical advice, clinical diagnosis, or dietary prescriptions. Always consult a certified physician or registered dietitian before beginning any caloric restriction, weight-loss plan, or rigorous physical training program.<br/><br/>
+            <strong>Financial Calculations:</strong> Loan amortization schedules, compound interest growth projections, tip calculations, and currency conversions are mathematical models for estimation purposes only and must not replace professional financial, tax, or legal counsel.
+          </p>
+
+          <h2 class="privacy-block-heading" style="margin-top: 24px;">3. Subscriptions &amp; In-App Purchases (EVLOME One)</h2>
+          <p class="privacy-section-desc" style="margin-bottom: 16px;">
+            Optional cloud backup and cross-device sync features may be offered as auto-renewing subscriptions through your Apple App Store or Google Play account. Subscriptions can be managed or canceled anytime in your device account settings at least 24 hours prior to renewal.
+          </p>
+
+          <h2 class="privacy-block-heading" style="margin-top: 24px;">4. User Content &amp; Data Ownership</h2>
+          <p class="privacy-section-desc" style="margin-bottom: 16px;">
+            All numerical inputs, calculation histories, custom presets, and notes belong unconditionally to you. EVLOME does not claim ownership over any user data. You may export or delete your local records at any time.
+          </p>
+
+          <h2 class="privacy-block-heading" style="margin-top: 24px;">5. Limitation of Liability</h2>
+          <p class="privacy-section-desc" style="margin-bottom: 16px;">
+            EVLOME Calculator+ is provided "as is" and "as available". To the maximum extent permitted by law, EVLOME and its creators shall not be liable for any direct, indirect, incidental, or consequential damages resulting from calculation inaccuracies, reliance on mathematical models, or use of the application.
+          </p>
+        </div>
+
+        <div class="privacy-contact-block">
+          <h2 class="privacy-block-heading">Contact Us</h2>
+          <p class="privacy-contact-text">
+            For legal inquiries, terms clarification, or support regarding Calculator+, reach our team at <a href="mailto:hello@evlome.com" class="privacy-email-link">hello@evlome.com</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  `;
+};
+
+const renderCyclePrivacy = (previousPath = '') => {
+  const parentUrl = previousPath === '/privacy' ? '/privacy' : '/cycle';
+  const parentLabel = previousPath === '/privacy' ? 'Privacy' : 'Cycle';
+
+  return `
+    <div class="page-container privacy-page">
+      <nav class="detail-nav" aria-label="Navigation">
+        <a href="${parentUrl}" class="detail-back-link" onclick="window.handleHierarchicalBack(event, '${parentUrl}')" aria-label="Return to ${parentLabel}">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          <span>${parentLabel}</span>
+        </a>
+      </nav>
+
+      <div class="privacy-wrap">
+        <div class="privacy-hero">
+          <span class="section-label">LEGAL & PRIVACY &bull; CYCLE</span>
+          <h1 class="gradient-headline privacy-title">Privacy Policy for EVLOME Cycle</h1>
+          <p class="privacy-subtitle">Effective Date: October 15, 2026 &bull; Official Application Privacy Notice</p>
+          <div style="margin-top: 0.75rem;">
+            <a href="/cycle/terms" class="quiet-link" onclick="if(event) { event.preventDefault(); navigate('/cycle/terms'); }">
+              View Cycle Terms of Service &rarr;
+            </a>
+          </div>
+        </div>
 
         <div class="privacy-callout-card">
           <p class="privacy-callout-text">
-            By downloading, accessing, or using ${app ? app.title : 'any EVLOME application or website'}, you agree to be bound by these Terms of Service and our <a href="${privacyLink}" class="privacy-email-link" onclick="if(event) { event.preventDefault(); navigate('${privacyLink}'); }">${privacyLabel}</a>.
+            <strong>Zero Health Data Brokering:</strong> EVLOME Cycle is engineered around absolute reproductive privacy. Your menstrual records, Basal Body Temperature (BBT), sympto-thermal observations, and intimate health journals are stored in an encrypted vault directly on your device. We operate zero trackers, zero advertising SDKs, and will never sell or broker your reproductive health data.
+          </p>
+        </div>
+
+        <div class="privacy-content-block">
+          <h2 class="privacy-block-heading">Core Commitments for Cycle</h2>
+          <div class="privacy-commitments-grid">
+            <div class="privacy-commitment-card">
+              <div class="commitment-badge">01</div>
+              <h3 class="commitment-title">Encrypted On-Device Vault</h3>
+              <p class="commitment-desc">All period dates, temperature readings, cervical fluid observations, and symptom notes stay encrypted locally on your personal hardware.</p>
+            </div>
+            <div class="privacy-commitment-card">
+              <div class="commitment-badge">02</div>
+              <h3 class="commitment-title">Unconditional Zero-Selling</h3>
+              <p class="commitment-desc">We never sell, rent, license, or share your reproductive health, intimate activity, or hormonal cycle records with advertisers, data brokers, or third parties.</p>
+            </div>
+            <div class="privacy-commitment-card">
+              <div class="commitment-badge">03</div>
+              <h3 class="commitment-title">Complete Offline Freedom</h3>
+              <p class="commitment-desc">Full sympto-thermal cycle forecasting, ovulation detection, and rhythm tracking operate offline without creating an account.</p>
+            </div>
+            <div class="privacy-commitment-card">
+              <div class="commitment-badge">04</div>
+              <h3 class="commitment-title">Total Sovereign Deletion</h3>
+              <p class="commitment-desc">Export your cycle history or permanently wipe your local health vault with a single tap in Settings.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="privacy-content-block" style="margin-top: 32px;">
+          <h2 class="privacy-block-heading">1. Information Handled by Cycle</h2>
+          <p class="privacy-section-desc" style="margin-bottom: 16px;">
+            <strong>Menstrual &amp; Hormonal Telemetry:</strong> Cycle start and end dates, flow intensity, Basal Body Temperature (BBT) biphasic readings, Ovulation Predictor Kit (LH surge) results, cervical mucus consistency, and sexual activity dates are stored strictly in your local device vault.<br/><br/>
+            <strong>Symptom &amp; Mood Journal:</strong> Daily logs covering 13 physical symptoms (such as cramps, bloating, headache, tender breasts, nausea) and 12 mood states are retained exclusively on your device.<br/><br/>
+            <strong>Account Data (Optional):</strong> If you choose to sign in to enable EVLOME One cross-device sync, your credentials and end-to-end encrypted backup are stored securely solely to maintain multi-device access.<br/><br/>
+            <strong>Zero Commercial Analytics:</strong> No third-party health analytics, behavioral trackers, or marketing SDKs are embedded in the app.
+          </p>
+
+          <h2 class="privacy-block-heading" style="margin-top: 24px;">2. Critical Medical &amp; Contraception Notice</h2>
+          <p class="privacy-section-desc" style="margin-bottom: 16px;">
+            EVLOME Cycle is strictly for personal menstrual observation and wellness self-tracking. <strong>It is NOT intended, certified, or designed as a form of contraception or birth control, nor as a substitute for professional clinical medical advice, gynecological diagnosis, or treatment.</strong>
+          </p>
+
+          <h2 class="privacy-block-heading" style="margin-top: 24px;">3. Data Sovereignty &amp; Deletion</h2>
+          <p class="privacy-section-desc" style="margin-bottom: 16px;">
+            You can instantly erase all cycle entries, intimate logs, and temperature observations directly in app settings. If you created an optional cloud account, you can permanently delete your account and all associated cloud records at any time via Account Settings or by contacting us.
+          </p>
+        </div>
+
+        <div class="privacy-contact-block">
+          <h2 class="privacy-block-heading">Contact Us</h2>
+          <p class="privacy-contact-text">
+            For reproductive privacy inquiries, data deletion, or questions regarding Cycle, reach our team at <a href="mailto:hello@evlome.com" class="privacy-email-link">hello@evlome.com</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  `;
+};
+
+const renderCycleTerms = (previousPath = '') => {
+  const parentUrl = previousPath === '/terms' ? '/terms' : '/cycle';
+  const parentLabel = previousPath === '/terms' ? 'Terms' : 'Cycle';
+
+  return `
+    <div class="page-container privacy-page">
+      <nav class="detail-nav" aria-label="Navigation">
+        <a href="${parentUrl}" class="detail-back-link" onclick="window.handleHierarchicalBack(event, '${parentUrl}')" aria-label="Return to ${parentLabel}">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          <span>${parentLabel}</span>
+        </a>
+      </nav>
+
+      <div class="privacy-wrap">
+        <div class="privacy-hero">
+          <span class="section-label">LEGAL & TERMS &bull; CYCLE</span>
+          <h1 class="gradient-headline privacy-title">Terms of Service for EVLOME Cycle</h1>
+          <p class="privacy-subtitle">Effective Date: October 15, 2026 &bull; Official Application Terms</p>
+          <div style="margin-top: 0.75rem;">
+            <a href="/cycle/privacy" class="quiet-link" onclick="if(event) { event.preventDefault(); navigate('/cycle/privacy'); }">
+              View Cycle Privacy Policy &rarr;
+            </a>
+          </div>
+        </div>
+
+        <div class="privacy-callout-card">
+          <p class="privacy-callout-text">
+            By downloading, accessing, or using EVLOME Cycle, you agree to be bound by these Terms of Service and our <a href="/cycle/privacy" class="privacy-email-link" onclick="if(event) { event.preventDefault(); navigate('/cycle/privacy'); }">Cycle Privacy Policy</a>.
+          </p>
+        </div>
+
+        <div class="privacy-content-block">
+          <h2 class="privacy-block-heading">Core Operating Principles</h2>
+          <div class="privacy-commitments-grid">
+            <div class="privacy-commitment-card">
+              <div class="commitment-badge">01</div>
+              <h3 class="commitment-title">Offline-First Autonomy</h3>
+              <p class="commitment-desc">Complete period tracking, Roetzer thermal shifts, and cycle journaling function locally without mandatory accounts or paywalls.</p>
+            </div>
+            <div class="privacy-commitment-card">
+              <div class="commitment-badge">02</div>
+              <h3 class="commitment-title">Zero Health Monetization</h3>
+              <p class="commitment-desc">We never commodify, monetize, or sell advertising based on your intimate reproductive health and cycle patterns.</p>
+            </div>
+            <div class="privacy-commitment-card">
+              <div class="commitment-badge">03</div>
+              <h3 class="commitment-title">Transparent Subscriptions</h3>
+              <p class="commitment-desc">Optional EVLOME One multi-device encrypted backup is billed transparently through your Apple App Store or Google Play account.</p>
+            </div>
+            <div class="privacy-commitment-card">
+              <div class="commitment-badge">04</div>
+              <h3 class="commitment-title">Intimate Data Sovereignty</h3>
+              <p class="commitment-desc">You own all cycle entries and symptom records. Export or permanently purge your health vault anytime.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="privacy-content-block" style="margin-top: 32px;">
+          <h2 class="privacy-block-heading">1. License &amp; Personal Wellness Tracking</h2>
+          <p class="privacy-section-desc" style="margin-bottom: 16px;">
+            EVLOME grants you a personal, non-transferable, revocable license to use EVLOME Cycle on compatible iOS and Android devices for individual wellness self-tracking and menstrual cycle observation.
+          </p>
+
+          <h2 class="privacy-block-heading" style="margin-top: 24px;">2. CRITICAL MEDICAL &amp; CONTRACEPTION DISCLAIMER</h2>
+          <p class="privacy-section-desc" style="margin-bottom: 16px;">
+            <strong>NOT A CONTRACEPTIVE OR BIRTH CONTROL:</strong> EVLOME Cycle is NOT contraception or birth control. It must NOT be used to prevent pregnancy or as a family planning contraceptive method.<br/><br/>
+            <strong>Algorithmic Estimation Only:</strong> Ovulation confirmations, fertile window estimates, and period forecasts are algorithmic approximations based on historical data and user input. Biological rhythms vary naturally due to stress, illness, travel, changes in sleep, hormonal imbalances, and medications.<br/><br/>
+            <strong>No Substitute for Clinical Medical Care:</strong> EVLOME Cycle is not a healthcare provider and does not give medical advice. Always consult a licensed gynecologist or qualified physician for reproductive health, fertility management, contraception, or pregnancy evaluation.<br/><br/>
+            <strong>User Assumption of Risk:</strong> You assume full and exclusive responsibility for decisions made regarding sexual activity, contraception, family planning, and healthcare consultations.
+          </p>
+
+          <h2 class="privacy-block-heading" style="margin-top: 24px;">3. Subscriptions &amp; In-App Purchases (EVLOME One)</h2>
+          <p class="privacy-section-desc" style="margin-bottom: 16px;">
+            Optional cloud sync and encrypted backup billed via Apple ID / Google Play. Auto-renewing, cancelable anytime in device account settings at least 24 hours prior to renewal.
+          </p>
+
+          <h2 class="privacy-block-heading" style="margin-top: 24px;">4. User Content &amp; Data Sovereignty</h2>
+          <p class="privacy-section-desc" style="margin-bottom: 16px;">
+            All cycle records, symptom journals, and temperature readings belong unconditionally to you. EVLOME claims zero ownership rights over your personal health records.
+          </p>
+
+          <h2 class="privacy-block-heading" style="margin-top: 24px;">5. Disclaimers &amp; Limitation of Liability</h2>
+          <p class="privacy-section-desc" style="margin-bottom: 16px;">
+            To the maximum extent permitted by law, EVLOME and its creators disclaim all liability for pregnancy, reproductive health events, or reliance on cycle forecasting algorithms.
+          </p>
+        </div>
+
+        <div class="privacy-contact-block">
+          <h2 class="privacy-block-heading">Contact Us</h2>
+          <p class="privacy-contact-text">
+            For legal inquiries, terms clarification, or support regarding Cycle, reach our team at <a href="mailto:hello@evlome.com" class="privacy-email-link">hello@evlome.com</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  `;
+};
+
+const renderGlobalPrivacy = (previousPath = '') => {
+  return `
+    <div class="page-container privacy-page">
+      <nav class="detail-nav" aria-label="Navigation">
+        <a href="/" class="detail-back-link" onclick="window.handleHierarchicalBack(event, '/')" aria-label="Return to Suite">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          <span>Suite</span>
+        </a>
+      </nav>
+
+      <div class="privacy-wrap">
+        <div class="privacy-hero">
+          <span class="section-label">LEGAL & PRIVACY &bull; EVLOME SUITE</span>
+          <h1 class="gradient-headline privacy-title">EVLOME Ecosystem Privacy Policy</h1>
+          <p class="privacy-subtitle">Effective Date: October 15, 2026 &bull; Unified Suite Privacy Notice</p>
+          <div style="margin-top: 0.75rem;">
+            <a href="/terms" class="quiet-link" onclick="if(event) { event.preventDefault(); navigate('/terms'); }">
+              View Suite Terms of Service &rarr;
+            </a>
+          </div>
+        </div>
+
+        <section class="privacy-apps-section">
+          <h2 class="privacy-section-title">App-Specific Privacy Notices</h2>
+          <p class="privacy-section-desc">Each application is engineered with isolated on-device vaults and zero third-party telemetry. Review the dedicated notice for each tool:</p>
+          
+          <div class="privacy-app-pills">
+            ${appsData.filter(a => a.privacyLink).map(a => `
+              <a href="${a.privacyLink}" class="privacy-app-pill" onclick="if(event) { event.preventDefault(); navigate('${a.privacyLink}'); }">
+                <span>${a.title} Privacy</span>
+                <span class="privacy-pill-arrow" aria-hidden="true">&rarr;</span>
+              </a>
+            `).join('')}
+          </div>
+        </section>
+
+        <div class="privacy-callout-card">
+          <p class="privacy-callout-text">
+            <strong>Unified Privacy-First Architecture:</strong> Across the entire EVLOME ecosystem, all applications store your personal data locally on your device by default. We do not sell, rent, or broker your personal information to third parties, and we operate zero third-party ad networks or tracking trackers.
+          </p>
+        </div>
+
+        <div class="privacy-content-block">
+          <h2 class="privacy-block-heading">Core Ecosystem Commitments</h2>
+          <div class="privacy-commitments-grid">
+            <div class="privacy-commitment-card">
+              <div class="commitment-badge">01</div>
+              <h3 class="commitment-title">Local-First Storage</h3>
+              <p class="commitment-desc">All metrics, cycle entries, calculation histories, and custom logs are stored directly in isolated on-device databases using local encryption.</p>
+            </div>
+            <div class="privacy-commitment-card">
+              <div class="commitment-badge">02</div>
+              <h3 class="commitment-title">Zero Data Selling</h3>
+              <p class="commitment-desc">We never sell, rent, share, or broker your personal metrics, reproductive health, or logs with advertisers or data brokers.</p>
+            </div>
+            <div class="privacy-commitment-card">
+              <div class="commitment-badge">03</div>
+              <h3 class="commitment-title">Optional Accounts</h3>
+              <p class="commitment-desc">Every application is fully functional offline as a guest. Accounts are strictly optional for cross-device synchronization.</p>
+            </div>
+            <div class="privacy-commitment-card">
+              <div class="commitment-badge">04</div>
+              <h3 class="commitment-title">Complete Sovereignty</h3>
+              <p class="commitment-desc">You retain unconditional ownership over your records. You may export or permanently delete your local databases and cloud accounts anytime.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="privacy-content-block" style="margin-top: 32px;">
+          <h2 class="privacy-block-heading">1. App-by-App Data Handling</h2>
+          <p class="privacy-section-desc" style="margin-bottom: 16px;">
+            <strong>EVLOME Calculator+:</strong> Anthropometric measurements (height, weight, body circumferences) and calculation records are stored locally. Zero external transmission.<br/><br/>
+            <strong>EVLOME Cycle:</strong> Menstrual telemetry, Basal Body Temperature (BBT), cervical fluid stages, and 13 symptom categories are retained in an isolated, encrypted on-device vault.<br/><br/>
+            <strong>EVLOME Activity &amp; Nutrition:</strong> Kinetic workout splits, barbell plate math, fasting timers, and macronutrient targets are recorded locally on your device.<br/><br/>
+            <strong>Account Data (Optional):</strong> If you choose to sign in to enable cross-device synchronization via EVLOME One, your credentials and encrypted backup are stored securely solely to manage your session.
+          </p>
+
+          <h2 class="privacy-block-heading" style="margin-top: 24px;">2. General Health &amp; Medical Disclaimers</h2>
+          <p class="privacy-section-desc" style="margin-bottom: 16px;">
+            EVLOME applications are designed for informational, wellness self-tracking, and reference purposes only. They are not intended as substitutes for professional clinical medical advice, diagnosis, or treatment. Specifically, <strong>EVLOME Cycle is NOT contraception or birth control</strong>, and <strong>EVLOME Calculator+ calculations are statistical estimates</strong>.
+          </p>
+
+          <h2 class="privacy-block-heading" style="margin-top: 24px;">3. Data Retention &amp; Deletion</h2>
+          <p class="privacy-section-desc" style="margin-bottom: 16px;">
+            You can delete your on-device data instantly by clearing storage within individual apps. If you created a cloud account, you can permanently delete your account and all associated cloud records at any time via Account Settings or by contacting us.
+          </p>
+        </div>
+
+        <div class="privacy-contact-block">
+          <h2 class="privacy-block-heading">Contact Us</h2>
+          <p class="privacy-contact-text">
+            For ecosystem privacy requests, data deletion, or questions, reach our team at <a href="mailto:hello@evlome.com" class="privacy-email-link">hello@evlome.com</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  `;
+};
+
+const renderGlobalTerms = (previousPath = '') => {
+  return `
+    <div class="page-container privacy-page">
+      <nav class="detail-nav" aria-label="Navigation">
+        <a href="/" class="detail-back-link" onclick="window.handleHierarchicalBack(event, '/')" aria-label="Return to Suite">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          <span>Suite</span>
+        </a>
+      </nav>
+
+      <div class="privacy-wrap">
+        <div class="privacy-hero">
+          <span class="section-label">LEGAL & TERMS &bull; EVLOME SUITE</span>
+          <h1 class="gradient-headline privacy-title">EVLOME Ecosystem Terms of Service</h1>
+          <p class="privacy-subtitle">Effective Date: October 15, 2026 &bull; Unified Suite Terms of Service</p>
+          <div style="margin-top: 0.75rem;">
+            <a href="/privacy" class="quiet-link" onclick="if(event) { event.preventDefault(); navigate('/privacy'); }">
+              View Suite Privacy Policy &rarr;
+            </a>
+          </div>
+        </div>
+
+        <section class="privacy-apps-section">
+          <h2 class="privacy-section-title">App-Specific Terms of Service</h2>
+          <p class="privacy-section-desc">Review dedicated terms, calculation disclosures, and medical disclaimers for each application:</p>
+          
+          <div class="privacy-app-pills">
+            ${appsData.filter(a => a.termsLink).map(a => `
+              <a href="${a.termsLink}" class="privacy-app-pill" onclick="if(event) { event.preventDefault(); navigate('${a.termsLink}'); }">
+                <span>${a.title} Terms</span>
+                <span class="privacy-pill-arrow" aria-hidden="true">&rarr;</span>
+              </a>
+            `).join('')}
+          </div>
+        </section>
+
+        <div class="privacy-callout-card">
+          <p class="privacy-callout-text">
+            By downloading, accessing, or using any EVLOME application or website, you agree to be bound by these Terms of Service and our <a href="/privacy" class="privacy-email-link" onclick="if(event) { event.preventDefault(); navigate('/privacy'); }">Ecosystem Privacy Policy</a>.
           </p>
         </div>
 
@@ -692,38 +1022,29 @@ const renderTermsOfService = (app = null, previousPath = '') => {
         </div>
 
         <div class="privacy-content-block" style="margin-top: 32px;">
-          <h2 class="privacy-block-heading">1. License & Permitted Use</h2>
+          <h2 class="privacy-block-heading">1. License &amp; Permitted Use</h2>
           <p class="privacy-section-desc" style="margin-bottom: 16px;">
-            EVLOME grants you a personal, non-transferable, revocable license to use ${app ? app.title : 'our applications'} on compatible iOS and Android devices for individual, non-commercial purposes in compliance with these Terms and platform store policies.
+            EVLOME grants you a personal, non-transferable, revocable license to use our applications on compatible iOS and Android devices for individual, non-commercial purposes in compliance with these Terms and platform store policies.
           </p>
 
-          <h2 class="privacy-block-heading" style="margin-top: 24px;">2. Important Medical & Calculation Disclaimers</h2>
+          <h2 class="privacy-block-heading" style="margin-top: 24px;">2. Important Medical &amp; Calculation Disclaimers</h2>
           <p class="privacy-section-desc" style="margin-bottom: 16px;">
-            ${app && app.id === 'cycle' ? `
-              <strong>CRITICAL NOTICE: EVLOME Cycle is NOT contraception or birth control.</strong> It must NOT be used to prevent pregnancy or as a family planning contraceptive method.<br/><br/>
-              <strong>Informational & Self-Observation Use Only:</strong> Algorithmic rhythm estimates, fertile window indications, and ovulation forecasting are mathematical models based on user inputs and historical cycles. Biological rhythms fluctuate due to stress, illness, travel, and hormonal changes. Always consult a licensed gynecologist or healthcare professional for reproductive health advice, contraception, or pregnancy management.
-            ` : app && app.id === 'calculator' ? `
-              <strong>Estimation Models Only:</strong> Health metrics and calculations in EVLOME Calculator+ (including Mifflin-St Jeor BMR/TDEE, US Navy body fat %, and macronutrient allocations) are mathematical approximations based on published scientific equations. They are intended solely for fitness tracking and educational reference and do not constitute clinical nutritional prescriptions or medical diagnosis.<br/><br/>
-              <strong>Financial Calculations:</strong> Loan amortization schedules and compound interest projections are mathematical estimates and should not replace certified financial or legal counsel.
-            ` : `
-              <strong>EVLOME applications do not provide medical advice.</strong><br/><br/>
-              <strong>EVLOME Cycle:</strong> Is strictly a wellness self-tracking tool. <strong>It is NOT intended or certified as contraception or birth control, nor as a substitute for professional medical diagnosis or clinical treatment.</strong><br/><br/>
-              <strong>EVLOME Calculator+:</strong> Computes statistical estimates for fitness and informational reference. Calculations must not replace evaluation by a licensed physician or registered dietitian.<br/><br/>
-              Never disregard professional medical advice or delay seeking clinical care because of information displayed in EVLOME applications.
-            `}
+            <strong>EVLOME Cycle Notice:</strong> EVLOME Cycle is strictly for menstrual self-observation and wellness tracking. <strong>It is NOT intended or certified as contraception or birth control, nor as a substitute for professional clinical medical advice, diagnosis, or treatment.</strong> Users assume exclusive responsibility for family planning and reproductive decisions.<br/><br/>
+            <strong>EVLOME Calculator+ Notice:</strong> Calculations provided by EVLOME Calculator+ (including Mifflin-St Jeor BMR/TDEE, Navy body fat %, and macro allocations) are statistical estimates for fitness and informational reference. Calculations must not replace evaluation by a licensed physician or registered dietitian.<br/><br/>
+            Never disregard professional medical advice or delay seeking clinical care because of information displayed in EVLOME applications.
           </p>
 
-          <h2 class="privacy-block-heading" style="margin-top: 24px;">3. Subscriptions & In-App Purchases (EVLOME One)</h2>
+          <h2 class="privacy-block-heading" style="margin-top: 24px;">3. Subscriptions &amp; In-App Purchases (EVLOME One)</h2>
           <p class="privacy-section-desc" style="margin-bottom: 16px;">
             Certain advanced capabilities (such as encrypted cloud backup and cross-device synchronization) may be offered as optional auto-renewing subscriptions under EVLOME One. Subscriptions are billed directly through your Apple App Store or Google Play account. You can manage or cancel your subscription at any time in your device's account settings at least 24 hours before the renewal date.
           </p>
 
-          <h2 class="privacy-block-heading" style="margin-top: 24px;">4. User Content & Data Sovereignty</h2>
+          <h2 class="privacy-block-heading" style="margin-top: 24px;">4. User Content &amp; Data Sovereignty</h2>
           <p class="privacy-section-desc" style="margin-bottom: 16px;">
             You retain unconditional ownership over all calculations, menstrual records, notes, and metrics you input. EVLOME does not claim any ownership rights over your personal data. You may export or delete your local records at any time.
           </p>
 
-          <h2 class="privacy-block-heading" style="margin-top: 24px;">5. Disclaimers & Limitation of Liability</h2>
+          <h2 class="privacy-block-heading" style="margin-top: 24px;">5. Disclaimers &amp; Limitation of Liability</h2>
           <p class="privacy-section-desc" style="margin-bottom: 16px;">
             To the maximum extent permitted by applicable law, EVLOME and its creators provide the applications "as is" and "as available" without warranty of any kind. EVLOME shall not be liable for any direct, indirect, incidental, or consequential damages resulting from your use of or inability to use our applications.
           </p>
@@ -738,6 +1059,27 @@ const renderTermsOfService = (app = null, previousPath = '') => {
       </div>
     </div>
   `;
+};
+
+// Main routing dispatchers
+const renderPrivacyPolicy = (app = null, previousPath = '') => {
+  if (app && app.id === 'calculator') {
+    return renderCalculatorPrivacy(previousPath);
+  }
+  if (app && app.id === 'cycle') {
+    return renderCyclePrivacy(previousPath);
+  }
+  return renderGlobalPrivacy(previousPath);
+};
+
+const renderTermsOfService = (app = null, previousPath = '') => {
+  if (app && app.id === 'calculator') {
+    return renderCalculatorTerms(previousPath);
+  }
+  if (app && app.id === 'cycle') {
+    return renderCycleTerms(previousPath);
+  }
+  return renderGlobalTerms(previousPath);
 };
 
 // ============================================================================
