@@ -1,5 +1,550 @@
 import './style.css'
 
+// ============================================================================
+// Apps Ecosystem Data Model
+// ============================================================================
+export const appsData = [
+  {
+    id: 'calculator',
+    title: 'Calculator+',
+    category: 'Biometrics, Math & Tools',
+    tagline: 'Clinical biometrics, financial models & precision conversion',
+    desc: 'Everyday arithmetic, Mifflin-St Jeor TDEE expenditure, US Navy body fat %, macro split planning, loan amortization, and 9-dimensional unit conversions — all processed locally.',
+    highlights: [
+      {
+        title: 'Mifflin-St Jeor TDEE & BMR',
+        desc: 'Calculates Basal Metabolic Rate and Total Daily Energy Expenditure across five activity multipliers (1.2× to 1.9×) with deficit (-500 kcal) and surplus (+500 kcal) caloric targets.'
+      },
+      {
+        title: 'US Navy Body Fat & Clinical Metrics',
+        desc: 'Precise body composition estimation using the US Navy circumference equations (neck, waist, hip, height) alongside metric and imperial BMI health classification thresholds.'
+      },
+      {
+        title: 'Target Macronutrient Distribution',
+        desc: 'Generates tailored daily gram allocations for protein, carbohydrates, and fats across four metabolic frameworks: Balanced (30/40/30), High Protein (40/30/30), Low Carb (40/20/40), and Ketogenic (20/5/75).'
+      },
+      {
+        title: 'Hydration & 1RM Strength Forecasting',
+        desc: 'Dynamic baseline fluid intake calculation adjusted for exercise volume (+0.35L per 30 mins) paired with Brzycki and Epley 1-Rep Max formulas with load percentages for progressive overload.'
+      },
+      {
+        title: 'Loan Amortization & Compound Interest',
+        desc: 'Full financial schedule projections for personal and mortgage loans alongside multi-frequency compound interest growth models, tip splitting, discount/tax, and offline currency conversions.'
+      },
+      {
+        title: 'Multi-Category Converter & Daily Tools',
+        desc: 'Nine-dimensional unit conversions (length, mass, volume, temperature, speed, area, data, energy), recipe scaling proportions, unit price comparisons, date math, base conversion, and haptic tally counting.'
+      }
+    ],
+    icon: '/icons/calculator.png',
+    accentColor: '#a855f7',
+    categoryGradient: 'linear-gradient(90deg, #d8b4fe 0%, #a855f7 50%, #7c3aed 100%)',
+    status: 'beta',
+    privacyLink: '/calculator/privacy'
+  },
+  {
+    id: 'cycle',
+    title: 'Cycle',
+    category: "Women's Health & Rhythm",
+    tagline: 'Sympto-thermal ovulation forecasting & hormonal rhythm',
+    desc: 'Private, discreet menstrual cycle telemetry, sympto-thermal ovulation forecasting, and holistic symptom tracking — encrypted on-device with zero trackers, ads, or data brokering.',
+    highlights: [
+      {
+        title: '4-Phase Hormonal Rhythm Wheel',
+        desc: 'Visualizes your real-time position within the menstrual cycle across four distinct hormonal stages: Menstrual (restorative), Follicular (rising estrogen), Ovulation (estrogen peak), and Luteal (progesterone dominance).'
+      },
+      {
+        title: 'Sympto-Thermal Ovulation Confirmation',
+        desc: 'Validates true ovulation using clinical Roetzer biphasic Basal Body Temperature (BBT) thermal shift detection (3 high temps over 6 low temps) paired with Ovulation Predictor Kit (LH surge) verification.'
+      },
+      {
+        title: 'Personalized Luteal Phase Tracking',
+        desc: 'Learns your individual luteal duration (10–18 days) from rolling historical averages instead of assuming a generic 14-day window, filtering irregular cycle anomalies for higher forecast accuracy.'
+      },
+      {
+        title: 'Cervical Telemetry & Fertility Windows',
+        desc: 'Tracks cervical mucus consistency across five progressive stages from dry to peak fertile egg-white fluid, computing real-time Low, High, and Peak fertility probability windows.'
+      },
+      {
+        title: 'Holistic 13-Symptom & Mood Journal',
+        desc: 'Multi-dimensional daily tracking covering flow intensity, 13 physical symptoms (cramps, bloating, tender breasts, ovulation pain, nausea), 12 mood states, sexual activity, and high-precision temperature logging.'
+      },
+      {
+        title: 'Phase-Synced Workout & Fuel Guidance',
+        desc: 'Synchronizes with the EVLOME ecosystem to offer cycle-tailored fitness guidance (HIIT during follicular energy surges vs heavy lifts during ovulation) and metabolic nutrition advice (iron and magnesium support).'
+      }
+    ],
+    icon: '/icons/cycle.png',
+    accentColor: '#f43f5e',
+    categoryGradient: 'linear-gradient(90deg, #fda4af 0%, #f43f5e 55%, #e11d48 100%)',
+    status: 'beta',
+    privacyLink: '/cycle/privacy'
+  },
+  {
+    id: 'activity',
+    title: 'Activity',
+    category: 'Kinetic & Motion Logging',
+    tagline: 'Real-time performance metrics',
+    desc: 'A versatile workout logger for gym and home training with set/rep tracking, haptic rest timers, and strength progression metrics.',
+    highlights: [
+      {
+        title: 'Custom Workout Routines',
+        desc: 'Pre-loaded compound programs or design your own bespoke lifting splits, supersets, and HIIT rounds.'
+      },
+      {
+        title: 'Rest & Plate Math Assistant',
+        desc: 'Integrated barbell plate math and background haptic countdown timers between sets.'
+      }
+    ],
+    icon: '/icons/activity.png',
+    accentColor: '#f59e0b',
+    categoryGradient: 'linear-gradient(90deg, #fde68a 0%, #f59e0b 55%, #d97706 100%)',
+    status: 'development'
+  },
+  {
+    id: 'nutrition',
+    title: 'Nutrition',
+    category: 'Metabolic & Vitality Balance',
+    tagline: 'Effortless caloric & nutrient balance',
+    desc: 'A clean calorie, macro, and nutrient tracker with whole food logging, personalized goals, fasting timers, and hydration tracking.',
+    highlights: [
+      {
+        title: 'Macro & Micronutrient Targets',
+        desc: 'Visual telemetry rings for protein, carbohydrates, healthy fats, dietary fiber, and sodium.'
+      },
+      {
+        title: 'Intermittent Fasting Timer',
+        desc: 'Preset 16:8, 18:6, and custom schedules with real-time zone stages and fasting telemetry.'
+      }
+    ],
+    icon: '/icons/nutrition.png',
+    accentColor: '#10b981',
+    categoryGradient: 'linear-gradient(90deg, #a7f3d0 0%, #34d399 50%, #059669 100%)',
+    status: 'development'
+  }
+];
+
+// ============================================================================
+// Page Renderers (Clean, Minimal, To The Point)
+// ============================================================================
+
+const renderHome = () => `
+  <!-- Minimalist Hero Section -->
+  <section class="hero-clean">
+    <div class="hero-spec-ledger" aria-label="Ecosystem Preview Status">
+      <span>Early Access Preview</span>
+    </div>
+
+    <h1 class="hero-main-title gradient-headline">
+      The Personal Health Suite.
+    </h1>
+
+    <p class="hero-lead-text">
+      Focused, privacy-first tools designed with quiet precision — and more on the way. 
+      From <strong>clinical biometric math</strong> to <strong>cycle rhythm and kinetic tracking</strong> — stored locally on your device.
+    </p>
+
+    <div class="hero-actions-row">
+      <a href="/beta" class="btn-primary">Join the Beta &rarr;</a>
+    </div>
+  </section>
+
+  <!-- The Suite Showcase (Clean Clickable Cards, Zero Clutter) -->
+  <section id="suite-section" class="section-wrap">
+    <span class="section-label">THE SUITE</span>
+    <h2 class="section-headline gradient-headline">Essential Tools. Zero Noise.</h2>
+    <p class="section-subtext">No bloated social feeds, no third-party data tracking. High-caliber utilities crafted for daily life — with more in active development.</p>
+
+    <div class="suite-grid">
+      ${appsData.map(app => `
+        <a href="${app.status === 'beta' ? `/${app.id}` : '#suite-section'}" 
+           class="app-card ${app.status !== 'beta' ? 'is-disabled' : ''}" 
+           style="--app-color: ${app.accentColor}; --category-gradient: ${app.categoryGradient};"
+           ${app.status !== 'beta' ? 'onclick="return false;"' : ''}>
+          
+          <div class="app-card-top">
+            <div class="app-icon-squircle">
+              <img src="${app.icon}" alt="${app.title} App Icon" class="app-icon-img" />
+            </div>
+            <span class="app-status-tag ${app.status === 'beta' ? 'is-beta' : 'is-dev'}">
+              ${app.status === 'beta' ? 'Beta' : 'Roadmap'}
+            </span>
+          </div>
+
+          <div class="app-meta-category">${app.category}</div>
+          <h3 class="app-card-title">${app.title}</h3>
+          <p class="app-card-desc">${app.desc}</p>
+
+          <div class="app-card-arrow">
+            ${app.status === 'beta' ? '<span>Explore</span> &rarr;' : '<span>In development</span>'}
+          </div>
+        </a>
+      `).join('')}
+    </div>
+  </section>
+
+  <!-- Editorial Principles Section (Asymmetric Split, Zero Card Fatigue) -->
+  <section id="principles-section" class="section-wrap principles-section">
+    <div class="principles-split-layout">
+      <!-- Left Column: Manifesto & Ethos -->
+      <div class="principles-manifesto-col">
+        <span class="section-label">FOUNDATIONS</span>
+        <h2 class="principles-headline gradient-headline">Built on Principle.</h2>
+        <p class="principles-lead-text">
+          Modern health software has succumbed to invasive trackers, bloated feeds, and fragile cloud mandates. 
+          EVLOME is engineered as a resilient ecosystem: clinical rigor, unconditional offline access, and focused utilities architected to evolve with you.
+        </p>
+        <div class="principles-spec-ledger">
+          <span>Zero Telemetry &bull; 100% Offline Architecture</span>
+        </div>
+      </div>
+
+      <!-- Right Column: Hairline Divided Editorial Rows -->
+      <div class="principles-list-col">
+        <div class="principle-row">
+          <div class="principle-row-header">
+            <span class="principle-row-num">01</span>
+            <div class="principle-row-title-wrap">
+              <h3 class="principle-row-title">Local-First Privacy</h3>
+              <span class="principle-row-tagline">Your device is your vault</span>
+            </div>
+          </div>
+          <p class="principle-row-desc">
+            Your physiological metrics, biometrics, cycle forecasts, and personal streaks reside exclusively in an encrypted on-device database. We operate zero telemetry servers, maintain no remote tracking accounts, and will never sell, broker, or monetize your intimate health data.
+          </p>
+        </div>
+
+        <div class="principle-row">
+          <div class="principle-row-header">
+            <span class="principle-row-num">02</span>
+            <div class="principle-row-title-wrap">
+              <h3 class="principle-row-title">Clinical Precision</h3>
+              <span class="principle-row-tagline">Mathematical rigor, zero guesswork</span>
+            </div>
+          </div>
+          <p class="principle-row-desc">
+            From Mifflin-St Jeor and Katch-McArdle metabolic expenditure to physiological rhythm curves, every algorithm is rooted in verified medical literature and clinical standards. Transparent, deterministic calculations without opaque AI hallucinations.
+          </p>
+        </div>
+
+        <div class="principle-row">
+          <div class="principle-row-header">
+            <span class="principle-row-num">03</span>
+            <div class="principle-row-title-wrap">
+              <h3 class="principle-row-title">Offline Continuity</h3>
+              <span class="principle-row-tagline">Zero latency, zero cloud dependency</span>
+            </div>
+          </div>
+          <p class="principle-row-desc">
+            Health tracking cannot pause when connectivity drops. Every calculation, journaling workflow, and diagnostic utility operates entirely offline — ensuring instant response and absolute reliability in airplane mode, remote trails, or deep interiors.
+          </p>
+        </div>
+
+        <div class="principle-row">
+          <div class="principle-row-header">
+            <span class="principle-row-num">04</span>
+            <div class="principle-row-title-wrap">
+              <h3 class="principle-row-title">Clutter-Free Clarity</h3>
+              <span class="principle-row-tagline">High-signal ergonomics, zero noise</span>
+            </div>
+          </div>
+          <p class="principle-row-desc">
+            No algorithmic feeds, sponsored banners, or vanity metrics competing for your focus. Interfaces are distilled strictly to clinical essentials and tactile controls, allowing you to log information with quiet efficiency and immediately return to your day.
+          </p>
+        </div>
+
+        <div class="principle-row">
+          <div class="principle-row-header">
+            <span class="principle-row-num">05</span>
+            <div class="principle-row-title-wrap">
+              <h3 class="principle-row-title">Adaptive Evolution</h3>
+              <span class="principle-row-tagline">Engineered to mature with you</span>
+            </div>
+          </div>
+          <p class="principle-row-desc">
+            Your physiological needs and health priorities shift over time, and EVLOME is architected to adapt. We continuously expand the suite with specialized tools and refine existing apps in direct response to user feedback — growing alongside you without bloat.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Minimalist Beta CTA -->
+  <section class="beta-cta-clean">
+    <h3 class="beta-cta-title gradient-headline">Early Access</h3>
+    <p class="beta-cta-desc">TestFlight and Google Play preview slots are open for Calculator+ and Cycle.</p>
+    <a href="/beta" class="btn-primary">Join the Beta &rarr;</a>
+  </section>
+`;
+
+const renderAppPage = (app) => `
+  <div class="page-container app-detail-page" style="--app-color: ${app.accentColor};">
+    <nav class="detail-nav" aria-label="Navigation">
+      <a href="/" class="detail-back-link" onclick="window.handleHierarchicalBack(event, '/')" aria-label="Return to Suite">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span>Suite</span>
+      </a>
+    </nav>
+
+    <div class="detail-clean-hero">
+      <div class="detail-app-icon">
+        <img src="${app.icon}" alt="${app.title} Icon">
+      </div>
+
+      <h1 class="detail-page-title">${app.title}</h1>
+      <p class="detail-page-desc">${app.desc}</p>
+
+      <div class="detail-actions-row">
+        <a href="/beta?app=${app.id}" class="btn-primary">Join the Beta &rarr;</a>
+      </div>
+    </div>
+
+    <!-- Capabilities Section (Clean Hairline Grid) -->
+    <section class="detail-capabilities-section">
+      <span class="detail-section-title">Capabilities</span>
+      <div class="detail-capabilities-grid">
+        ${app.highlights.map(h => `
+          <div class="detail-cap-item">
+            <h3 class="cap-item-title">${h.title}</h3>
+            <p class="cap-item-desc">${h.desc}</p>
+          </div>
+        `).join('')}
+      </div>
+
+      ${app.privacyLink ? `
+        <div class="detail-privacy-row">
+          <a href="${app.privacyLink}" class="quiet-link" onclick="if(event) { event.preventDefault(); navigate('${app.privacyLink}'); }">
+            ${app.title} Privacy Policy &rarr;
+          </a>
+        </div>
+      ` : ''}
+    </section>
+  </div>
+`;
+
+const renderBetaPage = (parentApp = null) => {
+  const parentUrl = parentApp ? `/${parentApp.id}` : '/';
+  const parentLabel = parentApp ? parentApp.title : 'Suite';
+
+  return `
+  <div class="page-container beta-page">
+    <nav class="detail-nav" aria-label="Navigation">
+      <a href="${parentUrl}" class="detail-back-link" onclick="window.handleHierarchicalBack(event, '${parentUrl}')" aria-label="Return to ${parentLabel}">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span>${parentLabel}</span>
+      </a>
+    </nav>
+
+    <div class="beta-clean-wrap">
+      <div class="beta-header">
+        <h1 class="beta-title gradient-headline">Beta Testing Program</h1>
+        <p class="beta-subtitle">
+          Apply for early TestFlight (iOS) and Google Play (Android) access.
+        </p>
+      </div>
+
+      <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(window.betaSubmitted) { if(window.betaTimeout) clearTimeout(window.betaTimeout); document.getElementById('beta-form-wrap').style.display='none'; document.getElementById('success-message').style.display='flex'; window.scrollTo({top: 0, behavior: 'smooth'}); }"></iframe>
+
+      <div id="success-message" role="status" aria-live="polite" style="display:none; flex-direction: column; align-items: center; justify-content: center; padding: 4rem 2rem; text-align: center; background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-xl); box-shadow: var(--inner-highlight);">
+        <div style="width: 60px; height: 60px; border-radius: 50%; background: rgba(52, 211, 153, 0.15); color: #34d399; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h2 style="font-size: 1.85rem; margin-bottom: 0.5rem; color: #ffffff; font-weight: 800;">Application Received</h2>
+        <p style="color: var(--text-secondary); max-width: 400px; line-height: 1.6; font-size: 0.95rem; margin-bottom: 2rem;">
+          Thank you for applying. We will email instructions directly to your registered device email address.
+        </p>
+        <a href="/" class="btn-primary">Return to Home</a>
+      </div>
+
+      <div id="beta-form-wrap">
+        <form class="custom-beta-form" action="https://docs.google.com/forms/d/e/1FAIpQLSekI29k1t9_IqrNwZvtcHeIEebY7HNj471CspOid_TlKLoJ9Q/formResponse" method="post" target="hidden_iframe" novalidate onsubmit="return window.handleBetaSubmit(event)" oninput="window.clearBetaError(event)" onchange="window.clearBetaError(event)">
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="beta-first-name">First Name <span class="required-star">*</span></label>
+              <input type="text" id="beta-first-name" name="entry.1026423473" required placeholder="Jane" autocomplete="given-name" class="form-input" />
+            </div>
+            <div class="form-group">
+              <label for="beta-last-name">Last Name <span class="required-star">*</span></label>
+              <input type="text" id="beta-last-name" name="entry.2072277110" required placeholder="Doe" autocomplete="family-name" class="form-input" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="beta-email">Email Address <span class="required-star">*</span></label>
+            <input type="email" id="beta-email" name="entry.1247363008" required placeholder="name@icloud.com or gmail.com" autocomplete="email" class="form-input" />
+          </div>
+
+          <div class="form-group">
+            <label>Device Platform <span class="required-star">*</span></label>
+            <div class="checkbox-group">
+              <label class="custom-checkbox">
+                <input type="checkbox" name="entry.261106749" value="iOS" />
+                <span class="checkbox-box" aria-hidden="true"></span>
+                <span class="checkbox-text">iOS (iPhone / iPad)</span>
+              </label>
+              <label class="custom-checkbox">
+                <input type="checkbox" name="entry.261106749" value="Android" />
+                <span class="checkbox-box" aria-hidden="true"></span>
+                <span class="checkbox-text">Android</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Testing Preference <span class="required-star">*</span></label>
+            <div class="radio-group" style="margin-bottom: 0.5rem; flex-wrap: wrap;">
+              <label class="custom-radio">
+                <input type="radio" name="entry.923244053" value="The Entire EVLOME Suite (All Apps)" checked onchange="document.getElementById('specific-apps-list').style.display = 'none'; Array.from(document.querySelectorAll('.specific-app-checkbox')).forEach(cb => cb.checked = false);" />
+                <span class="radio-dot" aria-hidden="true"></span>
+                <span class="radio-text">Entire Suite</span>
+              </label>
+              <label class="custom-radio">
+                <input type="radio" name="entry.923244053" value="Specific Apps Only" id="specific-apps-radio" onchange="document.getElementById('specific-apps-list').style.display = 'flex';" />
+                <span class="radio-dot" aria-hidden="true"></span>
+                <span class="radio-text">Specific Apps</span>
+              </label>
+            </div>
+
+            <div id="specific-apps-list" class="checkbox-group" style="display: none; flex-direction: column; gap: 0.5rem; padding-left: 0.75rem; border-left: 1.5px solid var(--border-subtle);">
+              <label class="custom-checkbox">
+                <input type="checkbox" name="entry.610551536" value="EVLOME Calculator+" class="specific-app-checkbox" />
+                <span class="checkbox-box" aria-hidden="true"></span>
+                <span class="checkbox-text">Calculator+</span>
+              </label>
+              <label class="custom-checkbox">
+                <input type="checkbox" name="entry.610551536" value="EVLOME Cycle" class="specific-app-checkbox" />
+                <span class="checkbox-box" aria-hidden="true"></span>
+                <span class="checkbox-text">Cycle</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="beta-frequency">Testing Availability <span class="required-star">*</span></label>
+            <select id="beta-frequency" name="entry.454575922" required class="form-input custom-select">
+              <option value="" disabled selected>Select frequency...</option>
+              <option value="Daily">Daily</option>
+              <option value="A few times a week">A few times a week</option>
+              <option value="Once a week">Once a week</option>
+              <option value="Occasionally">Occasionally</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="beta-feedback">Feedback or Notes <span class="optional-tag">(Optional)</span></label>
+            <textarea id="beta-feedback" name="entry.1265301105" rows="2" placeholder="Any specific features you care about..." class="form-input"></textarea>
+          </div>
+
+          <button id="submit-btn" type="submit" class="btn-primary form-submit-btn">Submit Application</button>
+        </form>
+      </div>
+    </div>
+  `;
+};
+
+const renderPrivacyPolicy = (app, previousPath = '') => {
+  const title = app ? app.title : 'EVLOME Apps';
+  let parentUrl = '/';
+  let parentLabel = 'Suite';
+
+  if (app) {
+    if (previousPath === '/privacy') {
+      parentUrl = '/privacy';
+      parentLabel = 'Privacy';
+    } else {
+      parentUrl = `/${app.id}`;
+      parentLabel = app.title;
+    }
+  }
+
+  return `
+    <div class="page-container privacy-page">
+      <nav class="detail-nav" aria-label="Navigation">
+        <a href="${parentUrl}" class="detail-back-link" onclick="window.handleHierarchicalBack(event, '${parentUrl}')" aria-label="Return to ${parentLabel}">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          <span>${parentLabel}</span>
+        </a>
+      </nav>
+
+      <div class="privacy-wrap">
+        <div class="privacy-hero">
+          <span class="section-label">LEGAL & PRIVACY</span>
+          <h1 class="gradient-headline privacy-title">Privacy Policy for ${title}</h1>
+          <p class="privacy-subtitle">Pre-Release Transparency Notice</p>
+        </div>
+
+        ${!app ? `
+          <section class="privacy-apps-section">
+            <h2 class="privacy-section-title">App-Specific Privacy Notices</h2>
+            <p class="privacy-section-desc">Each application is engineered with isolated on-device vaults and zero telemetry.</p>
+            
+            <div class="privacy-app-pills">
+              ${appsData.filter(a => a.privacyLink).map(a => `
+                <a href="${a.privacyLink}" class="privacy-app-pill" onclick="if(event) { event.preventDefault(); navigate('${a.privacyLink}'); }">
+                  <span>${a.title}</span>
+                  <span class="privacy-pill-arrow" aria-hidden="true">&rarr;</span>
+                </a>
+              `).join('')}
+            </div>
+          </section>
+        ` : ''}
+
+        <div class="privacy-callout-card">
+          <p class="privacy-callout-text">
+            The full, binding Privacy Policy and Terms of Service for <strong>${title}</strong> will be published prior to public App Store and Google Play availability.
+          </p>
+        </div>
+
+        <div class="privacy-content-block">
+          <h2 class="privacy-block-heading">Core Commitments</h2>
+          <div class="privacy-commitments-grid">
+            <div class="privacy-commitment-card">
+              <div class="commitment-badge">01</div>
+              <h3 class="commitment-title">Local-First Data Storage</h3>
+              <p class="commitment-desc">Sensitive telemetry, period logs, formulas, and biometric history are stored strictly on your local device.</p>
+            </div>
+            <div class="privacy-commitment-card">
+              <div class="commitment-badge">02</div>
+              <h3 class="commitment-title">Zero Commercialization</h3>
+              <p class="commitment-desc">We never sell, rent, broker, or monetize your intimate health, reproductive, or fitness information.</p>
+            </div>
+            <div class="privacy-commitment-card">
+              <div class="commitment-badge">03</div>
+              <h3 class="commitment-title">No Mandatory Cloud Accounts</h3>
+              <p class="commitment-desc">Beta builds function autonomously offline without requiring email registrations, social sign-ins, or remote identity profiles.</p>
+            </div>
+            <div class="privacy-commitment-card">
+              <div class="commitment-badge">04</div>
+              <h3 class="commitment-title">Complete Data Sovereignty</h3>
+              <p class="commitment-desc">You retain unconditional ownership over your physiological data: export to open formats or permanently purge your vault at any time.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="privacy-contact-block">
+          <h2 class="privacy-block-heading">Contact</h2>
+          <p class="privacy-contact-text">
+            Direct privacy inquiries and data sovereignty questions to <a href="mailto:hello@evlome.com" class="privacy-email-link">hello@evlome.com</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  `;
+};
+
+// ============================================================================
+// Form Validation & Submission Handler
+// ============================================================================
 window.handleBetaSubmit = function(event) {
   event.preventDefault();
   const form = event.target;
@@ -38,19 +583,19 @@ window.handleBetaSubmit = function(event) {
 
   const deviceCheckboxes = form.querySelectorAll('input[name="entry.261106749"]');
   if (!Array.from(deviceCheckboxes).some(cb => cb.checked)) {
-    showError(form.querySelector('input[name="entry.261106749"]').closest('.checkbox-group'), 'Please select at least one device');
+    showError(form.querySelector('input[name="entry.261106749"]').closest('.checkbox-group'), 'Please select a platform');
     isValid = false;
   }
 
   const suiteRadios = form.querySelectorAll('input[name="entry.923244053"]');
   const selectedSuiteRadio = Array.from(suiteRadios).find(r => r.checked);
   if (!selectedSuiteRadio) {
-    showError(form.querySelector('input[name="entry.923244053"]').closest('.radio-group'), 'Please choose what you would like to test');
+    showError(form.querySelector('input[name="entry.923244053"]').closest('.radio-group'), 'Please select a preference');
     isValid = false;
   } else if (selectedSuiteRadio.value === 'Specific Apps Only') {
     const appCheckboxes = form.querySelectorAll('input[name="entry.610551536"]');
     if (!Array.from(appCheckboxes).some(c => c.checked)) {
-      showError(form.querySelector('#specific-apps-list'), 'Please select at least one specific app to test');
+      showError(form.querySelector('#specific-apps-list'), 'Please select at least one app');
       isValid = false;
     }
   }
@@ -63,8 +608,6 @@ window.handleBetaSubmit = function(event) {
     return false;
   }
 
-  // If "The Entire EVLOME Suite (All Apps)" is chosen, ensure all 4 apps are submitted
-  // so Google Form receives the required values for entry.610551536
   if (selectedSuiteRadio.value === 'The Entire EVLOME Suite (All Apps)') {
     form.querySelectorAll('input[name="entry.610551536"]').forEach(cb => {
       cb.checked = true;
@@ -73,11 +616,10 @@ window.handleBetaSubmit = function(event) {
 
   window.betaSubmitted = true;
   const btn = document.getElementById('submit-btn');
-  btn.innerHTML = '<span class="submit-spinner"></span> Submitting Application...';
+  btn.innerHTML = 'Submitting...';
   btn.style.opacity = '0.7';
   btn.disabled = true;
 
-  // Fallback safety timeout if Google Forms response event fails or is blocked by client
   window.betaTimeout = setTimeout(() => {
     if (window.betaSubmitted && document.getElementById('beta-form-wrap').style.display !== 'none') {
       const formWrap = document.getElementById('beta-form-wrap');
@@ -102,566 +644,53 @@ window.clearBetaError = function(event) {
   }
   input.classList.remove('has-error');
 };
-const appsData = [
-  {
-    id: 'calculator',
-    title: 'Calculator+',
-    category: 'Health Tools',
-    badge: 'BETA',
-    tagline: 'Standard & specialized health math',
-    desc: 'The only calculator app you need. A comprehensive collection of everyday, health, fitness, finance, math, conversion, and other useful calculators — all in one place.',
-    highlights: [
-      { title: 'Everyday & Scientific Math', desc: 'Sleek standard and formula computations with complete calculation history and export.' },
-      { title: 'Health & Fitness Metrics', desc: 'Accurate BMI, BMR, TDEE, body fat, target heart rate, and caloric balance algorithms.' },
-      { title: 'Financial & Unit Conversions', desc: 'Currency rates, loan schedules, discounts, tip calculation, speed, and metric conversions.' }
-    ],
-    icon: './icons/calculator.png',
-    accentColor: '#8b5cf6',
-    glowColor: 'rgba(139, 92, 246, 0.45)',
-    status: 'beta',
-    stores: { apple: '#', google: '#' },
-    privacyLink: '/calculator/privacy'
-  },
-  {
-    id: 'cycle',
-    title: 'Cycle',
-    category: "Women's Health",
-    badge: 'BETA',
-    tagline: 'Intelligent rhythm & symptom tracking',
-    desc: 'A discrete menstrual cycle and fertility tracking app with period predictions, ovulation tracking, basal body temperature, and physical and emotional symptom tracking.',
-    highlights: [
-      { title: 'Period & Ovulation Forecasts', desc: 'Predictive rhythm modelling based on personal cycle lengths and symptom logs.' },
-      { title: 'Holistic Symptom Journal', desc: 'Log energy, cramps, sleep, mood shifts, basal temperature, and medication reminders.' },
-      { title: 'Privacy & Discreet Security', desc: 'On-device local-first storage with biometrics and private screen concealing.' }
-    ],
-    icon: './icons/cycle.png',
-    accentColor: '#f43f5e',
-    glowColor: 'rgba(244, 63, 94, 0.45)',
-    status: 'beta',
-    stores: { apple: '#', google: '#' },
-    privacyLink: '/cycle/privacy'
-  },
-  {
-    id: 'activity',
-    title: 'Activity',
-    category: 'Fitness & Motion',
-    badge: 'COMING SOON',
-    tagline: 'Real-time performance metrics',
-    desc: 'A versatile workout logger for gym, home workouts, and calisthenics, with workout templates, set/rep/weight tracking, rest timers, and progress tracking.',
-    highlights: [
-      { title: 'Custom Workout Routines', desc: 'Pre-loaded compound programs or design your own bespoke lifting and HIIT splits.' },
-      { title: 'Rest & Plate Calculators', desc: 'Integrated barbell plate math and haptic countdown timers between sets.' }
-    ],
-    icon: './icons/activity.png',
-    accentColor: '#38bdf8',
-    glowColor: 'rgba(56, 189, 248, 0.4)',
-    status: 'development'
-  },
-  {
-    id: 'nutrition',
-    title: 'Nutrition',
-    category: 'Diet & Vitality',
-    badge: 'COMING SOON',
-    tagline: 'Effortless caloric & nutrient balance',
-    desc: 'A premium calorie, macro, and nutrient tracker with food logging, calorie goals, fasting timers, water tracking, and custom foods.',
-    highlights: [
-      { title: 'Macro & Micronutrient Targets', desc: 'Visual rings for protein, carbohydrates, healthy fats, fiber, and sodium.' },
-      { title: 'Intermittent Fasting Timer', desc: 'Preset 16:8, 18:6, and custom schedules with real-time zone stages.' }
-    ],
-    icon: './icons/nutrition.png',
-    accentColor: '#fb923c',
-    glowColor: 'rgba(251, 146, 60, 0.4)',
-    status: 'development'
-  }
-];
 
-const renderHome = () => `
-  <!-- Architectural Portal Hero Section -->
-  <header class="hero-portal">
-    <div class="hero-portal-media">
-      <img src="./hero-bg.jpg" alt="EVLOME Architectural Horizon" class="hero-backdrop" />
-      <div class="hero-vignette"></div>
-      <div class="hero-sun-glow"></div>
-    </div>
-
-    <div class="hero-portal-content">
-      <div class="hero-eyebrow">
-        <span class="eyebrow-text">REAL TOOLS. REAL PROGRESS.</span>
-        <span class="eyebrow-bar"></span>
-      </div>
-
-      <h1 class="hero-title">
-        BETA TESTING<br>
-        <span class="gradient-headline">IS LIVE.</span>
-      </h1>
-
-      <p class="hero-subtitle">
-        Meet <strong>Calculator+</strong> and <strong>Cycle</strong>.<br>
-        Be among the first to experience EVLOME.
-      </p>
-
-      <div class="hero-ctas">
-        <a href="/beta" class="btn-primary glow-pill">Join the Beta &rarr;</a>
-        <button type="button" class="btn-secondary glass-pill" onclick="window.scrollToSection('suite-section')">Explore the Suite</button>
-      </div>
-
-      <div class="hero-pillars">
-        <span class="pillar-item">MIND</span>
-        <span class="pillar-divider">/</span>
-        <span class="pillar-item">BODY</span>
-        <span class="pillar-divider">/</span>
-        <span class="pillar-item">HABITS</span>
-        <span class="pillar-divider">/</span>
-        <span class="pillar-item">PEOPLE</span>
-      </div>
-    </div>
-  </header>
-
-  <!-- The Suite Showcase -->
-  <section id="suite-section" class="apps-section">
-    <div class="section-tag-wrap">
-      <span class="pill-tag">THE ECOSYSTEM</span>
-    </div>
-    <h2 class="section-heading">Two new apps.<br><span class="gradient-text-sub">Available now in Beta.</span></h2>
-    <p class="section-description">Beautifully crafted tools that connect the pieces of your daily well-being.</p>
-    
-    <!-- Featured Beta Apps -->
-    <div class="apps-grid beta-featured-grid">
-      ${appsData.filter(app => app.status === 'beta').map(app => `
-        <a href="/${app.id}" class="app-card featured-app-card" style="--accent-glow: ${app.glowColor}; --accent-color: ${app.accentColor};">
-          <div class="card-ambient-glow"></div>
-          <div class="card-glass-panel">
-            <div class="app-badge-pill">${app.badge}</div>
-            
-            <div class="app-icon-squircle">
-              <img src="${app.icon}" alt="${app.title} App Icon" class="app-icon-img" />
-            </div>
-
-            <div class="app-card-meta">
-              <h3 class="app-card-title">${app.title}</h3>
-              <div class="app-category-label">${app.category}</div>
-            </div>
-
-            <p class="app-desc">${app.desc}</p>
-            
-            <div class="card-cta-footer">
-              <span class="card-cta-link">Explore ${app.title} &rarr;</span>
-            </div>
-          </div>
-        </a>
-      `).join('')}
-    </div>
-
-    <!-- Coming Soon Apps -->
-    <div class="coming-soon-divider">
-      <div class="cs-divider-line"></div>
-      <span class="cs-divider-label">COMING SOON</span>
-      <div class="cs-divider-line"></div>
-    </div>
-
-    <div class="apps-grid coming-soon-grid">
-      ${appsData.filter(app => app.status === 'development').map(app => `
-        <div class="app-card in-dev-card" style="--accent-glow: ${app.glowColor}; --accent-color: ${app.accentColor};">
-          <div class="card-ambient-glow"></div>
-          <div class="card-glass-panel">
-            <div class="app-badge-pill pill-subtle">${app.badge}</div>
-            
-            <div class="app-icon-squircle in-dev-squircle">
-              <img src="${app.icon}" alt="${app.title} App Icon" class="app-icon-img" />
-            </div>
-
-            <div class="app-card-meta">
-              <h3 class="app-card-title">${app.title}</h3>
-              <div class="app-category-label">${app.category}</div>
-            </div>
-
-            <p class="app-desc">${app.desc}</p>
-            
-            <div class="card-cta-footer">
-              <span class="card-status-label">In Active Development</span>
-            </div>
-          </div>
-        </div>
-      `).join('')}
-    </div>
-  </section>
-
-  <!-- Philosophy & Principles Section -->
-  <section id="philosophy-section" class="values-section">
-    <div class="section-tag-wrap">
-      <span class="pill-tag">OUR PHILOSOPHY</span>
-    </div>
-    <h2 class="section-heading">Tools. Insights. Progress.</h2>
-    <p class="section-description">Five foundational pillars guiding every algorithm and interaction we create.</p>
-    
-    <div class="values-grid">
-      <div class="value-card">
-        <div class="value-num-pill">01</div>
-        <div class="value-body">
-          <h4 class="value-title">Make It Understandable</h4>
-          <p class="value-text"><strong>Health can be complicated. EVLOME should not be.</strong> We turn dense data into approachable, intuitive tools that anyone can use.</p>
-        </div>
-      </div>
-
-      <div class="value-card">
-        <div class="value-num-pill">02</div>
-        <div class="value-body">
-          <h4 class="value-title">Make It Useful</h4>
-          <p class="value-text"><strong>Every feature should earn its place.</strong> We build utilities that solve real everyday problems and support thoughtful decisions.</p>
-        </div>
-      </div>
-
-      <div class="value-card">
-        <div class="value-num-pill">03</div>
-        <div class="value-body">
-          <h4 class="value-title">Put People First</h4>
-          <p class="value-text"><strong>Technology should adapt to people.</strong> We listen, iterate, and evolve continuously based on the real lived experiences of our members.</p>
-        </div>
-      </div>
-
-      <div class="value-card">
-        <div class="value-num-pill">04</div>
-        <div class="value-body">
-          <h4 class="value-title">Connect the Pieces</h4>
-          <p class="value-text"><strong>Well-being is an interconnected web.</strong> Our ecosystem unifies motion, rhythm, nutrition, and mental space into one harmonious picture.</p>
-        </div>
-      </div>
-
-      <div class="value-card">
-        <div class="value-num-pill">05</div>
-        <div class="value-body">
-          <h4 class="value-title">Evolve With You</h4>
-          <p class="value-text"><strong>Your needs change as you grow.</strong> EVLOME evolves alongside your journey — unlocking deeper insights for a healthier tomorrow.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Beta CTA Banner -->
-  <section id="beta-section" class="beta-cta-section">
-    <div class="beta-banner-card">
-      <div class="beta-banner-backdrop"></div>
-      <div class="beta-banner-glow"></div>
-      <div class="beta-banner-content">
-        <span class="pill-tag">BETA ACCESS</span>
-        <h3 class="beta-banner-title">Shape the future<br>of personal health.</h3>
-        <p class="beta-banner-desc">Join our testing community. Experience new capabilities before anyone else and guide our product roadmap.</p>
-        <a href="/beta" class="btn-primary glow-pill">Apply for Beta Testing &rarr;</a>
-      </div>
-    </div>
-  </section>
-`;
-
-const renderBetaPage = () => `
-  <div class="page-container beta-page">
-    <div class="page-nav-bar">
-      <a href="/" class="back-pill-btn" onclick="window.handleBackToSuite(event)" aria-label="Return to Suite">
-        <svg class="back-arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="19" y1="12" x2="5" y2="12"></line>
-          <polyline points="12 19 5 12 12 5"></polyline>
-        </svg>
-        <span>Back</span>
-      </a>
-      <span class="nav-bar-divider" aria-hidden="true"></span>
-      <div class="nav-bar-trail">
-        <a href="/" class="nav-bar-parent-link" onclick="if(event) { event.preventDefault(); navigate('/'); }">Home</a>
-        <svg class="trail-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-        <span class="nav-bar-active">Beta Testing</span>
-      </div>
-    </div>
-    
-    <div class="beta-header">
-      <h1 class="app-page-title">Beta Testing Program</h1>
-      <p class="app-page-desc">We're thrilled you want to help shape Evlome by applying for early access to our upcoming apps and features.</p>
-    </div>
-    
-    <div class="beta-form-container">
-      <!-- Hidden iframe to capture the Google Forms redirect invisibly -->
-      <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(window.betaSubmitted) { if(window.betaTimeout) clearTimeout(window.betaTimeout); document.getElementById('beta-form-wrap').style.display='none'; document.getElementById('success-message').style.display='flex'; window.scrollTo({top: 0, behavior: 'smooth'}); }"></iframe>
-      
-      <div id="success-message" role="status" aria-live="polite" style="display:none; flex-direction: column; align-items: center; justify-content: center; padding: 6rem 2rem; text-align: center;">
-        <div class="success-icon" style="width: 84px; height: 84px; border-radius: 50%; background: rgba(52, 211, 153, 0.12); color: #34d399; display: flex; align-items: center; justify-content: center; margin-bottom: 2rem; box-shadow: 0 0 30px rgba(52, 211, 153, 0.25);">
-          <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-        </div>
-        <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: var(--text-primary); font-weight: 800; letter-spacing: -0.05em;">Application Received</h2>
-        <p style="color: var(--text-secondary); max-width: 440px; line-height: 1.6; font-size: 1.15rem; font-weight: 300;">Thank you for your interest in the EVLOME Beta Program. We review applications continuously and will reach out with TestFlight and Google Play Beta instructions.</p>
-        <a href="/" class="btn-secondary glass-pill" style="margin-top: 2rem;">Back to Home</a>
-      </div>
-
-      <div id="beta-form-wrap">
-        <form class="custom-beta-form" action="https://docs.google.com/forms/d/e/1FAIpQLSekI29k1t9_IqrNwZvtcHeIEebY7HNj471CspOid_TlKLoJ9Q/formResponse" method="post" target="hidden_iframe" novalidate onsubmit="return window.handleBetaSubmit(event)" oninput="window.clearBetaError(event)" onchange="window.clearBetaError(event)">
-          
-          <div class="form-row">
-            <div class="form-group">
-              <label for="beta-first-name">First Name <span class="required-star">*</span></label>
-              <input type="text" id="beta-first-name" name="entry.1026423473" required placeholder="Jane" autocomplete="given-name" class="form-input" />
-            </div>
-            <div class="form-group">
-              <label for="beta-last-name">Last Name <span class="required-star">*</span></label>
-              <input type="text" id="beta-last-name" name="entry.2072277110" required placeholder="Doe" autocomplete="family-name" class="form-input" />
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="beta-email">Email Address <span class="required-star">*</span></label>
-            <span class="form-helper-text">Use the email associated with your Apple ID (App Store) or Google Play Store for TestFlight/beta access.</span>
-            <input type="email" id="beta-email" name="entry.1247363008" required placeholder="jane@example.com" autocomplete="email" class="form-input" />
-          </div>
-
-          <div class="form-group">
-            <label>What device do you use? <span class="required-star">*</span></label>
-            <div class="checkbox-group" style="flex-direction: row; flex-wrap: wrap;">
-              <label class="custom-checkbox">
-                <input type="checkbox" name="entry.261106749" value="iOS" />
-                <span class="checkbox-box" aria-hidden="true"></span>
-                <span class="checkbox-text">iOS (iPhone / iPad)</span>
-              </label>
-              <label class="custom-checkbox">
-                <input type="checkbox" name="entry.261106749" value="Android" />
-                <span class="checkbox-box" aria-hidden="true"></span>
-                <span class="checkbox-text">Android</span>
-              </label>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label>What would you like to test? <span class="required-star">*</span></label>
-            <div class="radio-group" style="margin-bottom: 1.5rem;">
-              <label class="custom-radio">
-                <input type="radio" name="entry.923244053" value="The Entire EVLOME Suite (All Apps)" checked onchange="document.getElementById('specific-apps-list').style.display = 'none'; Array.from(document.querySelectorAll('.specific-app-checkbox')).forEach(cb => cb.checked = false);" />
-                <span class="radio-dot" aria-hidden="true"></span>
-                <span class="radio-text">The Entire EVLOME Suite (All Apps)</span>
-              </label>
-              <label class="custom-radio">
-                <input type="radio" name="entry.923244053" value="Specific Apps Only" id="specific-apps-radio" onchange="document.getElementById('specific-apps-list').style.display = 'flex';" />
-                <span class="radio-dot" aria-hidden="true"></span>
-                <span class="radio-text">Specific Apps Only</span>
-              </label>
-            </div>
-
-            <div id="specific-apps-list" class="checkbox-group" style="display: none; margin-left: 0.5rem; padding-left: 1rem; border-left: 2px solid rgba(255,255,255,0.12);">
-              <label class="custom-checkbox">
-                <input type="checkbox" name="entry.610551536" value="EVLOME Calculator+" class="specific-app-checkbox" />
-                <span class="checkbox-box" aria-hidden="true"></span>
-                <span class="checkbox-text">EVLOME Calculator+</span>
-              </label>
-              <label class="custom-checkbox">
-                <input type="checkbox" name="entry.610551536" value="EVLOME Cycle" class="specific-app-checkbox" />
-                <span class="checkbox-box" aria-hidden="true"></span>
-                <span class="checkbox-text">EVLOME Cycle</span>
-              </label>
-              <label class="custom-checkbox">
-                <input type="checkbox" name="entry.610551536" value="EVLOME Nutrition" class="specific-app-checkbox" />
-                <span class="checkbox-box" aria-hidden="true"></span>
-                <span class="checkbox-text">EVLOME Nutrition</span>
-              </label>
-              <label class="custom-checkbox">
-                <input type="checkbox" name="entry.610551536" value="EVLOME Activity" class="specific-app-checkbox" />
-                <span class="checkbox-box" aria-hidden="true"></span>
-                <span class="checkbox-text">EVLOME Activity</span>
-              </label>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="beta-frequency">How often would you be willing to test the apps? <span class="required-star">*</span></label>
-            <select id="beta-frequency" name="entry.454575922" required class="form-input custom-select">
-              <option value="" disabled selected>Select frequency...</option>
-              <option value="Daily">Daily</option>
-              <option value="A few times a week">A few times a week</option>
-              <option value="Once a week">Once a week</option>
-              <option value="Occasionally">Occasionally</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="beta-feedback">Anything you'd like us to know? <span class="optional-tag">(Optional)</span></label>
-            <textarea id="beta-feedback" name="entry.1265301105" rows="4" placeholder="Share your feedback, ideas, aspirations, or anything else..." class="form-input"></textarea>
-          </div>
-
-          <button id="submit-btn" type="submit" class="btn-primary form-submit">Submit Application</button>
-        </form>
-      </div>
-    </div>
-  </div>
-`;
-
-const renderAppPage = (app) => `
-  <div class="page-container app-detail-page" style="--app-glow: ${app.glowColor || 'rgba(168, 85, 247, 0.4)'}; --app-accent: ${app.accentColor || '#ec4899'};">
-    <div class="page-nav-bar">
-      <a href="/" class="back-pill-btn" onclick="window.handleBackToSuite(event)" aria-label="Return to Suite">
-        <svg class="back-arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="19" y1="12" x2="5" y2="12"></line>
-          <polyline points="12 19 5 12 12 5"></polyline>
-        </svg>
-        <span>Back</span>
-      </a>
-      <span class="nav-bar-divider" aria-hidden="true"></span>
-      <div class="nav-bar-trail">
-        <a href="/" class="nav-bar-parent-link" onclick="if(event) { event.preventDefault(); navigate('/'); }">Home</a>
-        <svg class="trail-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-        <span class="nav-bar-active">${app.title}</span>
-      </div>
-    </div>
-    
-    <div class="app-detail-hero">
-      <div class="app-detail-badge-wrap">
-        <span class="pill-tag">${app.category || 'HEALTH ECOSYSTEM'}</span>
-        ${app.status === 'beta' ? '<span class="app-badge-pill inline-pill">BETA</span>' : ''}
-      </div>
-
-      <div class="app-detail-icon-wrapper">
-        <div class="app-detail-glow" style="background: radial-gradient(circle, var(--app-glow) 0%, transparent 70%);"></div>
-        <img src="${app.icon}" alt="${app.title} icon" class="app-detail-icon">
-      </div>
-      
-      <h1 class="app-page-title">${app.title}</h1>
-      <p class="app-page-tagline">${app.tagline || ''}</p>
-      <p class="app-page-desc">${app.desc}</p>
-      
-      ${app.status === 'beta' ? `
-        <div class="app-detail-actions">
-          <a href="/beta?app=${app.id}" class="btn-primary glow-pill">Join the ${app.title} Beta &rarr;</a>
-        </div>
-      ` : ''}
-
-      ${app.status === 'production' && app.stores ? `
-      <div class="store-links centered-stores">
-        ${app.stores.apple ? `
-          <a href="${app.stores.apple}" target="_blank" rel="noopener noreferrer" class="store-badge">
-            <svg viewBox="0 0 384 512" fill="currentColor"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
-            <div class="store-text">
-              <span class="store-small">Download on the</span>
-              <span class="store-large">App Store</span>
-            </div>
-          </a>
-        ` : ''}
-        ${app.stores.google ? `
-          <a href="${app.stores.google}" target="_blank" rel="noopener noreferrer" class="store-badge">
-            <svg viewBox="0 0 512 512" fill="currentColor"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>
-            <div class="store-text">
-              <span class="store-small">GET IT ON</span>
-              <span class="store-large">Google Play</span>
-            </div>
-          </a>
-        ` : ''}
-      </div>
-      ` : ''}
-
-      ${app.privacyLink ? `<div class="privacy-link-container"><a href="${app.privacyLink}" class="privacy-link">Privacy Policy</a></div>` : ''}
-    </div>
-  </div>
-`;
-
-const renderPrivacyPolicy = (app) => {
-  const title = app ? app.title : 'EVLOME Apps';
-  const appId = app ? app.id : '';
-  const appLink = appId ? `/${appId}` : '/';
-
-  return `
-  <div class="page-container">
-    <div class="page-nav-bar">
-      <a href="${appLink}" class="back-pill-btn" onclick="if(event) { event.preventDefault(); navigate('${appLink}'); }" aria-label="Return to ${title}">
-        <svg class="back-arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="19" y1="12" x2="5" y2="12"></line>
-          <polyline points="12 19 5 12 12 5"></polyline>
-        </svg>
-        <span>Back</span>
-      </a>
-      <span class="nav-bar-divider" aria-hidden="true"></span>
-      <div class="nav-bar-trail">
-        <a href="/" class="nav-bar-parent-link" onclick="if(event) { event.preventDefault(); navigate('/'); }">Home</a>
-        <svg class="trail-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-        ${app ? `
-          <a href="/${app.id}" class="nav-bar-parent-link" onclick="if(event) { event.preventDefault(); navigate('/${app.id}'); }">${app.title}</a>
-          <svg class="trail-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-        ` : ''}
-        <span class="nav-bar-active">Privacy Policy</span>
-      </div>
-    </div>
-    <div class="privacy-content">
-      <div class="app-detail-badge-wrap" style="margin-bottom: 1.5rem;">
-        <span class="pill-tag">LEGAL & PRIVACY</span>
-        <span class="app-badge-pill inline-pill" style="border-color: rgba(139, 92, 246, 0.4); background: rgba(139, 92, 246, 0.1); color: #c4b5fd;">BETA NOTICE</span>
-      </div>
-      
-      <h1>Privacy Policy for ${title}</h1>
-      <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 2.5rem;">Status: In Preparation &bull; Last Revised: October 2026</p>
-
-      <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 16px; padding: 2rem; margin-bottom: 2.5rem;">
-        <h3 style="color: #ffffff; font-size: 1.2rem; font-weight: 600; margin-bottom: 0.8rem; letter-spacing: -0.01em;">Notice of Upcoming Policy Update</h3>
-        <p style="color: var(--text-secondary); line-height: 1.7; font-size: 1rem; margin-bottom: 0;">
-          The full, binding Privacy Policy and Terms of Service for <strong>${title}</strong> are currently under legal review and will be published prior to our official public production release on the App Store and Google Play.
-        </p>
-      </div>
-
-      <h3 style="color: #ffffff; font-size: 1.25rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem;">Core Privacy Principles</h3>
-      <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.5rem;">
-        At EVLOME, our architectural foundation is built on personal privacy, agency, and data sovereignty:
-      </p>
-
-      <ul style="color: var(--text-secondary); line-height: 1.8; margin-left: 1.5rem; margin-bottom: 2.5rem; display: flex; flex-direction: column; gap: 0.8rem;">
-        <li><strong style="color: #ffffff;">Local-First Data Storage:</strong> Sensitive metrics, logs, and personal calculations reside directly on your device rather than unencrypted remote servers whenever possible.</li>
-        <li><strong style="color: #ffffff;">Beta Testing Discretion:</strong> Throughout the closed beta phase, we explicitly encourage testers to utilize fictional, non-sensitive test entries.</li>
-        <li><strong style="color: #ffffff;">No Data Commercialization:</strong> We do not sell, rent, or trade your personal health, rhythm, or diagnostic information to third-party data brokers or advertisers.</li>
-        <li><strong style="color: #ffffff;">Transparent Controls:</strong> When production synchronization is enabled, users will maintain granular controls to export or purge their data at any time.</li>
-      </ul>
-
-      <h3 style="color: #ffffff; font-size: 1.25rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem;">Questions or Legal Inquiries</h3>
-      <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem;">
-        If you have questions regarding data handling practices during the beta testing period or wish to inquire about our compliance roadmap, please reach out to our team:
-      </p>
-      <p>
-        <a href="mailto:hello@evlome.com" style="color: #ec4899; text-decoration: none; font-weight: 500;">hello@evlome.com</a>
-      </p>
-    </div>
-  </div>
-`;
-};
-
-// Store scroll position per route to restore exact scroll position when returning
+// ============================================================================
+// Single Page App Router & Navigation
+// ============================================================================
 const routeScrollPositions = new Map();
+const getCurrentRouteKey = () => window.location.pathname || '/';
 
-const getCurrentRouteKey = () => {
-  return window.location.pathname || '/';
-};
-
-// Continuous scroll tracking so exact scroll position is always remembered
 window.addEventListener('scroll', () => {
   const key = getCurrentRouteKey();
   routeScrollPositions.set(key, window.scrollY);
 }, { passive: true });
 
-// Check if home view is currently rendered in content area
-const isHomeMounted = () => {
-  return document.getElementById('suite-section') !== null;
-};
+const isHomeMounted = () => document.getElementById('suite-section') !== null;
 
-// Reliable scroll position restoration after DOM paint
 const restoreScrollPosition = (targetKey) => {
   if (routeScrollPositions.has(targetKey)) {
     const savedY = routeScrollPositions.get(targetKey);
-    // Double-frame delay ensures innerHTML DOM layout, images, and dimensions are painted
     requestAnimationFrame(() => {
       window.scrollTo({ top: savedY, left: 0, behavior: 'instant' });
       setTimeout(() => {
         window.scrollTo({ top: savedY, left: 0, behavior: 'instant' });
       }, 30);
     });
+  } else if (targetKey === '/' || targetKey === '') {
+    // When returning to Suite without a stored scroll offset, gently position at suite section
+    requestAnimationFrame(() => {
+      const suiteEl = document.getElementById('suite-section');
+      if (suiteEl) {
+        suiteEl.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      }
+    });
   } else {
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
   }
 };
 
-// Simple clean router and navigation
-export const navigate = (url, options = {}) => {
+let internalStack = [window.location.pathname + window.location.search];
+let previousInternalPath = '';
+
+export const navigate = (url) => {
   if (!url) return;
 
   const currentKey = getCurrentRouteKey();
-  // Save current scroll position before leaving
   routeScrollPositions.set(currentKey, window.scrollY);
 
-  // If internal in-page hash on the same root page
   if (url.startsWith('/#') || url.startsWith('#')) {
     const hashId = url.replace(/^\/?#/, '');
     if (window.location.pathname === '/' || window.location.pathname === '') {
@@ -671,13 +700,14 @@ export const navigate = (url, options = {}) => {
     }
   }
 
-  // Smooth scroll to top if already on home content and clicking home
   if (url === '/' && isHomeMounted()) {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     return;
   }
 
+  previousInternalPath = window.location.pathname;
   window.history.pushState({}, '', url);
+  internalStack.push(window.location.pathname + window.location.search);
   renderCurrentRoute();
 
   const targetKey = getCurrentRouteKey();
@@ -686,13 +716,89 @@ export const navigate = (url, options = {}) => {
   }
 };
 
-window.handleBackToSuite = (e) => {
+window.handleHierarchicalBack = (e, fallbackParentUrl = '/') => {
   if (e) e.preventDefault();
-  // Use browser history back if history exists, otherwise navigate home
-  if (window.history.length > 1) {
-    window.history.back();
+  
+  const targetUrl = fallbackParentUrl || '/';
+  
+  // If we arrived here from targetUrl in this active EVLOME session, unwind browser history
+  if (internalStack.length > 1) {
+    const prev = internalStack[internalStack.length - 2];
+    const prevPathOnly = (prev || '').split('?')[0].split('#')[0] || '/';
+    const targetPathOnly = targetUrl.split('?')[0].split('#')[0] || '/';
+    
+    if (prevPathOnly === targetPathOnly) {
+      internalStack.pop(); // pop current
+      window.history.back();
+      return;
+    }
+  }
+  
+  // Otherwise, deterministically navigate up the tree to the hierarchy parent
+  navigate(targetUrl);
+};
+
+window.handleBackToSuite = (e) => {
+  window.handleHierarchicalBack(e, '/');
+};
+
+export const scrollToSection = (sectionId) => {
+  window.closeMobileMenu();
+  const currentPath = window.location.pathname;
+  const findElement = () => {
+    return document.getElementById(sectionId) || 
+           (sectionId === 'principles-section' ? document.getElementById('philosophy-section') : null);
+  };
+
+  if (currentPath !== '/' && currentPath !== '') {
+    navigate('/');
+    setTimeout(() => {
+      const el = findElement();
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }, 150);
+  } else {
+    setTimeout(() => {
+      const el = findElement();
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }, 60);
+  }
+};
+
+window.scrollToSection = scrollToSection;
+
+window.toggleMobileMenu = () => {
+  const isOpen = document.body.classList.toggle('menu-open');
+  const nav = document.querySelector('.site-nav');
+  if (nav) {
+    nav.classList.toggle('menu-open', isOpen);
+  }
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+};
+
+window.closeMobileMenu = () => {
+  document.body.classList.remove('menu-open');
+  const nav = document.querySelector('.site-nav');
+  if (nav) {
+    nav.classList.remove('menu-open');
+  }
+  document.body.style.overflow = '';
+};
+
+window.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    window.closeMobileMenu();
+  }
+});
+
+window.handleLogoClick = (e) => {
+  if (e) e.preventDefault();
+  window.closeMobileMenu();
+  const currentPath = window.location.pathname;
+  if (currentPath === '/' || currentPath === '') {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   } else {
     navigate('/');
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
   }
 };
 
@@ -702,7 +808,6 @@ const renderCurrentRoute = () => {
     path = path.slice(0, -1);
   }
 
-  // Support legacy hash routing fallback if someone opens a #/link
   if (window.location.hash && window.location.hash.startsWith('#/')) {
     const cleanPath = window.location.hash.slice(1).split('?')[0];
     window.history.replaceState({}, '', cleanPath);
@@ -716,26 +821,21 @@ const renderCurrentRoute = () => {
   if (path === '' || path === '/') {
     contentDiv.innerHTML = renderHome();
   } else if (path === '/ecosystem' || path === '/suite') {
-    // If home is already rendered, just scroll smoothly
-    if (!isHomeMounted()) {
-      contentDiv.innerHTML = renderHome();
-    }
+    if (!isHomeMounted()) contentDiv.innerHTML = renderHome();
     requestAnimationFrame(() => {
       const el = document.getElementById('suite-section');
       if (el) el.scrollIntoView({ behavior: 'smooth' });
     });
   } else if (path === '/philosophy') {
-    // If home is already rendered, just scroll smoothly
-    if (!isHomeMounted()) {
-      contentDiv.innerHTML = renderHome();
-    }
+    if (!isHomeMounted()) contentDiv.innerHTML = renderHome();
     requestAnimationFrame(() => {
       const el = document.getElementById('philosophy-section');
       if (el) el.scrollIntoView({ behavior: 'smooth' });
     });
   } else if (path === '/beta') {
-    contentDiv.innerHTML = renderBetaPage();
     const appId = searchParams.get('app');
+    const parentApp = appId ? appsData.find(a => a.id === appId) : null;
+    contentDiv.innerHTML = renderBetaPage(parentApp);
     if (appId) {
       const valMap = {
         'calculator': 'EVLOME Calculator+',
@@ -756,7 +856,6 @@ const renderCurrentRoute = () => {
       }
     }
   } else if (path.endsWith('/privacy') || path.startsWith('/privacy/')) {
-    // Supports both modern /calculator/privacy and legacy /privacy/calculator
     let appId = '';
     if (path.endsWith('/privacy')) {
       appId = path.replace(/^\//, '').replace(/\/privacy$/, '');
@@ -764,13 +863,8 @@ const renderCurrentRoute = () => {
       appId = path.replace('/privacy/', '');
     }
     const app = appsData.find(a => a.id === appId);
-    if (app) {
-      contentDiv.innerHTML = renderPrivacyPolicy(app);
-    } else {
-      contentDiv.innerHTML = renderPrivacyPolicy(null);
-    }
+    contentDiv.innerHTML = renderPrivacyPolicy(app || null, previousInternalPath);
   } else {
-    // Dynamic app detail page (e.g., /calculator, /cycle)
     const appId = path.slice(1);
     const app = appsData.find(a => a.id === appId);
     if (app && app.status !== 'development') {
@@ -780,7 +874,7 @@ const renderCurrentRoute = () => {
     }
   }
 
-  // Handle in-page anchor hash scroll
+  // Handle anchor scroll
   if (window.location.hash && !window.location.hash.startsWith('#/')) {
     const hashId = window.location.hash.slice(1);
     const targetEl = document.getElementById(hashId);
@@ -797,16 +891,18 @@ if ('scrollRestoration' in history) {
 }
 
 window.addEventListener('popstate', () => {
+  const current = window.location.pathname + window.location.search;
+  if (internalStack.length > 1 && internalStack[internalStack.length - 2] === current) {
+    internalStack.pop();
+  } else {
+    internalStack.push(current);
+  }
   renderCurrentRoute();
   const targetKey = getCurrentRouteKey();
   restoreScrollPosition(targetKey);
 });
 
-window.addEventListener('DOMContentLoaded', () => {
-  renderCurrentRoute();
-});
-
-// Single clean event listener for all navigation clicks
+// Single clean navigation handler
 document.addEventListener('click', (e) => {
   const link = e.target.closest('a');
   if (!link) return;
@@ -814,23 +910,17 @@ document.addEventListener('click', (e) => {
   const href = link.getAttribute('href');
   if (!href) return;
 
-  // Let browser naturally handle external links, emails, and tel
   if (
     link.target === '_blank' ||
     href.startsWith('http://') ||
     href.startsWith('https://') ||
     href.startsWith('mailto:') ||
-    href.startsWith('tel:')
+    href.startsWith('tel:') ||
+    href.startsWith('javascript:')
   ) {
     return;
   }
 
-  // Handle javascript:void(0) or empty
-  if (href.startsWith('javascript:')) {
-    return;
-  }
-
-  // In-page hash scroll (e.g. #suite-section or /#suite-section)
   if (href.startsWith('#') || href.startsWith('/#')) {
     const hashId = href.replace(/^\/?#/, '');
     if (window.location.pathname === '/' || window.location.pathname === '') {
@@ -841,7 +931,6 @@ document.addEventListener('click', (e) => {
     }
   }
 
-  // If clicking Home link or logo while already on home page, scroll smoothly to top
   if (href === '/' || href === '/#') {
     if (window.location.pathname === '/' || window.location.pathname === '') {
       e.preventDefault();
@@ -850,78 +939,25 @@ document.addEventListener('click', (e) => {
     }
   }
 
-  // Clean internal SPA route (e.g., /beta, /calculator, /)
   if (href.startsWith('/')) {
     e.preventDefault();
     navigate(href);
   }
 });
 
-export const scrollToSection = (sectionId) => {
-  window.closeMobileMenu();
-  const currentPath = window.location.pathname;
-  if (currentPath !== '/' && currentPath !== '') {
-    navigate('/');
-    requestAnimationFrame(() => {
-      const el = document.getElementById(sectionId);
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
-    });
-  } else {
-    const el = document.getElementById(sectionId);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
-  }
-};
-
-window.scrollToSection = scrollToSection;
-
-window.toggleMobileMenu = () => {
-  const nav = document.querySelector('.site-nav');
-  const btn = document.querySelector('.nav-burger-btn');
-  if (nav) {
-    nav.classList.toggle('menu-open');
-    const isOpen = nav.classList.contains('menu-open');
-    if (btn) btn.classList.toggle('active', isOpen);
-    document.body.style.overflow = isOpen ? 'hidden' : '';
-  }
-};
-
-window.closeMobileMenu = () => {
-  const nav = document.querySelector('.site-nav');
-  const btn = document.querySelector('.nav-burger-btn');
-  if (nav && nav.classList.contains('menu-open')) {
-    nav.classList.remove('menu-open');
-    if (btn) btn.classList.remove('active');
-    document.body.style.overflow = '';
-  }
-};
-
-window.handleLogoClick = (e) => {
-  if (e) e.preventDefault();
-  window.closeMobileMenu();
-  const currentPath = window.location.pathname;
-  if (currentPath === '/' || currentPath === '') {
-    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-  } else {
-    navigate('/');
-    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-  }
-};
-
+// ============================================================================
+// Layout Initialization (Clean, Minimal Nav)
+// ============================================================================
 document.querySelector('#app').innerHTML = `
-  <div class="ambient-glow glow-top-left"></div>
-  <div class="ambient-glow glow-top-right"></div>
-  <div class="ambient-glow glow-sunset-center"></div>
-
   <nav class="site-nav">
     <div class="nav-inner">
       <a href="/" class="logo-link" onclick="window.handleLogoClick(event)" aria-label="Evlome Home">
-        <img src="./logo-wordmark.png" alt="EVLOME" class="nav-logo" />
+        <img src="/logo-wordmark.png" alt="EVLOME" class="nav-logo" />
       </a>
       
-      <!-- Desktop Menu -->
+      <!-- Desktop Clean Nav -->
       <div class="nav-menu">
         <button type="button" class="nav-link-btn" onclick="window.scrollToSection('suite-section')">Suite</button>
-        <button type="button" class="nav-link-btn" onclick="window.scrollToSection('philosophy-section')">Philosophy</button>
         <a href="/beta" class="nav-pill-btn">Join Beta</a>
       </div>
 
@@ -934,54 +970,123 @@ document.querySelector('#app').innerHTML = `
         </span>
       </button>
     </div>
+  </nav>
 
-    <!-- Mobile Drawer Overlay -->
-    <div class="mobile-nav-drawer" onclick="if(event.target === this) window.closeMobileMenu();">
-      <!-- Dedicated Drawer Close Button at top right -->
-      <button type="button" class="mobile-drawer-close-btn" aria-label="Close navigation menu" onclick="window.closeMobileMenu()">
-        <span class="drawer-close-icon">
-          <span class="close-line close-line-1"></span>
-          <span class="close-line close-line-2"></span>
-        </span>
-      </button>
+  <!-- Mobile Backdrop Overlay -->
+  <div class="mobile-nav-backdrop" id="mobile-nav-backdrop" onclick="window.closeMobileMenu()"></div>
 
-      <div class="mobile-drawer-content">
-        <button type="button" class="mobile-drawer-link" onclick="window.scrollToSection('suite-section');">Suite</button>
-        <button type="button" class="mobile-drawer-link" onclick="window.scrollToSection('philosophy-section');">Philosophy</button>
-        <a href="/beta" class="btn-primary glow-pill mobile-drawer-cta" onclick="window.closeMobileMenu();">Join the Beta &rarr;</a>
-        
-        <div class="mobile-drawer-footer">
-          <a href="/" class="mobile-drawer-domain" onclick="window.handleLogoClick(event)">evlome.com</a>
+  <!-- Mobile Slide-out Sidebar -->
+  <aside class="mobile-nav-sidebar" id="mobile-nav-sidebar" aria-label="Mobile Navigation">
+    <div class="mobile-sidebar-inner">
+      <!-- Navigation Content -->
+      <div class="mobile-sidebar-content">
+        <!-- Main Navigation Links -->
+        <div class="mobile-sidebar-group">
+          <div class="sidebar-group-title">Navigation</div>
+          <button type="button" class="mobile-nav-item" onclick="window.scrollToSection('suite-section');">
+            <span class="nav-item-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+            </span>
+            <span class="nav-item-text">The Suite</span>
+            <span class="nav-item-badge">Ecosystem</span>
+          </button>
+          
+          <button type="button" class="mobile-nav-item" onclick="window.scrollToSection('principles-section');">
+            <span class="nav-item-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            </span>
+            <span class="nav-item-text">Our Principles</span>
+          </button>
+
+          <a href="/privacy" class="mobile-nav-item" onclick="if(event) { event.preventDefault(); window.closeMobileMenu(); navigate('/privacy'); }">
+            <span class="nav-item-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            </span>
+            <span class="nav-item-text">Privacy Policy</span>
+          </a>
+        </div>
+
+        <!-- Suite Apps Section -->
+        <div class="mobile-sidebar-group">
+          <div class="sidebar-group-title">The Suite Apps</div>
+          <div class="sidebar-app-links">
+            <a href="/calculator" class="sidebar-app-row" onclick="if(event) { event.preventDefault(); window.closeMobileMenu(); navigate('/calculator'); }">
+              <span class="app-row-dot" style="background: #a855f7; box-shadow: 0 0 8px rgba(168, 85, 247, 0.5);"></span>
+              <div class="app-row-info">
+                <div class="app-row-title">Calculator+</div>
+                <div class="app-row-desc">Clinical Biometrics &amp; Math</div>
+              </div>
+              <span class="app-row-arrow">&rarr;</span>
+            </a>
+
+            <a href="/cycle" class="sidebar-app-row" onclick="if(event) { event.preventDefault(); window.closeMobileMenu(); navigate('/cycle'); }">
+              <span class="app-row-dot" style="background: #f43f5e; box-shadow: 0 0 8px rgba(244, 63, 94, 0.5);"></span>
+              <div class="app-row-info">
+                <div class="app-row-title">Cycle</div>
+                <div class="app-row-desc">Hormonal Rhythm &amp; Fertility</div>
+              </div>
+              <span class="app-row-arrow">&rarr;</span>
+            </a>
+
+            <a href="/activity" class="sidebar-app-row" onclick="if(event) { event.preventDefault(); window.closeMobileMenu(); navigate('/activity'); }">
+              <span class="app-row-dot" style="background: #f59e0b; box-shadow: 0 0 8px rgba(245, 158, 11, 0.5);"></span>
+              <div class="app-row-info">
+                <div class="app-row-title">Activity</div>
+                <div class="app-row-desc">Kinetic &amp; Strain</div>
+              </div>
+              <span class="app-row-arrow">&rarr;</span>
+            </a>
+
+            <a href="/nutrition" class="sidebar-app-row" onclick="if(event) { event.preventDefault(); window.closeMobileMenu(); navigate('/nutrition'); }">
+              <span class="app-row-dot" style="background: #10b981; box-shadow: 0 0 8px rgba(16, 185, 129, 0.5);"></span>
+              <div class="app-row-info">
+                <div class="app-row-title">Nutrition</div>
+                <div class="app-row-desc">Metabolic Macro</div>
+              </div>
+              <span class="app-row-arrow">&rarr;</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Primary CTA -->
+        <div class="mobile-sidebar-cta">
+          <a href="/beta" class="btn-primary sidebar-cta-btn" onclick="window.closeMobileMenu();">
+            Join the Beta &rarr;
+          </a>
         </div>
       </div>
+
+      <!-- Footer Contact -->
+      <div class="mobile-sidebar-footer">
+        <div class="sidebar-socials">
+          <a href="mailto:hello@evlome.com" class="sidebar-social-link">hello@evlome.com</a>
+          <span class="sidebar-social-sep">&bull;</span>
+          <a href="https://instagram.com/evlomeofficial" target="_blank" rel="noopener noreferrer" class="sidebar-social-link">@evlomeofficial</a>
+        </div>
+        <div class="sidebar-copyright">&copy; ${new Date().getFullYear()} EVLOME. All rights reserved.</div>
+      </div>
     </div>
-  </nav>
+  </aside>
 
   <div id="content-area"></div>
 
   <footer class="site-footer">
-    <a href="/" class="footer-brand-signature" onclick="window.handleLogoClick(event)" style="text-decoration: none; cursor: pointer;">
-      <span class="signature-line"></span>
-      <span class="signature-domain">evlome.com</span>
-      <span class="signature-line"></span>
-    </a>
-
-    <div class="footer-content">
-      <div class="footer-brand">&copy; ${new Date().getFullYear()} Evlome. All rights reserved.</div>
-      <div class="footer-contact">
-        <a href="mailto:hello@evlome.com" class="social-pill">
-          <svg viewBox="0 0 512 512" fill="currentColor"><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/></svg>
-          <span>hello@evlome.com</span>
-        </a>
-        <a href="https://instagram.com/evlomeofficial" target="_blank" rel="noopener noreferrer" class="social-pill">
-          <svg viewBox="0 0 448 512" fill="currentColor"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
-          <span>@evlomeofficial</span>
-        </a>
-      </div>
+    <div class="footer-left">
+      <div class="footer-brand">&copy; ${new Date().getFullYear()} EVLOME. All rights reserved.</div>
+      <a href="/privacy" class="footer-link" onclick="if(event) { event.preventDefault(); navigate('/privacy'); }">Privacy Policy</a>
+    </div>
+    <div class="footer-contact">
+      <a href="mailto:hello@evlome.com" class="footer-link-chip">
+        <svg viewBox="0 0 512 512" fill="currentColor"><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/></svg>
+        <span>hello@evlome.com</span>
+      </a>
+      <a href="https://instagram.com/evlomeofficial" target="_blank" rel="noopener noreferrer" class="footer-link-chip">
+        <svg viewBox="0 0 448 512" fill="currentColor"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+        <span>@evlomeofficial</span>
+      </a>
     </div>
   </footer>
 `;
 
-// Initial route
+// Initial mount
 renderCurrentRoute();
-
