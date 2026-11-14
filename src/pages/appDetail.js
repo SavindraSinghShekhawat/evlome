@@ -1,0 +1,305 @@
+import { pawdokuConfig, petAvatarSvg, petCrossSvg, petMiniPawSvg, petMiniCrossSvg, pawdokuSvgDefs } from './home.js';
+
+// ============================================================================
+// Product Detail Page Renderer (Tactile Keynote View)
+// ============================================================================
+
+export const renderAppPage = (app) => {
+  const isGame = app.type === 'game';
+  const parentStage = isGame ? 'ludo-stage' : 'suite-stage';
+  const parentLabel = isGame ? 'EVLOME Games' : 'The Suite';
+
+  return `
+  <div class="detail-view">
+    <a href="/#${parentStage}" class="detail-nav-back" onclick="window.handleBackToCategory(event, '${parentStage}')">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      <span>Return to ${parentLabel}</span>
+    </a>
+
+    <!-- Detail Hero Box -->
+    <div class="detail-hero-box">
+      <!-- High-Visibility Lifecycle Status Banner -->
+      <div class="detail-lifecycle-banner ${app.status}">
+        ${app.status === 'production' 
+          ? '<span class="pulse-dot green"></span> <strong>LIVE IN PRODUCTION</strong> &bull; Available globally on iOS &amp; Android'
+          : app.status === 'beta'
+          ? '<span class="pulse-dot purple"></span> <strong>PUBLIC BETA</strong> &bull; Testing on Apple TestFlight &amp; Android'
+          : '<span class="pulse-dot amber"></span> <strong>IN ACTIVE DEVELOPMENT</strong> &bull; Engineering &amp; Architecture Roadmap'
+        }
+      </div>
+
+      <div class="detail-icon-large" style="box-shadow: 0 12px 32px rgba(0,0,0,0.08), 0 0 30px ${app.accentColor}30;">
+        <img src="${app.icon}" alt="${app.title} Icon">
+      </div>
+
+      <span class="stage-badge" style="color: ${app.accentColor}; border-color: ${app.accentColor}40;">
+        ${app.eyebrow || app.category}
+      </span>
+
+      <h1 class="detail-title gradient-text">${app.title}</h1>
+      <div class="detail-tagline">${app.heroTagline || app.tagline}</div>
+      <p class="detail-desc">${app.desc}</p>
+
+      <!-- Stat Counters Grid -->
+      ${app.stats && app.stats.length ? `
+        <div class="detail-stats-grid">
+          ${app.stats.map(s => `
+            <div class="stat-item">
+              <span class="stat-val" style="color: ${app.accentColor};">${s.value}</span>
+              <span class="stat-lbl">${s.label}</span>
+            </div>
+          `).join('')}
+        </div>
+      ` : ''}
+
+      ${app.status === 'production' ? `
+        <div class="store-badge-strip" style="display: flex; gap: 0.85rem; flex-wrap: wrap; justify-content: center; align-items: center; margin-top: 1rem;">
+          ${app.appStoreUrl ? `
+            <a href="${app.appStoreUrl}" target="_blank" rel="noopener noreferrer" class="btn-store btn-app-store" title="Download ${app.title} on the Apple App Store">
+              <svg class="store-icon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.63-.77 1.06-1.84.94-2.92-1 .04-2.14.67-2.81 1.45-.59.67-1.1 1.76-.96 2.82 1.11.09 2.21-.58 2.83-1.35z"/>
+              </svg>
+              <div class="store-badge-text">
+                <span class="store-badge-sub">Download on the</span>
+                <span class="store-badge-main">App Store</span>
+              </div>
+            </a>
+          ` : ''}
+          ${app.playStoreUrl ? `
+            <a href="${app.playStoreUrl}" target="_blank" rel="noopener noreferrer" class="btn-store btn-play-store" title="Get ${app.title} on Google Play">
+              <svg class="store-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                <path d="M3.609 1.814L13.793 12 3.61 22.186c-.368-.344-.61-.88-.61-1.56V3.374c0-.68.242-1.216.61-1.56zm11.24 11.243l2.296 2.296-11.83 6.83 9.534-9.126zm0-2.114L5.315 1.817l11.83 6.83-2.296 2.296zm1.488 1.057l3.65 2.108c.848.49.848 1.294 0 1.784l-3.65 2.108-2.072-2.072 2.072-2.028z"/>
+              </svg>
+              <div class="store-badge-text">
+                <span class="store-badge-sub">GET IT ON</span>
+                <span class="store-badge-main">Google Play</span>
+              </div>
+            </a>
+          ` : ''}
+          <a href="/#matrix-stage" class="btn-glass" onclick="window.handleBackToCategory(event, 'matrix-stage')">
+            All Products Matrix
+          </a>
+        </div>
+      ` : `
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; align-items: center;">
+          <a href="/beta?app=${app.id}" class="btn-primary-glow" style="box-shadow: 0 4px 20px ${app.accentColor}35;">
+            ${app.status === 'beta' ? 'Join the Beta &rarr;' : 'Request Early Preview &rarr;'}
+          </a>
+          <a href="/#matrix-stage" class="btn-glass" onclick="window.handleBackToCategory(event, 'matrix-stage')">
+            All Products Matrix
+          </a>
+        </div>
+      `}
+    </div>
+
+    <!-- Single Focused Interactive Experience -->
+    <div style="margin-top: 3.5rem;">
+      <h2 style="font-size: 1.8rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 0.5rem; text-align: center;" class="gradient-text">
+        Signature Interaction
+      </h2>
+      <p style="text-align: center; color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 2.25rem;">
+        Authentic tactile mechanics, acoustic resonance, and local biometric computation.
+      </p>
+
+      ${app.id === 'ludo-prince' ? `
+        <div class="interactive-arena-card ludo-dice-only-card">
+          <!-- Tactile Dice Halo with Orbital Ring -->
+          <div class="ludo-dice-halo" style="margin: 0.5rem auto 1.5rem;">
+            <div class="dice-stage-box" onclick="window.rollLudoDice()" title="Tap dice to roll">
+              <div class="interactive-dice ludo-metallic-dice" id="interactive-dice-cube" data-val="6">
+                <div class="dice-pips-grid">
+                  <span class="dice-pip active" id="dice-pip-1"></span>
+                  <span class="dice-pip" id="dice-pip-2"></span>
+                  <span class="dice-pip active" id="dice-pip-3"></span>
+                  <span class="dice-pip active" id="dice-pip-4"></span>
+                  <span class="dice-pip" id="dice-pip-5"></span>
+                  <span class="dice-pip active" id="dice-pip-6"></span>
+                  <span class="dice-pip active" id="dice-pip-7"></span>
+                  <span class="dice-pip" id="dice-pip-8"></span>
+                  <span class="dice-pip active" id="dice-pip-9"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button type="button" class="btn-roll-dice-lg" onclick="window.rollLudoDice()">
+            Roll Dice
+          </button>
+
+          <div class="dice-result-log" id="dice-log-text">
+            <span style="color: var(--text-muted);">Click to roll</span>
+          </div>
+        </div>
+      ` : ''}
+
+      ${app.id === 'pawdoku' ? `
+        <div class="interactive-sanctuary-card">
+          ${pawdokuSvgDefs}
+          <!-- Sanctuary Controls Bar -->
+          <div class="pawdoku-controls-strip">
+            <div class="pawdoku-gesture-pill">
+              <span class="gesture-step">Tap ${petMiniCrossSvg}</span>
+              <span class="gesture-divider">•</span>
+              <span class="gesture-step">Double-tap ${petMiniPawSvg}</span>
+              <span class="gesture-divider">•</span>
+              <span class="gesture-step" style="color: #EA580C; font-weight: 700;">Swipe line</span>
+            </div>
+            <button type="button" class="pawdoku-action-btn" onclick="window.restartPawdoku()" title="Reset board">
+              <span>↺</span> Reset
+            </button>
+          </div>
+
+          <!-- 4x4 Tactile Clay Star Battle Grid -->
+          <div class="pawdoku-board-wrapper">
+            <div class="pawdoku-board-4x4"
+                 onpointerdown="window.pawdokuPointerDown(event)"
+                 onpointermove="window.pawdokuPointerMove(event)"
+                 onpointerup="window.pawdokuPointerUp(event)">
+              ${[0, 1, 2, 3].map(r => [0, 1, 2, 3].map(c => {
+                const regId = pawdokuConfig.regionMap[r][c];
+                const isInitialPet = (r === 0 && c === 1);
+                return `
+                  <div class="paw-cell" data-paw-cell="${r}-${c}" data-region="${regId}" data-val="${isInitialPet ? 'pet' : ''}" ondblclick="event.preventDefault()">
+                    ${isInitialPet ? `<div class="pet-drop-marker">${petAvatarSvg}</div>` : ''}
+                  </div>
+                `;
+              }).join('')).join('')}
+            </div>
+          </div>
+
+          <div class="pawdoku-feedback-bar" id="pawdoku-feedback-text">
+            <span><strong>1 of 4</strong> companions placed</span>
+          </div>
+        </div>
+      ` : ''}
+
+      ${app.id === 'cycle' ? `
+        <div class="phase-display-card cycle-dashboard-viewport">
+          <!-- Phase Switcher Tabs -->
+          <div class="phase-switcher-nav" style="margin: 0 auto 1.25rem;">
+            <button type="button" class="phase-btn" id="phase-btn-menstrual" onclick="window.switchCyclePhase('menstrual')">Menstrual</button>
+            <button type="button" class="phase-btn" id="phase-btn-follicular" onclick="window.switchCyclePhase('follicular')">Follicular</button>
+            <button type="button" class="phase-btn active" id="phase-btn-ovulation" onclick="window.switchCyclePhase('ovulation')">Ovulation</button>
+            <button type="button" class="phase-btn" id="phase-btn-luteal" onclick="window.switchCyclePhase('luteal')">Luteal</button>
+          </div>
+
+          <!-- Concentric Radiant Glowing Phase Wheel -->
+          <div class="cycle-wheel-container">
+            <div class="cycle-ring-outer" id="cycle-ring-glow">
+              <div class="cycle-ring-inner">
+                <div class="cycle-ring-center-content">
+                  <span class="cycle-center-day" id="phase-day-text">Day 14 of 28</span>
+                  <h4 class="cycle-center-phase" id="phase-title-text" style="color: #0284c7;">Ovulation Peak</h4>
+                  <span class="cycle-center-readiness" id="phase-readiness-text" style="color: #0284c7;">Optimal Strength PRs</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Period Forecast Card -->
+          <div class="cycle-period-forecast-card">
+            <span class="cycle-forecast-drop">🩸</span>
+            <span class="cycle-forecast-text">Next period expected in <strong id="cycle-countdown-days" class="cycle-forecast-days">14 days</strong></span>
+          </div>
+        </div>
+      ` : ''}
+
+      ${app.id === 'calculator' ? `
+        <div class="interactive-calculator-card">
+          <!-- Goal Selection Chips -->
+          <div class="calc-goal-strip">
+            <button type="button" class="calc-goal-btn active" id="calc-goal-cut" onclick="window.setCalcGoal('cut', 'calc-goal-cut')">
+              <span>Fat Loss</span>
+              <span class="calc-goal-pace">-500 kcal</span>
+            </button>
+            <button type="button" class="calc-goal-btn" id="calc-goal-maintain" onclick="window.setCalcGoal('maintain', 'calc-goal-maintain')">
+              <span>Maintain</span>
+              <span class="calc-goal-pace">Equilibrium</span>
+            </button>
+            <button type="button" class="calc-goal-btn" id="calc-goal-bulk" onclick="window.setCalcGoal('bulk', 'calc-goal-bulk')">
+              <span>Build Muscle</span>
+              <span class="calc-goal-pace">+300 kcal</span>
+            </button>
+          </div>
+
+          <!-- Biometric Controls Bar -->
+          <div class="calc-control-bar">
+            <div class="calc-weight-stepper">
+              <span class="calc-stepper-lbl">Weight</span>
+              <div class="calc-weight-box">
+                <button type="button" class="calc-step-btn" onclick="window.adjCalcWeight(-1)">&minus;</button>
+                <span class="calc-step-val"><strong id="calc-val-weight">74</strong> kg</span>
+                <button type="button" class="calc-step-btn" onclick="window.adjCalcWeight(1)">&#43;</button>
+              </div>
+            </div>
+
+            <div class="calc-act-strip">
+              <button type="button" class="calc-act-chip" id="calc-act-sedentary" onclick="window.setCalcActivity(1.2, 'calc-act-sedentary')">Sedentary</button>
+              <button type="button" class="calc-act-chip active" id="calc-act-moderate" onclick="window.setCalcActivity(1.55, 'calc-act-moderate')">Moderate</button>
+              <button type="button" class="calc-act-chip" id="calc-act-active" onclick="window.setCalcActivity(1.725, 'calc-act-active')">Active</button>
+            </div>
+          </div>
+
+          <!-- Calculated Output Bento -->
+          <div class="calc-output-bento">
+            <div class="calc-hero-result">
+              <div class="calc-hero-result-num" id="calc-res-tdee">2,162</div>
+              <div class="calc-hero-result-sub" id="calc-res-goal-sub">kcal / day &bull; Fat Loss (-500 kcal)</div>
+            </div>
+
+            <!-- Free Macro Splits -->
+            <div class="calc-macros-grid">
+              <div class="calc-macro-tile">
+                <span class="calc-macro-gram" id="calc-res-protein" style="color: #7c3aed;">162g</span>
+                <span class="calc-macro-name">Protein</span>
+              </div>
+              <div class="calc-macro-tile">
+                <span class="calc-macro-gram" id="calc-res-carb" style="color: #0284c7;">216g</span>
+                <span class="calc-macro-name">Carbs</span>
+              </div>
+              <div class="calc-macro-tile">
+                <span class="calc-macro-gram" id="calc-res-fat" style="color: #ea580c;">72g</span>
+                <span class="calc-macro-name">Fats</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      ` : ''}
+    </div>
+
+    <!-- Highlights Grid -->
+    <div style="margin-top: 4rem;">
+      <h2 style="font-size: 1.8rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 1.75rem;" class="gradient-text">
+        ${isGame ? 'Gameplay Dynamics & Mechanics' : 'Clinical & Technical Architecture'}
+      </h2>
+
+      <div class="detail-highlights-grid">
+        ${app.highlights.map(h => `
+          <div class="highlight-card">
+            <h3 class="highlight-card-title">${h.title}</h3>
+            <p class="highlight-card-desc">${h.desc}</p>
+          </div>
+        `).join('')}
+      </div>
+
+      ${app.privacyLink || app.termsLink ? `
+        <div style="display: flex; gap: 1.5rem; flex-wrap: wrap; padding-top: 1.5rem; border-top: 1px solid var(--border-subtle);">
+          ${app.privacyLink ? `
+            <a href="${app.privacyLink}" class="card-explore-link" style="color: ${app.accentColor};" onclick="if(event) { event.preventDefault(); navigate('${app.privacyLink}'); }">
+              ${app.title} Privacy Policy &rarr;
+            </a>
+          ` : ''}
+          ${app.termsLink ? `
+            <a href="${app.termsLink}" class="card-explore-link" style="color: ${app.accentColor};" onclick="if(event) { event.preventDefault(); navigate('${app.termsLink}'); }">
+              ${app.title} Terms of Service &rarr;
+            </a>
+          ` : ''}
+        </div>
+      ` : ''}
+    </div>
+  </div>
+`;
+};
