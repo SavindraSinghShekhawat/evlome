@@ -1,4 +1,4 @@
-(function(){let e=document.createElement(`link`).relList;if(e&&e.supports&&e.supports(`modulepreload`))return;for(let e of document.querySelectorAll(`link[rel="modulepreload"]`))n(e);new MutationObserver(e=>{for(let t of e)if(t.type===`childList`)for(let e of t.addedNodes)e.tagName===`LINK`&&e.rel===`modulepreload`&&n(e)}).observe(document,{childList:!0,subtree:!0});function t(e){let t={};return e.integrity&&(t.integrity=e.integrity),e.referrerPolicy&&(t.referrerPolicy=e.referrerPolicy),t.credentials=e.crossOrigin===`use-credentials`?`include`:e.crossOrigin===`anonymous`?`omit`:`same-origin`,t}function n(e){if(e.ep)return;e.ep=!0;let n=t(e);fetch(e.href,n)}})();var e=[{id:`calculator`,type:`utility`,title:`Calculator+`,eyebrow:`CLINICAL ACCURACY`,category:`Biometrics, Math & Precision`,tagline:`Clinical biometrics, financial models, and precision conversions.`,heroTagline:`Pure mathematical rigor. In your pocket.`,desc:`Everyday arithmetic, Mifflin-St Jeor TDEE expenditure, US Navy body fat percentage, macro split planning, loan amortization schedules, and 9-dimensional unit conversions — computed 100% locally.`,stats:[{value:`9`,label:`Conversion Dimensions`},{value:`4`,label:`Macro Split Frameworks`},{value:`0`,label:`Data Transmitted`},{value:`100%`,label:`On-Device Vault`}],highlights:[{title:`Mifflin-St Jeor TDEE & BMR`,desc:`Calculates Basal Metabolic Rate and Total Daily Energy Expenditure across five activity multipliers (1.2× to 1.9×) with deficit (-500 kcal) and surplus (+500 kcal) caloric targets.`},{title:`US Navy Body Fat & Clinical Metrics`,desc:`Precise body composition estimation using the US Navy circumference equations (neck, waist, hip, height) alongside metric and imperial BMI health classification thresholds.`},{title:`Target Macronutrient Distribution`,desc:`Generates tailored daily gram allocations for protein, carbohydrates, and fats across four metabolic frameworks: Balanced (30/40/30), High Protein (40/30/30), Low Carb (40/20/40), and Ketogenic (20/5/75).`},{title:`Hydration & 1RM Strength Forecasting`,desc:`Dynamic baseline fluid intake calculation adjusted for exercise volume (+0.35L per 30 mins) paired with Brzycki and Epley 1-Rep Max formulas with load percentages for progressive overload.`},{title:`Loan Amortization & Compound Interest`,desc:`Full financial schedule projections for personal and mortgage loans alongside multi-frequency compound interest growth models, tip splitting, discount/tax, and offline currency conversions.`},{title:`Multi-Category Converter & Daily Tools`,desc:`Nine-dimensional unit conversions (length, mass, volume, temperature, speed, area, data, energy), recipe scaling proportions, unit price comparisons, date math, base conversion, and haptic tally counting.`}],icon:`/icons/calculator.png`,accentColor:`#7c3aed`,categoryGradient:`linear-gradient(90deg, #a855f7 0%, #7c3aed 50%, #6d28d9 100%)`,status:`beta`,privacyLink:`/calculator/privacy`,termsLink:`/calculator/terms`},{id:`cycle`,type:`utility`,title:`Cycle`,eyebrow:`REPRODUCTIVE PRIVACY`,category:`Women's Health & Hormonal Rhythm`,tagline:`Sympto-thermal ovulation forecasting and encrypted hormonal rhythm.`,heroTagline:`Your rhythm. Your body. Encrypted on device.`,desc:`Private, discreet menstrual cycle telemetry, sympto-thermal ovulation forecasting, and holistic symptom tracking — encrypted on-device with zero trackers or data brokering.`,stats:[{value:`4`,label:`Hormonal Rhythm Phases`},{value:`13`,label:`Symptom Trackers`},{value:`BBT`,label:`Roetzer Thermal Shift`},{value:`0`,label:`Third-Party Trackers`}],highlights:[{title:`4-Phase Hormonal Rhythm Wheel`,desc:`Visualizes your real-time position within the menstrual cycle across four distinct hormonal stages: Menstrual (restorative), Follicular (rising estrogen), Ovulation (estrogen peak), and Luteal (progesterone dominance).`},{title:`Sympto-Thermal Ovulation Confirmation`,desc:`Validates true ovulation using clinical Roetzer biphasic Basal Body Temperature (BBT) thermal shift detection (3 high temps over 6 low temps) paired with Ovulation Predictor Kit (LH surge) verification.`},{title:`Personalized Luteal Phase Tracking`,desc:`Learns your individual luteal duration (10–18 days) from rolling historical averages instead of assuming a generic 14-day window, filtering irregular cycle anomalies for higher forecast accuracy.`},{title:`Cervical Telemetry & Fertility Windows`,desc:`Tracks cervical mucus consistency across five progressive stages from dry to peak fertile egg-white fluid, computing real-time Low, High, and Peak fertility probability windows.`},{title:`Holistic 13-Symptom & Mood Journal`,desc:`Multi-dimensional daily tracking covering flow intensity, 13 physical symptoms (cramps, bloating, tender breasts, ovulation pain, nausea), 12 mood states, sexual activity, and high-precision temperature logging.`},{title:`Phase-Synced Workout & Fuel Guidance`,desc:`Synchronizes with the EVLOME ecosystem to offer cycle-tailored fitness guidance (HIIT during follicular energy surges vs heavy lifts during ovulation) and metabolic nutrition advice (iron and magnesium support).`}],icon:`/icons/cycle.png`,accentColor:`#e11d48`,categoryGradient:`linear-gradient(90deg, #f43f5e 0%, #e11d48 50%, #be123c 100%)`,status:`beta`,privacyLink:`/cycle/privacy`,termsLink:`/cycle/terms`},{id:`activity`,type:`utility`,title:`Activity`,eyebrow:`KINETIC PERFORMANCE`,category:`Kinetic & Motion Logging`,tagline:`Versatile workout logging with barbell plate math and haptic rest timers.`,heroTagline:`Track every rep. Master every set.`,desc:`A versatile workout logger for gym and home training with set/rep tracking, haptic rest timers, barbell plate math, and strength progression metrics.`,stats:[{value:`1RM`,label:`Max Effort Calculations`},{value:`Plate`,label:`Barbell Math Assistant`},{value:`Haptic`,label:`Rest Interval Timers`},{value:`100%`,label:`Offline Gym Logging`}],highlights:[{title:`Custom Workout Routines`,desc:`Pre-loaded compound programs or design your own bespoke lifting splits, supersets, and HIIT rounds.`},{title:`Rest & Plate Math Assistant`,desc:`Integrated barbell plate math and background haptic countdown timers between sets.`}],icon:`/icons/activity.png`,accentColor:`#d97706`,categoryGradient:`linear-gradient(90deg, #f59e0b 0%, #d97706 50%, #b45309 100%)`,status:`development`,privacyLink:`/activity/privacy`,termsLink:`/activity/terms`},{id:`nutrition`,type:`utility`,title:`Nutrition`,eyebrow:`METABOLIC BALANCE`,category:`Metabolic & Vitality Balance`,tagline:`Effortless caloric balance, whole-food logging, and fasting telemetry.`,heroTagline:`Fuel your day with quiet clarity.`,desc:`A clean calorie, macro, and nutrient tracker with whole food logging, personalized goals, fasting timers, and hydration tracking.`,stats:[{value:`16:8`,label:`Intermittent Fasting`},{value:`5`,label:`Macro & Micro Rings`},{value:`0`,label:`Cloud Profiling`},{value:`Local`,label:`Food Database`}],highlights:[{title:`Macro & Micronutrient Targets`,desc:`Visual telemetry rings for protein, carbohydrates, healthy fats, dietary fiber, and sodium.`},{title:`Intermittent Fasting Timer`,desc:`Preset 16:8, 18:6, and custom schedules with real-time zone stages and fasting telemetry.`}],icon:`/icons/nutrition.png`,accentColor:`#059669`,categoryGradient:`linear-gradient(90deg, #10b981 0%, #059669 50%, #047857 100%)`,status:`development`,privacyLink:`/nutrition/privacy`,termsLink:`/nutrition/terms`}],t=[{id:`ludo-prince`,type:`game`,title:`Ludo Prince`,eyebrow:`LIVE ON APP STORE & GOOGLE PLAY`,category:`Real-Time Strategy & Board`,tagline:`Tactile multiplayer board game — live globally on iOS and Android.`,heroTagline:`Classic board play. Pure tactile joy.`,desc:`The classic board game reimagined with modern design, real-time multiplayer, pass-and-play matches, intelligent AI bots, and immersive spatial audio — with zero pay-to-win manipulation. Live now on iOS and Android.`,stats:[{value:`LIVE`,label:`In Production`},{value:`0`,label:`Energy Timers or Paywalls`},{value:`4P`,label:`Real-Time Multiplayer`},{value:`100%`,label:`Offline Bot Play`}],highlights:[{title:`Real-Time Online Multiplayer`,desc:`Create instant private lobbies with custom room codes, invite friends via dynamic deep links, or enter quick global matchmaking with seamless reconnects.`},{title:`Pass & Play Local Multiplayer`,desc:`Gather friends and family around a single device for 2, 3, or 4 player offline board gaming — complete with rotating seat markers and personal turn rings.`},{title:`Tactical AI Bot Play`,desc:`Sharpen your skills offline without waiting for opponents. Battle adaptive bot intelligence calibrated for engaging, competitive strategy.`},{title:`Classic & Team Match Modes`,desc:`Experience pure traditional race-to-home board play, or team up in 2v2 cooperative mode where teammates coordinate pawn maneuvers.`},{title:`Tactile Dice & Spatial Soundscapes`,desc:`Realistic physics-driven dice rolling, dynamic haptic vibrations on rolls and captures, and custom-composed audio effects for safe steps and home runs.`},{title:`Respectful, Player-First Design`,desc:`No aggressive pay-to-win boosters, no artificial energy timers, and no predatory micro-transactions. Pure, uncompromised board play.`}],icon:`/icons/ludo-prince.png`,accentColor:`#0284c7`,categoryGradient:`linear-gradient(90deg, #38bdf8 0%, #0284c7 50%, #0369a1 100%)`,status:`production`,appStoreUrl:`https://apps.apple.com/app/id6760012267`,playStoreUrl:`https://play.google.com/store/apps/details?id=com.paisphere.ludoprince`,privacyLink:`/ludo-prince/privacy`,termsLink:`/ludo-prince/terms`},{id:`pawdoku`,type:`game`,title:`Pawdoku`,eyebrow:`MINDFUL SANCTUARY`,category:`Mindful Puzzle & Cozy Sanctuary`,tagline:`Tranquil pastel logic and cozy pet sanctuary.`,heroTagline:`Calm your mind. Nurture your haven.`,desc:`A mindful Star Battle puzzle and cozy pet sanctuary. Place animal companions across colorful regions without crowding their space — one per row, column, and color zone, with zero guesswork and zero timers.`,stats:[{value:`Star Battle`,label:`Aloof Queens Logic`},{value:`0`,label:`Stress or Timers`},{value:`Cozy Haven`,label:`Pet Sanctuary`},{value:`100%`,label:`Offline & Peaceful`}],highlights:[{title:`Aloof Pet Placement & Pure Logic`,desc:`One companion per row, column, and color region. Pets require personal space and cannot touch, even diagonally. 100% deductive, zero guesswork.`},{title:`Cozy Pet Haven & Sanctuary`,desc:`Adopt, cuddle, and feed aloof pet companions who respond with affectionate purrs, chirps, and floating heart reactions as your sanctuary flourishes.`},{title:`Sanctuary Decor & Warm Haven`,desc:`Earn cozy kibble through mindful play to collect warm rugs, fireplace accessories, cozy pet beds, and relaxing ambient lighting.`},{title:`Pressure-Free & Mindful Streaks`,desc:`No punitive countdown timers, no high-pressure game-overs, and no artificial stress. Track daily mindful streaks at your own peaceful pace.`}],icon:`/icons/pawdoku.png`,accentColor:`#ea580c`,categoryGradient:`linear-gradient(90deg, #fb923c 0%, #ea580c 50%, #c2410c 100%)`,status:`development`,privacyLink:`/pawdoku/privacy`,termsLink:`/pawdoku/terms`}],n=[...e,...t],r=e=>n.find(t=>t.id===e),i={},a=e=>{try{i[e]||(i[e]=new Audio(e)),i[e].currentTime=0,i[e].play().catch(()=>{})}catch{}},o=typeof window<`u`?window:globalThis,s={1:[5],2:[1,9],3:[1,5,9],4:[1,3,7,9],5:[1,3,5,7,9],6:[1,3,4,6,7,9]},c=e=>{let t=s[e]||[1,3,4,6,7,9];for(let e=1;e<=9;e++){let n=document.getElementById(`dice-pip-${e}`);n&&(t.includes(e)?n.classList.add(`active`):n.classList.remove(`active`))}};o.updateDicePips=c,o.rollLudoDice=()=>{let e=document.getElementById(`interactive-dice-cube`),t=document.querySelectorAll(`#dice-log-text, .dice-result-log`);if(!e)return;a(`/audio/roll.wav`),e.classList.add(`rolling`);let n=0,r=setInterval(()=>{c(Math.floor(Math.random()*6)+1),n++,n>=5&&clearInterval(r)},75);setTimeout(()=>{clearInterval(r);let n=[6,4,6,5,3,2,6],i=n[Math.floor(Math.random()*n.length)];c(i),i===6?(a(`/audio/six.wav`),e.classList.add(`rolled-six`),setTimeout(()=>e.classList.remove(`rolled-six`),1200),t.forEach(e=>{e.innerHTML=`<span style="color:#0284c7;font-weight:700;">👑 Rolled 6</span> &bull; Bonus turn!`})):t.forEach(e=>{e.innerHTML=`Rolled <strong>${i}</strong>`}),e.classList.remove(`rolling`)},450)};var l={size:4,regionMap:[[2,0,1,1],[2,0,1,1],[2,0,1,1],[2,3,3,3]],regionColors:[`#F87A63`,`#83CB96`,`#FFCD48`,`#F9D3B4`],solution:[[!1,!0,!1,!1],[!1,!1,!1,!0],[!0,!1,!1,!1],[!1,!1,!0,!1]]},u=[[``,`pet`,``,``],[``,``,``,``],[``,``,``,``],[``,``,``,``]],d=!1,f=``,p=`
+(function(){let e=document.createElement(`link`).relList;if(e&&e.supports&&e.supports(`modulepreload`))return;for(let e of document.querySelectorAll(`link[rel="modulepreload"]`))n(e);new MutationObserver(e=>{for(let t of e)if(t.type===`childList`)for(let e of t.addedNodes)e.tagName===`LINK`&&e.rel===`modulepreload`&&n(e)}).observe(document,{childList:!0,subtree:!0});function t(e){let t={};return e.integrity&&(t.integrity=e.integrity),e.referrerPolicy&&(t.referrerPolicy=e.referrerPolicy),t.credentials=e.crossOrigin===`use-credentials`?`include`:e.crossOrigin===`anonymous`?`omit`:`same-origin`,t}function n(e){if(e.ep)return;e.ep=!0;let n=t(e);fetch(e.href,n)}})();var e=[{id:`calculator`,type:`utility`,title:`Calculator+`,eyebrow:`CLINICAL ACCURACY`,category:`Biometrics, Math & Precision`,tagline:`Clinical biometrics, metabolic models, and precision conversions.`,heroTagline:`Pure mathematical rigor. In your pocket.`,desc:`Mifflin-St Jeor metabolic expenditure, US Navy body composition, macronutrient distribution, loan schedules, and 9-dimensional conversions. Computed entirely offline.`,stats:[{value:`9`,label:`Conversion Dimensions`},{value:`4`,label:`Macro Split Frameworks`},{value:`0`,label:`Data Transmitted`},{value:`100%`,label:`On-Device Vault`}],highlights:[{title:`Mifflin-St Jeor TDEE & BMR`,desc:`Calculates Basal Metabolic Rate and Total Daily Energy Expenditure across five activity multipliers (1.2× to 1.9×) with deficit (-500 kcal) and surplus (+500 kcal) caloric targets.`},{title:`US Navy Body Fat & Clinical Metrics`,desc:`Precise body composition estimation using the US Navy circumference equations (neck, waist, hip, height) alongside metric and imperial BMI health classification thresholds.`},{title:`Target Macronutrient Distribution`,desc:`Generates tailored daily gram allocations for protein, carbohydrates, and fats across four metabolic frameworks: Balanced (30/40/30), High Protein (40/30/30), Low Carb (40/20/40), and Ketogenic (20/5/75).`},{title:`Hydration & 1RM Strength Forecasting`,desc:`Dynamic baseline fluid intake calculation adjusted for exercise volume (+0.35L per 30 mins) paired with Brzycki and Epley 1-Rep Max formulas with load percentages for progressive overload.`},{title:`Loan Amortization & Compound Interest`,desc:`Full financial schedule projections for personal and mortgage loans alongside multi-frequency compound interest growth models, tip splitting, discount/tax, and offline currency conversions.`},{title:`Multi-Category Converter & Daily Tools`,desc:`Nine-dimensional unit conversions (length, mass, volume, temperature, speed, area, data, energy), recipe scaling proportions, unit price comparisons, date math, base conversion, and haptic tally counting.`}],icon:`/icons/calculator.png`,accentColor:`#7c3aed`,categoryGradient:`linear-gradient(90deg, #a855f7 0%, #7c3aed 50%, #6d28d9 100%)`,status:`beta`,privacyLink:`/calculator/privacy`,termsLink:`/calculator/terms`},{id:`cycle`,type:`utility`,title:`Cycle`,eyebrow:`REPRODUCTIVE PRIVACY`,category:`Women's Health & Hormonal Rhythm`,tagline:`Roetzer sympto-thermal telemetry and encrypted hormonal rhythm.`,heroTagline:`Your rhythm. Your body. Encrypted on device.`,desc:`Four-phase biological rhythm tracking and Roetzer sympto-thermal ovulation telemetry — encrypted locally with zero cloud servers or commercial trackers.`,stats:[{value:`4`,label:`Hormonal Rhythm Phases`},{value:`13`,label:`Symptom Trackers`},{value:`BBT`,label:`Roetzer Thermal Shift`},{value:`0`,label:`Third-Party Trackers`}],highlights:[{title:`4-Phase Hormonal Rhythm Wheel`,desc:`Visualizes your real-time position within the menstrual cycle across four distinct hormonal stages: Menstrual (restorative), Follicular (rising estrogen), Ovulation (estrogen peak), and Luteal (progesterone dominance).`},{title:`Sympto-Thermal Ovulation Confirmation`,desc:`Validates true ovulation using clinical Roetzer biphasic Basal Body Temperature (BBT) thermal shift detection (3 high temps over 6 low temps) paired with Ovulation Predictor Kit (LH surge) verification.`},{title:`Personalized Luteal Phase Tracking`,desc:`Learns your individual luteal duration (10–18 days) from rolling historical averages instead of assuming a generic 14-day window, filtering irregular cycle anomalies for higher forecast accuracy.`},{title:`Cervical Telemetry & Fertility Windows`,desc:`Tracks cervical mucus consistency across five progressive stages from dry to peak fertile egg-white fluid, computing real-time Low, High, and Peak fertility probability windows.`},{title:`Holistic 13-Symptom & Mood Journal`,desc:`Multi-dimensional daily tracking covering flow intensity, 13 physical symptoms (cramps, bloating, tender breasts, ovulation pain, nausea), 12 mood states, sexual activity, and high-precision temperature logging.`},{title:`Phase-Synced Workout & Fuel Guidance`,desc:`Synchronizes with the EVLOME ecosystem to offer cycle-tailored fitness guidance (HIIT during follicular energy surges vs heavy lifts during ovulation) and metabolic nutrition advice (iron and magnesium support).`}],icon:`/icons/cycle.png`,accentColor:`#e11d48`,categoryGradient:`linear-gradient(90deg, #f43f5e 0%, #e11d48 50%, #be123c 100%)`,status:`beta`,privacyLink:`/cycle/privacy`,termsLink:`/cycle/terms`},{id:`activity`,type:`utility`,title:`Activity`,eyebrow:`KINETIC PERFORMANCE`,category:`Kinetic & Motion Logging`,tagline:`Versatile workout logging with barbell plate math and haptic rest timers.`,heroTagline:`Track every rep. Master every set.`,desc:`Versatile workout logging for gym and home training. Set/rep tracking, haptic rest timers, barbell plate math, and progressive overload metrics.`,stats:[{value:`1RM`,label:`Max Effort Calculations`},{value:`Plate`,label:`Barbell Math Assistant`},{value:`Haptic`,label:`Rest Interval Timers`},{value:`100%`,label:`Offline Gym Logging`}],highlights:[{title:`Custom Workout Routines`,desc:`Pre-loaded compound programs or design your own bespoke lifting splits, supersets, and HIIT rounds.`},{title:`Rest & Plate Math Assistant`,desc:`Integrated barbell plate math and background haptic countdown timers between sets.`}],icon:`/icons/activity.png`,accentColor:`#d97706`,categoryGradient:`linear-gradient(90deg, #f59e0b 0%, #d97706 50%, #b45309 100%)`,status:`development`,privacyLink:`/activity/privacy`,termsLink:`/activity/terms`},{id:`nutrition`,type:`utility`,title:`Nutrition`,eyebrow:`METABOLIC BALANCE`,category:`Metabolic & Vitality Balance`,tagline:`Effortless caloric balance, whole-food logging, and fasting telemetry.`,heroTagline:`Fuel your day with quiet clarity.`,desc:`Effortless whole-food logging, fasting telemetry, and personalized metabolic goals. Local food database with zero cloud profiling.`,stats:[{value:`16:8`,label:`Intermittent Fasting`},{value:`5`,label:`Macro & Micro Rings`},{value:`0`,label:`Cloud Profiling`},{value:`Local`,label:`Food Database`}],highlights:[{title:`Macro & Micronutrient Targets`,desc:`Visual telemetry rings for protein, carbohydrates, healthy fats, dietary fiber, and sodium.`},{title:`Intermittent Fasting Timer`,desc:`Preset 16:8, 18:6, and custom schedules with real-time zone stages and fasting telemetry.`}],icon:`/icons/nutrition.png`,accentColor:`#059669`,categoryGradient:`linear-gradient(90deg, #10b981 0%, #059669 50%, #047857 100%)`,status:`development`,privacyLink:`/nutrition/privacy`,termsLink:`/nutrition/terms`}],t=[{id:`ludo-prince`,type:`game`,title:`Ludo Prince`,eyebrow:`LIVE ON APP STORE & GOOGLE PLAY`,category:`Real-Time Strategy & Board`,tagline:`Tactile multiplayer board play with genuine physical dice.`,heroTagline:`Classic board play. Pure tactile joy.`,desc:`Classic board play engineered with physical dice inertia. Real-time multiplayer, local pass-and-play, and offline bot intelligence. Live now on iOS and Android.`,stats:[{value:`LIVE`,label:`In Production`},{value:`0`,label:`Energy Timers or Paywalls`},{value:`4P`,label:`Real-Time Multiplayer`},{value:`100%`,label:`Offline Bot Play`}],highlights:[{title:`Real-Time Online Multiplayer`,desc:`Create instant private lobbies with custom room codes, invite friends via dynamic deep links, or enter quick global matchmaking with seamless reconnects.`},{title:`Pass & Play Local Multiplayer`,desc:`Gather friends and family around a single device for 2, 3, or 4 player offline board gaming — complete with rotating seat markers and personal turn rings.`},{title:`Tactical AI Bot Play`,desc:`Sharpen your skills offline without waiting for opponents. Battle adaptive bot intelligence calibrated for engaging, competitive strategy.`},{title:`Classic & Team Match Modes`,desc:`Experience pure traditional race-to-home board play, or team up in 2v2 cooperative mode where teammates coordinate pawn maneuvers.`},{title:`Tactile Dice & Spatial Soundscapes`,desc:`Realistic physics-driven dice rolling, dynamic haptic vibrations on rolls and captures, and custom-composed audio effects for safe steps and home runs.`},{title:`Respectful, Player-First Design`,desc:`No aggressive pay-to-win boosters, no artificial energy timers, and no predatory micro-transactions. Pure, uncompromised board play.`}],icon:`/icons/ludo-prince.png`,accentColor:`#0284c7`,categoryGradient:`linear-gradient(90deg, #38bdf8 0%, #0284c7 50%, #0369a1 100%)`,status:`production`,appStoreUrl:`https://apps.apple.com/app/id6760012267`,playStoreUrl:`https://play.google.com/store/apps/details?id=com.paisphere.ludoprince`,privacyLink:`/ludo-prince/privacy`,termsLink:`/ludo-prince/terms`},{id:`pawdoku`,type:`game`,title:`Pawdoku`,eyebrow:`MINDFUL SANCTUARY`,category:`Mindful Puzzle & Cozy Sanctuary`,tagline:`Tranquil Star Battle logic in a cozy pet sanctuary.`,heroTagline:`Calm your mind. Nurture your haven.`,desc:`A mindful Star Battle puzzle in a cozy pastel sanctuary. One companion per row, column, and color region — 100% deductive strategy with zero rush.`,stats:[{value:`Star Battle`,label:`Aloof Queens Logic`},{value:`0`,label:`Stress or Timers`},{value:`Cozy Haven`,label:`Pet Sanctuary`},{value:`100%`,label:`Offline & Peaceful`}],highlights:[{title:`Aloof Pet Placement & Pure Logic`,desc:`One companion per row, column, and color region. Pets require personal space and cannot touch, even diagonally. 100% deductive, zero guesswork.`},{title:`Cozy Pet Haven & Sanctuary`,desc:`Adopt, cuddle, and feed aloof pet companions who respond with affectionate purrs, chirps, and floating heart reactions as your sanctuary flourishes.`},{title:`Sanctuary Decor & Warm Haven`,desc:`Earn cozy kibble through mindful play to collect warm rugs, fireplace accessories, cozy pet beds, and relaxing ambient lighting.`},{title:`Pressure-Free & Mindful Streaks`,desc:`No punitive countdown timers, no high-pressure game-overs, and no artificial stress. Track daily mindful streaks at your own peaceful pace.`}],icon:`/icons/pawdoku.png`,accentColor:`#ea580c`,categoryGradient:`linear-gradient(90deg, #fb923c 0%, #ea580c 50%, #c2410c 100%)`,status:`development`,privacyLink:`/pawdoku/privacy`,termsLink:`/pawdoku/terms`}],n=[...e,...t],r=e=>n.find(t=>t.id===e),i={},a=e=>{try{i[e]||(i[e]=new Audio(e)),i[e].currentTime=0,i[e].play().catch(()=>{})}catch{}},o=typeof window<`u`?window:globalThis,s={1:[5],2:[1,9],3:[1,5,9],4:[1,3,7,9],5:[1,3,5,7,9],6:[1,3,4,6,7,9]},c=e=>{let t=s[e]||[1,3,4,6,7,9];for(let e=1;e<=9;e++){let n=document.getElementById(`dice-pip-${e}`);n&&(t.includes(e)?n.classList.add(`active`):n.classList.remove(`active`))}};o.updateDicePips=c,o.rollLudoDice=()=>{let e=document.getElementById(`interactive-dice-cube`),t=document.querySelectorAll(`#dice-log-text, .dice-result-log`);if(!e)return;a(`/audio/roll.wav`),e.classList.add(`rolling`);let n=0,r=setInterval(()=>{c(Math.floor(Math.random()*6)+1),n++,n>=5&&clearInterval(r)},75);setTimeout(()=>{clearInterval(r);let n=[6,4,6,5,3,2,6],i=n[Math.floor(Math.random()*n.length)];c(i),i===6?(a(`/audio/six.wav`),e.classList.add(`rolled-six`),setTimeout(()=>e.classList.remove(`rolled-six`),1200),t.forEach(e=>{e.innerHTML=`<span style="color:#0284c7;font-weight:700;">👑 Rolled 6</span> &bull; Bonus turn!`})):t.forEach(e=>{e.innerHTML=`Rolled <strong>${i}</strong>`}),e.classList.remove(`rolling`)},450)};var l={size:4,regionMap:[[2,0,1,1],[2,0,1,1],[2,0,1,1],[2,3,3,3]],regionColors:[`#F87A63`,`#83CB96`,`#FFCD48`,`#F9D3B4`],solution:[[!1,!0,!1,!1],[!1,!1,!1,!0],[!0,!1,!1,!1],[!1,!1,!0,!1]]},u=[[``,`pet`,``,``],[``,``,``,``],[``,``,``,``],[``,``,``,``]],d=!1,f=``,p=`
 <svg viewBox="4 4 44 44" class="paw-pet-glyph" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="pet-head-g" x1="26" y1="12" x2="26" y2="44" gradientUnits="userSpaceOnUse">
@@ -108,96 +108,35 @@
     <div class="hero-glow-aura"></div>
 
     <div class="stage-badge">
-      <span class="badge-dot"></span>
-      <span>TWO DISCIPLINES &bull; ONE RIGOROUS ETHIC</span>
+      <span>EVLOME STUDIO</span>
     </div>
 
-    <h1 class="hero-headline gradient-text">
+    <h1 class="hero-headline">
       Calculated Precision.<br/>Mindful Play.
     </h1>
 
     <p class="hero-description">
-      Software engineered with quiet discipline. From <strong>private health biometrics and physiological telemetry</strong> to <strong>tactile board games and mindful puzzle sanctuaries</strong>.
+      Thoughtfully engineered utilities and tactile board games.<br class="desktop-only"/>Encrypted on device. Designed to be lived with.
     </p>
 
-    <!-- Interactive Dual Direction Gateway -->
-    <div class="hero-dual-gateway">
-      <!-- Direction 1: The Health Suite -->
-      <div class="gateway-pillar-card health-pillar" onclick="window.scrollToSection('suite-stage')">
-        <div class="gateway-badge" style="color: #e11d48; border-color: rgba(225, 29, 72, 0.25);">
-          THE HEALTH SUITE
-        </div>
-        <h3 class="gateway-title">Clinical Telemetry</h3>
-        <p class="gateway-desc">
-          Clinical biometrics, hormonal rhythms, daily movement, and metabolic nutrition — computed locally and encrypted 100% on device.
-        </p>
-
-        <div class="gateway-apps-row">
-          <div class="gateway-app-chip">
-            <img src="/icons/cycle.png" alt="Cycle" />
-            <span>Cycle</span>
-            <span class="chip-status-pill chip-status-beta">BETA</span>
-          </div>
-          <div class="gateway-app-chip">
-            <img src="/icons/calculator.png" alt="Calculator+" />
-            <span>Calculator+</span>
-            <span class="chip-status-pill chip-status-beta">BETA</span>
-          </div>
-          <div class="gateway-app-chip">
-            <img src="/icons/activity.png" alt="Activity" />
-            <span>Activity</span>
-            <span class="chip-status-pill chip-status-dev">DEV</span>
-          </div>
-          <div class="gateway-app-chip">
-            <img src="/icons/nutrition.png" alt="Nutrition" />
-            <span>Nutrition</span>
-            <span class="chip-status-pill chip-status-dev">DEV</span>
-          </div>
-        </div>
-
-        <div class="gateway-action-link" style="color: #e11d48;">
-          <span>Explore Health Suite</span> &darr;
-        </div>
-      </div>
-
-      <!-- Direction 2: EVLOME Games -->
-      <div class="gateway-pillar-card games-pillar" onclick="window.scrollToSection('ludo-stage')">
-        <div class="gateway-badge" style="color: #0284c7; border-color: rgba(2, 132, 199, 0.25);">
-          EVLOME GAMES
-        </div>
-        <h3 class="gateway-title">Mindful Play</h3>
-        <p class="gateway-desc">
-          Tactile board classics, mindful logic puzzles, and cozy sanctuaries — designed for pure, unhurried play and thoughtful design.
-        </p>
-
-        <div class="gateway-apps-row">
-          <div class="gateway-app-chip">
-            <img src="/icons/ludo-prince.png" alt="Ludo Prince" />
-            <span>Ludo Prince</span>
-            <span class="chip-status-pill chip-status-live">LIVE</span>
-          </div>
-          <div class="gateway-app-chip">
-            <img src="/icons/pawdoku.png" alt="Pawdoku" />
-            <span>Pawdoku</span>
-            <span class="chip-status-pill chip-status-dev">DEV</span>
-          </div>
-        </div>
-
-        <div class="gateway-action-link" style="color: #0284c7;">
-          <span>Explore Games</span> &darr;
-        </div>
-      </div>
+    <div class="hero-actions-row">
+      <button type="button" class="btn-primary-glow" onclick="window.scrollToSection('ludo-stage')">
+        <span>Explore Games</span> &darr;
+      </button>
+      <button type="button" class="btn-glass" onclick="window.scrollToSection('suite-stage')">
+        <span>The Health Suite</span> &darr;
+      </button>
     </div>
 
-    <!-- Live Metrics Strip -->
+    <!-- Quiet Disciplines Strip -->
     <div class="hero-matrix-bar">
-      <span><strong>2</strong> Core Disciplines</span>
+      <span><strong>6</strong> Products</span>
       <span style="opacity: 0.3;">&bull;</span>
-      <span><strong style="color: #059669;">● LIVE</strong>, <strong style="color: #7c3aed;">▲ BETA</strong> &amp; <strong style="color: #d97706;">⚙ DEV</strong></span>
+      <span><strong>100%</strong> On-Device Sovereignty</span>
       <span style="opacity: 0.3;">&bull;</span>
-      <span><strong>0</strong> Commercial Trackers</span>
+      <span><strong>Zero</strong> Tracking Infrastructure</span>
       <span style="opacity: 0.3;">&bull;</span>
-      <span><strong>100%</strong> On-Device Encryption</span>
+      <span><strong>Offline</strong> First</span>
     </div>
   </section>
 
@@ -216,19 +155,28 @@
 
         <div class="stage-app-title-row">
           <img src="${r.icon}" alt="${r.title} Logo" class="stage-app-icon" style="box-shadow: 0 10px 28px rgba(2, 132, 199, 0.28);" />
-          <h2 class="stage-title gradient-text">${r.title}</h2>
+          <h2 class="stage-title">${r.title}</h2>
         </div>
 
-        <div class="stage-subtitle" style="color: #0284c7;">Pure tactile board play. Genuine physical dice.</div>
+        <div class="stage-subtitle" style="color: #0284c7;">Classic board play. Pure tactile physics.</div>
         <p class="stage-desc">
-          The classic board game, crafted with timeless discipline. No pay-to-win boosters, no algorithmic handicaps, and no rigged rolls. Experience cryptographically fair physical dice inertia with friends online or offline in pass-and-play.
+          The traditional race to home, engineered with physical dice inertia. Real-time multiplayer, local pass-and-play, and adaptive offline bot intelligence.
         </p>
 
-        <div class="feature-pill-strip">
-          <span class="feature-pill" style="border-color: rgba(2, 132, 199, 0.4); color: #0284c7; font-weight: 600;">● Live on App Store &amp; Google Play</span>
-          <span class="feature-pill">Real-Time Multiplayer &amp; Pass-and-Play</span>
-          <span class="feature-pill">Fair Physical Dice (No Rigged AI)</span>
-          <span class="feature-pill">100% Offline Pass &amp; Play</span>
+        <!-- Architectural Micro-Specs -->
+        <div class="stage-specs-grid">
+          <div class="spec-item">
+            <span class="spec-label">Multiplayer</span>
+            <span class="spec-val">Online &amp; Pass-and-Play</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">Physics</span>
+            <span class="spec-val">Fair Tactile Inertia</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">Platforms</span>
+            <span class="spec-val">iOS &amp; Android</span>
+          </div>
         </div>
 
         <!-- Store Download Badges -->
@@ -254,7 +202,7 @@
           </a>
 
           <a href="/${r.id}" class="btn-glass" onclick="if(event){ event.preventDefault(); navigate('/${r.id}'); }">
-            Architecture &amp; Rules &rarr;
+            Rules &amp; Specs &rarr;
           </a>
         </div>
       </div>
@@ -343,19 +291,28 @@
 
         <div class="stage-app-title-row">
           <img src="${i.icon}" alt="${i.title} Logo" class="stage-app-icon" style="box-shadow: 0 10px 28px rgba(234, 88, 12, 0.28);" />
-          <h2 class="stage-title gradient-text">${i.title}</h2>
+          <h2 class="stage-title">${i.title}</h2>
         </div>
 
-        <div class="stage-subtitle" style="color: #ea580c;">Tranquil pastel logic. Cozy pet sanctuary.</div>
+        <div class="stage-subtitle" style="color: #ea580c;">Star Battle logic. Zero rush.</div>
         <p class="stage-desc">
-          A mindful Star Battle puzzle. Place adorable animal companions across colorful regions without crowding their personal space — exactly one per row, column, and color zone, with zero guesswork and zero timers.
+          One companion per row, column, and color region. Pure deductive strategy in a tranquil pastel pet sanctuary.
         </p>
 
-        <div class="feature-pill-strip">
-          <span class="feature-pill" style="border-color: rgba(234, 88, 12, 0.4); color: #ea580c; font-weight: 600;">Star Battle Logic</span>
-          <span class="feature-pill">Zero Pressure or Timers</span>
-          <span class="feature-pill">Cozy Pet Sanctuary</span>
-          <span class="feature-pill">100% Offline Play</span>
+        <!-- Architectural Micro-Specs -->
+        <div class="stage-specs-grid">
+          <div class="spec-item">
+            <span class="spec-label">Engine</span>
+            <span class="spec-val">Aloof Queens Logic</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">Pacing</span>
+            <span class="spec-val">Zero Timers or Stress</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">Access</span>
+            <span class="spec-val">Early Beta Preview</span>
+          </div>
         </div>
 
         <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; margin-top: 1.5rem;">
@@ -385,27 +342,36 @@
 
         <div class="stage-app-title-row">
           <img src="/icons/cycle.png" alt="Cycle Logo" class="stage-app-icon" style="box-shadow: 0 10px 28px rgba(225, 29, 72, 0.28);" />
-          <h2 class="stage-title gradient-text">Cycle</h2>
+          <h2 class="stage-title">Cycle</h2>
         </div>
 
-        <div class="stage-subtitle" style="color: #e11d48;">Your rhythm. Encrypted on device. Synced with your life.</div>
+        <div class="stage-subtitle" style="color: #e11d48;">Hormonal rhythm. On-device privacy.</div>
         <p class="stage-desc">
-          Post-Roe reproductive privacy by design. Zero accounts, zero cloud servers, and zero risk of data broker sales or subpoenas. Go beyond simple period dates: sync your daily workouts and nutrition with your biological hormone shifts, validated by Roetzer sympto-thermal BBT shift detection.
+          Four-phase biological rhythm tracking and Roetzer sympto-thermal ovulation telemetry — encrypted locally with zero cloud servers or commercial trackers.
         </p>
 
-        <div class="feature-pill-strip">
-          <span class="feature-pill" style="border-color: rgba(225, 29, 72, 0.3); color: #e11d48; font-weight: 600;">100% On-Device Vault (No Cloud)</span>
-          <span class="feature-pill">Hormone-Synced Training &amp; Fuel</span>
-          <span class="feature-pill">Roetzer Sympto-Thermal BBT Shift</span>
-          <span class="feature-pill">Zero Accounts or Trackers</span>
+        <!-- Architectural Micro-Specs -->
+        <div class="stage-specs-grid">
+          <div class="spec-item">
+            <span class="spec-label">Clinical Core</span>
+            <span class="spec-val">Roetzer BBT Shift</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">Sovereignty</span>
+            <span class="spec-val">100% On-Device Vault</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">Integration</span>
+            <span class="spec-val">Training &amp; Fuel Sync</span>
+          </div>
         </div>
 
         <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
           <a href="/cycle" class="btn-primary-glow" onclick="if(event){ event.preventDefault(); navigate('/cycle'); }">
             Explore Cycle Architecture &rarr;
           </a>
-          <a href="/calculator" class="btn-glass" onclick="if(event){ event.preventDefault(); navigate('/calculator'); }">
-            Explore Calculator+
+          <a href="/beta?app=cycle" class="btn-glass" onclick="if(event){ event.preventDefault(); navigate('/beta?app=cycle'); }">
+            Join Beta
           </a>
         </div>
       </div>
@@ -457,27 +423,36 @@
 
         <div class="stage-app-title-row">
           <img src="${a.icon}" alt="${a.title} Logo" class="stage-app-icon" style="box-shadow: 0 10px 28px rgba(124, 58, 237, 0.28);" />
-          <h2 class="stage-title gradient-text">${a.title}</h2>
+          <h2 class="stage-title">${a.title}</h2>
         </div>
 
-        <div class="stage-subtitle" style="color: #7c3aed;">Deterministic mathematics. Clinical biometric precision.</div>
+        <div class="stage-subtitle" style="color: #7c3aed;">Clinical biometrics and mathematical rigor.</div>
         <p class="stage-desc">
-          Engineered for precision health and metabolic mathematics. Calculator+ computes clinical Mifflin-St Jeor TDEE expenditure, goal-adaptive macronutrient distributions, and US Navy body composition formulas — calculated 100% deterministically on device with zero telemetry.
+          Mifflin-St Jeor metabolic expenditure, US Navy body composition, macronutrient distribution, loan schedules, and 9-dimensional conversions. Computed entirely offline.
         </p>
 
-        <div class="feature-pill-strip">
-          <span class="feature-pill" style="border-color: rgba(124, 58, 237, 0.3); color: #7c3aed; font-weight: 600;">Mifflin-St Jeor &amp; Katch-McArdle</span>
-          <span class="feature-pill">Goal-Adaptive Macro Targets</span>
-          <span class="feature-pill">US Navy Body Fat Modeling</span>
-          <span class="feature-pill">100% On-Device Vault</span>
+        <!-- Architectural Micro-Specs -->
+        <div class="stage-specs-grid">
+          <div class="spec-item">
+            <span class="spec-label">Biometrics</span>
+            <span class="spec-val">Mifflin-St Jeor &amp; US Navy</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">Conversions</span>
+            <span class="spec-val">9 Physical Dimensions</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">Execution</span>
+            <span class="spec-val">100% Local &amp; Private</span>
+          </div>
         </div>
 
         <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
           <a href="/beta?app=${a.id}" class="btn-primary-glow" style="box-shadow: 0 4px 16px rgba(124, 58, 237, 0.25);">
-            Join the Calculator+ Beta &rarr;
+            Join the Beta &rarr;
           </a>
           <a href="/${a.id}" class="btn-glass" onclick="if(event){ event.preventDefault(); navigate('/${a.id}'); }">
-            Clinical Specifications
+            Specifications
           </a>
         </div>
       </div>
@@ -549,9 +524,9 @@
   <section id="matrix-stage" class="matrix-stage">
     <div class="matrix-header">
       <span class="stage-badge">ECOSYSTEM MATRIX</span>
-      <h2 class="stage-title gradient-text">Two Disciplines. One Ecosystem.</h2>
-      <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto 2rem; font-size: 1.1rem;">
-        Explore the expanding ecosystem across the Health Suite and EVLOME Games.
+      <h2 class="stage-title">Two Disciplines. One Ecosystem.</h2>
+      <p style="color: var(--text-secondary); max-width: 520px; margin: 0 auto 2rem; font-size: 1.05rem;">
+        An expanding collection of precision utilities and mindful games.
       </p>
 
       <!-- Segmented Control Filter by Discipline -->
@@ -560,10 +535,10 @@
           All
         </button>
         <button type="button" class="matrix-filter-btn" id="filter-btn-health" onclick="window.filterMatrix('health')">
-          Health
+          The Health Suite
         </button>
         <button type="button" class="matrix-filter-btn" id="filter-btn-games" onclick="window.filterMatrix('games')">
-          Games
+          EVLOME Games
         </button>
       </div>
     </div>
@@ -597,62 +572,61 @@
     </div>
   </section>
 
-  <!-- STAGE 7: The EVLOME Codex & Principles (The Unifying Thread) -->
+  <!-- STAGE 7: The EVLOME Codex & Principles -->
   <section id="principles-section" class="codex-section">
     <div class="codex-container">
-      <span class="stage-badge" style="color: var(--accent-brand); border-color: rgba(0, 113, 227, 0.3);">THE UNIFYING STANDARD</span>
-      <h2 class="stage-title gradient-text">Why We Build Both: Rigor &amp; Reverie.</h2>
-      <p style="color: var(--text-secondary); max-width: 720px; font-size: 1.15rem; line-height: 1.6;">
-        Modern software has devolved into invasive biometric surveillance and predatory gambling loops.
-        EVLOME is built on a single, uncompromising counter-ethic across both health telemetry and game design:
+      <span class="stage-badge">THE CODEX</span>
+      <h2 class="stage-title">Rigor &amp; Reverie.</h2>
+      <p style="color: var(--text-secondary); max-width: 600px; font-size: 1.05rem; line-height: 1.6; margin: 0 auto 2.5rem;">
+        Four foundational standards guiding every line of code we ship across health telemetry and game design.
       </p>
 
       <div class="codex-grid">
         <div class="codex-card">
-          <span class="codex-num">01 / LOCAL SOVEREIGNTY</span>
-          <h3 class="codex-title">Your Device is Your Vault</h3>
+          <span class="codex-num">01 / SOVEREIGNTY</span>
+          <h3 class="codex-title">On-Device Vault</h3>
           <p class="codex-desc">
-            Your basal temperature, cycle predictions, and personal telemetry reside strictly on your physical hardware. We run zero tracking infrastructure.
+            Your health, metabolic, and personal telemetry reside strictly on your physical hardware. We operate zero user-tracking infrastructure.
           </p>
         </div>
 
         <div class="codex-card">
-          <span class="codex-num">02 / DETERMINISTIC RIGOR</span>
-          <h3 class="codex-title">Verified Mathematics</h3>
+          <span class="codex-num">02 / INTEGRITY</span>
+          <h3 class="codex-title">Deterministic Rigor</h3>
           <p class="codex-desc">
-            From verified clinical formulas (Mifflin-St Jeor, Roetzer shift) to cryptographically fair dice in Ludo Prince — mechanics are transparent and uncompromised.
+            Clinical biometric equations and physical board mechanics operate transparently with complete mathematical integrity.
           </p>
         </div>
 
         <div class="codex-card">
-          <span class="codex-num">03 / QUIET LUXURY</span>
-          <h3 class="codex-title">Zero Dark Patterns</h3>
+          <span class="codex-num">03 / RESTRAINT</span>
+          <h3 class="codex-title">Mindful Interaction</h3>
           <p class="codex-desc">
-            No countdown paywalls, deceptive close buttons, or manipulative timers. Interfaces are distilled strictly to tactile delight and essential controls.
+            Zero synthetic urgency, deceptive close buttons, or artificial countdowns. Interfaces distilled strictly to essential craft.
           </p>
         </div>
 
         <div class="codex-card">
-          <span class="codex-num">04 / COMPLETE AUTONOMY</span>
-          <h3 class="codex-title">100% Offline Capability</h3>
+          <span class="codex-num">04 / AUTONOMY</span>
+          <h3 class="codex-title">100% Offline</h3>
           <p class="codex-desc">
-            Health telemetry and mindful play must never fail when connectivity drops. Every formula, journal entry, and bot match operates completely offline.
+            Built like physical instruments. Every formula, health journal, and bot match operates completely without network connectivity.
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- STAGE 7: Beta Invitation Terminal -->
-  <section class="cinematic-stage" style="min-height: 60vh; text-align: center; align-items: center;">
-    <span class="stage-badge" style="color: #059669; border-color: rgba(5, 150, 105, 0.3);">EARLY ACCESS TERMINAL</span>
-    <h2 class="stage-title gradient-text" style="max-width: 750px; margin-bottom: 1rem;">
+  <!-- STAGE 8: Beta Invitation Terminal -->
+  <section class="cinematic-stage" style="min-height: 50vh; text-align: center; align-items: center; justify-content: center; padding: 4rem 1.5rem;">
+    <span class="stage-badge">EARLY ACCESS PROGRAM</span>
+    <h2 class="stage-title" style="max-width: 650px; margin: 0.5rem auto 1rem;">
       Shape the Future of EVLOME.
     </h2>
-    <p style="color: var(--text-secondary); max-width: 520px; font-size: 1.1rem; line-height: 1.6; margin-bottom: 2.5rem;">
-      Apply for TestFlight (iOS) and Google Play (Android) early access to the Suite and EVLOME Games.
+    <p style="color: var(--text-secondary); max-width: 480px; font-size: 1.05rem; line-height: 1.6; margin: 0 auto 2rem;">
+      TestFlight and Google Play preview slots are open for upcoming builds across the Suite and EVLOME Games.
     </p>
-    <a href="/beta" class="btn-primary-glow" style="font-size: 15px; padding: 1rem 2.5rem;">
+    <a href="/beta" class="btn-primary-glow" style="font-size: 14.5px; padding: 0.9rem 2.25rem;">
       Apply for Beta Testing &rarr;
     </a>
   </section>
