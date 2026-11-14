@@ -676,96 +676,35 @@ export const renderHome = () => {
     <div class="hero-glow-aura"></div>
 
     <div class="stage-badge">
-      <span class="badge-dot"></span>
-      <span>TWO DISCIPLINES &bull; ONE RIGOROUS ETHIC</span>
+      <span>EVLOME STUDIO</span>
     </div>
 
-    <h1 class="hero-headline gradient-text">
+    <h1 class="hero-headline">
       Calculated Precision.<br/>Mindful Play.
     </h1>
 
     <p class="hero-description">
-      Software engineered with quiet discipline. From <strong>private health biometrics and physiological telemetry</strong> to <strong>tactile board games and mindful puzzle sanctuaries</strong>.
+      Thoughtfully engineered utilities and tactile board games.<br class="desktop-only"/>Encrypted on device. Designed to be lived with.
     </p>
 
-    <!-- Interactive Dual Direction Gateway -->
-    <div class="hero-dual-gateway">
-      <!-- Direction 1: The Health Suite -->
-      <div class="gateway-pillar-card health-pillar" onclick="window.scrollToSection('suite-stage')">
-        <div class="gateway-badge" style="color: #e11d48; border-color: rgba(225, 29, 72, 0.25);">
-          THE HEALTH SUITE
-        </div>
-        <h3 class="gateway-title">Clinical Telemetry</h3>
-        <p class="gateway-desc">
-          Clinical biometrics, hormonal rhythms, daily movement, and metabolic nutrition — computed locally and encrypted 100% on device.
-        </p>
-
-        <div class="gateway-apps-row">
-          <div class="gateway-app-chip">
-            <img src="/icons/cycle.png" alt="Cycle" />
-            <span>Cycle</span>
-            <span class="chip-status-pill chip-status-beta">BETA</span>
-          </div>
-          <div class="gateway-app-chip">
-            <img src="/icons/calculator.png" alt="Calculator+" />
-            <span>Calculator+</span>
-            <span class="chip-status-pill chip-status-beta">BETA</span>
-          </div>
-          <div class="gateway-app-chip">
-            <img src="/icons/activity.png" alt="Activity" />
-            <span>Activity</span>
-            <span class="chip-status-pill chip-status-dev">DEV</span>
-          </div>
-          <div class="gateway-app-chip">
-            <img src="/icons/nutrition.png" alt="Nutrition" />
-            <span>Nutrition</span>
-            <span class="chip-status-pill chip-status-dev">DEV</span>
-          </div>
-        </div>
-
-        <div class="gateway-action-link" style="color: #e11d48;">
-          <span>Explore Health Suite</span> &darr;
-        </div>
-      </div>
-
-      <!-- Direction 2: EVLOME Games -->
-      <div class="gateway-pillar-card games-pillar" onclick="window.scrollToSection('ludo-stage')">
-        <div class="gateway-badge" style="color: #0284c7; border-color: rgba(2, 132, 199, 0.25);">
-          EVLOME GAMES
-        </div>
-        <h3 class="gateway-title">Mindful Play</h3>
-        <p class="gateway-desc">
-          Tactile board classics, mindful logic puzzles, and cozy sanctuaries — designed for pure, unhurried play and thoughtful design.
-        </p>
-
-        <div class="gateway-apps-row">
-          <div class="gateway-app-chip">
-            <img src="/icons/ludo-prince.png" alt="Ludo Prince" />
-            <span>Ludo Prince</span>
-            <span class="chip-status-pill chip-status-live">LIVE</span>
-          </div>
-          <div class="gateway-app-chip">
-            <img src="/icons/pawdoku.png" alt="Pawdoku" />
-            <span>Pawdoku</span>
-            <span class="chip-status-pill chip-status-dev">DEV</span>
-          </div>
-        </div>
-
-        <div class="gateway-action-link" style="color: #0284c7;">
-          <span>Explore Games</span> &darr;
-        </div>
-      </div>
+    <div class="hero-actions-row">
+      <button type="button" class="btn-primary-glow" onclick="window.scrollToSection('ludo-stage')">
+        <span>Explore Games</span> &darr;
+      </button>
+      <button type="button" class="btn-glass" onclick="window.scrollToSection('suite-stage')">
+        <span>The Health Suite</span> &darr;
+      </button>
     </div>
 
-    <!-- Live Metrics Strip -->
+    <!-- Quiet Disciplines Strip -->
     <div class="hero-matrix-bar">
-      <span><strong>2</strong> Core Disciplines</span>
+      <span><strong>6</strong> Products</span>
       <span style="opacity: 0.3;">&bull;</span>
-      <span><strong style="color: #059669;">● LIVE</strong>, <strong style="color: #7c3aed;">▲ BETA</strong> &amp; <strong style="color: #d97706;">⚙ DEV</strong></span>
+      <span><strong>100%</strong> On-Device Sovereignty</span>
       <span style="opacity: 0.3;">&bull;</span>
-      <span><strong>0</strong> Commercial Trackers</span>
+      <span><strong>Zero</strong> Tracking Infrastructure</span>
       <span style="opacity: 0.3;">&bull;</span>
-      <span><strong>100%</strong> On-Device Encryption</span>
+      <span><strong>Offline</strong> First</span>
     </div>
   </section>
 
@@ -784,19 +723,28 @@ export const renderHome = () => {
 
         <div class="stage-app-title-row">
           <img src="${ludo.icon}" alt="${ludo.title} Logo" class="stage-app-icon" style="box-shadow: 0 10px 28px rgba(2, 132, 199, 0.28);" />
-          <h2 class="stage-title gradient-text">${ludo.title}</h2>
+          <h2 class="stage-title">${ludo.title}</h2>
         </div>
 
-        <div class="stage-subtitle" style="color: #0284c7;">Pure tactile board play. Genuine physical dice.</div>
+        <div class="stage-subtitle" style="color: #0284c7;">Classic board play. Pure tactile physics.</div>
         <p class="stage-desc">
-          The classic board game, crafted with timeless discipline. No pay-to-win boosters, no algorithmic handicaps, and no rigged rolls. Experience cryptographically fair physical dice inertia with friends online or offline in pass-and-play.
+          The traditional race to home, engineered with physical dice inertia. Real-time multiplayer, local pass-and-play, and adaptive offline bot intelligence.
         </p>
 
-        <div class="feature-pill-strip">
-          <span class="feature-pill" style="border-color: rgba(2, 132, 199, 0.4); color: #0284c7; font-weight: 600;">● Live on App Store &amp; Google Play</span>
-          <span class="feature-pill">Real-Time Multiplayer &amp; Pass-and-Play</span>
-          <span class="feature-pill">Fair Physical Dice (No Rigged AI)</span>
-          <span class="feature-pill">100% Offline Pass &amp; Play</span>
+        <!-- Architectural Micro-Specs -->
+        <div class="stage-specs-grid">
+          <div class="spec-item">
+            <span class="spec-label">Multiplayer</span>
+            <span class="spec-val">Online &amp; Pass-and-Play</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">Physics</span>
+            <span class="spec-val">Fair Tactile Inertia</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">Platforms</span>
+            <span class="spec-val">iOS &amp; Android</span>
+          </div>
         </div>
 
         <!-- Store Download Badges -->
@@ -822,7 +770,7 @@ export const renderHome = () => {
           </a>
 
           <a href="/${ludo.id}" class="btn-glass" onclick="if(event){ event.preventDefault(); navigate('/${ludo.id}'); }">
-            Architecture &amp; Rules &rarr;
+            Rules &amp; Specs &rarr;
           </a>
         </div>
       </div>
@@ -915,19 +863,28 @@ export const renderHome = () => {
 
         <div class="stage-app-title-row">
           <img src="${pawdoku.icon}" alt="${pawdoku.title} Logo" class="stage-app-icon" style="box-shadow: 0 10px 28px rgba(234, 88, 12, 0.28);" />
-          <h2 class="stage-title gradient-text">${pawdoku.title}</h2>
+          <h2 class="stage-title">${pawdoku.title}</h2>
         </div>
 
-        <div class="stage-subtitle" style="color: #ea580c;">Tranquil pastel logic. Cozy pet sanctuary.</div>
+        <div class="stage-subtitle" style="color: #ea580c;">Star Battle logic. Zero rush.</div>
         <p class="stage-desc">
-          A mindful Star Battle puzzle. Place adorable animal companions across colorful regions without crowding their personal space — exactly one per row, column, and color zone, with zero guesswork and zero timers.
+          One companion per row, column, and color region. Pure deductive strategy in a tranquil pastel pet sanctuary.
         </p>
 
-        <div class="feature-pill-strip">
-          <span class="feature-pill" style="border-color: rgba(234, 88, 12, 0.4); color: #ea580c; font-weight: 600;">Star Battle Logic</span>
-          <span class="feature-pill">Zero Pressure or Timers</span>
-          <span class="feature-pill">Cozy Pet Sanctuary</span>
-          <span class="feature-pill">100% Offline Play</span>
+        <!-- Architectural Micro-Specs -->
+        <div class="stage-specs-grid">
+          <div class="spec-item">
+            <span class="spec-label">Engine</span>
+            <span class="spec-val">Aloof Queens Logic</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">Pacing</span>
+            <span class="spec-val">Zero Timers or Stress</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">Access</span>
+            <span class="spec-val">Early Beta Preview</span>
+          </div>
         </div>
 
         <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; margin-top: 1.5rem;">
@@ -957,27 +914,36 @@ export const renderHome = () => {
 
         <div class="stage-app-title-row">
           <img src="/icons/cycle.png" alt="Cycle Logo" class="stage-app-icon" style="box-shadow: 0 10px 28px rgba(225, 29, 72, 0.28);" />
-          <h2 class="stage-title gradient-text">Cycle</h2>
+          <h2 class="stage-title">Cycle</h2>
         </div>
 
-        <div class="stage-subtitle" style="color: #e11d48;">Your rhythm. Encrypted on device. Synced with your life.</div>
+        <div class="stage-subtitle" style="color: #e11d48;">Hormonal rhythm. On-device privacy.</div>
         <p class="stage-desc">
-          Post-Roe reproductive privacy by design. Zero accounts, zero cloud servers, and zero risk of data broker sales or subpoenas. Go beyond simple period dates: sync your daily workouts and nutrition with your biological hormone shifts, validated by Roetzer sympto-thermal BBT shift detection.
+          Four-phase biological rhythm tracking and Roetzer sympto-thermal ovulation telemetry — encrypted locally with zero cloud servers or commercial trackers.
         </p>
 
-        <div class="feature-pill-strip">
-          <span class="feature-pill" style="border-color: rgba(225, 29, 72, 0.3); color: #e11d48; font-weight: 600;">100% On-Device Vault (No Cloud)</span>
-          <span class="feature-pill">Hormone-Synced Training &amp; Fuel</span>
-          <span class="feature-pill">Roetzer Sympto-Thermal BBT Shift</span>
-          <span class="feature-pill">Zero Accounts or Trackers</span>
+        <!-- Architectural Micro-Specs -->
+        <div class="stage-specs-grid">
+          <div class="spec-item">
+            <span class="spec-label">Clinical Core</span>
+            <span class="spec-val">Roetzer BBT Shift</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">Sovereignty</span>
+            <span class="spec-val">100% On-Device Vault</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">Integration</span>
+            <span class="spec-val">Training &amp; Fuel Sync</span>
+          </div>
         </div>
 
         <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
           <a href="/cycle" class="btn-primary-glow" onclick="if(event){ event.preventDefault(); navigate('/cycle'); }">
             Explore Cycle Architecture &rarr;
           </a>
-          <a href="/calculator" class="btn-glass" onclick="if(event){ event.preventDefault(); navigate('/calculator'); }">
-            Explore Calculator+
+          <a href="/beta?app=cycle" class="btn-glass" onclick="if(event){ event.preventDefault(); navigate('/beta?app=cycle'); }">
+            Join Beta
           </a>
         </div>
       </div>
@@ -1029,27 +995,36 @@ export const renderHome = () => {
 
         <div class="stage-app-title-row">
           <img src="${calc.icon}" alt="${calc.title} Logo" class="stage-app-icon" style="box-shadow: 0 10px 28px rgba(124, 58, 237, 0.28);" />
-          <h2 class="stage-title gradient-text">${calc.title}</h2>
+          <h2 class="stage-title">${calc.title}</h2>
         </div>
 
-        <div class="stage-subtitle" style="color: #7c3aed;">Deterministic mathematics. Clinical biometric precision.</div>
+        <div class="stage-subtitle" style="color: #7c3aed;">Clinical biometrics and mathematical rigor.</div>
         <p class="stage-desc">
-          Engineered for precision health and metabolic mathematics. Calculator+ computes clinical Mifflin-St Jeor TDEE expenditure, goal-adaptive macronutrient distributions, and US Navy body composition formulas — calculated 100% deterministically on device with zero telemetry.
+          Mifflin-St Jeor metabolic expenditure, US Navy body composition, macronutrient distribution, loan schedules, and 9-dimensional conversions. Computed entirely offline.
         </p>
 
-        <div class="feature-pill-strip">
-          <span class="feature-pill" style="border-color: rgba(124, 58, 237, 0.3); color: #7c3aed; font-weight: 600;">Mifflin-St Jeor &amp; Katch-McArdle</span>
-          <span class="feature-pill">Goal-Adaptive Macro Targets</span>
-          <span class="feature-pill">US Navy Body Fat Modeling</span>
-          <span class="feature-pill">100% On-Device Vault</span>
+        <!-- Architectural Micro-Specs -->
+        <div class="stage-specs-grid">
+          <div class="spec-item">
+            <span class="spec-label">Biometrics</span>
+            <span class="spec-val">Mifflin-St Jeor &amp; US Navy</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">Conversions</span>
+            <span class="spec-val">9 Physical Dimensions</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">Execution</span>
+            <span class="spec-val">100% Local &amp; Private</span>
+          </div>
         </div>
 
         <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
           <a href="/beta?app=${calc.id}" class="btn-primary-glow" style="box-shadow: 0 4px 16px rgba(124, 58, 237, 0.25);">
-            Join the Calculator+ Beta &rarr;
+            Join the Beta &rarr;
           </a>
           <a href="/${calc.id}" class="btn-glass" onclick="if(event){ event.preventDefault(); navigate('/${calc.id}'); }">
-            Clinical Specifications
+            Specifications
           </a>
         </div>
       </div>
@@ -1121,9 +1096,9 @@ export const renderHome = () => {
   <section id="matrix-stage" class="matrix-stage">
     <div class="matrix-header">
       <span class="stage-badge">ECOSYSTEM MATRIX</span>
-      <h2 class="stage-title gradient-text">Two Disciplines. One Ecosystem.</h2>
-      <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto 2rem; font-size: 1.1rem;">
-        Explore the expanding ecosystem across the Health Suite and EVLOME Games.
+      <h2 class="stage-title">Two Disciplines. One Ecosystem.</h2>
+      <p style="color: var(--text-secondary); max-width: 520px; margin: 0 auto 2rem; font-size: 1.05rem;">
+        An expanding collection of precision utilities and mindful games.
       </p>
 
       <!-- Segmented Control Filter by Discipline -->
@@ -1132,10 +1107,10 @@ export const renderHome = () => {
           All
         </button>
         <button type="button" class="matrix-filter-btn" id="filter-btn-health" onclick="window.filterMatrix('health')">
-          Health
+          The Health Suite
         </button>
         <button type="button" class="matrix-filter-btn" id="filter-btn-games" onclick="window.filterMatrix('games')">
-          Games
+          EVLOME Games
         </button>
       </div>
     </div>
@@ -1169,62 +1144,61 @@ export const renderHome = () => {
     </div>
   </section>
 
-  <!-- STAGE 7: The EVLOME Codex & Principles (The Unifying Thread) -->
+  <!-- STAGE 7: The EVLOME Codex & Principles -->
   <section id="principles-section" class="codex-section">
     <div class="codex-container">
-      <span class="stage-badge" style="color: var(--accent-brand); border-color: rgba(0, 113, 227, 0.3);">THE UNIFYING STANDARD</span>
-      <h2 class="stage-title gradient-text">Why We Build Both: Rigor &amp; Reverie.</h2>
-      <p style="color: var(--text-secondary); max-width: 720px; font-size: 1.15rem; line-height: 1.6;">
-        Modern software has devolved into invasive biometric surveillance and predatory gambling loops.
-        EVLOME is built on a single, uncompromising counter-ethic across both health telemetry and game design:
+      <span class="stage-badge">THE CODEX</span>
+      <h2 class="stage-title">Rigor &amp; Reverie.</h2>
+      <p style="color: var(--text-secondary); max-width: 600px; font-size: 1.05rem; line-height: 1.6; margin: 0 auto 2.5rem;">
+        Four foundational standards guiding every line of code we ship across health telemetry and game design.
       </p>
 
       <div class="codex-grid">
         <div class="codex-card">
-          <span class="codex-num">01 / LOCAL SOVEREIGNTY</span>
-          <h3 class="codex-title">Your Device is Your Vault</h3>
+          <span class="codex-num">01 / SOVEREIGNTY</span>
+          <h3 class="codex-title">On-Device Vault</h3>
           <p class="codex-desc">
-            Your basal temperature, cycle predictions, and personal telemetry reside strictly on your physical hardware. We run zero tracking infrastructure.
+            Your health, metabolic, and personal telemetry reside strictly on your physical hardware. We operate zero user-tracking infrastructure.
           </p>
         </div>
 
         <div class="codex-card">
-          <span class="codex-num">02 / DETERMINISTIC RIGOR</span>
-          <h3 class="codex-title">Verified Mathematics</h3>
+          <span class="codex-num">02 / INTEGRITY</span>
+          <h3 class="codex-title">Deterministic Rigor</h3>
           <p class="codex-desc">
-            From verified clinical formulas (Mifflin-St Jeor, Roetzer shift) to cryptographically fair dice in Ludo Prince — mechanics are transparent and uncompromised.
+            Clinical biometric equations and physical board mechanics operate transparently with complete mathematical integrity.
           </p>
         </div>
 
         <div class="codex-card">
-          <span class="codex-num">03 / QUIET LUXURY</span>
-          <h3 class="codex-title">Zero Dark Patterns</h3>
+          <span class="codex-num">03 / RESTRAINT</span>
+          <h3 class="codex-title">Mindful Interaction</h3>
           <p class="codex-desc">
-            No countdown paywalls, deceptive close buttons, or manipulative timers. Interfaces are distilled strictly to tactile delight and essential controls.
+            Zero synthetic urgency, deceptive close buttons, or artificial countdowns. Interfaces distilled strictly to essential craft.
           </p>
         </div>
 
         <div class="codex-card">
-          <span class="codex-num">04 / COMPLETE AUTONOMY</span>
-          <h3 class="codex-title">100% Offline Capability</h3>
+          <span class="codex-num">04 / AUTONOMY</span>
+          <h3 class="codex-title">100% Offline</h3>
           <p class="codex-desc">
-            Health telemetry and mindful play must never fail when connectivity drops. Every formula, journal entry, and bot match operates completely offline.
+            Built like physical instruments. Every formula, health journal, and bot match operates completely without network connectivity.
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- STAGE 7: Beta Invitation Terminal -->
-  <section class="cinematic-stage" style="min-height: 60vh; text-align: center; align-items: center;">
-    <span class="stage-badge" style="color: #059669; border-color: rgba(5, 150, 105, 0.3);">EARLY ACCESS TERMINAL</span>
-    <h2 class="stage-title gradient-text" style="max-width: 750px; margin-bottom: 1rem;">
+  <!-- STAGE 8: Beta Invitation Terminal -->
+  <section class="cinematic-stage" style="min-height: 50vh; text-align: center; align-items: center; justify-content: center; padding: 4rem 1.5rem;">
+    <span class="stage-badge">EARLY ACCESS PROGRAM</span>
+    <h2 class="stage-title" style="max-width: 650px; margin: 0.5rem auto 1rem;">
       Shape the Future of EVLOME.
     </h2>
-    <p style="color: var(--text-secondary); max-width: 520px; font-size: 1.1rem; line-height: 1.6; margin-bottom: 2.5rem;">
-      Apply for TestFlight (iOS) and Google Play (Android) early access to the Suite and EVLOME Games.
+    <p style="color: var(--text-secondary); max-width: 480px; font-size: 1.05rem; line-height: 1.6; margin: 0 auto 2rem;">
+      TestFlight and Google Play preview slots are open for upcoming builds across the Suite and EVLOME Games.
     </p>
-    <a href="/beta" class="btn-primary-glow" style="font-size: 15px; padding: 1rem 2.5rem;">
+    <a href="/beta" class="btn-primary-glow" style="font-size: 14.5px; padding: 0.9rem 2.25rem;">
       Apply for Beta Testing &rarr;
     </a>
   </section>

@@ -457,6 +457,15 @@ body.menu-open .burger-line.line-bottom {
   transform: translateX(4px);
 }
 
+.hero-actions-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 3.5rem;
+}
+
 .hero-cta-group {
   display: flex;
   align-items: center;
@@ -672,18 +681,58 @@ body.menu-open .burger-line.line-bottom {
   letter-spacing: -0.035em;
   line-height: 1.15;
   margin-bottom: 0.75rem;
-  padding-bottom: 0.12em;
+  color: var(--text-primary);
 }
 .stage-subtitle {
   font-size: 1.25rem;
   font-weight: 600;
-  margin-bottom: 1rem;
+  margin-bottom: 0.85rem;
+  letter-spacing: -0.015em;
 }
 .stage-desc {
   font-size: 1.05rem;
   color: var(--text-secondary);
-  line-height: 1.65;
-  margin-bottom: 2rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+/* ==========================================================================
+   Stage Architectural Specs Grid (Apple-grade minimal metadata)
+   ========================================================================== */
+.stage-specs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+  margin: 1.5rem 0 1.75rem;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+.spec-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.spec-label {
+  font-size: 10.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-tertiary);
+  font-family: var(--font-mono);
+}
+.spec-val {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.35;
+}
+@media (max-width: 640px) {
+  .stage-specs-grid {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+    padding: 1rem 0;
+  }
 }
 
 .feature-pill-strip {
