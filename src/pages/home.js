@@ -722,7 +722,7 @@ export const renderHome = () => {
         </div>
 
         <div class="stage-app-title-row">
-          <img src="${ludo.icon}" alt="${ludo.title} Logo" class="stage-app-icon" style="box-shadow: 0 10px 28px rgba(2, 132, 199, 0.28);" />
+          <img src="${ludo.icon}" alt="${ludo.title} Logo" class="stage-app-icon" width="58" height="58" loading="lazy" decoding="async" style="box-shadow: 0 10px 28px rgba(2, 132, 199, 0.28);" />
           <h2 class="stage-title">${ludo.title}</h2>
         </div>
 
@@ -862,7 +862,7 @@ export const renderHome = () => {
         </div>
 
         <div class="stage-app-title-row">
-          <img src="${pawdoku.icon}" alt="${pawdoku.title} Logo" class="stage-app-icon" style="box-shadow: 0 10px 28px rgba(234, 88, 12, 0.28);" />
+          <img src="${pawdoku.icon}" alt="${pawdoku.title} Logo" class="stage-app-icon" width="58" height="58" loading="lazy" decoding="async" style="box-shadow: 0 10px 28px rgba(234, 88, 12, 0.28);" />
           <h2 class="stage-title">${pawdoku.title}</h2>
         </div>
 
@@ -913,7 +913,7 @@ export const renderHome = () => {
         </div>
 
         <div class="stage-app-title-row">
-          <img src="/icons/cycle.png" alt="Cycle Logo" class="stage-app-icon" style="box-shadow: 0 10px 28px rgba(225, 29, 72, 0.28);" />
+          <img src="/icons/cycle.png" alt="Cycle Logo" class="stage-app-icon" width="58" height="58" loading="lazy" decoding="async" style="box-shadow: 0 10px 28px rgba(225, 29, 72, 0.28);" />
           <h2 class="stage-title">Cycle</h2>
         </div>
 
@@ -994,7 +994,7 @@ export const renderHome = () => {
         </div>
 
         <div class="stage-app-title-row">
-          <img src="${calc.icon}" alt="${calc.title} Logo" class="stage-app-icon" style="box-shadow: 0 10px 28px rgba(124, 58, 237, 0.28);" />
+          <img src="${calc.icon}" alt="${calc.title} Logo" class="stage-app-icon" width="58" height="58" loading="lazy" decoding="async" style="box-shadow: 0 10px 28px rgba(124, 58, 237, 0.28);" />
           <h2 class="stage-title">${calc.title}</h2>
         </div>
 
@@ -1121,7 +1121,7 @@ export const renderHome = () => {
           <div class="card-top-row">
             <div class="card-identity-header">
               <div class="card-app-icon" style="box-shadow: 0 0 20px ${p.accentColor}30;">
-                <img src="${p.icon}" alt="${p.title} Icon" />
+                <img src="${p.icon}" alt="${p.title} Icon" width="44" height="44" loading="lazy" decoding="async" />
               </div>
               <div class="card-identity-titles">
                 <div class="card-category" style="color: ${p.accentColor};">${p.category}</div>

@@ -32,7 +32,7 @@ export const renderAppPage = (app) => {
       </div>
 
       <div class="detail-icon-large" style="box-shadow: 0 12px 32px rgba(0,0,0,0.08), 0 0 30px ${app.accentColor}30;">
-        <img src="${app.icon}" alt="${app.title} Icon">
+        <img src="${app.icon}" alt="${app.title} Icon" width="72" height="72" decoding="async">
       </div>
 
       <span class="stage-badge" style="color: ${app.accentColor}; border-color: ${app.accentColor}40;">

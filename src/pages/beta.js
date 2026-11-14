@@ -177,7 +177,7 @@ export const renderBetaPage = (parentApp = null) => {
               <div class="specific-apps-grid">
                 <label class="app-select-card" id="app-card-calculator">
                   <input type="checkbox" name="entry.610551536" value="Calculator+" class="specific-app-checkbox" onchange="window.handleAppCardToggle(this)" />
-                  <div class="app-card-icon" style="background: rgba(124, 58, 237, 0.08);"><img src="/icons/calculator.png" alt="Calculator+" /></div>
+                  <div class="app-card-icon" style="background: rgba(124, 58, 237, 0.08);"><img src="/icons/calculator.png" alt="Calculator+" width="32" height="32" loading="lazy" decoding="async" /></div>
                   <div class="app-card-info">
                     <div class="app-card-name">Calculator+</div>
                     <div class="app-card-tag" style="color: #7c3aed;">Biometrics &amp; Math</div>
@@ -189,7 +189,7 @@ export const renderBetaPage = (parentApp = null) => {
 
                 <label class="app-select-card" id="app-card-cycle">
                   <input type="checkbox" name="entry.610551536" value="Cycle" class="specific-app-checkbox" onchange="window.handleAppCardToggle(this)" />
-                  <div class="app-card-icon" style="background: rgba(225, 29, 72, 0.08);"><img src="/icons/cycle.png" alt="Cycle" /></div>
+                  <div class="app-card-icon" style="background: rgba(225, 29, 72, 0.08);"><img src="/icons/cycle.png" alt="Cycle" width="32" height="32" loading="lazy" decoding="async" /></div>
                   <div class="app-card-info">
                     <div class="app-card-name">Cycle</div>
                     <div class="app-card-tag" style="color: #e11d48;">Hormonal Rhythm</div>
@@ -201,7 +201,7 @@ export const renderBetaPage = (parentApp = null) => {
 
                 <label class="app-select-card" id="app-card-activity">
                   <input type="checkbox" name="entry.610551536" value="Activity" class="specific-app-checkbox" onchange="window.handleAppCardToggle(this)" />
-                  <div class="app-card-icon" style="background: rgba(217, 119, 6, 0.08);"><img src="/icons/activity.png" alt="Activity" /></div>
+                  <div class="app-card-icon" style="background: rgba(217, 119, 6, 0.08);"><img src="/icons/activity.png" alt="Activity" width="32" height="32" loading="lazy" decoding="async" /></div>
                   <div class="app-card-info">
                     <div class="app-card-name">Activity</div>
                     <div class="app-card-tag" style="color: #d97706;">Kinetic Logging</div>
@@ -213,7 +213,7 @@ export const renderBetaPage = (parentApp = null) => {
 
                 <label class="app-select-card" id="app-card-nutrition">
                   <input type="checkbox" name="entry.610551536" value="Nutrition" class="specific-app-checkbox" onchange="window.handleAppCardToggle(this)" />
-                  <div class="app-card-icon" style="background: rgba(5, 150, 105, 0.08);"><img src="/icons/nutrition.png" alt="Nutrition" /></div>
+                  <div class="app-card-icon" style="background: rgba(5, 150, 105, 0.08);"><img src="/icons/nutrition.png" alt="Nutrition" width="32" height="32" loading="lazy" decoding="async" /></div>
                   <div class="app-card-info">
                     <div class="app-card-name">Nutrition</div>
                     <div class="app-card-tag" style="color: #059669;">Metabolic Balance</div>
@@ -228,7 +228,7 @@ export const renderBetaPage = (parentApp = null) => {
               <div class="specific-apps-grid">
                 <label class="app-select-card" id="app-card-ludo-prince">
                   <input type="checkbox" name="entry.610551536" value="Ludo Prince" class="specific-app-checkbox" onchange="window.handleAppCardToggle(this)" />
-                  <div class="app-card-icon" style="background: rgba(2, 132, 199, 0.08);"><img src="/icons/ludo-prince.png" alt="Ludo Prince" /></div>
+                  <div class="app-card-icon" style="background: rgba(2, 132, 199, 0.08);"><img src="/icons/ludo-prince.png" alt="Ludo Prince" width="32" height="32" loading="lazy" decoding="async" /></div>
                   <div class="app-card-info">
                     <div class="app-card-name">
                       <span>Ludo Prince</span>
@@ -243,7 +243,7 @@ export const renderBetaPage = (parentApp = null) => {
 
                 <label class="app-select-card" id="app-card-pawdoku">
                   <input type="checkbox" name="entry.610551536" value="Pawdoku" class="specific-app-checkbox" onchange="window.handleAppCardToggle(this)" />
-                  <div class="app-card-icon" style="background: rgba(234, 88, 12, 0.08);"><img src="/icons/pawdoku.png" alt="Pawdoku" /></div>
+                  <div class="app-card-icon" style="background: rgba(234, 88, 12, 0.08);"><img src="/icons/pawdoku.png" alt="Pawdoku" width="32" height="32" loading="lazy" decoding="async" /></div>
                   <div class="app-card-info">
                     <div class="app-card-name">Pawdoku</div>
                     <div class="app-card-tag" style="color: #ea580c;">Pet Sanctuary &bull; Preview</div>

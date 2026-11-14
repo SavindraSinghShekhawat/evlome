@@ -18,7 +18,7 @@ document.querySelector('#app').innerHTML = `
   <header class="site-header">
     <div class="header-island">
       <a href="/" class="brand-link" onclick="window.handleLogoClick(event)" aria-label="EVLOME Home">
-        <img src="/logo-wordmark.png" alt="EVLOME" class="brand-logo" />
+        <img src="/logo-wordmark.png" alt="EVLOME" class="brand-logo" width="117" height="22" fetchpriority="high" decoding="async" />
       </a>
       
       <!-- Desktop Nav -->
@@ -281,9 +281,15 @@ window.clearBetaError = function(event) {
 const routeScrollPositions = new Map();
 const getCurrentRouteKey = () => window.location.pathname || '/';
 
+let scrollTicking = false;
 window.addEventListener('scroll', () => {
-  const key = getCurrentRouteKey();
-  routeScrollPositions.set(key, window.scrollY);
+  if (!scrollTicking) {
+    requestAnimationFrame(() => {
+      routeScrollPositions.set(getCurrentRouteKey(), window.scrollY);
+      scrollTicking = false;
+    });
+    scrollTicking = true;
+  }
 }, { passive: true });
 
 const isHomeMounted = () => document.getElementById('ludo-stage') !== null;
