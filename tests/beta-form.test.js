@@ -269,4 +269,40 @@ describe('EVLOME Beta Form — Validation Engine', () => {
     const withoutFeedback = validateBetaForm({ ...validBaseData, feedback: '   ' });
     assert.strictEqual(withoutFeedback.payload.get(FORM_ENTRY_IDS.feedback), null);
   });
+
+  it('should properly trim surrounding whitespace from name and email inputs', () => {
+    const result = validateBetaForm({
+      ...validBaseData,
+      firstName: '   Jane   ',
+      lastName: '   Doe   ',
+      email: '   Jane.Doe@EXAMPLE.COM   '
+    });
+    assert.strictEqual(result.isValid, true);
+    assert.strictEqual(result.payload.get(FORM_ENTRY_IDS.firstName), 'Jane');
+    assert.strictEqual(result.payload.get(FORM_ENTRY_IDS.lastName), 'Doe');
+    assert.strictEqual(result.payload.get(FORM_ENTRY_IDS.email), 'Jane.Doe@EXAMPLE.COM');
+  });
+
+  it('should filter out unrecognized apps and only serialize valid EVLOME products', () => {
+    const result = validateBetaForm({
+      ...validBaseData,
+      preference: 'Specific Apps Only',
+      selectedApps: ['UnknownGame', 'Calculator+', 'FakeApp', 'Pawdoku']
+    });
+    assert.strictEqual(result.isValid, true);
+    assert.deepStrictEqual(result.payload.getAll(FORM_ENTRY_IDS.specificApps), ['Calculator+', 'Pawdoku']);
+  });
+
+  it('should correctly URL-encode special characters like "+" in "Calculator+" in stringified payload', () => {
+    const result = validateBetaForm({
+      ...validBaseData,
+      preference: 'Specific Apps Only',
+      selectedApps: ['Calculator+']
+    });
+    assert.strictEqual(result.isValid, true);
+    const queryString = result.payload.toString();
+    assert.ok(queryString.includes(`${encodeURIComponent(FORM_ENTRY_IDS.specificApps)}=Calculator%2B`));
+  });
 });
+
+
