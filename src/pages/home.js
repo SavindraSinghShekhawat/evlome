@@ -664,11 +664,125 @@ g.filterMatrix = (filterKey) => {
   });
 };
 
+
+// --- Interactive Health Suite Discipline Switcher ---
+g.switchHealthTab = (tabId) => {
+  ['cycle', 'calculator', 'nutrition', 'activity'].forEach(id => {
+    const btn = document.getElementById(`health-tab-${id}`);
+    const panel = document.getElementById(`health-panel-${id}`);
+    if (btn) btn.classList.toggle('active', id === tabId);
+    if (panel) {
+      panel.style.display = (id === tabId) ? 'grid' : 'none';
+      if (id === tabId) panel.classList.add('fade-in-active');
+    }
+  });
+};
+
+// --- Interactive EVLOME Games Discipline Switcher ---
+g.switchGameTab = (gameId) => {
+  ['ludo-prince', 'pawdoku'].forEach(id => {
+    const btn = document.getElementById(`game-tab-${id}`);
+    const panel = document.getElementById(`game-panel-${id}`);
+    if (btn) btn.classList.toggle('active', id === gameId);
+    if (panel) {
+      panel.style.display = (id === gameId) ? 'grid' : 'none';
+      if (id === gameId) panel.classList.add('fade-in-active');
+    }
+  });
+};
+
+// --- Nutrition: 16:8 Fasting Telemetry Engine ---
+let fastingFastHours = 16;
+const fastingElapsedMinutes = 14 * 60 + 25; // 14h 25m into fast
+
+g.setFastingPreset = (presetHours, btnId) => {
+  fastingFastHours = presetHours;
+  document.querySelectorAll('.fasting-preset-btn').forEach(b => b.classList.remove('active'));
+  const btn = document.getElementById(btnId);
+  if (btn) btn.classList.add('active');
+
+  const targetEl = document.getElementById('fasting-target-hours');
+  const zoneEl = document.getElementById('fasting-zone-text');
+  const remainEl = document.getElementById('fasting-remaining-text');
+
+  if (targetEl) targetEl.textContent = `${presetHours}h Fast`;
+  const remainingMins = Math.max(0, (presetHours * 60) - fastingElapsedMinutes);
+  const remH = Math.floor(remainingMins / 60);
+  const remM = remainingMins % 60;
+  if (remainEl) remainEl.textContent = remainingMins > 0 ? `${remH}h ${remM}m remaining` : 'Target Achieved';
+
+  if (zoneEl) {
+    if (presetHours >= 20) {
+      zoneEl.textContent = 'Autophagy & Deep Ketosis';
+    } else if (presetHours >= 18) {
+      zoneEl.textContent = 'Elevated Ketones & Fat Oxidation';
+    } else {
+      zoneEl.textContent = 'Peak Fat Burning Zone';
+    }
+  }
+};
+
+// --- Activity: Barbell Plate Math Assistant Engine ---
+let barbellWeight = 100;
+const BAR_WEIGHT = 20;
+
+g.setBarbellWeight = (weight) => {
+  barbellWeight = weight;
+  g.updateBarbellDisplay();
+};
+
+g.adjBarbellWeight = (delta) => {
+  barbellWeight = Math.max(20, Math.min(300, barbellWeight + delta));
+  g.updateBarbellDisplay();
+};
+
+g.updateBarbellDisplay = () => {
+  const wtEl = document.getElementById('barbell-weight-val');
+  if (wtEl) wtEl.textContent = `${barbellWeight} kg`;
+
+  const perSide = Math.max(0, (barbellWeight - BAR_WEIGHT) / 2);
+  const perSideEl = document.getElementById('barbell-perside-val');
+  if (perSideEl) perSideEl.textContent = `${perSide} kg / side (20 kg Olympic Bar)`;
+
+  const plateTypes = [
+    { weight: 25, color: '#ef4444', label: '25' },
+    { weight: 20, color: '#3b82f6', label: '20' },
+    { weight: 15, color: '#eab308', label: '15' },
+    { weight: 10, color: '#10b981', label: '10' },
+    { weight: 5, color: '#ffffff', textColor: '#1d1d1f', label: '5' },
+    { weight: 2.5, color: '#1d1d1f', textColor: '#ffffff', label: '2.5' }
+  ];
+
+  let rem = perSide;
+  const plateStack = [];
+  for (const p of plateTypes) {
+    while (rem >= p.weight - 0.01) {
+      plateStack.push(p);
+      rem -= p.weight;
+    }
+  }
+
+  const stackEl = document.getElementById('barbell-plate-stack');
+  if (stackEl) {
+    if (plateStack.length === 0) {
+      stackEl.innerHTML = '<span style="font-size: 11.5px; color: var(--text-muted); font-weight: 600;">Empty Olympic Bar (20 kg)</span>';
+    } else {
+      stackEl.innerHTML = plateStack.map(p => `
+        <div class="plate-chip" style="background: ${p.color}; color: ${p.textColor || '#ffffff'};" title="${p.weight} kg plate">
+          ${p.label}
+        </div>
+      `).join('');
+    }
+  }
+};
+
 export const renderHome = () => {
   const ludo = gamesData.find(g => g.id === 'ludo-prince') || gamesData[0];
   const pawdoku = gamesData.find(g => g.id === 'pawdoku') || gamesData[1];
   const cycle = suiteApps.find(a => a.id === 'cycle') || suiteApps[1];
   const calc = suiteApps.find(a => a.id === 'calculator') || suiteApps[0];
+  const nutrition = suiteApps.find(a => a.id === 'nutrition') || suiteApps[3];
+  const activity = suiteApps.find(a => a.id === 'activity') || suiteApps[2];
 
   return `
   <!-- STAGE 1: Cinematic Studio Hero Viewport -->
@@ -684,21 +798,21 @@ export const renderHome = () => {
     </h1>
 
     <p class="hero-description">
-      Thoughtfully engineered utilities and tactile board games.<br class="desktop-only"/>Encrypted on device. Designed to be lived with.
+      Thoughtfully engineered health utilities and tactile board games.<br class="desktop-only"/>Encrypted on device. Designed to be lived with.
     </p>
 
     <div class="hero-actions-row">
-      <button type="button" class="btn-primary-glow" onclick="window.scrollToSection('ludo-stage')">
-        <span>Explore Games</span> &darr;
-      </button>
-      <button type="button" class="btn-glass" onclick="window.scrollToSection('suite-stage')">
+      <button type="button" class="btn-primary-glow" onclick="window.scrollToSection('suite-stage')">
         <span>The Health Suite</span> &darr;
+      </button>
+      <button type="button" class="btn-glass" onclick="window.scrollToSection('games-stage')">
+        <span>EVLOME Games</span> &darr;
       </button>
     </div>
 
     <!-- Quiet Disciplines Strip -->
     <div class="hero-matrix-bar">
-      <span><strong>6</strong> Products</span>
+      <span><strong>6</strong> Sovereign Apps</span>
       <span style="opacity: 0.3;">&bull;</span>
       <span><strong>100%</strong> On-Device Sovereignty</span>
       <span style="opacity: 0.3;">&bull;</span>
@@ -708,443 +822,744 @@ export const renderHome = () => {
     </div>
   </section>
 
-  <!-- STAGE 2: EVLOME Games Arena Viewport (Ludo Prince) -->
-  <section id="ludo-stage" class="cinematic-stage arena-stage">
-    <div class="stage-split-grid">
-      <div class="stage-info-col">
-        <!-- App Lifecycle Status & Category Header -->
-        <div class="stage-status-badge-row">
-          <span class="status-pill status-pill-production">
-            <span class="pulse-dot green"></span>
-            LIVE
-          </span>
-          <span class="stage-discipline-badge">EVLOME Games</span>
-        </div>
-
-        <div class="stage-app-title-row">
-          <img src="${ludo.icon}" alt="${ludo.title} Logo" class="stage-app-icon" width="58" height="58" loading="lazy" decoding="async" style="box-shadow: 0 10px 28px rgba(2, 132, 199, 0.28);" />
-          <h2 class="stage-title">${ludo.title}</h2>
-        </div>
-
-        <div class="stage-subtitle" style="color: #0284c7;">Classic board play. Pure tactile physics.</div>
-        <p class="stage-desc">
-          The traditional race to home, engineered with physical dice inertia. Real-time multiplayer, local pass-and-play, and adaptive offline bot intelligence.
-        </p>
-
-        <!-- Architectural Micro-Specs -->
-        <div class="stage-specs-grid">
-          <div class="spec-item">
-            <span class="spec-label">Multiplayer</span>
-            <span class="spec-val">Online &amp; Pass-and-Play</span>
-          </div>
-          <div class="spec-item">
-            <span class="spec-label">Physics</span>
-            <span class="spec-val">Fair Tactile Inertia</span>
-          </div>
-          <div class="spec-item">
-            <span class="spec-label">Platforms</span>
-            <span class="spec-val">iOS &amp; Android</span>
-          </div>
-        </div>
-
-        <!-- Store Download Badges -->
-        <div class="store-badge-strip">
-          <a href="${ludo.appStoreUrl}" target="_blank" rel="noopener noreferrer" class="btn-store btn-app-store" title="Download Ludo Prince on the Apple App Store">
-            <svg class="store-icon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-              <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.63-.77 1.06-1.84.94-2.92-1 .04-2.14.67-2.81 1.45-.59.67-1.1 1.76-.96 2.82 1.11.09 2.21-.58 2.83-1.35z"/>
-            </svg>
-            <div class="store-badge-text">
-              <span class="store-badge-sub">Download on the</span>
-              <span class="store-badge-main">App Store</span>
-            </div>
-          </a>
-
-          <a href="${ludo.playStoreUrl}" target="_blank" rel="noopener noreferrer" class="btn-store btn-play-store" title="Get Ludo Prince on Google Play">
-            <svg class="store-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-              <path d="M3.609 1.814L13.793 12 3.61 22.186c-.368-.344-.61-.88-.61-1.56V3.374c0-.68.242-1.216.61-1.56zm11.24 11.243l2.296 2.296-11.83 6.83 9.534-9.126zm0-2.114L5.315 1.817l11.83 6.83-2.296 2.296zm1.488 1.057l3.65 2.108c.848.49.848 1.294 0 1.784l-3.65 2.108-2.072-2.072 2.072-2.028z"/>
-            </svg>
-            <div class="store-badge-text">
-              <span class="store-badge-sub">GET IT ON</span>
-              <span class="store-badge-main">Google Play</span>
-            </div>
-          </a>
-
-          <a href="/${ludo.id}" class="btn-glass" onclick="if(event){ event.preventDefault(); navigate('/${ludo.id}'); }">
-            Rules &amp; Specs &rarr;
-          </a>
-        </div>
-      </div>
-
-      <!-- Right Column: Royal Dice Signature Interaction -->
-      <div class="interactive-arena-card ludo-dice-only-card">
-        <!-- Tactile Dice Halo with Orbital Ring -->
-        <div class="ludo-dice-halo" style="margin: 0.5rem auto 1.5rem;">
-          <div class="dice-stage-box" onclick="window.rollLudoDice()" title="Tap dice to roll">
-            <div class="interactive-dice ludo-metallic-dice" id="interactive-dice-cube" data-val="6">
-              <div class="dice-pips-grid">
-                <span class="dice-pip active" id="dice-pip-1"></span>
-                <span class="dice-pip" id="dice-pip-2"></span>
-                <span class="dice-pip active" id="dice-pip-3"></span>
-                <span class="dice-pip active" id="dice-pip-4"></span>
-                <span class="dice-pip" id="dice-pip-5"></span>
-                <span class="dice-pip active" id="dice-pip-6"></span>
-                <span class="dice-pip active" id="dice-pip-7"></span>
-                <span class="dice-pip" id="dice-pip-8"></span>
-                <span class="dice-pip active" id="dice-pip-9"></span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <button type="button" class="btn-roll-dice-lg" onclick="window.rollLudoDice()">
-          Roll Dice
-        </button>
-
-        <div class="dice-result-log" id="dice-log-text">
-          <span style="color: var(--text-muted);">Click to roll</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- STAGE 3: Pawdoku Cozy Sanctuary Viewport -->
-  <section id="pawdoku-stage" class="cinematic-stage sanctuary-stage">
-    <div class="stage-split-grid">
-      <!-- Left Column: Cozy Sanctuary Star Battle Board Widget -->
-      <div class="interactive-sanctuary-card">
-        ${pawdokuSvgDefs}
-        <!-- Sanctuary Controls Bar -->
-        <div class="pawdoku-controls-strip">
-          <div class="pawdoku-gesture-pill">
-            <span class="gesture-step">Tap ${petMiniCrossSvg}</span>
-            <span class="gesture-divider">•</span>
-            <span class="gesture-step">Double-tap ${petMiniPawSvg}</span>
-            <span class="gesture-divider">•</span>
-            <span class="gesture-step" style="color: #EA580C; font-weight: 700;">Swipe line</span>
-          </div>
-          <button type="button" class="pawdoku-action-btn" onclick="window.restartPawdoku()" title="Reset board">
-            <span>↺</span> Reset
-          </button>
-        </div>
-
-        <!-- 4x4 Tactile Clay Star Battle Grid -->
-        <div class="pawdoku-board-wrapper">
-          <div class="pawdoku-board-4x4"
-               onpointerdown="window.pawdokuPointerDown(event)"
-               onpointermove="window.pawdokuPointerMove(event)"
-               onpointerup="window.pawdokuPointerUp(event)">
-            ${[0, 1, 2, 3].map(r => [0, 1, 2, 3].map(c => {
-              const regId = pawdokuConfig.regionMap[r][c];
-              const isInitialPet = (r === 0 && c === 1);
-              return `
-                <div class="paw-cell" data-paw-cell="${r}-${c}" data-region="${regId}" data-val="${isInitialPet ? 'pet' : ''}" ondblclick="event.preventDefault()">
-                  ${isInitialPet ? `<div class="pet-drop-marker">${petAvatarSvg}</div>` : ''}
-                </div>
-              `;
-            }).join('')).join('')}
-          </div>
-        </div>
-
-        <div class="pawdoku-feedback-bar" id="pawdoku-feedback-text">
-          <span><strong>1 of 4</strong> companions placed</span>
-        </div>
-      </div>
-
-      <!-- Right Column: Pawdoku Info -->
-      <div class="stage-info-col">
-        <!-- App Lifecycle Status & Category Header -->
-        <div class="stage-status-badge-row">
-          <span class="status-pill status-pill-development">
-            <span class="pulse-dot amber"></span>
-            DEV
-          </span>
-          <span class="stage-discipline-badge">EVLOME Games</span>
-        </div>
-
-        <div class="stage-app-title-row">
-          <img src="${pawdoku.icon}" alt="${pawdoku.title} Logo" class="stage-app-icon" width="58" height="58" loading="lazy" decoding="async" style="box-shadow: 0 10px 28px rgba(234, 88, 12, 0.28);" />
-          <h2 class="stage-title">${pawdoku.title}</h2>
-        </div>
-
-        <div class="stage-subtitle" style="color: #ea580c;">Star Battle logic. Zero rush.</div>
-        <p class="stage-desc">
-          One companion per row, column, and color region. Pure deductive strategy in a tranquil pastel pet sanctuary.
-        </p>
-
-        <!-- Architectural Micro-Specs -->
-        <div class="stage-specs-grid">
-          <div class="spec-item">
-            <span class="spec-label">Engine</span>
-            <span class="spec-val">Aloof Queens Logic</span>
-          </div>
-          <div class="spec-item">
-            <span class="spec-label">Pacing</span>
-            <span class="spec-val">Zero Timers or Stress</span>
-          </div>
-          <div class="spec-item">
-            <span class="spec-label">Access</span>
-            <span class="spec-val">Early Beta Preview</span>
-          </div>
-        </div>
-
-        <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; margin-top: 1.5rem;">
-          <a href="/beta?app=${pawdoku.id}" class="btn-primary-glow" style="box-shadow: 0 4px 16px rgba(234, 88, 12, 0.25);">
-            Request Early Preview &rarr;
-          </a>
-          <a href="/${pawdoku.id}" class="btn-glass" onclick="if(event){ event.preventDefault(); navigate('/${pawdoku.id}'); }">
-            Sanctuary Overview
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- STAGE 4: The Health Suite — Hormonal Rhythm & Clinical Biometrics (Cycle) -->
-  <section id="suite-stage" class="cinematic-stage suite-stage">
-    <div class="stage-split-grid">
-      <div class="stage-info-col">
-        <!-- App Lifecycle Status & Category Header -->
-        <div class="stage-status-badge-row">
-          <span class="status-pill status-pill-beta">
-            <span class="pulse-dot purple"></span>
-            BETA
-          </span>
-          <span class="stage-discipline-badge">The Health Suite</span>
-        </div>
-
-        <div class="stage-app-title-row">
-          <img src="/icons/cycle.png" alt="Cycle Logo" class="stage-app-icon" width="58" height="58" loading="lazy" decoding="async" style="box-shadow: 0 10px 28px rgba(225, 29, 72, 0.28);" />
-          <h2 class="stage-title">Cycle</h2>
-        </div>
-
-        <div class="stage-subtitle" style="color: #e11d48;">Hormonal rhythm. On-device privacy.</div>
-        <p class="stage-desc">
-          Four-phase biological rhythm tracking and Roetzer sympto-thermal ovulation telemetry — encrypted locally with zero cloud servers or commercial trackers.
-        </p>
-
-        <!-- Architectural Micro-Specs -->
-        <div class="stage-specs-grid">
-          <div class="spec-item">
-            <span class="spec-label">Clinical Core</span>
-            <span class="spec-val">Roetzer BBT Shift</span>
-          </div>
-          <div class="spec-item">
-            <span class="spec-label">Sovereignty</span>
-            <span class="spec-val">100% On-Device Vault</span>
-          </div>
-          <div class="spec-item">
-            <span class="spec-label">Integration</span>
-            <span class="spec-val">Training &amp; Fuel Sync</span>
-          </div>
-        </div>
-
-        <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
-          <a href="/cycle" class="btn-primary-glow" onclick="if(event){ event.preventDefault(); navigate('/cycle'); }">
-            Explore Cycle Architecture &rarr;
-          </a>
-          <a href="/beta?app=cycle" class="btn-glass" onclick="if(event){ event.preventDefault(); navigate('/beta?app=cycle'); }">
-            Join Beta
-          </a>
-        </div>
-      </div>
-
-      <!-- Right Column: Concentric Hormonal Rhythm Signature Wheel -->
-      <div class="phase-display-card cycle-dashboard-viewport">
-        <!-- Phase Switcher Tabs -->
-        <div class="phase-switcher-nav" style="margin: 0 auto 1.25rem;">
-          <button type="button" class="phase-btn" id="phase-btn-menstrual" onclick="window.switchCyclePhase('menstrual')">Menstrual</button>
-          <button type="button" class="phase-btn" id="phase-btn-follicular" onclick="window.switchCyclePhase('follicular')">Follicular</button>
-          <button type="button" class="phase-btn active" id="phase-btn-ovulation" onclick="window.switchCyclePhase('ovulation')">Ovulation</button>
-          <button type="button" class="phase-btn" id="phase-btn-luteal" onclick="window.switchCyclePhase('luteal')">Luteal</button>
-        </div>
-
-        <!-- Concentric Radiant Glowing Phase Wheel -->
-        <div class="cycle-wheel-container">
-          <div class="cycle-ring-outer" id="cycle-ring-glow">
-            <div class="cycle-ring-inner">
-              <div class="cycle-ring-center-content">
-                <span class="cycle-center-day" id="phase-day-text">Day 14 of 28</span>
-                <h4 class="cycle-center-phase" id="phase-title-text" style="color: #0284c7;">Ovulation Peak</h4>
-                <span class="cycle-center-readiness" id="phase-readiness-text" style="color: #0284c7;">Optimal Strength PRs</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Period Forecast Card -->
-        <div class="cycle-period-forecast-card">
-          <span class="cycle-forecast-drop">🩸</span>
-          <span class="cycle-forecast-text">Next period expected in <strong id="cycle-countdown-days" class="cycle-forecast-days">14 days</strong></span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- STAGE 5: The Health Suite — Clinical Biometrics & TDEE (Calculator+) -->
-  <section id="calculator-stage" class="cinematic-stage calculator-stage">
-    <div class="stage-split-grid">
-      <div class="stage-info-col">
-        <!-- App Lifecycle Status & Category Header -->
-        <div class="stage-status-badge-row">
-          <span class="status-pill status-pill-beta">
-            <span class="pulse-dot purple"></span>
-            BETA
-          </span>
-          <span class="stage-discipline-badge">The Health Suite</span>
-        </div>
-
-        <div class="stage-app-title-row">
-          <img src="${calc.icon}" alt="${calc.title} Logo" class="stage-app-icon" width="58" height="58" loading="lazy" decoding="async" style="box-shadow: 0 10px 28px rgba(124, 58, 237, 0.28);" />
-          <h2 class="stage-title">${calc.title}</h2>
-        </div>
-
-        <div class="stage-subtitle" style="color: #7c3aed;">Clinical biometrics and mathematical rigor.</div>
-        <p class="stage-desc">
-          Mifflin-St Jeor metabolic expenditure, US Navy body composition, macronutrient distribution, loan schedules, and 9-dimensional conversions. Computed entirely offline.
-        </p>
-
-        <!-- Architectural Micro-Specs -->
-        <div class="stage-specs-grid">
-          <div class="spec-item">
-            <span class="spec-label">Biometrics</span>
-            <span class="spec-val">Mifflin-St Jeor &amp; US Navy</span>
-          </div>
-          <div class="spec-item">
-            <span class="spec-label">Conversions</span>
-            <span class="spec-val">9 Physical Dimensions</span>
-          </div>
-          <div class="spec-item">
-            <span class="spec-label">Execution</span>
-            <span class="spec-val">100% Local &amp; Private</span>
-          </div>
-        </div>
-
-        <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
-          <a href="/beta?app=${calc.id}" class="btn-primary-glow" style="box-shadow: 0 4px 16px rgba(124, 58, 237, 0.25);">
-            Join the Beta &rarr;
-          </a>
-          <a href="/${calc.id}" class="btn-glass" onclick="if(event){ event.preventDefault(); navigate('/${calc.id}'); }">
-            Specifications
-          </a>
-        </div>
-      </div>
-
-      <!-- Right Column: Goal-Adaptive TDEE & Macro Allocation Engine -->
-      <div class="interactive-calculator-card">
-        <!-- Goal Selection Chips -->
-        <div class="calc-goal-strip">
-          <button type="button" class="calc-goal-btn active" id="calc-goal-cut" onclick="window.setCalcGoal('cut', 'calc-goal-cut')">
-            <span>Fat Loss</span>
-            <span class="calc-goal-pace">-500 kcal</span>
-          </button>
-          <button type="button" class="calc-goal-btn" id="calc-goal-maintain" onclick="window.setCalcGoal('maintain', 'calc-goal-maintain')">
-            <span>Maintain</span>
-            <span class="calc-goal-pace">Equilibrium</span>
-          </button>
-          <button type="button" class="calc-goal-btn" id="calc-goal-bulk" onclick="window.setCalcGoal('bulk', 'calc-goal-bulk')">
-            <span>Build Muscle</span>
-            <span class="calc-goal-pace">+300 kcal</span>
-          </button>
-        </div>
-
-        <!-- Biometric Controls Bar -->
-        <div class="calc-control-bar">
-          <div class="calc-weight-stepper">
-            <span class="calc-stepper-lbl">Weight</span>
-            <div class="calc-weight-box">
-              <button type="button" class="calc-step-btn" onclick="window.adjCalcWeight(-1)">&minus;</button>
-              <span class="calc-step-val"><strong id="calc-val-weight">74</strong> kg</span>
-              <button type="button" class="calc-step-btn" onclick="window.adjCalcWeight(1)">&#43;</button>
-            </div>
-          </div>
-
-          <div class="calc-act-strip">
-            <button type="button" class="calc-act-chip" id="calc-act-sedentary" onclick="window.setCalcActivity(1.2, 'calc-act-sedentary')">Sedentary</button>
-            <button type="button" class="calc-act-chip active" id="calc-act-moderate" onclick="window.setCalcActivity(1.55, 'calc-act-moderate')">Moderate</button>
-            <button type="button" class="calc-act-chip" id="calc-act-active" onclick="window.setCalcActivity(1.725, 'calc-act-active')">Active</button>
-          </div>
-        </div>
-
-        <!-- Calculated Output Bento -->
-        <div class="calc-output-bento">
-          <div class="calc-hero-result">
-            <div class="calc-hero-result-num" id="calc-res-tdee">2,162</div>
-            <div class="calc-hero-result-sub" id="calc-res-goal-sub">kcal / day &bull; Fat Loss (-500 kcal)</div>
-          </div>
-
-          <!-- Free Macro Splits -->
-          <div class="calc-macros-grid">
-            <div class="calc-macro-tile">
-              <span class="calc-macro-gram" id="calc-res-protein" style="color: #7c3aed;">162g</span>
-              <span class="calc-macro-name">Protein</span>
-            </div>
-            <div class="calc-macro-tile">
-              <span class="calc-macro-gram" id="calc-res-carb" style="color: #0284c7;">216g</span>
-              <span class="calc-macro-name">Carbs</span>
-            </div>
-            <div class="calc-macro-tile">
-              <span class="calc-macro-gram" id="calc-res-fat" style="color: #ea580c;">72g</span>
-              <span class="calc-macro-name">Fats</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- STAGE 6: The Product Matrix (Full Ecosystem Bento Grid) -->
-  <section id="matrix-stage" class="matrix-stage">
-    <div class="matrix-header">
-      <span class="stage-badge">ECOSYSTEM MATRIX</span>
-      <h2 class="stage-title">Two Disciplines. One Ecosystem.</h2>
-      <p style="color: var(--text-secondary); max-width: 520px; margin: 0 auto 2rem; font-size: 1.05rem;">
-        An expanding collection of precision utilities and mindful games.
+  <!-- STAGE 2: The Health Suite — Sovereign Vitality OS (Discipline 1) -->
+  <section id="suite-stage" class="discipline-stage health-suite-stage">
+    <div class="discipline-header-center">
+      <span class="stage-badge">
+        <span class="badge-dot" style="background: #10b981; box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);"></span>
+        THE HEALTH SUITE &bull; SOVEREIGN VITALITY OS
+      </span>
+      <h2 class="stage-title">Complete Health Telemetry. Sovereign on Device.</h2>
+      <p class="stage-subtitle-center">
+        Four interconnected disciplines engineered to track metabolic energy, kinetic performance, biological rhythm, and clinical precision &mdash; encrypted 100% on device with zero cloud tracking.
       </p>
 
-      <!-- Segmented Control Filter by Discipline -->
-      <div class="matrix-filter-nav" role="tablist" aria-label="Product discipline filter">
-        <button type="button" class="matrix-filter-btn active" id="filter-btn-all" onclick="window.filterMatrix('all')">
-          All
+      <!-- 4-App Selector Tabs (With Official App Logos) -->
+      <div class="discipline-tabs-nav" role="tablist" aria-label="Health Suite disciplines">
+        <button type="button" class="discipline-tab-btn active" id="health-tab-cycle" onclick="window.switchHealthTab('cycle')">
+          <img src="${cycle.icon}" alt="Cycle" class="tab-btn-icon" width="32" height="32" loading="lazy" decoding="async" />
+          <span class="tab-btn-text">
+            <span class="tab-btn-title">Cycle</span>
+            <span class="tab-btn-sub">Hormonal Rhythm</span>
+          </span>
+          <span class="tab-status-pill status-beta">BETA</span>
         </button>
-        <button type="button" class="matrix-filter-btn" id="filter-btn-health" onclick="window.filterMatrix('health')">
-          The Health Suite
+
+        <button type="button" class="discipline-tab-btn" id="health-tab-calculator" onclick="window.switchHealthTab('calculator')">
+          <img src="${calc.icon}" alt="Calculator+" class="tab-btn-icon" width="32" height="32" loading="lazy" decoding="async" />
+          <span class="tab-btn-text">
+            <span class="tab-btn-title">Calculator+</span>
+            <span class="tab-btn-sub">Clinical Biometrics</span>
+          </span>
+          <span class="tab-status-pill status-beta">BETA</span>
         </button>
-        <button type="button" class="matrix-filter-btn" id="filter-btn-games" onclick="window.filterMatrix('games')">
-          EVLOME Games
+
+        <button type="button" class="discipline-tab-btn" id="health-tab-nutrition" onclick="window.switchHealthTab('nutrition')">
+          <img src="${nutrition.icon}" alt="Nutrition" class="tab-btn-icon" width="32" height="32" loading="lazy" decoding="async" />
+          <span class="tab-btn-text">
+            <span class="tab-btn-title">Nutrition</span>
+            <span class="tab-btn-sub">Fasting &amp; Fuel</span>
+          </span>
+          <span class="tab-status-pill status-development">DEV</span>
+        </button>
+
+        <button type="button" class="discipline-tab-btn" id="health-tab-activity" onclick="window.switchHealthTab('activity')">
+          <img src="${activity.icon}" alt="Activity" class="tab-btn-icon" width="32" height="32" loading="lazy" decoding="async" />
+          <span class="tab-btn-text">
+            <span class="tab-btn-title">Activity</span>
+            <span class="tab-btn-sub">Kinetic &amp; Lifting</span>
+          </span>
+          <span class="tab-status-pill status-development">DEV</span>
         </button>
       </div>
     </div>
 
-    <div class="matrix-grid" id="matrix-grid-container">
-      ${allProducts.map(p => `
-        <a href="/${p.id}" class="matrix-card" data-category="${p.type === 'game' ? 'games' : 'health'}" data-status="${p.status}" style="--card-accent: ${p.accentColor};" onclick="if(event){ event.preventDefault(); navigate('/${p.id}'); }">
-          <div class="card-top-row">
-            <div class="card-identity-header">
-              <div class="card-app-icon" style="box-shadow: 0 0 20px ${p.accentColor}30;">
-                <img src="${p.icon}" alt="${p.title} Icon" width="44" height="44" loading="lazy" decoding="async" />
-              </div>
-              <div class="card-identity-titles">
-                <div class="card-category" style="color: ${p.accentColor};">${p.category}</div>
-                <h3 class="card-title">${p.title}</h3>
+    <!-- Health Panels Container -->
+    <div class="discipline-panels-wrap">
+      <!-- Panel 1: Cycle -->
+      <div id="health-panel-cycle" class="stage-split-grid discipline-panel fade-in-active" style="display: grid;">
+        <div class="stage-info-col">
+          <div class="stage-status-badge-row">
+            <span class="status-pill status-pill-beta">
+              <span class="pulse-dot purple"></span>
+              BETA
+            </span>
+            <span class="stage-discipline-badge" style="color: #e11d48; border-color: rgba(225, 29, 72, 0.25);">The Health Suite &bull; Biological Rhythm</span>
+          </div>
+
+          <div class="stage-app-title-row">
+            <img src="${cycle.icon}" alt="Cycle Logo" class="stage-app-icon" width="58" height="58" loading="lazy" decoding="async" style="box-shadow: 0 10px 28px rgba(225, 29, 72, 0.28);" />
+            <h3 class="stage-title">${cycle.title}</h3>
+          </div>
+
+          <div class="stage-subtitle" style="color: #e11d48;">Hormonal rhythm. On-device privacy.</div>
+          <p class="stage-desc">
+            Track hormonal shifts across menstrual, follicular, ovulation, and luteal phases. Pair sympto-thermal basal temperature with cervical telemetry to confirm peak fertility windows.
+          </p>
+
+          <div class="stage-specs-grid">
+            <div class="spec-item">
+              <span class="spec-label">Clinical Core</span>
+              <span class="spec-val">Roetzer BBT Shift</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Sovereignty</span>
+              <span class="spec-val">100% On-Device Vault</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Integration</span>
+              <span class="spec-val">Training &amp; Fuel Sync</span>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
+            <a href="/cycle" class="btn-primary-glow" onclick="if(event){ event.preventDefault(); navigate('/cycle'); }">
+              Explore Cycle Architecture &rarr;
+            </a>
+            <a href="/beta?app=cycle" class="btn-glass" onclick="if(event){ event.preventDefault(); navigate('/beta?app=cycle'); }">
+              Join Beta
+            </a>
+          </div>
+        </div>
+
+        <!-- Concentric Hormonal Rhythm Signature Wheel -->
+        <div class="phase-display-card cycle-dashboard-viewport">
+          <div class="phase-switcher-nav" style="margin: 0 auto 1.25rem;">
+            <button type="button" class="phase-btn" id="phase-btn-menstrual" onclick="window.switchCyclePhase('menstrual')">Menstrual</button>
+            <button type="button" class="phase-btn" id="phase-btn-follicular" onclick="window.switchCyclePhase('follicular')">Follicular</button>
+            <button type="button" class="phase-btn active" id="phase-btn-ovulation" onclick="window.switchCyclePhase('ovulation')">Ovulation</button>
+            <button type="button" class="phase-btn" id="phase-btn-luteal" onclick="window.switchCyclePhase('luteal')">Luteal</button>
+          </div>
+
+          <div class="cycle-wheel-container">
+            <div class="cycle-ring-outer" id="cycle-ring-glow">
+              <div class="cycle-ring-inner">
+                <div class="cycle-ring-center-content">
+                  <span class="cycle-center-day" id="phase-day-text">Day 14 of 28</span>
+                  <h4 class="cycle-center-phase" id="phase-title-text" style="color: #0284c7;">Ovulation Peak</h4>
+                  <span class="cycle-center-readiness" id="phase-readiness-text" style="color: #0284c7;">Optimal Strength PRs</span>
+                </div>
               </div>
             </div>
-            <span class="matrix-status-pill ${p.status === 'production' ? 'status-production' : p.status === 'beta' ? 'status-beta' : 'status-development'}">
-              <span class="pulse-dot ${p.status === 'production' ? 'green' : p.status === 'beta' ? 'purple' : 'amber'}"></span>
-              ${p.status === 'production' ? 'LIVE' : p.status === 'beta' ? 'BETA' : 'DEV'}
+          </div>
+
+          <div class="cycle-period-forecast-card">
+            <span class="cycle-forecast-drop">🩸</span>
+            <span class="cycle-forecast-text">Next period expected in <strong id="cycle-countdown-days" class="cycle-forecast-days">14 days</strong></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 2: Calculator+ -->
+      <div id="health-panel-calculator" class="stage-split-grid discipline-panel" style="display: none;">
+        <div class="stage-info-col">
+          <div class="stage-status-badge-row">
+            <span class="status-pill status-pill-beta">
+              <span class="pulse-dot purple"></span>
+              BETA
             </span>
+            <span class="stage-discipline-badge" style="color: #7c3aed; border-color: rgba(124, 58, 237, 0.25);">The Health Suite &bull; Clinical Biometrics</span>
           </div>
 
-          <p class="card-desc">${p.tagline || p.desc}</p>
-
-          <div class="card-action-btn ${p.status === 'production' ? 'card-action-live' : p.status === 'beta' ? 'card-action-beta' : 'card-action-dev'}">
-            <span>${p.status === 'production' ? 'Get App' : p.status === 'beta' ? 'Join Beta' : 'Preview'}</span> &rarr;
+          <div class="stage-app-title-row">
+            <img src="${calc.icon}" alt="${calc.title} Logo" class="stage-app-icon" width="58" height="58" loading="lazy" decoding="async" style="box-shadow: 0 10px 28px rgba(124, 58, 237, 0.28);" />
+            <h3 class="stage-title">${calc.title}</h3>
           </div>
-        </a>
-      `).join('')}
+
+          <div class="stage-subtitle" style="color: #7c3aed;">Clinical biometrics and mathematical rigor.</div>
+          <p class="stage-desc">
+            Dynamic energy expenditure calculated offline via personal biometric models. Balance macronutrient splits, analyze loan amortization schedules, and convert across 9 physical dimensions.
+          </p>
+
+          <div class="stage-specs-grid">
+            <div class="spec-item">
+              <span class="spec-label">Biometrics</span>
+              <span class="spec-val">Mifflin-St Jeor &amp; US Navy</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Conversions</span>
+              <span class="spec-val">9 Physical Dimensions</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Execution</span>
+              <span class="spec-val">100% Local &amp; Private</span>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
+            <a href="/beta?app=${calc.id}" class="btn-primary-glow" style="box-shadow: 0 4px 16px rgba(124, 58, 237, 0.25);">
+              Join the Beta &rarr;
+            </a>
+            <a href="/${calc.id}" class="btn-glass" onclick="if(event){ event.preventDefault(); navigate('/${calc.id}'); }">
+              Specifications
+            </a>
+          </div>
+        </div>
+
+        <!-- Goal-Adaptive TDEE & Macro Allocation Engine -->
+        <div class="interactive-calculator-card">
+          <div class="calc-goal-strip">
+            <button type="button" class="calc-goal-btn active" id="calc-goal-cut" onclick="window.setCalcGoal('cut', 'calc-goal-cut')">
+              <span>Fat Loss</span>
+              <span class="calc-goal-pace">-500 kcal</span>
+            </button>
+            <button type="button" class="calc-goal-btn" id="calc-goal-maintain" onclick="window.setCalcGoal('maintain', 'calc-goal-maintain')">
+              <span>Maintain</span>
+              <span class="calc-goal-pace">Equilibrium</span>
+            </button>
+            <button type="button" class="calc-goal-btn" id="calc-goal-bulk" onclick="window.setCalcGoal('bulk', 'calc-goal-bulk')">
+              <span>Build Muscle</span>
+              <span class="calc-goal-pace">+300 kcal</span>
+            </button>
+          </div>
+
+          <div class="calc-control-bar">
+            <div class="calc-weight-stepper">
+              <span class="calc-stepper-lbl">Weight</span>
+              <div class="calc-weight-box">
+                <button type="button" class="calc-step-btn" onclick="window.adjCalcWeight(-1)">&minus;</button>
+                <span class="calc-step-val"><strong id="calc-val-weight">74</strong> kg</span>
+                <button type="button" class="calc-step-btn" onclick="window.adjCalcWeight(1)">&#43;</button>
+              </div>
+            </div>
+
+            <div class="calc-act-strip">
+              <button type="button" class="calc-act-chip" id="calc-act-sedentary" onclick="window.setCalcActivity(1.2, 'calc-act-sedentary')">Sedentary</button>
+              <button type="button" class="calc-act-chip active" id="calc-act-moderate" onclick="window.setCalcActivity(1.55, 'calc-act-moderate')">Moderate</button>
+              <button type="button" class="calc-act-chip" id="calc-act-active" onclick="window.setCalcActivity(1.725, 'calc-act-active')">Active</button>
+            </div>
+          </div>
+
+          <div class="calc-output-bento">
+            <div class="calc-hero-result">
+              <div class="calc-hero-result-num" id="calc-res-tdee">2,162</div>
+              <div class="calc-hero-result-sub" id="calc-res-goal-sub">kcal / day &bull; Fat Loss (-500 kcal)</div>
+            </div>
+
+            <div class="calc-macros-grid">
+              <div class="calc-macro-tile">
+                <span class="calc-macro-gram" id="calc-res-protein" style="color: #7c3aed;">162g</span>
+                <span class="calc-macro-name">Protein</span>
+              </div>
+              <div class="calc-macro-tile">
+                <span class="calc-macro-gram" id="calc-res-carb" style="color: #0284c7;">216g</span>
+                <span class="calc-macro-name">Carbs</span>
+              </div>
+              <div class="calc-macro-tile">
+                <span class="calc-macro-gram" id="calc-res-fat" style="color: #ea580c;">72g</span>
+                <span class="calc-macro-name">Fats</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 3: Nutrition -->
+      <div id="health-panel-nutrition" class="stage-split-grid discipline-panel" style="display: none;">
+        <div class="stage-info-col">
+          <div class="stage-status-badge-row">
+            <span class="status-pill status-pill-development">
+              <span class="pulse-dot amber"></span>
+              DEV
+            </span>
+            <span class="stage-discipline-badge" style="color: #059669; border-color: rgba(5, 150, 105, 0.25);">The Health Suite &bull; Metabolic Balance</span>
+          </div>
+
+          <div class="stage-app-title-row">
+            <img src="${nutrition.icon}" alt="${nutrition.title} Logo" class="stage-app-icon" width="58" height="58" loading="lazy" decoding="async" style="box-shadow: 0 10px 28px rgba(5, 150, 105, 0.28);" />
+            <h3 class="stage-title">${nutrition.title}</h3>
+          </div>
+
+          <div class="stage-subtitle" style="color: #059669;">Metabolic balance and whole-food telemetry.</div>
+          <p class="stage-desc">
+            Effortless whole-food logging, intermittent fasting telemetry, and personalized metabolic goals. Local nutritional database with zero commercial profiling.
+          </p>
+
+          <div class="stage-specs-grid">
+            <div class="spec-item">
+              <span class="spec-label">Fasting</span>
+              <span class="spec-val">16:8, 18:6 &amp; OMAD</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Macro Rings</span>
+              <span class="spec-val">5 Essential Targets</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Database</span>
+              <span class="spec-val">100% On-Device Vault</span>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
+            <a href="/nutrition" class="btn-primary-glow" onclick="if(event){ event.preventDefault(); navigate('/nutrition'); }">
+              Explore Nutrition Architecture &rarr;
+            </a>
+            <a href="/beta?app=nutrition" class="btn-glass" onclick="if(event){ event.preventDefault(); navigate('/beta?app=nutrition'); }">
+              Join Beta
+            </a>
+          </div>
+        </div>
+
+        <!-- Interactive 16:8 Fasting Telemetry Visualizer Card -->
+        <div class="fasting-card">
+          <div class="fasting-presets">
+            <button type="button" class="fasting-preset-btn active" id="fast-preset-16" onclick="window.setFastingPreset(16, 'fast-preset-16')">16:8 LeanGains</button>
+            <button type="button" class="fasting-preset-btn" id="fast-preset-18" onclick="window.setFastingPreset(18, 'fast-preset-18')">18:6 Fast</button>
+            <button type="button" class="fasting-preset-btn" id="fast-preset-20" onclick="window.setFastingPreset(20, 'fast-preset-20')">20:4 OMAD</button>
+          </div>
+
+          <div class="fasting-hero-circle">
+            <span class="fasting-elapsed-num">14h 25m</span>
+            <span class="fasting-elapsed-lbl" id="fasting-target-hours">16h Fast</span>
+          </div>
+
+          <div class="fasting-zone-banner">
+            <span style="font-size: 16px;">🔥</span>
+            <span id="fasting-zone-text">Peak Fat Burning Zone</span>
+          </div>
+          <span style="font-size: 11px; color: var(--text-muted); margin-top: 8px;" id="fasting-remaining-text">1h 35m remaining to target</span>
+        </div>
+      </div>
+
+      <!-- Panel 4: Activity -->
+      <div id="health-panel-activity" class="stage-split-grid discipline-panel" style="display: none;">
+        <div class="stage-info-col">
+          <div class="stage-status-badge-row">
+            <span class="status-pill status-pill-development">
+              <span class="pulse-dot amber"></span>
+              DEV
+            </span>
+            <span class="stage-discipline-badge" style="color: #d97706; border-color: rgba(217, 119, 6, 0.25);">The Health Suite &bull; Kinetic Performance</span>
+          </div>
+
+          <div class="stage-app-title-row">
+            <img src="${activity.icon}" alt="${activity.title} Logo" class="stage-app-icon" width="58" height="58" loading="lazy" decoding="async" style="box-shadow: 0 10px 28px rgba(217, 119, 6, 0.28);" />
+            <h3 class="stage-title">${activity.title}</h3>
+          </div>
+
+          <div class="stage-subtitle" style="color: #d97706;">Kinetic performance and workout logging.</div>
+          <p class="stage-desc">
+            Versatile strength tracking for gym and home training. Set/rep logging, haptic rest countdown timers, barbell plate math, and progressive overload metrics.
+          </p>
+
+          <div class="stage-specs-grid">
+            <div class="spec-item">
+              <span class="spec-label">Formulas</span>
+              <span class="spec-val">Brzycki &amp; Epley 1RM</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Assistant</span>
+              <span class="spec-val">Barbell Plate Math</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Pacing</span>
+              <span class="spec-val">Haptic Rest Timers</span>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
+            <a href="/activity" class="btn-primary-glow" onclick="if(event){ event.preventDefault(); navigate('/activity'); }">
+              Explore Activity Architecture &rarr;
+            </a>
+            <a href="/beta?app=activity" class="btn-glass" onclick="if(event){ event.preventDefault(); navigate('/beta?app=activity'); }">
+              Join Beta
+            </a>
+          </div>
+        </div>
+
+        <!-- Interactive Barbell Plate Math Assistant Card -->
+        <div class="barbell-card">
+          <div class="barbell-stepper-box">
+            <button type="button" class="barbell-step-btn" onclick="window.adjBarbellWeight(-5)">&minus;</button>
+            <span class="barbell-weight-display" id="barbell-weight-val">100 kg</span>
+            <button type="button" class="barbell-step-btn" onclick="window.adjBarbellWeight(5)">&#43;</button>
+          </div>
+          <span class="barbell-sub-calc" id="barbell-perside-val">40 kg / side (20 kg Olympic Bar)</span>
+
+          <div class="barbell-visual-bar" id="barbell-plate-stack">
+            <div class="plate-chip" style="background: #3b82f6; color: #ffffff;" title="20 kg plate">20</div>
+            <div class="plate-chip" style="background: #3b82f6; color: #ffffff;" title="20 kg plate">20</div>
+          </div>
+
+          <div class="barbell-quick-load">
+            <button type="button" class="barbell-quick-btn" onclick="window.setBarbellWeight(60)">60 kg</button>
+            <button type="button" class="barbell-quick-btn" onclick="window.setBarbellWeight(100)">100 kg</button>
+            <button type="button" class="barbell-quick-btn" onclick="window.setBarbellWeight(140)">140 kg</button>
+            <button type="button" class="barbell-quick-btn" onclick="window.setBarbellWeight(180)">180 kg</button>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- STAGE 7: The EVLOME Codex & Principles -->
+  <!-- STAGE 3: EVLOME Games — Tactile Joy & Mindful Play (Discipline 2) -->
+  <section id="games-stage" class="cinematic-stage discipline-stage games-discipline-stage">
+    <div class="discipline-header-center">
+      <span class="stage-badge">
+        <span class="badge-dot" style="background: #0284c7; box-shadow: 0 0 8px rgba(2, 132, 199, 0.6);"></span>
+        EVLOME GAMES &bull; TACTILE JOY &amp; MINDFUL PLAY
+      </span>
+      <h2 class="stage-title">Pure Play. Zero Compromise.</h2>
+      <p class="stage-subtitle-center">
+        Tactile physics, physical dice inertia, and mindful puzzle sanctuaries. 100% ad-free online and local multiplayer with zero predatory countdown timers.
+      </p>
+
+      <!-- 2-Game Selector Tabs (With Official App Logos) -->
+      <div class="discipline-tabs-nav games-tabs-nav" role="tablist" aria-label="EVLOME Games">
+        <button type="button" class="discipline-tab-btn active" id="game-tab-ludo-prince" onclick="window.switchGameTab('ludo-prince')">
+          <img src="${ludo.icon}" alt="Ludo Prince" class="tab-btn-icon" width="32" height="32" loading="lazy" decoding="async" />
+          <span class="tab-btn-text">
+            <span class="tab-btn-title">Ludo Prince</span>
+            <span class="tab-btn-sub">Tactile Multiplayer Board</span>
+          </span>
+          <span class="tab-status-pill status-production">LIVE</span>
+        </button>
+
+        <button type="button" class="discipline-tab-btn" id="game-tab-pawdoku" onclick="window.switchGameTab('pawdoku')">
+          <img src="${pawdoku.icon}" alt="Pawdoku" class="tab-btn-icon" width="32" height="32" loading="lazy" decoding="async" />
+          <span class="tab-btn-text">
+            <span class="tab-btn-title">Pawdoku</span>
+            <span class="tab-btn-sub">Star Battle Sanctuary</span>
+          </span>
+          <span class="tab-status-pill status-development">DEV</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Games Panels Container -->
+    <div class="discipline-panels-wrap">
+      <!-- Panel 1: Ludo Prince -->
+      <div id="game-panel-ludo-prince" class="stage-split-grid discipline-panel fade-in-active" style="display: grid;">
+        <div class="stage-info-col">
+          <div class="stage-status-badge-row">
+            <span class="status-pill status-pill-production">
+              <span class="pulse-dot green"></span>
+              LIVE
+            </span>
+            <span class="stage-discipline-badge">EVLOME Games</span>
+          </div>
+
+          <div class="stage-app-title-row">
+            <img src="${ludo.icon}" alt="${ludo.title} Logo" class="stage-app-icon" width="58" height="58" loading="lazy" decoding="async" style="box-shadow: 0 10px 28px rgba(2, 132, 199, 0.28);" />
+            <h3 class="stage-title">${ludo.title}</h3>
+          </div>
+
+          <div class="stage-subtitle" style="color: #0284c7;">Classic board play. Pure tactile physics.</div>
+          <p class="stage-desc">
+            The traditional race to home, engineered with physical dice inertia. Real-time multiplayer, local pass-and-play, and adaptive offline bot intelligence.
+          </p>
+
+          <div class="stage-specs-grid">
+            <div class="spec-item">
+              <span class="spec-label">Multiplayer</span>
+              <span class="spec-val">Online &amp; Pass-and-Play</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Physics</span>
+              <span class="spec-val">Fair Tactile Inertia</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Platforms</span>
+              <span class="spec-val">iOS &amp; Android</span>
+            </div>
+          </div>
+
+          <div class="store-badge-strip" style="margin-top: 1.5rem;">
+            <a href="${ludo.appStoreUrl}" target="_blank" rel="noopener noreferrer" class="btn-store btn-app-store" title="Download Ludo Prince on the Apple App Store">
+              <svg class="store-icon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.63-.77 1.06-1.84.94-2.92-1 .04-2.14.67-2.81 1.45-.59.67-1.1 1.76-.96 2.82 1.11.09 2.21-.58 2.83-1.35z"/>
+              </svg>
+              <div class="store-badge-text">
+                <span class="store-badge-sub">Download on the</span>
+                <span class="store-badge-main">App Store</span>
+              </div>
+            </a>
+            <a href="${ludo.playStoreUrl}" target="_blank" rel="noopener noreferrer" class="btn-store btn-play-store" title="Get Ludo Prince on Google Play">
+              <svg class="store-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                <path d="M3.609 1.814L13.793 12 3.61 22.186c-.368-.344-.61-.88-.61-1.56V3.374c0-.68.242-1.216.61-1.56zm11.24 11.243l2.296 2.296-11.83 6.83 9.534-9.126zm0-2.114L5.315 1.817l11.83 6.83-2.296 2.296zm1.488 1.057l3.65 2.108c.848.49.848 1.294 0 1.784l-3.65 2.108-2.072-2.072 2.072-2.028z"/>
+              </svg>
+              <div class="store-badge-text">
+                <span class="store-badge-sub">GET IT ON</span>
+                <span class="store-badge-main">Google Play</span>
+              </div>
+            </a>
+            <a href="/${ludo.id}" class="btn-glass" onclick="if(event){ event.preventDefault(); navigate('/${ludo.id}'); }">
+              Overview
+            </a>
+          </div>
+        </div>
+
+        <!-- 3D Inertia Dice Interactive Viewport -->
+        <div class="interactive-arena-card ludo-dice-only-card">
+          <div class="arena-room-pill">
+            <span class="pulse-green"></span>
+            ROYAL DICE ARENA &bull; LIVE ENGINE
+          </div>
+
+          <!-- Tactile Dice Halo with Orbital Ring -->
+          <div class="ludo-dice-halo">
+            <div class="dice-stage-box" onclick="window.rollLudoDice()" title="Tap dice to roll">
+              <div class="interactive-dice ludo-metallic-dice" id="interactive-dice-cube" data-val="6">
+                <div class="dice-pips-grid">
+                  <span class="dice-pip active" id="dice-pip-1"></span>
+                  <span class="dice-pip" id="dice-pip-2"></span>
+                  <span class="dice-pip active" id="dice-pip-3"></span>
+                  <span class="dice-pip active" id="dice-pip-4"></span>
+                  <span class="dice-pip" id="dice-pip-5"></span>
+                  <span class="dice-pip active" id="dice-pip-6"></span>
+                  <span class="dice-pip active" id="dice-pip-7"></span>
+                  <span class="dice-pip" id="dice-pip-8"></span>
+                  <span class="dice-pip active" id="dice-pip-9"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button type="button" class="btn-roll-dice-lg" onclick="window.rollLudoDice()">
+            Roll Dice
+          </button>
+
+          <div class="dice-result-log" id="dice-log-text">
+            <span style="color: var(--text-muted);">Tap dice or button to roll &bull; Physical inertia</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 2: Pawdoku -->
+      <div id="game-panel-pawdoku" class="stage-split-grid discipline-panel" style="display: none;">
+        <div class="stage-info-col">
+          <div class="stage-status-badge-row">
+            <span class="status-pill status-pill-development">
+              <span class="pulse-dot amber"></span>
+              DEV
+            </span>
+            <span class="stage-discipline-badge">EVLOME Games</span>
+          </div>
+
+          <div class="stage-app-title-row">
+            <img src="${pawdoku.icon}" alt="${pawdoku.title} Logo" class="stage-app-icon" width="58" height="58" loading="lazy" decoding="async" style="box-shadow: 0 10px 28px rgba(234, 88, 12, 0.28);" />
+            <h3 class="stage-title">${pawdoku.title}</h3>
+          </div>
+
+          <div class="stage-subtitle" style="color: #ea580c;">Star Battle logic. Zero rush.</div>
+          <p class="stage-desc">
+            One companion per row, column, and color region. Pure deductive strategy in a tranquil pastel pet sanctuary.
+          </p>
+
+          <div class="stage-specs-grid">
+            <div class="spec-item">
+              <span class="spec-label">Engine</span>
+              <span class="spec-val">Aloof Queens Logic</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Pacing</span>
+              <span class="spec-val">Zero Timers or Stress</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Access</span>
+              <span class="spec-val">Early Beta Preview</span>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; margin-top: 1.5rem;">
+            <a href="/beta?app=${pawdoku.id}" class="btn-primary-glow" style="box-shadow: 0 4px 16px rgba(234, 88, 12, 0.25);">
+              Request Early Preview &rarr;
+            </a>
+            <a href="/${pawdoku.id}" class="btn-glass" onclick="if(event){ event.preventDefault(); navigate('/${pawdoku.id}'); }">
+              Sanctuary Overview
+            </a>
+          </div>
+        </div>
+
+        <!-- 4x4 Tactile Clay Star Battle Board -->
+        <div class="pawdoku-sanctuary-viewport">
+          <div class="pawdoku-sanctuary-header">
+            <div class="pawdoku-gesture-pill" title="Tap to cross • Double-tap to place pet • Drag to paint crosses">
+              <span class="gesture-step">Tap ${petMiniCrossSvg}</span>
+              <span class="gesture-divider">•</span>
+              <span class="gesture-step">Double-tap ${petMiniPawSvg}</span>
+              <span class="gesture-divider">•</span>
+              <span class="gesture-step" style="color: #EA580C; font-weight: 700;">Swipe line</span>
+            </div>
+            <button type="button" class="pawdoku-action-btn" onclick="window.restartPawdoku()" title="Reset board">
+              <span>↺</span> Reset
+            </button>
+          </div>
+
+          <div class="pawdoku-board-wrapper">
+            <div class="pawdoku-board-4x4"
+                 onpointerdown="window.pawdokuPointerDown(event)"
+                 onpointermove="window.pawdokuPointerMove(event)"
+                 onpointerup="window.pawdokuPointerUp(event)">
+              ${[0, 1, 2, 3].map(r => [0, 1, 2, 3].map(c => {
+                const regId = pawdokuConfig.regionMap[r][c];
+                const isInitialPet = (r === 0 && c === 1);
+                return `
+                  <div class="paw-cell" data-paw-cell="${r}-${c}" data-region="${regId}" data-val="${isInitialPet ? 'pet' : ''}" ondblclick="event.preventDefault()">
+                    ${isInitialPet ? `<div class="pet-drop-marker">${petAvatarSvg}</div>` : ''}
+                  </div>
+                `;
+              }).join('')).join('')}
+            </div>
+          </div>
+
+          <div class="pawdoku-feedback-bar" id="pawdoku-feedback-text">
+            <span><strong>1 of 4</strong> companions placed</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STAGE 4: EVLOME ONE — The Universal Membership Showcase (No Prices) -->
+  <section id="one-stage" class="one-stage">
+    <div class="one-container">
+      <div class="one-header-center">
+        <span class="stage-badge">
+          <span class="badge-dot" style="background: #f59e0b; box-shadow: 0 0 8px rgba(245, 158, 11, 0.6);"></span>
+          EVLOME ONE &bull; UNIVERSAL MEMBERSHIP
+        </span>
+        <h2 class="stage-title">All Apps. One Membership.</h2>
+        <p class="stage-subtitle-center">
+          A single universal pass that unlocks every Pro capability, clinical health telemetry tool, and game across the entire EVLOME universe — with zero ads, private cloud sync, and all future app releases automatically included. Available directly inside any EVLOME app.
+        </p>
+      </div>
+
+      <!-- App Icons Constellation Strip -->
+      <div class="one-apps-constellation">
+        <span class="one-constellation-lbl">UNIFIED MEMBERSHIP ACROSS ALL 6 APPS</span>
+        <div class="one-constellation-icons">
+          <div class="one-constellation-icon" title="Nutrition">
+            <img src="${nutrition.icon}" alt="Nutrition" width="44" height="44" loading="lazy" decoding="async" />
+          </div>
+          <div class="one-constellation-icon" title="Activity">
+            <img src="${activity.icon}" alt="Activity" width="44" height="44" loading="lazy" decoding="async" />
+          </div>
+          <div class="one-constellation-icon" title="Cycle">
+            <img src="${cycle.icon}" alt="Cycle" width="44" height="44" loading="lazy" decoding="async" />
+          </div>
+          <div class="one-constellation-icon" title="Calculator+">
+            <img src="${calc.icon}" alt="Calculator+" width="44" height="44" loading="lazy" decoding="async" />
+          </div>
+          <div class="one-constellation-icon" title="Ludo Prince">
+            <img src="${ludo.icon}" alt="Ludo Prince" width="44" height="44" loading="lazy" decoding="async" />
+          </div>
+          <div class="one-constellation-icon" title="Pawdoku">
+            <img src="${pawdoku.icon}" alt="Pawdoku" width="44" height="44" loading="lazy" decoding="async" />
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 Ecosystem Pillars Bento -->
+      <div class="one-grid">
+        <div class="one-card">
+          <div class="one-card-icon-group">
+            <img src="${nutrition.icon}" alt="Nutrition Logo" class="one-mini-logo" width="36" height="36" loading="lazy" decoding="async" />
+            <img src="${activity.icon}" alt="Activity Logo" class="one-mini-logo" width="36" height="36" loading="lazy" decoding="async" />
+            <img src="${cycle.icon}" alt="Cycle Logo" class="one-mini-logo" width="36" height="36" loading="lazy" decoding="async" />
+            <img src="${calc.icon}" alt="Calculator+ Logo" class="one-mini-logo" width="36" height="36" loading="lazy" decoding="async" />
+          </div>
+          <span class="one-card-tag" style="color: #059669;">THE HEALTH SUITE</span>
+          <h3 class="one-card-title">Precision Health OS</h3>
+          <p class="one-card-desc">
+            Complete telemetry across metabolic energy, strength training, hormonal rhythm, and clinical biometrics.
+          </p>
+          <ul class="one-card-perks">
+            <li>✓ Nutrition: Whole-food logging &amp; fasting telemetry</li>
+            <li>✓ Activity: Workout sets, plate math &amp; rest timers</li>
+            <li>✓ Cycle: Hormonal rhythm &amp; ovulation telemetry</li>
+            <li>✓ Calculator+: 50+ clinical metabolic &amp; math models</li>
+          </ul>
+        </div>
+
+        <div class="one-card">
+          <div class="one-card-icon-group">
+            <img src="${ludo.icon}" alt="Ludo Prince Logo" class="one-mini-logo" width="36" height="36" loading="lazy" decoding="async" />
+            <img src="${pawdoku.icon}" alt="Pawdoku Logo" class="one-mini-logo" width="36" height="36" loading="lazy" decoding="async" />
+          </div>
+          <span class="one-card-tag" style="color: #6366f1;">THE PLAY SUITE</span>
+          <h3 class="one-card-title">Pure Play &amp; Ad-Free</h3>
+          <p class="one-card-desc">
+            Multiplayer board classics and mindful puzzles. Enjoy 100% ad-free gameplay with royal cosmetics and VIP perks.
+          </p>
+          <ul class="one-card-perks">
+            <li>✓ 100% ad-free online &amp; pass-and-play</li>
+            <li>✓ Ludo Prince VIP: royal boards &amp; golden dice</li>
+            <li>✓ Monthly bonus coin grants &amp; VIP perks</li>
+            <li>✓ All future game releases automatically included</li>
+          </ul>
+        </div>
+
+        <div class="one-card">
+          <div class="one-card-icon-wrap" style="background: rgba(245, 158, 11, 0.1); color: #d97706;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>
+          </div>
+          <span class="one-card-tag" style="color: #d97706;">TOOLS &amp; CLOUD VAULT</span>
+          <h3 class="one-card-title">Private Cloud Sync</h3>
+          <p class="one-card-desc">
+            Private multi-device sync across iPhone, iPad, and Android with zero-custody on-device encryption. Seamless continuity across your entire ecosystem.
+          </p>
+          <ul class="one-card-perks">
+            <li>✓ Encrypted cross-device cloud sync</li>
+            <li>✓ Offline-first architecture</li>
+            <li>✓ Zero tracking, ads, or data custody</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Feature Highlight Strip (Apple Bento Banner - No Prices) -->
+      <div class="one-membership-strip">
+        <div class="one-strip-col">
+          <div class="one-strip-eyebrow">ONE UNIFIED ACCOUNT</div>
+          <h3 class="one-strip-title">Unlock Once. Enjoy Across Every Device.</h3>
+          <p class="one-strip-desc">
+            Subscribe through Apple App Store or Google Play in any EVLOME app. Your membership instantly activates across every app and device linked to your EVLOME ID — with effortless cancellation and family sharing support.
+          </p>
+        </div>
+        <div class="one-strip-pills">
+          <div class="one-feature-badge">
+            <svg class="badge-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>7-Day Free Trial Included</span>
+          </div>
+          <div class="one-feature-badge">
+            <svg class="badge-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Annual &amp; Monthly Plans Available</span>
+          </div>
+          <div class="one-feature-badge">
+            <svg class="badge-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Cancel Anytime in App Settings</span>
+          </div>
+          <div class="one-feature-badge">
+            <svg class="badge-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>All Future Apps Automatically Included</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Continuous Evolution Guarantee Banner -->
+      <div class="one-guarantee-banner">
+        <div class="one-guarantee-icon">👑</div>
+        <div class="one-guarantee-content">
+          <div class="one-guarantee-title">Continuous Evolution Included</div>
+          <div class="one-guarantee-desc">
+            Never purchase an individual app upgrade again. When new health tools, games, or features launch, they are instantly unlocked for all Evlome One members across all your devices.
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Row -->
+      <div class="one-actions-row">
+        <a href="/beta" class="btn-primary-glow" onclick="if(event){ event.preventDefault(); navigate('/beta'); }">
+          Join Early Access &rarr;
+        </a>
+        <button type="button" class="btn-glass" onclick="window.scrollToSection('principles-section')">
+          Explore The Codex &darr;
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- STAGE 5: The EVLOME Codex & Principles -->
   <section id="principles-section" class="codex-section">
     <div class="codex-container">
       <span class="stage-badge">THE CODEX</span>
@@ -1189,8 +1604,8 @@ export const renderHome = () => {
     </div>
   </section>
 
-  <!-- STAGE 8: Beta Invitation Terminal -->
-  <section class="cinematic-stage" style="min-height: 50vh; text-align: center; align-items: center; justify-content: center; padding: 4rem 1.5rem;">
+  <!-- STAGE 6: Beta Invitation Terminal -->
+  <section class="cinematic-stage" style="min-height: 48vh; text-align: center; align-items: center; justify-content: center; padding: 4rem 1.5rem;">
     <span class="stage-badge">EARLY ACCESS PROGRAM</span>
     <h2 class="stage-title" style="max-width: 650px; margin: 0.5rem auto 1rem;">
       Shape the Future of EVLOME.

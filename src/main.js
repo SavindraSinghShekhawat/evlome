@@ -24,8 +24,8 @@ document.querySelector('#app').innerHTML = `
       <!-- Desktop Nav -->
       <nav class="nav-links-row" aria-label="Primary Navigation">
         <button type="button" class="nav-anchor-btn" onclick="window.scrollToSection('suite-stage')">The Health Suite</button>
-        <button type="button" class="nav-anchor-btn" onclick="window.scrollToSection('ludo-stage')">EVLOME Games</button>
-        <button type="button" class="nav-anchor-btn" onclick="window.scrollToSection('matrix-stage')">Ecosystem Matrix</button>
+        <button type="button" class="nav-anchor-btn" onclick="window.scrollToSection('games-stage')">EVLOME Games</button>
+        <button type="button" class="nav-anchor-btn" onclick="window.scrollToSection('one-stage')">EVLOME One</button>
         <button type="button" class="nav-anchor-btn" onclick="window.scrollToSection('principles-section')">The Codex</button>
         <a href="/beta" class="nav-cta-pill">Join Beta</a>
       </nav>
@@ -44,8 +44,8 @@ document.querySelector('#app').innerHTML = `
   <!-- Mobile Slide-down Sheet -->
   <aside class="mobile-sheet" id="mobile-sheet" aria-label="Mobile Navigation">
     <button type="button" class="mobile-sheet-link" onclick="window.scrollToSection('suite-stage')">The Health Suite</button>
-    <button type="button" class="mobile-sheet-link" onclick="window.scrollToSection('ludo-stage')">EVLOME Games</button>
-    <button type="button" class="mobile-sheet-link" onclick="window.scrollToSection('matrix-stage')">Ecosystem Matrix</button>
+    <button type="button" class="mobile-sheet-link" onclick="window.scrollToSection('games-stage')">EVLOME Games</button>
+    <button type="button" class="mobile-sheet-link" onclick="window.scrollToSection('one-stage')">EVLOME One</button>
     <button type="button" class="mobile-sheet-link" onclick="window.scrollToSection('principles-section')">The Codex</button>
     <a href="/beta" class="mobile-sheet-link" style="color: var(--accent-brand);" onclick="if(event){ event.preventDefault(); window.closeMobileMenu(); navigate('/beta'); }">Apply for Beta &rarr;</a>
   </aside>
@@ -64,6 +64,7 @@ document.querySelector('#app').innerHTML = `
             <li><a href="/cycle" onclick="if(event){ event.preventDefault(); navigate('/cycle'); }">Cycle <span style="font-size:10px; color:#7c3aed; font-weight:700;">(Beta)</span></a></li>
             <li><a href="/activity" onclick="if(event){ event.preventDefault(); navigate('/activity'); }">Activity <span style="font-size:10px; color:#b45309; font-weight:700;">(In Dev)</span></a></li>
             <li><a href="/nutrition" onclick="if(event){ event.preventDefault(); navigate('/nutrition'); }">Nutrition <span style="font-size:10px; color:#b45309; font-weight:700;">(In Dev)</span></a></li>
+            <li><a href="/one" onclick="if(event){ event.preventDefault(); window.scrollToSection('one-stage'); }">EVLOME One <span style="font-size:10px; color:#f59e0b; font-weight:800;">(Pass)</span></a></li>
           </ul>
         </div>
 
@@ -450,13 +451,19 @@ const renderCurrentRoute = () => {
   } else if (path === '/games') {
     if (!isHomeMounted()) contentDiv.innerHTML = renderHome();
     requestAnimationFrame(() => {
-      const el = document.getElementById('ludo-stage');
+      const el = document.getElementById('games-stage');
       if (el) el.scrollIntoView({ behavior: 'smooth' });
     });
-  } else if (path === '/matrix') {
+  } else if (path === '/matrix' || path === '/health' || path === '/apps') {
     if (!isHomeMounted()) contentDiv.innerHTML = renderHome();
     requestAnimationFrame(() => {
-      const el = document.getElementById('matrix-stage');
+      const el = document.getElementById('suite-stage');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    });
+  } else if (path === '/one' || path === '/evlome-one') {
+    if (!isHomeMounted()) contentDiv.innerHTML = renderHome();
+    requestAnimationFrame(() => {
+      const el = document.getElementById('one-stage');
       if (el) el.scrollIntoView({ behavior: 'smooth' });
     });
   } else if (path === '/philosophy' || path === '/principles' || path === '/codex') {

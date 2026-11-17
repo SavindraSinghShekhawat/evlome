@@ -6,8 +6,8 @@ import { pawdokuConfig, petAvatarSvg, petCrossSvg, petMiniPawSvg, petMiniCrossSv
 
 export const renderAppPage = (app) => {
   const isGame = app.type === 'game';
-  const parentStage = isGame ? 'ludo-stage' : 'suite-stage';
-  const parentLabel = isGame ? 'EVLOME Games' : 'The Suite';
+  const parentStage = isGame ? 'games-stage' : 'suite-stage';
+  const parentLabel = isGame ? 'EVLOME Games' : 'The Health Suite';
 
   return `
   <div class="detail-view">
