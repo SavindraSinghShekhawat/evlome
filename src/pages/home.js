@@ -746,7 +746,11 @@ g.updateNutritionUI = () => {
 // --- Activity: Active Workout Exercise Logger (from evlome_activity_2026) ---
 let workoutWeight = 100;
 let workoutReps = 8;
-let workoutSetLogged = false;
+let workoutSetsState = {
+  1: true,
+  2: true,
+  3: false
+};
 let restTimerSeconds = 90;
 let restTimerInterval = null;
 
@@ -760,14 +764,22 @@ g.adjWorkoutReps = (delta) => {
   g.updateWorkoutUI();
 };
 
-g.toggleLogWorkoutSet = () => {
-  workoutSetLogged = !workoutSetLogged;
-  if (workoutSetLogged) {
-    g.startSimpleRestTimer(90);
-  } else {
-    g.stopSimpleRestTimer();
+g.toggleWorkoutSet = (setNum) => {
+  if (workoutSetsState[setNum] !== undefined) {
+    workoutSetsState[setNum] = !workoutSetsState[setNum];
+    if (setNum === 3) {
+      if (workoutSetsState[3]) {
+        g.startSimpleRestTimer(90);
+      } else {
+        g.stopSimpleRestTimer();
+      }
+    }
+    g.updateWorkoutUI();
   }
-  g.updateWorkoutUI();
+};
+
+g.toggleLogWorkoutSet = () => {
+  g.toggleWorkoutSet(3);
 };
 
 g.startSimpleRestTimer = (seconds) => {
@@ -817,24 +829,30 @@ g.updateWorkoutUI = () => {
     el.textContent = `${oneRM} kg`;
   });
 
-  document.querySelectorAll('#act-set-3-row').forEach(row => {
-    row.classList.toggle('completed', workoutSetLogged);
+  [1, 2, 3].forEach(num => {
+    const isDone = !!workoutSetsState[num];
+    document.querySelectorAll(`#act-set-${num}-row`).forEach(row => {
+      row.classList.toggle('completed', isDone);
+    });
+    document.querySelectorAll(`#act-check-toggle-${num}`).forEach(btn => {
+      btn.classList.toggle('checked', isDone);
+      const mark = btn.querySelector('.act-check-mark');
+      if (mark) mark.textContent = isDone ? '✓' : '';
+    });
   });
 
-  document.querySelectorAll('#act-check-toggle-btn').forEach(btn => {
-    btn.classList.toggle('checked', workoutSetLogged);
-  });
+  const completedCount = [1, 2, 3].filter(n => workoutSetsState[n]).length;
 
   document.querySelectorAll('#act-rest-indicator').forEach(ind => {
-    ind.classList.toggle('active', workoutSetLogged);
+    ind.classList.toggle('active', workoutSetsState[3]);
   });
 
   document.querySelectorAll('#act-header-badge').forEach(badge => {
-    if (workoutSetLogged) {
+    if (workoutSetsState[3]) {
       badge.textContent = 'Set 3 Done ✓';
       badge.classList.add('completed');
     } else {
-      badge.textContent = 'Set 3 of 4';
+      badge.textContent = `${completedCount} of 4 Done`;
       badge.classList.remove('completed');
     }
   });
@@ -938,11 +956,11 @@ export const renderNutritionDemo = () => `
 
     <!-- Diary Footer -->
     <div class="nutr-diary-foot">
-      <span class="nutr-foot-add-pill">+ Add Food</span>
       <span class="nutr-fasting-pill">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        16:8 Fasting Window
+        16:8 Fasting Window Active
       </span>
+      <span class="nutr-diary-tip">Tap meal to toggle</span>
     </div>
   </div>
 `;
@@ -955,7 +973,7 @@ export const renderActivityDemo = () => `
         <span class="act-workout-eyebrow">ACTIVE WORKOUT &bull; CHEST &amp; TRICEPS</span>
         <h4 class="act-workout-ex">Barbell Bench Press</h4>
       </div>
-      <span class="act-header-badge" id="act-header-badge">Set 3 of 4</span>
+      <span class="act-header-badge" id="act-header-badge">2 of 4 Done</span>
     </div>
 
     <!-- Active Exercise Set Table -->
@@ -968,22 +986,30 @@ export const renderActivityDemo = () => `
         <span class="act-th-check">✓</span>
       </div>
 
-      <!-- Set 1: Done -->
-      <div class="act-set-row completed">
+      <!-- Set 1 -->
+      <div class="act-set-row completed" id="act-set-1-row">
         <span class="act-cell-set">1</span>
         <span class="act-cell-prev">80 kg &times; 10</span>
         <span class="act-cell-weight">80</span>
         <span class="act-cell-reps">10</span>
-        <div class="act-cell-check"><span class="act-check-badge checked">✓</span></div>
+        <div class="act-cell-check">
+          <button type="button" class="act-check-toggle checked" id="act-check-toggle-1" onclick="window.toggleWorkoutSet(1)" title="Toggle Set 1">
+            <span class="act-check-mark">✓</span>
+          </button>
+        </div>
       </div>
 
-      <!-- Set 2: Done -->
-      <div class="act-set-row completed">
+      <!-- Set 2 -->
+      <div class="act-set-row completed" id="act-set-2-row">
         <span class="act-cell-set">2</span>
         <span class="act-cell-prev">90 kg &times; 8</span>
         <span class="act-cell-weight">90</span>
         <span class="act-cell-reps">8</span>
-        <div class="act-cell-check"><span class="act-check-badge checked">✓</span></div>
+        <div class="act-cell-check">
+          <button type="button" class="act-check-toggle checked" id="act-check-toggle-2" onclick="window.toggleWorkoutSet(2)" title="Toggle Set 2">
+            <span class="act-check-mark">✓</span>
+          </button>
+        </div>
       </div>
 
       <!-- Set 3: Active Interactive Stepper Row -->
@@ -1005,8 +1031,8 @@ export const renderActivityDemo = () => `
           </div>
         </div>
         <div class="act-cell-check">
-          <button type="button" class="act-check-toggle" id="act-check-toggle-btn" onclick="window.toggleLogWorkoutSet()" title="Log Set 3">
-            <span class="act-check-mark">✓</span>
+          <button type="button" class="act-check-toggle" id="act-check-toggle-3" onclick="window.toggleWorkoutSet(3)" title="Log Set 3">
+            <span class="act-check-mark"></span>
           </button>
         </div>
       </div>
@@ -1014,11 +1040,11 @@ export const renderActivityDemo = () => `
 
     <!-- Table Action Bar -->
     <div class="act-table-actions">
-      <span class="act-add-set-pill">+ Add Set</span>
       <div class="act-rest-indicator" id="act-rest-indicator">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
         <span>Rest: <strong id="act-timer-digits">01:30</strong></span>
       </div>
+      <span class="act-rest-hint">Tap ✓ to complete set</span>
     </div>
 
     <!-- Telemetry Footer -->
