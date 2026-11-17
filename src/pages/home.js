@@ -693,21 +693,17 @@ g.switchGameTab = (gameId) => {
   });
 };
 
-// --- Nutrition: Whole-Food & Macro Fuel Dashboard Engine ---
+// --- Nutrition: Simple In-App Fuel Logger Engine ---
 let nutritionMealsState = {
   oats: true,
   chicken: true,
-  banana: true,
-  salmon: false,
   yogurt: false
 };
 
 const nutritionMealsData = {
-  oats: { cal: 380, p: 32, c: 48, f: 6 },
-  chicken: { cal: 540, p: 48, c: 44, f: 14 },
-  banana: { cal: 260, p: 4, c: 58, f: 2 },
-  salmon: { cal: 520, p: 44, c: 36, f: 18 },
-  yogurt: { cal: 200, p: 22, c: 18, f: 3 }
+  oats: { name: 'Oats & Whey', cal: 380, p: 32, c: 48, f: 6 },
+  chicken: { name: 'Chicken & Quinoa', cal: 540, p: 48, c: 44, f: 14 },
+  yogurt: { name: 'Greek Yogurt', cal: 220, p: 24, c: 22, f: 4 }
 };
 
 const NUTRITION_TARGETS = {
@@ -717,8 +713,6 @@ const NUTRITION_TARGETS = {
   f: 65
 };
 
-let nutritionFastingHours = 16;
-
 g.toggleNutrMeal = (mealId) => {
   if (nutritionMealsState[mealId] !== undefined) {
     nutritionMealsState[mealId] = !nutritionMealsState[mealId];
@@ -727,22 +721,13 @@ g.toggleNutrMeal = (mealId) => {
   }
 };
 
-g.cycleNutrFastingPreset = () => {
-  const presets = [16, 18, 20];
-  const nextIdx = (presets.indexOf(nutritionFastingHours) + 1) % presets.length;
-  nutritionFastingHours = presets[nextIdx];
-  playSound('/audio/cross_tap.wav');
-  g.updateNutritionUI();
-};
-
 g.updateNutritionUI = () => {
-  let totalCal = 0;
-  let totalP = 0;
-  let totalC = 0;
-  let totalF = 0;
+  let totalCal = 700;
+  let totalP = 16;
+  let totalC = 74;
+  let totalF = 24;
 
   for (const [id, isLogged] of Object.entries(nutritionMealsState)) {
-    const mealEls = document.querySelectorAll(`#meal-${id}`);
     const data = nutritionMealsData[id];
     if (isLogged && data) {
       totalCal += data.cal;
@@ -750,73 +735,36 @@ g.updateNutritionUI = () => {
       totalC += data.c;
       totalF += data.f;
     }
-    mealEls.forEach(el => {
-      el.classList.toggle('logged', isLogged);
-      const checkBtn = el.querySelector('.nutr-check-btn');
-      if (checkBtn) {
-        checkBtn.textContent = isLogged ? '✓' : '+';
-        checkBtn.classList.toggle('checked', isLogged);
-      }
+    document.querySelectorAll(`.nutr-chip-${id}`).forEach(el => {
+      el.classList.toggle('active', isLogged);
+      const checkEl = el.querySelector('.nutr-chip-check');
+      if (checkEl) checkEl.textContent = isLogged ? '✓' : '+';
     });
   }
 
-  // Update calories numbers
   document.querySelectorAll('#nutr-cals-num').forEach(el => {
     el.textContent = totalCal.toLocaleString();
   });
   const remainCal = Math.max(0, NUTRITION_TARGETS.cal - totalCal);
   document.querySelectorAll('#nutr-remain-pill').forEach(el => {
-    el.textContent = remainCal > 0 ? `${remainCal.toLocaleString()} kcal remaining` : 'Target Fuel Met 🎯';
+    el.textContent = remainCal > 0 ? `${remainCal} kcal left` : 'Goal Met 🎯';
   });
-  const calPct = Math.min(100, Math.round((totalCal / NUTRITION_TARGETS.cal) * 100));
+  const pct = Math.min(100, Math.round((totalCal / NUTRITION_TARGETS.cal) * 100));
   document.querySelectorAll('#nutr-progress-fill').forEach(el => {
-    el.style.width = `${calPct}%`;
+    el.style.width = `${pct}%`;
   });
 
-  // Macros
-  document.querySelectorAll('#nutr-p-val').forEach(el => {
-    el.textContent = `${totalP}g / ${NUTRITION_TARGETS.p}g`;
-  });
-  document.querySelectorAll('#nutr-p-bar').forEach(el => {
-    el.style.width = `${Math.min(100, Math.round((totalP / NUTRITION_TARGETS.p) * 100))}%`;
-  });
-
-  document.querySelectorAll('#nutr-c-val').forEach(el => {
-    el.textContent = `${totalC}g / ${NUTRITION_TARGETS.c}g`;
-  });
-  document.querySelectorAll('#nutr-c-bar').forEach(el => {
-    el.style.width = `${Math.min(100, Math.round((totalC / NUTRITION_TARGETS.c) * 100))}%`;
-  });
-
-  document.querySelectorAll('#nutr-f-val').forEach(el => {
-    el.textContent = `${totalF}g / ${NUTRITION_TARGETS.f}g`;
-  });
-  document.querySelectorAll('#nutr-f-bar').forEach(el => {
-    el.style.width = `${Math.min(100, Math.round((totalF / NUTRITION_TARGETS.f) * 100))}%`;
-  });
-
-  // Fasting Preset Button and Status
-  const elapsedMinutes = 14 * 60 + 25; // 14h 25m
-  const remainingMins = Math.max(0, (nutritionFastingHours * 60) - elapsedMinutes);
-  const remH = Math.floor(remainingMins / 60);
-  const remM = remainingMins % 60;
-  const remStr = remainingMins > 0 ? `(${remH}h ${remM}m left)` : '(Target reached!)';
-
-  document.querySelectorAll('#nutr-preset-btn').forEach(btn => {
-    btn.textContent = `${nutritionFastingHours}:${24 - nutritionFastingHours}`;
-  });
-  document.querySelectorAll('#nutr-fasting-status').forEach(el => {
-    el.textContent = `${nutritionFastingHours}:${24 - nutritionFastingHours} Fast • 14h 25m elapsed ${remStr}`;
-  });
+  document.querySelectorAll('#nutr-p-val').forEach(el => el.textContent = `${totalP}g`);
+  document.querySelectorAll('#nutr-c-val').forEach(el => el.textContent = `${totalC}g`);
+  document.querySelectorAll('#nutr-f-val').forEach(el => el.textContent = `${totalF}g`);
 };
 
-// --- Activity: Live Workout Set Logger & Rest Timer Engine ---
+// --- Activity: Simple In-App Workout Set Logger Engine ---
 let workoutWeight = 100;
 let workoutReps = 8;
-let workoutSet3Completed = false;
+let workoutSetLogged = false;
 let restTimerSeconds = 90;
 let restTimerInterval = null;
-let isRestTimerRunning = false;
 
 g.adjWorkoutWeight = (delta) => {
   workoutWeight = Math.max(20, Math.min(250, workoutWeight + delta));
@@ -830,65 +778,45 @@ g.adjWorkoutReps = (delta) => {
   g.updateWorkoutUI();
 };
 
-g.logWorkoutSet = () => {
-  workoutSet3Completed = true;
-  playSound('/audio/victory.wav');
-  g.startRestTimer(90);
+g.toggleLogWorkoutSet = () => {
+  workoutSetLogged = !workoutSetLogged;
+  if (workoutSetLogged) {
+    playSound('/audio/victory.wav');
+    g.startSimpleRestTimer(90);
+  } else {
+    playSound('/audio/cross_tap.wav');
+    g.stopSimpleRestTimer();
+  }
   g.updateWorkoutUI();
 };
 
-g.startRestTimer = (seconds) => {
+g.startSimpleRestTimer = (seconds) => {
   if (restTimerInterval) clearInterval(restTimerInterval);
   restTimerSeconds = seconds;
-  isRestTimerRunning = true;
   restTimerInterval = setInterval(() => {
     if (restTimerSeconds > 0) {
       restTimerSeconds--;
-      g.updateRestTimerDisplay();
+      g.updateTimerText();
     } else {
       clearInterval(restTimerInterval);
-      isRestTimerRunning = false;
       playSound('/audio/victory.wav');
-      g.updateRestTimerDisplay();
     }
   }, 1000);
-  g.updateRestTimerDisplay();
+  g.updateTimerText();
 };
 
-g.adjRestTimer = (delta) => {
-  restTimerSeconds = Math.max(0, restTimerSeconds + delta);
-  if (!isRestTimerRunning && restTimerSeconds > 0) {
-    g.startRestTimer(restTimerSeconds);
-  } else {
-    g.updateRestTimerDisplay();
-  }
-};
-
-g.skipRestTimer = () => {
+g.stopSimpleRestTimer = () => {
   if (restTimerInterval) clearInterval(restTimerInterval);
-  isRestTimerRunning = false;
-  restTimerSeconds = 0;
-  g.updateRestTimerDisplay();
-};
-
-g.resetWorkoutSets = () => {
-  if (restTimerInterval) clearInterval(restTimerInterval);
-  isRestTimerRunning = false;
-  workoutSet3Completed = false;
   restTimerSeconds = 90;
-  playSound('/audio/cross_tap.wav');
-  g.updateWorkoutUI();
+  g.updateTimerText();
 };
 
-g.updateRestTimerDisplay = () => {
+g.updateTimerText = () => {
   const m = Math.floor(restTimerSeconds / 60);
   const s = restTimerSeconds % 60;
   const str = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
-  document.querySelectorAll('#act-rest-digits').forEach(el => {
+  document.querySelectorAll('#act-timer-digits').forEach(el => {
     el.textContent = str;
-  });
-  document.querySelectorAll('#act-rest-banner').forEach(el => {
-    el.classList.toggle('active', isRestTimerRunning || workoutSet3Completed);
   });
 };
 
@@ -900,204 +828,124 @@ g.updateWorkoutUI = () => {
     el.textContent = `${workoutReps} reps`;
   });
 
-  // Plate calculation: (weight - 20) / 2
   const perSide = Math.max(0, (workoutWeight - 20) / 2);
   document.querySelectorAll('#act-plate-val').forEach(el => {
-    el.textContent = `${perSide} kg / side (20 kg Bar)`;
+    el.textContent = `${perSide} kg/side`;
   });
 
-  // Estimated 1RM (Epley Formula): w * (1 + r / 30)
   const oneRM = Math.round(workoutWeight * (1 + workoutReps / 30));
   document.querySelectorAll('#act-onerm-val').forEach(el => {
     el.textContent = `${oneRM} kg`;
   });
 
-  // Set 3 completion state
-  document.querySelectorAll('#act-set-3-row').forEach(row => {
-    row.classList.toggle('completed', workoutSet3Completed);
-  });
   document.querySelectorAll('#act-log-set-btn').forEach(btn => {
-    if (workoutSet3Completed) {
-      btn.textContent = 'Done ✓';
-      btn.classList.add('logged');
+    if (workoutSetLogged) {
+      btn.innerHTML = `<span>✓ Set 3 Logged</span> &bull; <span class="act-rest-tag">Rest: <strong id="act-timer-digits">01:30</strong> (Tap to reset)</span>`;
+      btn.classList.add('completed');
     } else {
-      btn.textContent = 'Log ✓';
-      btn.classList.remove('logged');
+      btn.innerHTML = `<span>✓ Log Set 3 (${workoutWeight} kg &times; ${workoutReps})</span>`;
+      btn.classList.remove('completed');
     }
   });
 
-  g.updateRestTimerDisplay();
+  g.updateTimerText();
 };
 
-// Reusable Demo Renderers
+// Reusable Simple Demo Renderers
 export const renderNutritionDemo = () => `
-  <!-- In-App Daily Fuel & Whole-Food Log Component -->
+  <!-- In-App Daily Fuel & Macro Logger Component -->
   <div class="nutrition-app-card">
-    <div class="nutr-header-strip">
-      <div class="nutr-title-group">
-        <span class="nutr-badge-pill">TODAY'S FUEL &bull; TARGET</span>
-        <span class="nutr-cal-count"><strong id="nutr-cals-num">1,180</strong> / 2,100 kcal</span>
+    <div class="nutr-simple-header">
+      <div class="nutr-simple-title">
+        <span class="nutr-eyebrow">DAILY FUEL TARGET</span>
+        <span class="nutr-cals-display"><strong id="nutr-cals-num">1,620</strong> / 2,100 kcal</span>
       </div>
-      <span class="nutr-remain-pill" id="nutr-remain-pill">920 kcal remaining</span>
+      <span class="nutr-remain-badge" id="nutr-remain-pill">480 kcal left</span>
     </div>
 
-    <div class="nutr-progress-bar-wrap">
-      <div class="nutr-progress-fill" id="nutr-progress-fill" style="width: 56%;"></div>
+    <div class="nutr-simple-bar-wrap">
+      <div class="nutr-simple-bar-fill" id="nutr-progress-fill" style="width: 77%;"></div>
     </div>
 
-    <div class="nutr-macros-grid">
-      <div class="nutr-macro-cell">
-        <span class="nutr-macro-lbl">Protein</span>
-        <span class="nutr-macro-val" id="nutr-p-val">84g / 150g</span>
-        <div class="nutr-mini-bar"><div class="nutr-mini-fill protein" id="nutr-p-bar" style="width: 56%;"></div></div>
+    <div class="nutr-simple-macros">
+      <div class="nutr-macro-pill">
+        <span class="macro-dot protein"></span>
+        <span class="macro-lbl">Protein</span>
+        <strong id="nutr-p-val">96g</strong><span class="macro-target">/150g</span>
       </div>
-      <div class="nutr-macro-cell">
-        <span class="nutr-macro-lbl">Carbs</span>
-        <span class="nutr-macro-val" id="nutr-c-val">150g / 220g</span>
-        <div class="nutr-mini-bar"><div class="nutr-mini-fill carbs" id="nutr-c-bar" style="width: 68%;"></div></div>
+      <div class="nutr-macro-pill">
+        <span class="macro-dot carbs"></span>
+        <span class="macro-lbl">Carbs</span>
+        <strong id="nutr-c-val">166g</strong><span class="macro-target">/220g</span>
       </div>
-      <div class="nutr-macro-cell">
-        <span class="nutr-macro-lbl">Fats</span>
-        <span class="nutr-macro-val" id="nutr-f-val">22g / 65g</span>
-        <div class="nutr-mini-bar"><div class="nutr-mini-fill fats" id="nutr-f-bar" style="width: 34%;"></div></div>
-      </div>
-    </div>
-
-    <div class="nutr-meals-section">
-      <div class="nutr-meals-header">
-        <span class="nutr-section-title">Today's Food Log</span>
-        <span class="nutr-sub-hint">Tap to log / unlog</span>
-      </div>
-
-      <div class="nutr-meals-list">
-        <div class="nutr-meal-item logged" id="meal-oats" onclick="window.toggleNutrMeal('oats')">
-          <span class="nutr-meal-icon">🥣</span>
-          <div class="nutr-meal-info">
-            <span class="nutr-meal-name">Rolled Oats &amp; Whey</span>
-            <span class="nutr-meal-meta">380 kcal &bull; 32g P &bull; 48g C &bull; 6g F</span>
-          </div>
-          <div class="nutr-check-btn checked">✓</div>
-        </div>
-
-        <div class="nutr-meal-item logged" id="meal-chicken" onclick="window.toggleNutrMeal('chicken')">
-          <span class="nutr-meal-icon">🥗</span>
-          <div class="nutr-meal-info">
-            <span class="nutr-meal-name">Grilled Chicken &amp; Quinoa</span>
-            <span class="nutr-meal-meta">540 kcal &bull; 48g P &bull; 44g C &bull; 14g F</span>
-          </div>
-          <div class="nutr-check-btn checked">✓</div>
-        </div>
-
-        <div class="nutr-meal-item logged" id="meal-banana" onclick="window.toggleNutrMeal('banana')">
-          <span class="nutr-meal-icon">🍌</span>
-          <div class="nutr-meal-info">
-            <span class="nutr-meal-name">Banana &amp; Rice Cakes</span>
-            <span class="nutr-meal-meta">260 kcal &bull; 4g P &bull; 58g C &bull; 2g F</span>
-          </div>
-          <div class="nutr-check-btn checked">✓</div>
-        </div>
-
-        <div class="nutr-meal-item" id="meal-salmon" onclick="window.toggleNutrMeal('salmon')">
-          <span class="nutr-meal-icon">🥩</span>
-          <div class="nutr-meal-info">
-            <span class="nutr-meal-name">Salmon, Sweet Potato &amp; Greens</span>
-            <span class="nutr-meal-meta">520 kcal &bull; 44g P &bull; 36g C &bull; 18g F</span>
-          </div>
-          <div class="nutr-check-btn">+</div>
-        </div>
-
-        <div class="nutr-meal-item" id="meal-yogurt" onclick="window.toggleNutrMeal('yogurt')">
-          <span class="nutr-meal-icon">🫐</span>
-          <div class="nutr-meal-info">
-            <span class="nutr-meal-name">Greek Yogurt &amp; Blueberries</span>
-            <span class="nutr-meal-meta">200 kcal &bull; 22g P &bull; 18g C &bull; 3g F</span>
-          </div>
-          <div class="nutr-check-btn">+</div>
-        </div>
+      <div class="nutr-macro-pill">
+        <span class="macro-dot fats"></span>
+        <span class="macro-lbl">Fats</span>
+        <strong id="nutr-f-val">44g</strong><span class="macro-target">/65g</span>
       </div>
     </div>
 
-    <div class="nutr-fasting-footer">
-      <div class="nutr-fasting-row">
-        <span class="fasting-flame-icon">🔥</span>
-        <span class="nutr-fasting-text" id="nutr-fasting-status">16:8 Fast &bull; 14h 25m elapsed (1h 35m left)</span>
-        <button type="button" class="nutr-fast-toggle-btn" id="nutr-preset-btn" onclick="window.cycleNutrFastingPreset()" title="Switch Fasting Protocol">16:8</button>
+    <div class="nutr-chips-wrap">
+      <span class="nutr-chips-title">Quick Log Whole Food:</span>
+      <div class="nutr-chips-row">
+        <button type="button" class="nutr-food-chip nutr-chip-oats active" onclick="window.toggleNutrMeal('oats')">
+          <span class="nutr-chip-check">✓</span>
+          <span>🥣 Oats &amp; Whey (+380 kcal)</span>
+        </button>
+        <button type="button" class="nutr-food-chip nutr-chip-chicken active" onclick="window.toggleNutrMeal('chicken')">
+          <span class="nutr-chip-check">✓</span>
+          <span>🥗 Chicken Quinoa (+540 kcal)</span>
+        </button>
+        <button type="button" class="nutr-food-chip nutr-chip-yogurt" onclick="window.toggleNutrMeal('yogurt')">
+          <span class="nutr-chip-check">+</span>
+          <span>🫐 Greek Yogurt (+220 kcal)</span>
+        </button>
       </div>
     </div>
   </div>
 `;
 
 export const renderActivityDemo = () => `
-  <!-- In-App Live Workout Set Logger & Rest Timer Component -->
+  <!-- In-App Live Workout Set Logger Component -->
   <div class="activity-workout-card">
-    <div class="act-header-strip">
-      <div class="act-title-group">
-        <span class="act-badge-pill">LIVE WORKOUT LOG &bull; SET 3 OF 4</span>
-        <h4 class="act-exercise-title">Barbell Bench Press</h4>
+    <div class="act-simple-header">
+      <div class="act-simple-title">
+        <span class="act-eyebrow">WORKOUT LOG</span>
+        <h4 class="act-simple-ex">Barbell Bench Press</h4>
       </div>
-      <span class="act-target-pill">Chest &amp; Triceps</span>
+      <span class="act-simple-set-badge">Set 3 of 4</span>
     </div>
 
-    <div class="act-sets-table">
-      <div class="act-set-row completed">
-        <span class="act-set-index">Set 1</span>
-        <span class="act-set-values">80 kg &times; 10 reps</span>
-        <span class="act-set-tag">Warmup</span>
-        <span class="act-set-check">✓</span>
-      </div>
-
-      <div class="act-set-row completed">
-        <span class="act-set-index">Set 2</span>
-        <span class="act-set-values">90 kg &times; 8 reps</span>
-        <span class="act-set-tag">Working</span>
-        <span class="act-set-check">✓</span>
-      </div>
-
-      <div class="act-set-row active" id="act-set-3-row">
-        <span class="act-set-index">Set 3</span>
-        <div class="act-set-controls">
-          <div class="act-mini-stepper">
-            <button type="button" class="act-step-btn" onclick="window.adjWorkoutWeight(-5)">&minus;</button>
-            <span class="act-step-val" id="act-weight-val">100 kg</span>
-            <button type="button" class="act-step-btn" onclick="window.adjWorkoutWeight(5)">&#43;</button>
-          </div>
-          <span class="act-set-times">&times;</span>
-          <div class="act-mini-stepper">
-            <button type="button" class="act-step-btn" onclick="window.adjWorkoutReps(-1)">&minus;</button>
-            <span class="act-step-val" id="act-reps-val">8 reps</span>
-            <button type="button" class="act-step-btn" onclick="window.adjWorkoutReps(1)">&#43;</button>
-          </div>
-        </div>
-        <button type="button" class="act-log-btn" id="act-log-set-btn" onclick="window.logWorkoutSet()" title="Log Set">
-          Log ✓
-        </button>
-      </div>
-    </div>
-
-    <div class="act-telemetry-strip">
-      <div class="act-telemetry-item">
-        <span class="act-tele-lbl">Plate Loading Math</span>
-        <span class="act-tele-val" id="act-plate-val">40 kg / side (20 kg Bar)</span>
-      </div>
-      <div class="act-telemetry-item">
-        <span class="act-tele-lbl">Estimated 1RM (Epley)</span>
-        <span class="act-tele-val highlight" id="act-onerm-val">127 kg</span>
-      </div>
-    </div>
-
-    <div class="act-rest-banner" id="act-rest-banner">
-      <div class="act-rest-time-group">
-        <span class="act-timer-icon">⏱</span>
-        <div class="act-rest-time-text">
-          <span class="act-rest-title">Rest Timer</span>
-          <span class="act-rest-digits" id="act-rest-digits">01:30</span>
+    <div class="act-stepper-box">
+      <div class="act-control-group">
+        <span class="act-control-lbl">Weight</span>
+        <div class="act-stepper-unit">
+          <button type="button" class="act-step-btn" onclick="window.adjWorkoutWeight(-5)" title="-5 kg">&minus;</button>
+          <span class="act-stepper-display" id="act-weight-val">100 kg</span>
+          <button type="button" class="act-step-btn" onclick="window.adjWorkoutWeight(5)" title="+5 kg">&#43;</button>
         </div>
       </div>
-      <div class="act-rest-actions">
-        <button type="button" class="act-rest-btn" onclick="window.adjRestTimer(30)">+30s</button>
-        <button type="button" class="act-rest-btn skip" onclick="window.skipRestTimer()">Skip</button>
-        <button type="button" class="act-rest-btn reset" onclick="window.resetWorkoutSets()" title="Reset set logger">↺</button>
+
+      <span class="act-times-sep">&times;</span>
+
+      <div class="act-control-group">
+        <span class="act-control-lbl">Reps</span>
+        <div class="act-stepper-unit">
+          <button type="button" class="act-step-btn" onclick="window.adjWorkoutReps(-1)" title="-1 rep">&minus;</button>
+          <span class="act-stepper-display" id="act-reps-val">8 reps</span>
+          <button type="button" class="act-step-btn" onclick="window.adjWorkoutReps(1)" title="+1 rep">&#43;</button>
+        </div>
       </div>
+    </div>
+
+    <button type="button" class="act-main-log-btn" id="act-log-set-btn" onclick="window.toggleLogWorkoutSet()">
+      <span>✓ Log Set 3 (100 kg &times; 8)</span>
+    </button>
+
+    <div class="act-simple-footer">
+      <span>Plate Load: <strong id="act-plate-val">40 kg/side</strong> (20 kg Bar)</span>
+      <span class="act-foot-sep">&bull;</span>
+      <span>Est. 1RM: <strong id="act-onerm-val" style="color: #ea580c;">127 kg</strong></span>
     </div>
   </div>
 `;
