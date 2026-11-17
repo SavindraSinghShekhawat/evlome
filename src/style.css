@@ -4058,17 +4058,26 @@ body.menu-open .burger-line.line-bottom {
 
 /* --- 1. Large Displays (1200px+) --- */
 @media (min-width: 1200px) {
-  .cinematic-stage {
+  .cinematic-stage,
+  .discipline-stage,
+  .one-stage,
+  .codex-section {
     padding: 6.5rem 2rem;
   }
   .stage-split-grid {
     gap: 4rem;
   }
+  .one-grid {
+    gap: 28px;
+  }
 }
 
 /* --- 2. iPad Landscape & Small Laptops (961px - 1199px) --- */
 @media (max-width: 1199px) and (min-width: 961px) {
-  .cinematic-stage {
+  .cinematic-stage,
+  .discipline-stage,
+  .one-stage,
+  .codex-section {
     padding: 5.5rem 2rem;
   }
   .stage-split-grid {
@@ -4080,9 +4089,14 @@ body.menu-open .burger-line.line-bottom {
   .interactive-arena-card.ludo-dice-only-card,
   .interactive-sanctuary-card,
   .phase-display-card.cycle-dashboard-viewport,
-  .interactive-calculator-card {
+  .interactive-calculator-card,
+  .fasting-card,
+  .barbell-card {
     max-width: 410px;
     padding: 1.5rem;
+  }
+  .one-card {
+    padding: 2rem 1.5rem;
   }
 }
 
@@ -4103,7 +4117,9 @@ body.menu-open .burger-line.line-bottom {
   .interactive-arena-card.ludo-dice-only-card,
   .interactive-sanctuary-card,
   .phase-display-card.cycle-dashboard-viewport,
-  .interactive-calculator-card {
+  .interactive-calculator-card,
+  .fasting-card,
+  .barbell-card {
     margin: 0 auto;
     max-width: 440px;
     width: 100%;
@@ -4111,11 +4127,27 @@ body.menu-open .burger-line.line-bottom {
   .matrix-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+  .one-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    max-width: 580px;
+    margin: 0 auto 3rem;
+  }
+  .one-membership-strip {
+    grid-template-columns: 1fr;
+    padding: 2.25rem 1.75rem;
+    gap: 24px;
+    max-width: 580px;
+    margin: 0 auto 3rem;
+  }
 }
 
 /* --- 4. Small Tablets & Large Phones (601px - 768px) --- */
 @media (max-width: 768px) {
-  .cinematic-stage {
+  .cinematic-stage,
+  .discipline-stage,
+  .one-stage,
+  .codex-section {
     min-height: auto;
     padding: 5rem 1.5rem;
   }
@@ -4140,6 +4172,19 @@ body.menu-open .burger-line.line-bottom {
   .hero-matrix-bar {
     gap: 0.85rem 1.25rem;
     padding: 0.65rem 1.25rem;
+  }
+  .discipline-tabs-nav {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    max-width: 520px;
+    margin: 1.75rem auto 0;
+  }
+  .discipline-tabs-nav.games-tabs-nav {
+    max-width: 440px;
+  }
+  .discipline-tab-btn {
+    padding: 8px 12px 8px 10px;
   }
   .codex-grid {
     grid-template-columns: 1fr;
@@ -4183,7 +4228,10 @@ body.menu-open .burger-line.line-bottom {
     font-size: 12px;
   }
 
-  .cinematic-stage {
+  .cinematic-stage,
+  .discipline-stage,
+  .one-stage,
+  .codex-section {
     padding: 4rem 1.15rem;
   }
   .hero-viewport {
@@ -4204,6 +4252,19 @@ body.menu-open .burger-line.line-bottom {
     font-size: 1rem;
     line-height: 1.55;
     margin-bottom: 1.75rem;
+  }
+  .hero-actions-row {
+    flex-direction: column;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto 2rem;
+    gap: 0.75rem;
+  }
+  .hero-actions-row button,
+  .hero-actions-row a {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
   }
 
   .gateway-pillar-card {
@@ -4238,6 +4299,47 @@ body.menu-open .burger-line.line-bottom {
     width: 100%;
   }
 
+  /* Discipline Stage & 4-App Selector on Mobile */
+  .discipline-header-center {
+    margin-bottom: 2rem;
+  }
+  .discipline-tabs-nav {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    width: 100%;
+    margin-top: 1.25rem;
+  }
+  .discipline-tabs-nav.games-tabs-nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 380px;
+    margin: 1.25rem auto 0;
+  }
+  .discipline-tab-btn {
+    padding: 7px 10px;
+    gap: 8px;
+    border-radius: 14px;
+  }
+  .tab-btn-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 7px;
+  }
+  .tab-btn-title {
+    font-size: 12px;
+  }
+  .tab-btn-sub {
+    display: none; /* Hide subtitle on mobile so tabs fit 2x2 compactly */
+  }
+  .tab-status-pill {
+    font-size: 8px;
+    padding: 1.5px 5px;
+    margin-left: auto;
+  }
+
+  .stage-split-grid {
+    gap: 2rem;
+  }
   .stage-app-icon {
     width: 52px;
     height: 52px;
@@ -4255,6 +4357,19 @@ body.menu-open .burger-line.line-bottom {
     margin-bottom: 1.15rem;
   }
 
+  .stage-specs-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.65rem;
+    padding: 1rem 0;
+  }
+  .spec-label {
+    font-size: 9.5px;
+  }
+  .spec-val {
+    font-size: 12px;
+    line-height: 1.25;
+  }
+
   .feature-pill-strip {
     gap: 0.35rem;
     margin-bottom: 1.25rem;
@@ -4268,11 +4383,143 @@ body.menu-open .burger-line.line-bottom {
   .interactive-arena-card.ludo-dice-only-card,
   .interactive-sanctuary-card,
   .phase-display-card.cycle-dashboard-viewport,
-  .interactive-calculator-card {
+  .interactive-calculator-card,
+  .fasting-card,
+  .barbell-card {
     padding: 1.25rem 1rem;
     border-radius: 20px;
     width: 100%;
     box-sizing: border-box;
+  }
+
+  /* Nutrition Fasting Card Mobile Optimization */
+  .fasting-presets {
+    gap: 2px;
+    padding: 2.5px;
+    margin-bottom: 1.25rem;
+    width: 100%;
+  }
+  .fasting-preset-btn {
+    padding: 0.35rem 0.55rem;
+    font-size: 11px;
+    flex: 1;
+    text-align: center;
+  }
+  .fasting-hero-circle {
+    width: 155px;
+    height: 155px;
+    border-width: 7px;
+    margin-bottom: 1.25rem;
+  }
+  .fasting-elapsed-num {
+    font-size: 1.7rem;
+  }
+  .fasting-zone-banner {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+
+  /* Activity Barbell Card Mobile Optimization */
+  .barbell-stepper-box {
+    gap: 0.75rem;
+  }
+  .barbell-step-btn {
+    width: 38px;
+    height: 38px;
+    font-size: 17px;
+  }
+  .barbell-weight-display {
+    font-size: 1.85rem;
+    min-width: 110px;
+  }
+  .barbell-sub-calc {
+    font-size: 11.5px;
+    margin-bottom: 1rem;
+  }
+  .barbell-visual-bar {
+    min-height: 56px;
+    padding: 10px 8px;
+    gap: 4px;
+    margin-bottom: 1rem;
+  }
+  .plate-chip {
+    padding: 6px 8px;
+    font-size: 10px;
+    min-width: 28px;
+  }
+  .barbell-quick-load {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+    width: 100%;
+  }
+  .barbell-quick-btn {
+    padding: 6px 2px;
+    font-size: 11px;
+    text-align: center;
+  }
+
+  /* Store Download Badges on Mobile */
+  .store-badge-strip {
+    justify-content: flex-start;
+    gap: 0.65rem;
+  }
+  .btn-store {
+    padding: 0.5rem 0.85rem;
+    gap: 0.55rem;
+  }
+  .store-badge-sub {
+    font-size: 8.5px;
+  }
+  .store-badge-main {
+    font-size: 13px;
+  }
+
+  /* EVLOME ONE Mobile Optimization */
+  .one-apps-constellation {
+    margin-bottom: 2rem;
+    gap: 8px;
+  }
+  .one-constellation-icons {
+    gap: 8px;
+  }
+  .one-constellation-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+  }
+  .one-card {
+    padding: 1.5rem 1.25rem;
+    border-radius: 18px;
+  }
+  .one-card-title {
+    font-size: 1.35rem;
+  }
+  .one-card-desc {
+    font-size: 0.9rem;
+    margin-bottom: 1.25rem;
+  }
+  .one-card-perks {
+    font-size: 12px;
+    gap: 8px;
+  }
+  .one-membership-strip {
+    padding: 1.5rem 1.15rem;
+    border-radius: 20px;
+    gap: 16px;
+    margin-bottom: 2.5rem;
+  }
+  .one-strip-title {
+    font-size: 1.35rem;
+    margin-bottom: 0.5rem;
+  }
+  .one-strip-desc {
+    font-size: 0.9rem;
+    line-height: 1.55;
+  }
+  .one-feature-badge {
+    padding: 8px 12px;
+    font-size: 0.85rem;
   }
 
   /* Pawdoku Mobile Optimization */
@@ -4558,9 +4805,40 @@ body.menu-open .burger-line.line-bottom {
 
 /* --- 6. Compact Phones & Foldables (<= 375px) --- */
 @media (max-width: 375px) {
+  .cinematic-stage,
+  .discipline-stage,
+  .one-stage,
+  .codex-section {
+    padding: 3.25rem 0.85rem;
+  }
   .hero-headline {
     font-size: 2rem;
   }
+  .discipline-tabs-nav {
+    gap: 6px;
+  }
+  .discipline-tab-btn {
+    padding: 6px 8px;
+    gap: 6px;
+    border-radius: 12px;
+  }
+  .tab-btn-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+  }
+  .tab-btn-title {
+    font-size: 11px;
+  }
+  .tab-status-pill {
+    display: none; /* Hide pill on ultra-compact screens */
+  }
+
+  .stage-specs-grid {
+    grid-template-columns: 1fr;
+    gap: 0.65rem;
+  }
+
   .pawdoku-board-wrapper {
     max-width: 255px;
     padding: 8px;
@@ -4580,6 +4858,7 @@ body.menu-open .burger-line.line-bottom {
     max-width: 38px;
     max-height: 38px;
   }
+
   .cycle-ring-outer {
     width: 148px;
     height: 148px;
@@ -4592,6 +4871,25 @@ body.menu-open .burger-line.line-bottom {
   .cycle-center-phase {
     font-size: 1rem;
   }
+
+  .fasting-hero-circle {
+    width: 135px;
+    height: 135px;
+    border-width: 6px;
+  }
+  .fasting-elapsed-num {
+    font-size: 1.5rem;
+  }
+  .fasting-preset-btn {
+    padding: 0.3rem 0.4rem;
+    font-size: 9.5px;
+  }
+
+  .barbell-weight-display {
+    font-size: 1.6rem;
+    min-width: 95px;
+  }
+
   .ludo-dice-halo {
     width: 155px;
     height: 155px;
@@ -4608,6 +4906,21 @@ body.menu-open .burger-line.line-bottom {
     width: 9.5px;
     height: 9.5px;
   }
+
+  .one-constellation-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+  }
+  .one-constellation-icons {
+    gap: 5px;
+  }
+
+  .btn-store {
+    width: 100%;
+    justify-content: center;
+  }
+
   .footer-cols {
     grid-template-columns: 1fr;
     text-align: center;
