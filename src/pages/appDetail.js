@@ -140,22 +140,6 @@ export const renderAppPage = (app) => {
 
       ${app.id === 'pawdoku' ? `
         <div class="interactive-sanctuary-card">
-          <div class="arena-room-pill" style="background: #fff7ed; border-color: #fed7aa; color: #ea580c; margin-bottom: 1rem;">
-            <span class="pulse-dot amber"></span>
-            STAR BATTLE SANCTUARY &bull; LEVEL 1
-          </div>
-
-          <!-- Companion Vignette & Speech Bubble Dialogue -->
-          <div class="pawdoku-companion-row">
-            <div class="pet-vignette" onclick="window.hintPawdoku()" title="Tap for a companion hint">
-              <div class="pet-avatar-large">${petAvatarSvg}</div>
-              <span class="pet-cuddle-tag">Hint</span>
-            </div>
-            <div class="pet-speech-bubble" id="pawdoku-bubble-text">
-              "Place 1 pet per row, column &amp; color zone. No two pets can touch, even diagonally!"
-            </div>
-          </div>
-
           <!-- Sanctuary Controls Bar -->
           <div class="pawdoku-controls-strip">
             <div class="pawdoku-gesture-pill">

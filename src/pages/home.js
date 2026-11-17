@@ -373,10 +373,6 @@ g.restartPawdoku = () => {
   pawdokuHasWon = false;
   pawdokuLastTap = {};
   playSound('/audio/cross_tap.wav');
-  const bubbles = document.querySelectorAll('#pawdoku-bubble-text, .pet-speech-bubble');
-  bubbles.forEach(b => {
-    b.innerHTML = `"Board refreshed! Place 1 pet per row, column &amp; color zone."`;
-  });
   g.updatePawdokuUI();
 };
 
@@ -386,10 +382,6 @@ g.hintPawdoku = () => {
     if (pawdokuGrid[r][c] !== 'pet') {
       pawdokuGrid[r][c] = 'pet';
       playSound('/audio/pet_place.wav');
-      const bubbles = document.querySelectorAll('#pawdoku-bubble-text, .pet-speech-bubble');
-      bubbles.forEach(b => {
-        b.innerHTML = `"Hint placed! Aloof companions love quiet corners." 🐾`;
-      });
       g.updatePawdokuUI();
       return;
     }
@@ -453,7 +445,6 @@ g.updatePawdokuUI = () => {
     pawdokuConfig.solution.every((row, r) => row.every((sol, c) => (pawdokuGrid[r][c] === 'pet') === sol));
 
   const statusBars = document.querySelectorAll('.pawdoku-feedback-bar, .pawdoku-status-bar');
-  const bubbles = document.querySelectorAll('#pawdoku-bubble-text, .pet-speech-bubble');
   if (isWon) {
     if (!pawdokuHasWon) {
       pawdokuHasWon = true;
@@ -462,29 +453,14 @@ g.updatePawdokuUI = () => {
     statusBars.forEach(sb => {
       sb.innerHTML = `<span style="color:#10B981;font-weight:700;">🌟 Sanctuary Complete!</span>`;
     });
-    bubbles.forEach(b => {
-      b.innerHTML = `"Purr-fect! You brought all 4 companions into peaceful harmony!" 🐾`;
-    });
   } else if (conflicts.size > 0) {
     statusBars.forEach(sb => {
       sb.innerHTML = `<span style="color:#EF4444;font-weight:600;">⚠️ Companions cannot touch</span>`;
-    });
-    bubbles.forEach(b => {
-      b.innerHTML = `"Uh oh! Aloof cats need space — no two companions can touch, even diagonally."`;
     });
   } else {
     statusBars.forEach(sb => {
       sb.innerHTML = `<span><strong>${pets.length} of 4</strong> companions placed</span>`;
     });
-    if (pets.length === 0) {
-      bubbles.forEach(b => {
-        b.innerHTML = `"Double-tap any tile to place a companion 🐾, or tap ✕ to cross out tiles!"`;
-      });
-    } else if (pets.length < 4) {
-      bubbles.forEach(b => {
-        b.innerHTML = `"Looking good! Place 1 pet per row, column, and colored region."`;
-      });
-    }
   }
 };
 
@@ -1400,22 +1376,6 @@ export const renderHome = () => {
 
         <!-- 4x4 Tactile Clay Star Battle Board (Contained Component Card) -->
         <div class="interactive-sanctuary-card">
-          <div class="arena-room-pill" style="background: #fff7ed; border-color: #fed7aa; color: #ea580c; margin-bottom: 1rem;">
-            <span class="pulse-dot amber"></span>
-            STAR BATTLE SANCTUARY &bull; LEVEL 1
-          </div>
-
-          <!-- Companion Vignette & Speech Bubble Dialogue -->
-          <div class="pawdoku-companion-row">
-            <div class="pet-vignette" onclick="window.hintPawdoku()" title="Tap for a companion hint">
-              <div class="pet-avatar-large">${petAvatarSvg}</div>
-              <span class="pet-cuddle-tag">Hint</span>
-            </div>
-            <div class="pet-speech-bubble" id="pawdoku-bubble-text">
-              "Place 1 pet per row, column &amp; color zone. No two pets can touch, even diagonally!"
-            </div>
-          </div>
-
           <!-- Sanctuary Gesture Controls Bar -->
           <div class="pawdoku-controls-strip">
             <div class="pawdoku-gesture-pill" title="Tap to cross • Double-tap to place pet • Drag to paint crosses">
