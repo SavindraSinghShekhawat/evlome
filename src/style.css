@@ -1354,6 +1354,11 @@ body.menu-open .burger-line.line-bottom {
   height: 58px;
   border-radius: 16px;
   box-shadow: 0 6px 18px rgba(234, 88, 12, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  overflow: hidden;
 }
 
 .pet-cuddle-tag {
@@ -4523,6 +4528,30 @@ body.menu-open .burger-line.line-bottom {
   }
 
   /* Pawdoku Mobile Optimization */
+  .pawdoku-companion-row {
+    gap: 0.65rem;
+    margin-bottom: 0.85rem;
+  }
+  .pet-vignette {
+    width: 50px;
+    height: 50px;
+    border-radius: 14px;
+  }
+  .pet-avatar-large {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+  }
+  .pet-cuddle-tag {
+    font-size: 8px;
+    padding: 1px 5px;
+    bottom: -5px;
+  }
+  .pet-speech-bubble {
+    font-size: 11px;
+    padding: 0.45rem 0.65rem;
+    line-height: 1.35;
+  }
   .pawdoku-controls-strip {
     margin-bottom: 0.85rem;
     gap: 0.4rem;
@@ -4536,6 +4565,7 @@ body.menu-open .burger-line.line-bottom {
     font-size: 11px;
     padding: 0.35rem 0.65rem;
   }
+
   .pawdoku-board-wrapper {
     max-width: 290px;
     padding: 10px;
@@ -4837,6 +4867,24 @@ body.menu-open .burger-line.line-bottom {
   .stage-specs-grid {
     grid-template-columns: 1fr;
     gap: 0.65rem;
+  }
+
+  .pawdoku-companion-row {
+    gap: 0.5rem;
+  }
+  .pet-vignette {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+  }
+  .pet-avatar-large {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+  }
+  .pet-speech-bubble {
+    font-size: 10px;
+    padding: 0.35rem 0.55rem;
   }
 
   .pawdoku-board-wrapper {
