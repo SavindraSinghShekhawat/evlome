@@ -4,18 +4,6 @@
 
 import { suiteApps, gamesData, allProducts } from '../data/products.js';
 
-// Interactive Audio Preload (with user-gesture safety)
-let audioCache = {};
-const playSound = (path) => {
-  try {
-    if (!audioCache[path]) {
-      audioCache[path] = new Audio(path);
-    }
-    audioCache[path].currentTime = 0;
-    audioCache[path].play().catch(() => {});
-  } catch (e) {}
-};
-
 // Global interactive helpers
 const g = typeof window !== 'undefined' ? window : globalThis;
 
@@ -49,7 +37,6 @@ g.rollLudoDice = () => {
   const logDisplays = document.querySelectorAll('#dice-log-text, .dice-result-log');
   if (!dice) return;
 
-  playSound('/audio/roll.wav');
   dice.classList.add('rolling');
 
   // Rapid face shuffle during roll
@@ -68,7 +55,6 @@ g.rollLudoDice = () => {
     updateDicePips(rolledNum);
 
     if (rolledNum === 6) {
-      playSound('/audio/six.wav');
       dice.classList.add('rolled-six');
       setTimeout(() => dice.classList.remove('rolled-six'), 1200);
       logDisplays.forEach(el => {
@@ -278,7 +264,6 @@ g.pawdokuPointerMove = (e) => {
       const [sr, sc] = pawdokuStartCoord.split('-').map(Number);
       if (pawdokuGrid[sr][sc] !== 'pet') {
         pawdokuGrid[sr][sc] = (pawdokuSwipeMode === 'cross' ? 'cross' : '');
-        playSound('/audio/cross_tap.wav');
         g.updatePawdokuUI();
       }
     }
@@ -292,7 +277,6 @@ g.pawdokuPointerMove = (e) => {
         const [cr, cc] = coord.split('-').map(Number);
         if (pawdokuGrid[cr][cc] !== 'pet') {
           pawdokuGrid[cr][cc] = (pawdokuSwipeMode === 'cross' ? 'cross' : '');
-          playSound('/audio/cross_tap.wav');
           g.updatePawdokuUI();
         }
       }
@@ -335,7 +319,6 @@ g.pawdokuCellTap = (r, c) => {
   // If already a pet, single tap removes it immediately
   if (current === 'pet') {
     pawdokuGrid[r][c] = '';
-    playSound('/audio/cross_tap.wav');
     pawdokuLastTap[key] = 0;
     g.updatePawdokuUI();
     return;
@@ -344,7 +327,6 @@ g.pawdokuCellTap = (r, c) => {
   // If a second tap arrived within 350ms, it's a double tap -> Place Pet!
   if (diff > 0 && diff < 350) {
     pawdokuGrid[r][c] = 'pet';
-    playSound('/audio/pet_place.wav');
     pawdokuLastTap[key] = 0;
     g.updatePawdokuUI();
     return;
@@ -355,10 +337,8 @@ g.pawdokuCellTap = (r, c) => {
   // If it was empty, it becomes a cross
   if (current === 'cross') {
     pawdokuGrid[r][c] = '';
-    playSound('/audio/cross_tap.wav');
   } else {
     pawdokuGrid[r][c] = 'cross';
-    playSound('/audio/cross_tap.wav');
   }
   g.updatePawdokuUI();
 };
@@ -372,7 +352,6 @@ g.restartPawdoku = () => {
   ];
   pawdokuHasWon = false;
   pawdokuLastTap = {};
-  playSound('/audio/cross_tap.wav');
   g.updatePawdokuUI();
 };
 
@@ -381,7 +360,6 @@ g.hintPawdoku = () => {
   for (const [r, c] of solPets) {
     if (pawdokuGrid[r][c] !== 'pet') {
       pawdokuGrid[r][c] = 'pet';
-      playSound('/audio/pet_place.wav');
       g.updatePawdokuUI();
       return;
     }
@@ -448,7 +426,6 @@ g.updatePawdokuUI = () => {
   if (isWon) {
     if (!pawdokuHasWon) {
       pawdokuHasWon = true;
-      playSound('/audio/victory.wav');
     }
     statusBars.forEach(sb => {
       sb.innerHTML = `<span style="color:#10B981;font-weight:700;">🌟 Sanctuary Complete!</span>`;
@@ -614,7 +591,6 @@ g.setCalcMode = (mode) => {
 };
 
 g.calcKeyPress = (key) => {
-  playSound('/audio/cross_tap.wav');
   if (key === 'AC') {
     calcExpression = '';
     calcResult = '0';
@@ -716,7 +692,6 @@ const NUTRITION_TARGETS = {
 g.toggleNutrMeal = (mealId) => {
   if (nutritionMealsState[mealId] !== undefined) {
     nutritionMealsState[mealId] = !nutritionMealsState[mealId];
-    playSound(nutritionMealsState[mealId] ? '/audio/pet_place.wav' : '/audio/cross_tap.wav');
     g.updateNutritionUI();
   }
 };
@@ -768,23 +743,19 @@ let restTimerInterval = null;
 
 g.adjWorkoutWeight = (delta) => {
   workoutWeight = Math.max(20, Math.min(250, workoutWeight + delta));
-  playSound('/audio/cross_tap.wav');
   g.updateWorkoutUI();
 };
 
 g.adjWorkoutReps = (delta) => {
   workoutReps = Math.max(1, Math.min(30, workoutReps + delta));
-  playSound('/audio/cross_tap.wav');
   g.updateWorkoutUI();
 };
 
 g.toggleLogWorkoutSet = () => {
   workoutSetLogged = !workoutSetLogged;
   if (workoutSetLogged) {
-    playSound('/audio/victory.wav');
     g.startSimpleRestTimer(90);
   } else {
-    playSound('/audio/cross_tap.wav');
     g.stopSimpleRestTimer();
   }
   g.updateWorkoutUI();
@@ -799,7 +770,6 @@ g.startSimpleRestTimer = (seconds) => {
       g.updateTimerText();
     } else {
       clearInterval(restTimerInterval);
-      playSound('/audio/victory.wav');
     }
   }, 1000);
   g.updateTimerText();
