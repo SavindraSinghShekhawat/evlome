@@ -37,7 +37,7 @@ describe('EVLOME Beta Form — Google Form Schema & Contract', () => {
     assert.strictEqual(FORM_ENTRY_IDS.feedback, 'entry.1265301105');
   });
 
-  it('should contain the exact 6 apps registered in the Google Form', () => {
+  it('should contain all registered apps in the Google Form', () => {
     const expectedApps = [
       'Calculator+',
       'Cycle',
@@ -103,7 +103,7 @@ describe('EVLOME Beta Form — Rendered HTML Output Contract', () => {
     }
   });
 
-  it('should render checkboxes for all 6 verified apps with exact values', () => {
+  it('should render checkboxes for all verified apps with exact values', () => {
     for (const app of VALID_APPS) {
       const expectedSnippet = `name="${FORM_ENTRY_IDS.specificApps}" value="${app}"`;
       assert.ok(
@@ -237,7 +237,7 @@ describe('EVLOME Beta Form — Validation Engine', () => {
     assert.deepStrictEqual(result.payload.getAll(FORM_ENTRY_IDS.specificApps), ['Calculator+', 'Pawdoku']);
   });
 
-  it('should automatically include all 6 apps when "The Entire EVLOME Suite (All Apps)" is chosen', () => {
+  it('should automatically include all apps when "The Entire EVLOME Suite (All Apps)" is chosen', () => {
     const result = validateBetaForm({
       ...validBaseData,
       preference: 'The Entire EVLOME Suite (All Apps)',

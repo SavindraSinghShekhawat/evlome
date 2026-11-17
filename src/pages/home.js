@@ -1428,26 +1428,13 @@ export const renderHome = () => {
 
       <!-- App Icons Constellation Strip -->
       <div class="one-apps-constellation">
-        <span class="one-constellation-lbl">UNIFIED MEMBERSHIP ACROSS ALL 6 APPS</span>
+        <span class="one-constellation-lbl">UNIFIED MEMBERSHIP ACROSS THE ENTIRE SUITE</span>
         <div class="one-constellation-icons">
-          <div class="one-constellation-icon" title="Nutrition">
-            <img src="${nutrition.icon}" alt="Nutrition" width="44" height="44" loading="lazy" decoding="async" />
-          </div>
-          <div class="one-constellation-icon" title="Activity">
-            <img src="${activity.icon}" alt="Activity" width="44" height="44" loading="lazy" decoding="async" />
-          </div>
-          <div class="one-constellation-icon" title="Cycle">
-            <img src="${cycle.icon}" alt="Cycle" width="44" height="44" loading="lazy" decoding="async" />
-          </div>
-          <div class="one-constellation-icon" title="Calculator+">
-            <img src="${calc.icon}" alt="Calculator+" width="44" height="44" loading="lazy" decoding="async" />
-          </div>
-          <div class="one-constellation-icon" title="Ludo Prince">
-            <img src="${ludo.icon}" alt="Ludo Prince" width="44" height="44" loading="lazy" decoding="async" />
-          </div>
-          <div class="one-constellation-icon" title="Pawdoku">
-            <img src="${pawdoku.icon}" alt="Pawdoku" width="44" height="44" loading="lazy" decoding="async" />
-          </div>
+          ${allProducts.map(app => `
+            <div class="one-constellation-icon" title="${app.title}">
+              <img src="${app.icon}" alt="${app.title}" width="44" height="44" loading="lazy" decoding="async" />
+            </div>
+          `).join('')}
         </div>
       </div>
 
@@ -1455,10 +1442,7 @@ export const renderHome = () => {
       <div class="one-grid">
         <div class="one-card">
           <div class="one-card-icon-group">
-            <img src="${nutrition.icon}" alt="Nutrition Logo" class="one-mini-logo" width="36" height="36" loading="lazy" decoding="async" />
-            <img src="${activity.icon}" alt="Activity Logo" class="one-mini-logo" width="36" height="36" loading="lazy" decoding="async" />
-            <img src="${cycle.icon}" alt="Cycle Logo" class="one-mini-logo" width="36" height="36" loading="lazy" decoding="async" />
-            <img src="${calc.icon}" alt="Calculator+ Logo" class="one-mini-logo" width="36" height="36" loading="lazy" decoding="async" />
+            ${suiteApps.map(app => `<img src="${app.icon}" alt="${app.title} Logo" class="one-mini-logo" width="36" height="36" loading="lazy" decoding="async" />`).join('')}
           </div>
           <span class="one-card-tag" style="color: #059669;">THE HEALTH SUITE</span>
           <h3 class="one-card-title">Precision Health OS</h3>
@@ -1475,8 +1459,7 @@ export const renderHome = () => {
 
         <div class="one-card">
           <div class="one-card-icon-group">
-            <img src="${ludo.icon}" alt="Ludo Prince Logo" class="one-mini-logo" width="36" height="36" loading="lazy" decoding="async" />
-            <img src="${pawdoku.icon}" alt="Pawdoku Logo" class="one-mini-logo" width="36" height="36" loading="lazy" decoding="async" />
+            ${gamesData.map(app => `<img src="${app.icon}" alt="${app.title} Logo" class="one-mini-logo" width="36" height="36" loading="lazy" decoding="async" />`).join('')}
           </div>
           <span class="one-card-tag" style="color: #6366f1;">THE PLAY SUITE</span>
           <h3 class="one-card-title">Pure Play &amp; Ad-Free</h3>
