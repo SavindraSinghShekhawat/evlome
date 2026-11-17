@@ -2,7 +2,7 @@
 // Cinematic Homepage Renderer — Two Distinct Directions: Health & Games
 // ============================================================================
 
-import { suiteApps, gamesData, allProducts } from '../data/products.js';
+import { suiteApps, gamesData } from '../data/products.js';
 
 // Global interactive helpers
 const g = typeof window !== 'undefined' ? window : globalThis;
@@ -1530,18 +1530,6 @@ export const renderHome = () => {
         <p class="stage-subtitle-center">
           A single universal pass that unlocks every Pro capability, clinical health telemetry tool, and game across the entire EVLOME universe — with zero ads, private cloud sync, and all future app releases automatically included. Available directly inside any EVLOME app.
         </p>
-      </div>
-
-      <!-- App Icons Constellation Strip -->
-      <div class="one-apps-constellation">
-        <span class="one-constellation-lbl">UNIFIED MEMBERSHIP ACROSS THE ENTIRE SUITE</span>
-        <div class="one-constellation-icons">
-          ${allProducts.map(app => `
-            <div class="one-constellation-icon" title="${app.title}">
-              <img src="${app.icon}" alt="${app.title}" width="44" height="44" loading="lazy" decoding="async" />
-            </div>
-          `).join('')}
-        </div>
       </div>
 
       <!-- 3 Ecosystem Pillars Bento -->
