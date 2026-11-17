@@ -670,16 +670,17 @@ g.switchGameTab = (gameId) => {
 };
 
 // --- Nutrition: Simple In-App Fuel Logger Engine ---
-let nutritionMealsState = {
-  oats: true,
-  chicken: true,
-  yogurt: false
+// --- Nutrition: Food Diary & Calorie Target Component (from evlome_nutrition_2026) ---
+const nutritionDiaryData = {
+  oats: { name: 'Steel-Cut Oatmeal & Berries', meta: '1 bowl (250g) • 08:15 AM', icon: '🥣', cal: 380, p: 14, c: 62, f: 7, meal: 'bf' },
+  eggs: { name: 'Pasture-Raised Eggs & Sourdough', meta: '2 eggs, 1 slice • 08:35 AM', icon: '🥚', cal: 260, p: 20, c: 16, f: 14, meal: 'bf' },
+  salmon: { name: 'Grilled Salmon & Quinoa Bowl', meta: '1 bowl (340g) • 01:15 PM', icon: '🥗', cal: 540, p: 42, c: 45, f: 18, meal: 'lunch' }
 };
 
-const nutritionMealsData = {
-  oats: { name: 'Oats & Whey', cal: 380, p: 32, c: 48, f: 6 },
-  chicken: { name: 'Chicken & Quinoa', cal: 540, p: 48, c: 44, f: 14 },
-  yogurt: { name: 'Greek Yogurt', cal: 220, p: 24, c: 22, f: 4 }
+let nutritionDiaryState = {
+  oats: true,
+  eggs: true,
+  salmon: false
 };
 
 const NUTRITION_TARGETS = {
@@ -690,31 +691,37 @@ const NUTRITION_TARGETS = {
 };
 
 g.toggleNutrMeal = (mealId) => {
-  if (nutritionMealsState[mealId] !== undefined) {
-    nutritionMealsState[mealId] = !nutritionMealsState[mealId];
+  if (nutritionDiaryState[mealId] !== undefined) {
+    nutritionDiaryState[mealId] = !nutritionDiaryState[mealId];
     g.updateNutritionUI();
   }
 };
 
 g.updateNutritionUI = () => {
-  let totalCal = 700;
+  let totalCal = 440; // baseline snacks / hydration
   let totalP = 16;
-  let totalC = 74;
-  let totalF = 24;
+  let totalC = 44;
+  let totalF = 9;
+  let bfCal = 0;
+  let lunchCal = 0;
 
-  for (const [id, isLogged] of Object.entries(nutritionMealsState)) {
-    const data = nutritionMealsData[id];
-    if (isLogged && data) {
-      totalCal += data.cal;
-      totalP += data.p;
-      totalC += data.c;
-      totalF += data.f;
+  for (const [id, isLogged] of Object.entries(nutritionDiaryState)) {
+    const data = nutritionDiaryData[id];
+    if (data) {
+      if (isLogged) {
+        totalCal += data.cal;
+        totalP += data.p;
+        totalC += data.c;
+        totalF += data.f;
+        if (data.meal === 'bf') bfCal += data.cal;
+        if (data.meal === 'lunch') lunchCal += data.cal;
+      }
+      document.querySelectorAll(`.nutr-diary-row-${id}`).forEach(el => {
+        el.classList.toggle('logged', isLogged);
+        const checkEl = el.querySelector('.nutr-row-check');
+        if (checkEl) checkEl.textContent = isLogged ? '✓' : '+';
+      });
     }
-    document.querySelectorAll(`.nutr-chip-${id}`).forEach(el => {
-      el.classList.toggle('active', isLogged);
-      const checkEl = el.querySelector('.nutr-chip-check');
-      if (checkEl) checkEl.textContent = isLogged ? '✓' : '+';
-    });
   }
 
   document.querySelectorAll('#nutr-cals-num').forEach(el => {
@@ -732,9 +739,11 @@ g.updateNutritionUI = () => {
   document.querySelectorAll('#nutr-p-val').forEach(el => el.textContent = `${totalP}g`);
   document.querySelectorAll('#nutr-c-val').forEach(el => el.textContent = `${totalC}g`);
   document.querySelectorAll('#nutr-f-val').forEach(el => el.textContent = `${totalF}g`);
+  document.querySelectorAll('#nutr-bf-cals').forEach(el => el.textContent = `${bfCal} kcal`);
+  document.querySelectorAll('#nutr-lunch-cals').forEach(el => el.textContent = `${lunchCal} kcal`);
 };
 
-// --- Activity: Simple In-App Workout Set Logger Engine ---
+// --- Activity: Active Workout Exercise Logger (from evlome_activity_2026) ---
 let workoutWeight = 100;
 let workoutReps = 8;
 let workoutSetLogged = false;
@@ -785,17 +794,17 @@ g.updateTimerText = () => {
   const m = Math.floor(restTimerSeconds / 60);
   const s = restTimerSeconds % 60;
   const str = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
-  document.querySelectorAll('#act-timer-digits').forEach(el => {
+  document.querySelectorAll('#act-timer-digits, .act-timer-live').forEach(el => {
     el.textContent = str;
   });
 };
 
 g.updateWorkoutUI = () => {
   document.querySelectorAll('#act-weight-val').forEach(el => {
-    el.textContent = `${workoutWeight} kg`;
+    el.textContent = workoutWeight;
   });
   document.querySelectorAll('#act-reps-val').forEach(el => {
-    el.textContent = `${workoutReps} reps`;
+    el.textContent = workoutReps;
   });
 
   const perSide = Math.max(0, (workoutWeight - 20) / 2);
@@ -808,114 +817,215 @@ g.updateWorkoutUI = () => {
     el.textContent = `${oneRM} kg`;
   });
 
-  document.querySelectorAll('#act-log-set-btn').forEach(btn => {
+  document.querySelectorAll('#act-set-3-row').forEach(row => {
+    row.classList.toggle('completed', workoutSetLogged);
+  });
+
+  document.querySelectorAll('#act-check-toggle-btn').forEach(btn => {
+    btn.classList.toggle('checked', workoutSetLogged);
+  });
+
+  document.querySelectorAll('#act-rest-indicator').forEach(ind => {
+    ind.classList.toggle('active', workoutSetLogged);
+  });
+
+  document.querySelectorAll('#act-header-badge').forEach(badge => {
     if (workoutSetLogged) {
-      btn.innerHTML = `<span>✓ Set 3 Logged</span> &bull; <span class="act-rest-tag">Rest: <strong id="act-timer-digits">01:30</strong> (Tap to reset)</span>`;
-      btn.classList.add('completed');
+      badge.textContent = 'Set 3 Done ✓';
+      badge.classList.add('completed');
     } else {
-      btn.innerHTML = `<span>✓ Log Set 3 (${workoutWeight} kg &times; ${workoutReps})</span>`;
-      btn.classList.remove('completed');
+      badge.textContent = 'Set 3 of 4';
+      badge.classList.remove('completed');
     }
   });
 
   g.updateTimerText();
 };
 
-// Reusable Simple Demo Renderers
+// Reusable Authentic In-App Demo Renderers
 export const renderNutritionDemo = () => `
-  <!-- In-App Daily Fuel & Macro Logger Component -->
+  <!-- Authentic EVLOME Nutrition Food Diary Card -->
   <div class="nutrition-app-card">
-    <div class="nutr-simple-header">
-      <div class="nutr-simple-title">
-        <span class="nutr-eyebrow">DAILY FUEL TARGET</span>
-        <span class="nutr-cals-display"><strong id="nutr-cals-num">1,620</strong> / 2,100 kcal</span>
+    <div class="nutr-diary-head">
+      <div class="nutr-diary-title-wrap">
+        <span class="nutr-diary-eyebrow">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          FOOD DIARY &bull; TODAY
+        </span>
+        <div class="nutr-cals-display"><strong id="nutr-cals-num">1,080</strong> <span class="nutr-cal-target">/ 2,100 kcal</span></div>
       </div>
-      <span class="nutr-remain-badge" id="nutr-remain-pill">480 kcal left</span>
+      <span class="nutr-remain-badge" id="nutr-remain-pill">1,020 kcal left</span>
     </div>
 
     <div class="nutr-simple-bar-wrap">
-      <div class="nutr-simple-bar-fill" id="nutr-progress-fill" style="width: 77%;"></div>
+      <div class="nutr-simple-bar-fill" id="nutr-progress-fill" style="width: 51%;"></div>
     </div>
 
     <div class="nutr-simple-macros">
       <div class="nutr-macro-pill">
         <span class="macro-dot protein"></span>
         <span class="macro-lbl">Protein</span>
-        <strong id="nutr-p-val">96g</strong><span class="macro-target">/150g</span>
+        <strong id="nutr-p-val">50g</strong><span class="macro-target">/150g</span>
       </div>
       <div class="nutr-macro-pill">
         <span class="macro-dot carbs"></span>
         <span class="macro-lbl">Carbs</span>
-        <strong id="nutr-c-val">166g</strong><span class="macro-target">/220g</span>
+        <strong id="nutr-c-val">122g</strong><span class="macro-target">/220g</span>
       </div>
       <div class="nutr-macro-pill">
         <span class="macro-dot fats"></span>
         <span class="macro-lbl">Fats</span>
-        <strong id="nutr-f-val">44g</strong><span class="macro-target">/65g</span>
+        <strong id="nutr-f-val">30g</strong><span class="macro-target">/65g</span>
       </div>
     </div>
 
-    <div class="nutr-chips-wrap">
-      <span class="nutr-chips-title">Quick Log Whole Food:</span>
-      <div class="nutr-chips-row">
-        <button type="button" class="nutr-food-chip nutr-chip-oats active" onclick="window.toggleNutrMeal('oats')">
-          <span class="nutr-chip-check">✓</span>
-          <span>🥣 Oats &amp; Whey (+380 kcal)</span>
-        </button>
-        <button type="button" class="nutr-food-chip nutr-chip-chicken active" onclick="window.toggleNutrMeal('chicken')">
-          <span class="nutr-chip-check">✓</span>
-          <span>🥗 Chicken Quinoa (+540 kcal)</span>
-        </button>
-        <button type="button" class="nutr-food-chip nutr-chip-yogurt" onclick="window.toggleNutrMeal('yogurt')">
-          <span class="nutr-chip-check">+</span>
-          <span>🫐 Greek Yogurt (+220 kcal)</span>
-        </button>
+    <!-- Meals Diary List Items -->
+    <div class="nutr-diary-list">
+      <!-- Breakfast Group -->
+      <div class="nutr-section-label">
+        <div class="nutr-sec-name-wrap">
+          <span class="nutr-meal-dot breakfast"></span>
+          <span class="nutr-sec-title">Breakfast</span>
+        </div>
+        <span class="nutr-sec-cals" id="nutr-bf-cals">640 kcal</span>
       </div>
+
+      <div class="nutr-diary-row nutr-diary-row-oats logged" onclick="window.toggleNutrMeal('oats')">
+        <div class="nutr-row-icon">🥣</div>
+        <div class="nutr-row-main">
+          <span class="nutr-row-name">Steel-Cut Oatmeal &amp; Berries</span>
+          <span class="nutr-row-meta">1 bowl (250g) &bull; 08:15 AM &bull; 14g P</span>
+        </div>
+        <div class="nutr-row-end">
+          <span class="nutr-row-cals">380 kcal</span>
+          <span class="nutr-row-check">✓</span>
+        </div>
+      </div>
+
+      <div class="nutr-diary-row nutr-diary-row-eggs logged" onclick="window.toggleNutrMeal('eggs')">
+        <div class="nutr-row-icon">🥚</div>
+        <div class="nutr-row-main">
+          <span class="nutr-row-name">Pasture-Raised Eggs &amp; Sourdough</span>
+          <span class="nutr-row-meta">2 eggs, 1 slice &bull; 08:35 AM &bull; 20g P</span>
+        </div>
+        <div class="nutr-row-end">
+          <span class="nutr-row-cals">260 kcal</span>
+          <span class="nutr-row-check">✓</span>
+        </div>
+      </div>
+
+      <!-- Lunch Group -->
+      <div class="nutr-section-label">
+        <div class="nutr-sec-name-wrap">
+          <span class="nutr-meal-dot lunch"></span>
+          <span class="nutr-sec-title">Lunch</span>
+        </div>
+        <span class="nutr-sec-cals" id="nutr-lunch-cals">0 kcal</span>
+      </div>
+
+      <div class="nutr-diary-row nutr-diary-row-salmon" onclick="window.toggleNutrMeal('salmon')">
+        <div class="nutr-row-icon">🥗</div>
+        <div class="nutr-row-main">
+          <span class="nutr-row-name">Grilled Salmon &amp; Quinoa Bowl</span>
+          <span class="nutr-row-meta">1 bowl (340g) &bull; 01:15 PM &bull; 42g P</span>
+        </div>
+        <div class="nutr-row-end">
+          <span class="nutr-row-cals">540 kcal</span>
+          <span class="nutr-row-check">+</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Diary Footer -->
+    <div class="nutr-diary-foot">
+      <span class="nutr-foot-add-pill">+ Add Food</span>
+      <span class="nutr-fasting-pill">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        16:8 Fasting Window
+      </span>
     </div>
   </div>
 `;
 
 export const renderActivityDemo = () => `
-  <!-- In-App Live Workout Set Logger Component -->
+  <!-- Authentic EVLOME Activity Active Workout Exercise Card -->
   <div class="activity-workout-card">
-    <div class="act-simple-header">
-      <div class="act-simple-title">
-        <span class="act-eyebrow">WORKOUT LOG</span>
-        <h4 class="act-simple-ex">Barbell Bench Press</h4>
+    <div class="act-workout-head">
+      <div class="act-workout-title-wrap">
+        <span class="act-workout-eyebrow">ACTIVE WORKOUT &bull; CHEST &amp; TRICEPS</span>
+        <h4 class="act-workout-ex">Barbell Bench Press</h4>
       </div>
-      <span class="act-simple-set-badge">Set 3 of 4</span>
+      <span class="act-header-badge" id="act-header-badge">Set 3 of 4</span>
     </div>
 
-    <div class="act-stepper-box">
-      <div class="act-control-group">
-        <span class="act-control-lbl">Weight</span>
-        <div class="act-stepper-unit">
-          <button type="button" class="act-step-btn" onclick="window.adjWorkoutWeight(-5)" title="-5 kg">&minus;</button>
-          <span class="act-stepper-display" id="act-weight-val">100 kg</span>
-          <button type="button" class="act-step-btn" onclick="window.adjWorkoutWeight(5)" title="+5 kg">&#43;</button>
-        </div>
+    <!-- Active Exercise Set Table -->
+    <div class="act-set-table">
+      <div class="act-table-head">
+        <span class="act-th-set">SET</span>
+        <span class="act-th-prev">PREV</span>
+        <span class="act-th-weight">KG</span>
+        <span class="act-th-reps">REPS</span>
+        <span class="act-th-check">✓</span>
       </div>
 
-      <span class="act-times-sep">&times;</span>
+      <!-- Set 1: Done -->
+      <div class="act-set-row completed">
+        <span class="act-cell-set">1</span>
+        <span class="act-cell-prev">80 kg &times; 10</span>
+        <span class="act-cell-weight">80</span>
+        <span class="act-cell-reps">10</span>
+        <div class="act-cell-check"><span class="act-check-badge checked">✓</span></div>
+      </div>
 
-      <div class="act-control-group">
-        <span class="act-control-lbl">Reps</span>
-        <div class="act-stepper-unit">
-          <button type="button" class="act-step-btn" onclick="window.adjWorkoutReps(-1)" title="-1 rep">&minus;</button>
-          <span class="act-stepper-display" id="act-reps-val">8 reps</span>
-          <button type="button" class="act-step-btn" onclick="window.adjWorkoutReps(1)" title="+1 rep">&#43;</button>
+      <!-- Set 2: Done -->
+      <div class="act-set-row completed">
+        <span class="act-cell-set">2</span>
+        <span class="act-cell-prev">90 kg &times; 8</span>
+        <span class="act-cell-weight">90</span>
+        <span class="act-cell-reps">8</span>
+        <div class="act-cell-check"><span class="act-check-badge checked">✓</span></div>
+      </div>
+
+      <!-- Set 3: Active Interactive Stepper Row -->
+      <div class="act-set-row active" id="act-set-3-row">
+        <span class="act-cell-set act-active-num">3</span>
+        <span class="act-cell-prev">100 kg &times; 6</span>
+        <div class="act-cell-weight">
+          <div class="act-inline-stepper">
+            <button type="button" class="act-step-btn" onclick="window.adjWorkoutWeight(-5)" title="-5 kg">&minus;</button>
+            <span id="act-weight-val" class="act-stepper-num">100</span>
+            <button type="button" class="act-step-btn" onclick="window.adjWorkoutWeight(5)" title="+5 kg">&#43;</button>
+          </div>
+        </div>
+        <div class="act-cell-reps">
+          <div class="act-inline-stepper">
+            <button type="button" class="act-step-btn" onclick="window.adjWorkoutReps(-1)" title="-1 rep">&minus;</button>
+            <span id="act-reps-val" class="act-stepper-num">8</span>
+            <button type="button" class="act-step-btn" onclick="window.adjWorkoutReps(1)" title="+1 rep">&#43;</button>
+          </div>
+        </div>
+        <div class="act-cell-check">
+          <button type="button" class="act-check-toggle" id="act-check-toggle-btn" onclick="window.toggleLogWorkoutSet()" title="Log Set 3">
+            <span class="act-check-mark">✓</span>
+          </button>
         </div>
       </div>
     </div>
 
-    <button type="button" class="act-main-log-btn" id="act-log-set-btn" onclick="window.toggleLogWorkoutSet()">
-      <span>✓ Log Set 3 (100 kg &times; 8)</span>
-    </button>
+    <!-- Table Action Bar -->
+    <div class="act-table-actions">
+      <span class="act-add-set-pill">+ Add Set</span>
+      <div class="act-rest-indicator" id="act-rest-indicator">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <span>Rest: <strong id="act-timer-digits">01:30</strong></span>
+      </div>
+    </div>
 
-    <div class="act-simple-footer">
-      <span>Plate Load: <strong id="act-plate-val">40 kg/side</strong> (20 kg Bar)</span>
-      <span class="act-foot-sep">&bull;</span>
-      <span>Est. 1RM: <strong id="act-onerm-val" style="color: #ea580c;">127 kg</strong></span>
+    <!-- Telemetry Footer -->
+    <div class="act-telemetry-bar">
+      <span>Plate: <strong id="act-plate-val">40 kg/side</strong> (20 kg Bar)</span>
+      <span class="act-telemetry-sep">&bull;</span>
+      <span>Est. 1RM: <strong id="act-onerm-val">127 kg</strong></span>
     </div>
   </div>
 `;

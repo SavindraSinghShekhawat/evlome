@@ -1728,14 +1728,14 @@ body.menu-open .burger-line.line-bottom {
 
 /* Fasting Telemetry Visualizer Card (Nutrition) */
 /* ============================================================================
-   Nutrition: Simple In-App Fuel Logger
+   Nutrition: Authentic In-App Food Diary Component (evlome_nutrition_2026)
    ============================================================================ */
 .nutrition-app-card {
   background: #ffffff;
   border: 1.5px solid #a7f3d0;
   border-radius: var(--radius-xxl);
-  padding: 1.5rem;
-  box-shadow: 0 16px 40px -15px rgba(5, 150, 105, 0.12);
+  padding: 1.4rem;
+  box-shadow: 0 16px 40px -15px rgba(5, 150, 105, 0.14);
   display: flex;
   flex-direction: column;
   max-width: 440px;
@@ -1745,7 +1745,7 @@ body.menu-open .burger-line.line-bottom {
   box-sizing: border-box;
 }
 
-.nutr-simple-header {
+.nutr-diary-head {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -1753,26 +1753,35 @@ body.menu-open .burger-line.line-bottom {
   gap: 0.5rem;
 }
 
-.nutr-simple-title {
+.nutr-diary-title-wrap {
   display: flex;
   flex-direction: column;
   gap: 2px;
 }
 
-.nutr-eyebrow {
+.nutr-diary-eyebrow {
   font-size: 10px;
   font-weight: 700;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
   color: #059669;
   text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .nutr-cals-display {
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   font-weight: 800;
   color: var(--text-primary);
   letter-spacing: -0.02em;
   font-variant-numeric: tabular-nums;
+}
+
+.nutr-cal-target {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-muted);
 }
 
 .nutr-remain-badge {
@@ -1792,7 +1801,7 @@ body.menu-open .burger-line.line-bottom {
   background: #f1f5f9;
   border-radius: 99px;
   overflow: hidden;
-  margin-bottom: 1rem;
+  margin-bottom: 0.85rem;
 }
 
 .nutr-simple-bar-fill {
@@ -1806,14 +1815,14 @@ body.menu-open .burger-line.line-bottom {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 0.5rem;
-  margin-bottom: 1.15rem;
+  margin-bottom: 1rem;
 }
 
 .nutr-macro-pill {
   background: #f8fafc;
   border: 1px solid var(--border-subtle);
   border-radius: 10px;
-  padding: 6px 8px;
+  padding: 5px 8px;
   display: flex;
   align-items: center;
   gap: 5px;
@@ -1842,56 +1851,129 @@ body.menu-open .burger-line.line-bottom {
   font-size: 10px;
 }
 
-.nutr-chips-wrap {
+/* Meals Diary List */
+.nutr-diary-list {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 5px;
+  margin-bottom: 0.85rem;
 }
 
-.nutr-chips-title {
-  font-size: 10px;
+.nutr-section-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 2px 2px 2px;
+  font-size: 10.5px;
   font-weight: 700;
   color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
 
-.nutr-chips-row {
+.nutr-sec-name-wrap {
   display: flex;
-  flex-direction: column;
+  align-items: center;
   gap: 6px;
 }
 
-.nutr-food-chip {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 7px 12px;
-  background: #ffffff;
-  border: 1px solid var(--border-subtle);
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 12px;
+.nutr-meal-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+.nutr-meal-dot.breakfast { background: #f59e0b; }
+.nutr-meal-dot.lunch { background: #10b981; }
+
+.nutr-sec-cals {
+  font-size: 10.5px;
   font-weight: 600;
-  color: var(--text-secondary);
-  transition: all 0.2s ease;
-  text-align: left;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
 }
 
-.nutr-food-chip:hover {
+.nutr-diary-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  background: #ffffff;
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.nutr-diary-row:hover {
   border-color: #a7f3d0;
   background: #fbfdfc;
 }
 
-.nutr-food-chip.active {
+.nutr-diary-row.logged {
   background: #f0fdf4;
   border-color: #86efac;
-  color: #14532d;
 }
 
-.nutr-chip-check {
-  width: 18px;
-  height: 18px;
+.nutr-row-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  background: #f8fafc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  flex-shrink: 0;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.nutr-diary-row.logged .nutr-row-icon {
+  background: #e6f9ef;
+}
+
+.nutr-row-main {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  flex: 1;
+  min-width: 0;
+}
+
+.nutr-row-name {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nutr-row-meta {
+  font-size: 10.5px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nutr-row-end {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.nutr-row-cals {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.nutr-row-check {
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   background: #e2e8f0;
   color: #64748b;
@@ -1900,24 +1982,48 @@ body.menu-open .burger-line.line-bottom {
   justify-content: center;
   font-size: 11px;
   font-weight: 800;
-  flex-shrink: 0;
   transition: all 0.2s ease;
 }
 
-.nutr-food-chip.active .nutr-chip-check {
+.nutr-diary-row.logged .nutr-row-check {
   background: #059669;
   color: #ffffff;
 }
 
+.nutr-diary-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.4rem;
+  border-top: 1px dashed var(--border-subtle);
+  font-size: 11px;
+}
+
+.nutr-foot-add-pill {
+  color: #059669;
+  font-weight: 700;
+  background: rgba(5, 150, 105, 0.08);
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+}
+
+.nutr-fasting-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--text-muted);
+  font-size: 10.5px;
+}
+
 /* ============================================================================
-   Activity: Simple In-App Workout Set Logger
+   Activity: Authentic In-App Workout Set Logger (evlome_activity_2026)
    ============================================================================ */
 .activity-workout-card {
   background: #ffffff;
   border: 1.5px solid #fed7aa;
   border-radius: var(--radius-xxl);
-  padding: 1.5rem;
-  box-shadow: 0 16px 40px -15px rgba(217, 119, 6, 0.12);
+  padding: 1.4rem;
+  box-shadow: 0 16px 40px -15px rgba(217, 119, 6, 0.14);
   display: flex;
   flex-direction: column;
   max-width: 440px;
@@ -1927,37 +2033,37 @@ body.menu-open .burger-line.line-bottom {
   box-sizing: border-box;
 }
 
-.act-simple-header {
+.act-workout-head {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.15rem;
+  margin-bottom: 0.9rem;
   gap: 0.5rem;
 }
 
-.act-simple-title {
+.act-workout-title-wrap {
   display: flex;
   flex-direction: column;
   gap: 2px;
 }
 
-.act-eyebrow {
+.act-workout-eyebrow {
   font-size: 10px;
   font-weight: 700;
-  letter-spacing: 0.05em;
-  color: #d97706;
+  letter-spacing: 0.06em;
+  color: #ea580c;
   text-transform: uppercase;
 }
 
-.act-simple-ex {
-  font-size: 1.2rem;
+.act-workout-ex {
+  font-size: 1.25rem;
   font-weight: 800;
   color: var(--text-primary);
   margin: 0;
   letter-spacing: -0.02em;
 }
 
-.act-simple-set-badge {
+.act-header-badge {
   font-size: 11px;
   font-weight: 700;
   background: #fff7ed;
@@ -1966,48 +2072,107 @@ body.menu-open .burger-line.line-bottom {
   border-radius: var(--radius-pill);
   border: 1px solid #fed7aa;
   white-space: nowrap;
+  transition: all 0.2s ease;
 }
 
-.act-stepper-box {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  padding: 12px 14px;
-  background: #f8fafc;
-  border: 1px solid var(--border-subtle);
-  border-radius: 14px;
-  margin-bottom: 1rem;
+.act-header-badge.completed {
+  background: #ecfdf5;
+  color: #047857;
+  border-color: #a7f3d0;
 }
 
-.act-control-group {
+/* Active Exercise Set Table */
+.act-set-table {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  flex: 1;
+  gap: 5px;
+  margin-bottom: 0.85rem;
 }
 
-.act-control-lbl {
+.act-table-head {
+  display: grid;
+  grid-template-columns: 28px 1fr 100px 90px 32px;
+  align-items: center;
+  gap: 8px;
+  padding: 0 8px 4px 8px;
   font-size: 10px;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--text-muted);
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
 }
 
-.act-stepper-unit {
+.act-th-set, .act-cell-set { text-align: center; }
+.act-th-prev, .act-cell-prev { text-align: left; }
+.act-th-weight, .act-cell-weight { text-align: center; }
+.act-th-reps, .act-cell-reps { text-align: center; }
+.act-th-check, .act-cell-check { text-align: center; }
+
+.act-set-row {
+  display: grid;
+  grid-template-columns: 28px 1fr 100px 90px 32px;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border-radius: 10px;
+  background: #f8fafc;
+  border: 1px solid var(--border-subtle);
+  transition: all 0.2s ease;
+}
+
+.act-set-row.completed {
+  background: #f8fafc;
+  opacity: 0.88;
+}
+
+.act-set-row.active {
+  background: #fffbf5;
+  border-color: #fed7aa;
+  opacity: 1;
+}
+
+.act-set-row.active.completed {
+  background: #f0fdf4;
+  border-color: #86efac;
+}
+
+.act-cell-set {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.act-active-num {
+  color: #ea580c;
+}
+
+.act-set-row.active.completed .act-active-num {
+  color: #059669;
+}
+
+.act-cell-prev {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.act-inline-stepper {
   display: flex;
   align-items: center;
-  gap: 6px;
+  justify-content: center;
+  gap: 4px;
 }
 
 .act-step-btn {
   background: #ffffff;
   border: 1px solid #cbd5e1;
-  border-radius: 8px;
-  width: 28px;
-  height: 28px;
-  font-size: 15px;
+  border-radius: 6px;
+  width: 24px;
+  height: 24px;
+  font-size: 13px;
   font-weight: 700;
   display: flex;
   align-items: center;
@@ -2015,6 +2180,7 @@ body.menu-open .burger-line.line-bottom {
   cursor: pointer;
   color: var(--text-primary);
   transition: all 0.15s ease;
+  user-select: none;
 }
 
 .act-step-btn:hover {
@@ -2022,60 +2188,95 @@ body.menu-open .burger-line.line-bottom {
   border-color: #94a3b8;
 }
 
-.act-stepper-display {
-  font-size: 13px;
+.act-stepper-num {
+  font-size: 12.5px;
   font-weight: 800;
   color: var(--text-primary);
   font-variant-numeric: tabular-nums;
-  min-width: 54px;
+  min-width: 32px;
   text-align: center;
 }
 
-.act-times-sep {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--text-muted);
-  padding: 0 4px;
-  align-self: flex-end;
-  margin-bottom: 6px;
-}
-
-.act-main-log-btn {
-  width: 100%;
-  padding: 11px 16px;
-  background: #ea580c;
-  color: #ffffff;
-  border: none;
-  border-radius: 12px;
-  font-size: 13px;
-  font-weight: 700;
-  cursor: pointer;
-  display: flex;
+.act-check-badge {
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  transition: all 0.2s ease;
-  margin-bottom: 0.85rem;
-  box-shadow: 0 4px 14px rgba(234, 88, 12, 0.25);
+  font-size: 12px;
+  font-weight: 800;
 }
 
-.act-main-log-btn:hover {
-  background: #c2410c;
-  transform: translateY(-1px);
-}
-
-.act-main-log-btn.completed {
+.act-check-badge.checked {
   background: #059669;
-  box-shadow: 0 4px 14px rgba(5, 150, 105, 0.25);
+  color: #ffffff;
 }
 
-.act-rest-tag {
-  font-size: 11.5px;
-  font-weight: 600;
-  opacity: 0.95;
+.act-check-toggle {
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+  background: #f1f5f9;
+  border: 1.5px solid #cbd5e1;
+  color: #94a3b8;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.act-simple-footer {
+.act-check-toggle:hover {
+  border-color: #ea580c;
+  color: #ea580c;
+}
+
+.act-check-toggle.checked {
+  background: #059669;
+  border-color: #059669;
+  color: #ffffff;
+}
+
+/* Table Actions & Telemetry */
+.act-table-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.act-add-set-pill {
+  font-size: 11px;
+  font-weight: 700;
+  color: #ea580c;
+  background: rgba(234, 88, 12, 0.08);
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+}
+
+.act-rest-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  color: var(--text-muted);
+  background: #f8fafc;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-subtle);
+  transition: all 0.2s ease;
+}
+
+.act-rest-indicator.active {
+  background: #ecfdf5;
+  color: #047857;
+  border-color: #a7f3d0;
+}
+
+.act-telemetry-bar {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2083,10 +2284,10 @@ body.menu-open .burger-line.line-bottom {
   font-size: 11px;
   color: var(--text-secondary);
   padding-top: 0.4rem;
-  flex-wrap: wrap;
+  border-top: 1px dashed var(--border-subtle);
 }
 
-.act-foot-sep {
+.act-telemetry-sep {
   color: var(--text-muted);
 }
 
@@ -4454,7 +4655,7 @@ body.menu-open .burger-line.line-bottom {
 
   /* Nutrition Card Mobile Optimization */
   .nutr-cals-display {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
   }
   .nutr-remain-badge {
     font-size: 10px;
@@ -4464,40 +4665,62 @@ body.menu-open .burger-line.line-bottom {
     gap: 0.35rem;
   }
   .nutr-macro-pill {
-    padding: 5px 6px;
+    padding: 4px 6px;
     font-size: 10px;
+    gap: 4px;
   }
-  .nutr-food-chip {
-    padding: 6px 10px;
-    font-size: 11px;
+  .nutr-diary-row {
+    padding: 7px 8px;
+    gap: 8px;
+  }
+  .nutr-row-icon {
+    width: 28px;
+    height: 28px;
+    font-size: 13px;
+    border-radius: 8px;
+  }
+  .nutr-row-name {
+    font-size: 12px;
+  }
+  .nutr-row-meta {
+    font-size: 10px;
   }
 
   /* Activity Card Mobile Optimization */
-  .act-simple-ex {
-    font-size: 1.05rem;
+  .act-workout-ex {
+    font-size: 1.1rem;
   }
-  .act-simple-set-badge {
+  .act-header-badge {
     font-size: 10px;
     padding: 3px 8px;
   }
-  .act-stepper-box {
-    padding: 10px 12px;
+  .act-table-head,
+  .act-set-row {
+    grid-template-columns: 22px 1fr 84px 74px 28px;
+    gap: 5px;
+    padding: 5px 6px;
+  }
+  .act-cell-prev {
+    font-size: 10px;
   }
   .act-step-btn {
-    width: 25px;
-    height: 25px;
-    font-size: 13px;
-  }
-  .act-stepper-display {
-    min-width: 44px;
+    width: 22px;
+    height: 22px;
     font-size: 12px;
   }
-  .act-main-log-btn {
-    padding: 9px 12px;
+  .act-stepper-num {
+    min-width: 24px;
     font-size: 11.5px;
   }
-  .act-simple-footer {
+  .act-check-badge,
+  .act-check-toggle {
+    width: 24px;
+    height: 24px;
+    font-size: 11px;
+  }
+  .act-telemetry-bar {
     font-size: 10px;
+    gap: 6px;
   }
 
   /* Store Download Badges on Mobile */
