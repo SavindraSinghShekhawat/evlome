@@ -70,8 +70,11 @@ export const renderAppPage = (app) => {
           ` : ''}
           ${app.playStoreUrl ? `
             <a href="${app.playStoreUrl}" target="_blank" rel="noopener noreferrer" class="btn-store btn-play-store" title="Get ${app.title} on Google Play">
-              <svg class="store-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-                <path d="M3.609 1.814L13.793 12 3.61 22.186c-.368-.344-.61-.88-.61-1.56V3.374c0-.68.242-1.216.61-1.56zm11.24 11.243l2.296 2.296-11.83 6.83 9.534-9.126zm0-2.114L5.315 1.817l11.83 6.83-2.296 2.296zm1.488 1.057l3.65 2.108c.848.49.848 1.294 0 1.784l-3.65 2.108-2.072-2.072 2.072-2.028z"/>
+              <svg class="store-icon" viewBox="0 0 26 28" width="19" height="20" fill="none">
+                <path fill="#0086F9" d="M0.2 0.3c-0.2 0.2-0.3 0.6-0.3 1.1v25.2c0 0.5 0.1 0.9 0.3 1.1l0.1 0.1 14.1-14.1V13.5L0.3 0.2l-0.1 0.1z"/>
+                <path fill="#00C165" d="M19.6 9.2L2.9 0.1c-1.1-0.6-2-0.6-2.6 0l14.1 14.2 5.2-5.1"/>
+                <path fill="#FF334B" d="M19.6 18.4L14.4 13.3 0.3 27.5c0.6 0.6 1.5 0.6 2.6 0l16.7-9.1"/>
+                <path fill="#FFBA00" d="M19.5 18.5l-5.1-5.1V13.5L19.5 8.3l0.1 0.1 6 3.4c1.7 1 1.7 2.6 0 3.6l-6 3.4-0.1 0.1z"/>
               </svg>
               <div class="store-badge-text">
                 <span class="store-badge-sub">GET IT ON</span>
