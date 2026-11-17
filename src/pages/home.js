@@ -1275,11 +1275,8 @@ export const renderHome = () => {
               </div>
             </a>
             <a href="${ludo.playStoreUrl}" target="_blank" rel="noopener noreferrer" class="btn-store btn-play-store" title="Get Ludo Prince on Google Play">
-              <svg class="store-icon" viewBox="0 0 26 28" width="19" height="20" fill="none">
-                <path fill="#0086F9" d="M0.2 0.3c-0.2 0.2-0.3 0.6-0.3 1.1v25.2c0 0.5 0.1 0.9 0.3 1.1l0.1 0.1 14.1-14.1V13.5L0.3 0.2l-0.1 0.1z"/>
-                <path fill="#00C165" d="M19.6 9.2L2.9 0.1c-1.1-0.6-2-0.6-2.6 0l14.1 14.2 5.2-5.1"/>
-                <path fill="#FF334B" d="M19.6 18.4L14.4 13.3 0.3 27.5c0.6 0.6 1.5 0.6 2.6 0l16.7-9.1"/>
-                <path fill="#FFBA00" d="M19.5 18.5l-5.1-5.1V13.5L19.5 8.3l0.1 0.1 6 3.4c1.7 1 1.7 2.6 0 3.6l-6 3.4-0.1 0.1z"/>
+              <svg class="store-icon" viewBox="0 0 16 16" width="20" height="20" fill="currentColor">
+                <path d="M14.222 9.374c1.037-.61 1.037-2.137 0-2.748L11.528 5.04 8.32 8l3.207 2.96 2.694-1.586Zm-3.595 2.116L7.583 8.68 1.03 14.73c.201 1.029 1.36 1.61 2.303 1.055l7.294-4.295ZM1 13.396V2.603L6.846 8 1 13.396ZM1.03 1.27l6.553 6.05 3.044-2.81L3.333.215C2.39-.341 1.231.24 1.03 1.27Z"/>
               </svg>
               <div class="store-badge-text">
                 <span class="store-badge-sub">GET IT ON</span>
