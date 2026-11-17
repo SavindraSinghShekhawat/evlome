@@ -1513,7 +1513,7 @@ export const renderHome = () => {
           <div class="one-strip-eyebrow">ONE UNIFIED ACCOUNT</div>
           <h3 class="one-strip-title">Unlock Once. Enjoy Across Every Device.</h3>
           <p class="one-strip-desc">
-            Subscribe through Apple App Store or Google Play in any EVLOME app. Your membership instantly activates across every app and device linked to your EVLOME ID — with effortless cancellation and family sharing support.
+            Subscribe through Apple App Store or Google Play in any EVLOME app. Your membership instantly activates across every app and device linked to your EVLOME ID — with effortless cancellation directly in your device account settings.
           </p>
         </div>
         <div class="one-strip-pills">
