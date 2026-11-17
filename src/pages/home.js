@@ -1513,7 +1513,7 @@ export const renderHome = () => {
           <div class="one-strip-eyebrow">ONE UNIFIED ACCOUNT</div>
           <h3 class="one-strip-title">Unlock Once. Enjoy Across Every Device.</h3>
           <p class="one-strip-desc">
-            Subscribe through Apple App Store or Google Play in any EVLOME app. Your membership instantly activates across every app and device linked to your EVLOME ID — with effortless cancellation directly in your device account settings.
+            Subscribe through Apple App Store or Google Play in any EVLOME app. Your membership instantly activates across every app and device linked to your EVLOME ID — with effortless cancellation directly in your device account settings. All future health tools, games, and suite features are automatically unlocked with zero upgrade fees.
           </p>
         </div>
         <div class="one-strip-pills">
@@ -1532,17 +1532,6 @@ export const renderHome = () => {
           <div class="one-feature-badge">
             <svg class="badge-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
             <span>All Future Apps Automatically Included</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Continuous Evolution Guarantee Banner -->
-      <div class="one-guarantee-banner">
-        <div class="one-guarantee-icon">👑</div>
-        <div class="one-guarantee-content">
-          <div class="one-guarantee-title">Continuous Evolution Included</div>
-          <div class="one-guarantee-desc">
-            Never purchase an individual app upgrade again. When new health tools, games, or features launch, they are instantly unlocked for all Evlome One members across all your devices.
           </div>
         </div>
       </div>
