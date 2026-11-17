@@ -1727,206 +1727,566 @@ body.menu-open .burger-line.line-bottom {
 }
 
 /* Fasting Telemetry Visualizer Card (Nutrition) */
-.fasting-card {
+/* ============================================================================
+   Nutrition: In-App Daily Fuel & Whole-Food Log Component
+   ============================================================================ */
+.nutrition-app-card {
   background: #ffffff;
   border: 1.5px solid #a7f3d0;
   border-radius: var(--radius-xxl);
-  padding: 2rem;
+  padding: 1.5rem;
   box-shadow: 0 20px 48px -15px rgba(5, 150, 105, 0.12);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
   max-width: 440px;
   width: 100%;
   margin: 0 auto;
+  text-align: left;
 }
 
-.fasting-presets {
+.nutr-header-strip {
   display: flex;
-  gap: 0.35rem;
-  padding: 0.3rem;
-  background: #e5e5ea;
-  border-radius: var(--radius-pill);
-  margin-bottom: 1.75rem;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.85rem;
+  gap: 0.5rem;
 }
 
-.fasting-preset-btn {
-  background: none;
-  border: none;
-  font-size: 12px;
-  font-weight: 600;
-  padding: 0.45rem 1rem;
-  border-radius: var(--radius-pill);
-  cursor: pointer;
-  color: var(--text-secondary);
-  transition: var(--transition-fast);
-}
-
-.fasting-preset-btn.active {
-  background: #ffffff;
-  color: var(--text-primary);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-}
-
-.fasting-hero-circle {
-  width: 170px;
-  height: 170px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 50% 50%, rgba(5, 150, 105, 0.08) 0%, transparent 70%);
-  border: 8px solid #d1fae5;
+.nutr-title-group {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 1.5rem;
-  position: relative;
-  box-shadow: 0 0 24px rgba(5, 150, 105, 0.15);
+  gap: 2px;
 }
 
-.fasting-elapsed-num {
-  font-size: 1.9rem;
-  font-weight: 800;
+.nutr-badge-pill {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
   color: #059669;
+  text-transform: uppercase;
+}
+
+.nutr-cal-count {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-primary);
   font-variant-numeric: tabular-nums;
-  line-height: 1;
   letter-spacing: -0.02em;
 }
 
-.fasting-elapsed-lbl {
+.nutr-remain-pill {
   font-size: 11px;
   font-weight: 600;
+  background: #ecfdf5;
+  color: #047857;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  border: 1px solid #a7f3d0;
+  white-space: nowrap;
+}
+
+.nutr-progress-bar-wrap {
+  width: 100%;
+  height: 8px;
+  background: #f1f5f9;
+  border-radius: 99px;
+  overflow: hidden;
+  margin-bottom: 1.15rem;
+}
+
+.nutr-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #10b981, #059669);
+  border-radius: 99px;
+  transition: width 0.35s var(--ease-spring);
+}
+
+.nutr-macros-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.nutr-macro-cell {
+  background: #f8fafc;
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nutr-macro-lbl {
+  font-size: 10.5px;
+  font-weight: 600;
   color: var(--text-muted);
+}
+
+.nutr-macro-val {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.nutr-mini-bar {
+  width: 100%;
+  height: 4px;
+  background: #e2e8f0;
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.nutr-mini-fill {
+  height: 100%;
+  border-radius: 99px;
+  transition: width 0.35s var(--ease-spring);
+}
+.nutr-mini-fill.protein { background: #059669; }
+.nutr-mini-fill.carbs { background: #0284c7; }
+.nutr-mini-fill.fats { background: #d97706; }
+
+.nutr-meals-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.15rem;
+}
+
+.nutr-meals-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+}
+
+.nutr-section-title {
+  font-weight: 700;
+  color: var(--text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  margin-top: 4px;
 }
 
-.fasting-zone-banner {
+.nutr-sub-hint {
+  color: var(--text-muted);
+  font-size: 10.5px;
+}
+
+.nutr-meals-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.nutr-meal-item {
   display: flex;
   align-items: center;
-  gap: 8px;
-  background: rgba(5, 150, 105, 0.08);
-  border: 1px solid rgba(5, 150, 105, 0.2);
-  border-radius: var(--radius-lg);
-  padding: 10px 16px;
-  width: 100%;
-  font-size: 13px;
-  font-weight: 600;
-  color: #047857;
-  justify-content: center;
+  gap: 10px;
+  padding: 8px 12px;
+  background: #ffffff;
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
 }
 
-/* Barbell Plate Math Assistant Card (Activity) */
-.barbell-card {
+.nutr-meal-item:hover {
+  border-color: #a7f3d0;
+  background: #fbfdfc;
+  transform: translateY(-1px);
+}
+
+.nutr-meal-item.logged {
+  background: #f0fdf4;
+  border-color: #bbf7d0;
+}
+
+.nutr-meal-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.nutr-meal-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  text-align: left;
+}
+
+.nutr-meal-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.25;
+}
+
+.nutr-meal-meta {
+  font-size: 10.5px;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.nutr-check-btn {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid #cbd5e1;
+  background: #f8fafc;
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.nutr-check-btn.checked {
+  background: #059669;
+  border-color: #059669;
+  color: #ffffff;
+}
+
+.nutr-fasting-footer {
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.nutr-fasting-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.fasting-flame-icon {
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.nutr-fasting-text {
+  flex: 1;
+  font-weight: 500;
+  text-align: left;
+  line-height: 1.35;
+}
+
+.nutr-fast-toggle-btn {
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  color: #047857;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.nutr-fast-toggle-btn:hover {
+  background: #d1fae5;
+}
+
+/* ============================================================================
+   Activity: In-App Live Workout Set Logger & Rest Timer Component
+   ============================================================================ */
+.activity-workout-card {
   background: #ffffff;
   border: 1.5px solid #fed7aa;
   border-radius: var(--radius-xxl);
-  padding: 2rem;
+  padding: 1.5rem;
   box-shadow: 0 20px 48px -15px rgba(217, 119, 6, 0.12);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
   max-width: 440px;
   width: 100%;
   margin: 0 auto;
+  text-align: left;
 }
 
-.barbell-stepper-box {
+.act-header-strip {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  margin-bottom: 0.5rem;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.15rem;
+  gap: 0.5rem;
 }
 
-.barbell-step-btn {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  border: 1px solid var(--border-subtle);
-  background: #ffffff;
-  font-size: 19px;
+.act-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.act-badge-pill {
+  font-size: 10px;
   font-weight: 700;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: var(--transition-fast);
-  box-shadow: var(--shadow-sm);
-  color: var(--text-primary);
+  letter-spacing: 0.05em;
+  color: #d97706;
+  text-transform: uppercase;
 }
 
-.barbell-step-btn:hover {
-  background: #f5f5f7;
-  transform: scale(1.05);
-}
-
-.barbell-weight-display {
-  font-size: 2.2rem;
+.act-exercise-title {
+  font-size: 1.25rem;
   font-weight: 800;
   color: var(--text-primary);
-  font-variant-numeric: tabular-nums;
-  min-width: 140px;
+  margin: 0;
+  letter-spacing: -0.02em;
 }
 
-.barbell-sub-calc {
-  font-size: 12.5px;
+.act-target-pill {
+  font-size: 11px;
   font-weight: 600;
-  color: var(--text-secondary);
-  margin-bottom: 1.5rem;
+  background: #fff7ed;
+  color: #c2410c;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  border: 1px solid #fed7aa;
+  white-space: nowrap;
 }
 
-.barbell-visual-bar {
+.act-sets-table {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 1.15rem;
+}
+
+.act-set-row {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 6px;
-  padding: 16px 12px;
+  justify-content: space-between;
+  padding: 8px 12px;
   background: #f8fafc;
   border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-lg);
-  width: 100%;
-  min-height: 70px;
-  margin-bottom: 1.25rem;
-  flex-wrap: wrap;
+  border-radius: 12px;
+  font-size: 12px;
+  transition: all 0.2s ease;
+  gap: 6px;
 }
 
-.plate-chip {
-  padding: 8px 10px;
-  border-radius: 6px;
-  font-size: 11px;
-  font-weight: 800;
-  font-family: var(--font-mono);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  min-width: 34px;
+.act-set-row.completed {
+  background: #f0fdf4;
+  border-color: #bbf7d0;
+}
+
+.act-set-row.active {
+  background: #ffffff;
+  border: 1.5px solid #fb923c;
+  box-shadow: 0 4px 14px rgba(234, 88, 12, 0.1);
+}
+
+.act-set-index {
+  font-weight: 700;
+  color: var(--text-secondary);
+  font-size: 11.5px;
+  min-width: 38px;
+}
+
+.act-set-values {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+  flex: 1;
   text-align: center;
 }
 
-.barbell-quick-load {
+.act-set-tag {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-right: 4px;
+}
+
+.act-set-check {
+  font-weight: 800;
+  color: #16a34a;
+  font-size: 14px;
+}
+
+.act-set-controls {
   display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
   justify-content: center;
 }
 
-.barbell-quick-btn {
-  background: none;
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-pill);
-  font-size: 12px;
-  font-weight: 600;
-  padding: 4px 12px;
-  color: var(--text-secondary);
-  cursor: pointer;
-  transition: var(--transition-fast);
+.act-mini-stepper {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  background: #f1f5f9;
+  border-radius: 8px;
+  padding: 2px 4px;
 }
 
-.barbell-quick-btn:hover {
-  border-color: var(--accent-activity);
-  color: var(--accent-activity);
+.act-step-btn {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  width: 24px;
+  height: 24px;
+  font-size: 14px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-primary);
+  transition: all 0.15s ease;
+}
+
+.act-step-btn:hover {
+  background: #e2e8f0;
+}
+
+.act-step-val {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+  min-width: 48px;
+  text-align: center;
+}
+
+.act-set-times {
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.act-log-btn {
+  background: #ea580c;
+  color: #ffffff;
+  border: none;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.act-log-btn:hover {
+  background: #c2410c;
+  transform: translateY(-1px);
+}
+
+.act-log-btn.logged {
+  background: #16a34a;
+}
+
+.act-telemetry-strip {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 1.15rem;
+}
+
+.act-telemetry-item {
+  background: #f8fafc;
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.act-tele-lbl {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.act-tele-val {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.act-tele-val.highlight {
+  color: #ea580c;
+}
+
+.act-rest-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  border-radius: 14px;
+  padding: 10px 14px;
+  transition: all 0.3s ease;
+  gap: 8px;
+}
+
+.act-rest-time-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.act-timer-icon {
+  font-size: 18px;
+}
+
+.act-rest-time-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.act-rest-title {
+  font-size: 9.5px;
+  font-weight: 600;
+  color: #9a3412;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.act-rest-digits {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #ea580c;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.act-rest-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.act-rest-btn {
+  background: #ffffff;
+  border: 1px solid #fed7aa;
+  color: #9a3412;
+  font-size: 10.5px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.act-rest-btn:hover {
+  background: #ffedd5;
+}
+
+.act-rest-btn.reset {
+  font-size: 13px;
+  padding: 4px 7px;
 }
 
 /* Concentric Breathing Wheel */
@@ -4031,8 +4391,8 @@ body.menu-open .burger-line.line-bottom {
   .interactive-sanctuary-card,
   .phase-display-card.cycle-dashboard-viewport,
   .interactive-calculator-card,
-  .fasting-card,
-  .barbell-card {
+  .nutrition-app-card,
+  .activity-workout-card {
     max-width: 410px;
     padding: 1.5rem;
   }
@@ -4059,8 +4419,8 @@ body.menu-open .burger-line.line-bottom {
   .interactive-sanctuary-card,
   .phase-display-card.cycle-dashboard-viewport,
   .interactive-calculator-card,
-  .fasting-card,
-  .barbell-card {
+  .nutrition-app-card,
+  .activity-workout-card {
     margin: 0 auto;
     max-width: 440px;
     width: 100%;
@@ -4325,68 +4685,81 @@ body.menu-open .burger-line.line-bottom {
   .interactive-sanctuary-card,
   .phase-display-card.cycle-dashboard-viewport,
   .interactive-calculator-card,
-  .fasting-card,
-  .barbell-card {
+  .nutrition-app-card,
+  .activity-workout-card {
     padding: 1.25rem 1rem;
     border-radius: 20px;
     width: 100%;
     box-sizing: border-box;
   }
 
-  /* Nutrition Fasting Card Mobile Optimization */
-  .fasting-presets {
-    gap: 2px;
-    padding: 2.5px;
-    margin-bottom: 1.25rem;
-    width: 100%;
+  /* Nutrition Card Mobile Optimization */
+  .nutr-cal-count {
+    font-size: 1.1rem;
   }
-  .fasting-preset-btn {
-    padding: 0.35rem 0.55rem;
-    font-size: 11px;
-    flex: 1;
-    text-align: center;
+  .nutr-remain-pill {
+    font-size: 10px;
+    padding: 3px 8px;
   }
-  .fasting-hero-circle {
-    width: 155px;
-    height: 155px;
-    border-width: 7px;
-    margin-bottom: 1.25rem;
+  .nutr-macros-grid {
+    gap: 0.35rem;
   }
-  .fasting-elapsed-num {
-    font-size: 1.7rem;
+  .nutr-macro-cell {
+    padding: 6px 8px;
   }
-  .fasting-zone-banner {
-    font-size: 12px;
-    padding: 8px 12px;
+  .nutr-macro-val {
+    font-size: 10.5px;
+  }
+  .nutr-meal-item {
+    padding: 6px 10px;
+    gap: 8px;
+  }
+  .nutr-meal-icon {
+    font-size: 16px;
+  }
+  .nutr-meal-name {
+    font-size: 11.5px;
+  }
+  .nutr-meal-meta {
+    font-size: 9.5px;
   }
 
-  /* Activity Barbell Card Mobile Optimization */
-  .barbell-stepper-box {
-    gap: 0.75rem;
+  /* Activity Card Mobile Optimization */
+  .act-exercise-title {
+    font-size: 1.1rem;
   }
-  .barbell-step-btn {
-    width: 38px;
-    height: 38px;
-    font-size: 17px;
-  }
-  .barbell-weight-display {
-    font-size: 1.85rem;
-    min-width: 110px;
-  }
-  .barbell-sub-calc {
-    font-size: 11.5px;
-    margin-bottom: 1rem;
-  }
-  .barbell-visual-bar {
-    min-height: 56px;
-    padding: 10px 8px;
-    gap: 4px;
-    margin-bottom: 1rem;
-  }
-  .plate-chip {
-    padding: 6px 8px;
+  .act-target-pill {
     font-size: 10px;
-    min-width: 28px;
+    padding: 3px 8px;
+  }
+  .act-set-row {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+  .act-step-btn {
+    width: 22px;
+    height: 22px;
+    font-size: 13px;
+  }
+  .act-step-val {
+    min-width: 42px;
+    font-size: 10.5px;
+  }
+  .act-log-btn {
+    padding: 5px 9px;
+    font-size: 10px;
+  }
+  .act-telemetry-strip {
+    gap: 6px;
+  }
+  .act-tele-val {
+    font-size: 11px;
+  }
+  .act-rest-banner {
+    padding: 8px 10px;
+  }
+  .act-rest-digits {
+    font-size: 1rem;
   }
   .barbell-quick-load {
     display: grid;

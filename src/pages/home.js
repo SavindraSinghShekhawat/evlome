@@ -676,6 +676,8 @@ g.switchHealthTab = (tabId) => {
       if (id === tabId) panel.classList.add('fade-in-active');
     }
   });
+  if (tabId === 'nutrition' && g.updateNutritionUI) g.updateNutritionUI();
+  if (tabId === 'activity' && g.updateWorkoutUI) g.updateWorkoutUI();
 };
 
 // --- Interactive EVLOME Games Discipline Switcher ---
@@ -691,90 +693,414 @@ g.switchGameTab = (gameId) => {
   });
 };
 
-// --- Nutrition: 16:8 Fasting Telemetry Engine ---
-let fastingFastHours = 16;
-const fastingElapsedMinutes = 14 * 60 + 25; // 14h 25m into fast
+// --- Nutrition: Whole-Food & Macro Fuel Dashboard Engine ---
+let nutritionMealsState = {
+  oats: true,
+  chicken: true,
+  banana: true,
+  salmon: false,
+  yogurt: false
+};
 
-g.setFastingPreset = (presetHours, btnId) => {
-  fastingFastHours = presetHours;
-  document.querySelectorAll('.fasting-preset-btn').forEach(b => b.classList.remove('active'));
-  const btn = document.getElementById(btnId);
-  if (btn) btn.classList.add('active');
+const nutritionMealsData = {
+  oats: { cal: 380, p: 32, c: 48, f: 6 },
+  chicken: { cal: 540, p: 48, c: 44, f: 14 },
+  banana: { cal: 260, p: 4, c: 58, f: 2 },
+  salmon: { cal: 520, p: 44, c: 36, f: 18 },
+  yogurt: { cal: 200, p: 22, c: 18, f: 3 }
+};
 
-  const targetEl = document.getElementById('fasting-target-hours');
-  const zoneEl = document.getElementById('fasting-zone-text');
-  const remainEl = document.getElementById('fasting-remaining-text');
+const NUTRITION_TARGETS = {
+  cal: 2100,
+  p: 150,
+  c: 220,
+  f: 65
+};
 
-  if (targetEl) targetEl.textContent = `${presetHours}h Fast`;
-  const remainingMins = Math.max(0, (presetHours * 60) - fastingElapsedMinutes);
+let nutritionFastingHours = 16;
+
+g.toggleNutrMeal = (mealId) => {
+  if (nutritionMealsState[mealId] !== undefined) {
+    nutritionMealsState[mealId] = !nutritionMealsState[mealId];
+    playSound(nutritionMealsState[mealId] ? '/audio/pet_place.wav' : '/audio/cross_tap.wav');
+    g.updateNutritionUI();
+  }
+};
+
+g.cycleNutrFastingPreset = () => {
+  const presets = [16, 18, 20];
+  const nextIdx = (presets.indexOf(nutritionFastingHours) + 1) % presets.length;
+  nutritionFastingHours = presets[nextIdx];
+  playSound('/audio/cross_tap.wav');
+  g.updateNutritionUI();
+};
+
+g.updateNutritionUI = () => {
+  let totalCal = 0;
+  let totalP = 0;
+  let totalC = 0;
+  let totalF = 0;
+
+  for (const [id, isLogged] of Object.entries(nutritionMealsState)) {
+    const mealEls = document.querySelectorAll(`#meal-${id}`);
+    const data = nutritionMealsData[id];
+    if (isLogged && data) {
+      totalCal += data.cal;
+      totalP += data.p;
+      totalC += data.c;
+      totalF += data.f;
+    }
+    mealEls.forEach(el => {
+      el.classList.toggle('logged', isLogged);
+      const checkBtn = el.querySelector('.nutr-check-btn');
+      if (checkBtn) {
+        checkBtn.textContent = isLogged ? '✓' : '+';
+        checkBtn.classList.toggle('checked', isLogged);
+      }
+    });
+  }
+
+  // Update calories numbers
+  document.querySelectorAll('#nutr-cals-num').forEach(el => {
+    el.textContent = totalCal.toLocaleString();
+  });
+  const remainCal = Math.max(0, NUTRITION_TARGETS.cal - totalCal);
+  document.querySelectorAll('#nutr-remain-pill').forEach(el => {
+    el.textContent = remainCal > 0 ? `${remainCal.toLocaleString()} kcal remaining` : 'Target Fuel Met 🎯';
+  });
+  const calPct = Math.min(100, Math.round((totalCal / NUTRITION_TARGETS.cal) * 100));
+  document.querySelectorAll('#nutr-progress-fill').forEach(el => {
+    el.style.width = `${calPct}%`;
+  });
+
+  // Macros
+  document.querySelectorAll('#nutr-p-val').forEach(el => {
+    el.textContent = `${totalP}g / ${NUTRITION_TARGETS.p}g`;
+  });
+  document.querySelectorAll('#nutr-p-bar').forEach(el => {
+    el.style.width = `${Math.min(100, Math.round((totalP / NUTRITION_TARGETS.p) * 100))}%`;
+  });
+
+  document.querySelectorAll('#nutr-c-val').forEach(el => {
+    el.textContent = `${totalC}g / ${NUTRITION_TARGETS.c}g`;
+  });
+  document.querySelectorAll('#nutr-c-bar').forEach(el => {
+    el.style.width = `${Math.min(100, Math.round((totalC / NUTRITION_TARGETS.c) * 100))}%`;
+  });
+
+  document.querySelectorAll('#nutr-f-val').forEach(el => {
+    el.textContent = `${totalF}g / ${NUTRITION_TARGETS.f}g`;
+  });
+  document.querySelectorAll('#nutr-f-bar').forEach(el => {
+    el.style.width = `${Math.min(100, Math.round((totalF / NUTRITION_TARGETS.f) * 100))}%`;
+  });
+
+  // Fasting Preset Button and Status
+  const elapsedMinutes = 14 * 60 + 25; // 14h 25m
+  const remainingMins = Math.max(0, (nutritionFastingHours * 60) - elapsedMinutes);
   const remH = Math.floor(remainingMins / 60);
   const remM = remainingMins % 60;
-  if (remainEl) remainEl.textContent = remainingMins > 0 ? `${remH}h ${remM}m remaining` : 'Target Achieved';
+  const remStr = remainingMins > 0 ? `(${remH}h ${remM}m left)` : '(Target reached!)';
 
-  if (zoneEl) {
-    if (presetHours >= 20) {
-      zoneEl.textContent = 'Autophagy & Deep Ketosis';
-    } else if (presetHours >= 18) {
-      zoneEl.textContent = 'Elevated Ketones & Fat Oxidation';
+  document.querySelectorAll('#nutr-preset-btn').forEach(btn => {
+    btn.textContent = `${nutritionFastingHours}:${24 - nutritionFastingHours}`;
+  });
+  document.querySelectorAll('#nutr-fasting-status').forEach(el => {
+    el.textContent = `${nutritionFastingHours}:${24 - nutritionFastingHours} Fast • 14h 25m elapsed ${remStr}`;
+  });
+};
+
+// --- Activity: Live Workout Set Logger & Rest Timer Engine ---
+let workoutWeight = 100;
+let workoutReps = 8;
+let workoutSet3Completed = false;
+let restTimerSeconds = 90;
+let restTimerInterval = null;
+let isRestTimerRunning = false;
+
+g.adjWorkoutWeight = (delta) => {
+  workoutWeight = Math.max(20, Math.min(250, workoutWeight + delta));
+  playSound('/audio/cross_tap.wav');
+  g.updateWorkoutUI();
+};
+
+g.adjWorkoutReps = (delta) => {
+  workoutReps = Math.max(1, Math.min(30, workoutReps + delta));
+  playSound('/audio/cross_tap.wav');
+  g.updateWorkoutUI();
+};
+
+g.logWorkoutSet = () => {
+  workoutSet3Completed = true;
+  playSound('/audio/victory.wav');
+  g.startRestTimer(90);
+  g.updateWorkoutUI();
+};
+
+g.startRestTimer = (seconds) => {
+  if (restTimerInterval) clearInterval(restTimerInterval);
+  restTimerSeconds = seconds;
+  isRestTimerRunning = true;
+  restTimerInterval = setInterval(() => {
+    if (restTimerSeconds > 0) {
+      restTimerSeconds--;
+      g.updateRestTimerDisplay();
     } else {
-      zoneEl.textContent = 'Peak Fat Burning Zone';
+      clearInterval(restTimerInterval);
+      isRestTimerRunning = false;
+      playSound('/audio/victory.wav');
+      g.updateRestTimerDisplay();
     }
+  }, 1000);
+  g.updateRestTimerDisplay();
+};
+
+g.adjRestTimer = (delta) => {
+  restTimerSeconds = Math.max(0, restTimerSeconds + delta);
+  if (!isRestTimerRunning && restTimerSeconds > 0) {
+    g.startRestTimer(restTimerSeconds);
+  } else {
+    g.updateRestTimerDisplay();
   }
 };
 
-// --- Activity: Barbell Plate Math Assistant Engine ---
-let barbellWeight = 100;
-const BAR_WEIGHT = 20;
-
-g.setBarbellWeight = (weight) => {
-  barbellWeight = weight;
-  g.updateBarbellDisplay();
+g.skipRestTimer = () => {
+  if (restTimerInterval) clearInterval(restTimerInterval);
+  isRestTimerRunning = false;
+  restTimerSeconds = 0;
+  g.updateRestTimerDisplay();
 };
 
-g.adjBarbellWeight = (delta) => {
-  barbellWeight = Math.max(20, Math.min(300, barbellWeight + delta));
-  g.updateBarbellDisplay();
+g.resetWorkoutSets = () => {
+  if (restTimerInterval) clearInterval(restTimerInterval);
+  isRestTimerRunning = false;
+  workoutSet3Completed = false;
+  restTimerSeconds = 90;
+  playSound('/audio/cross_tap.wav');
+  g.updateWorkoutUI();
 };
 
-g.updateBarbellDisplay = () => {
-  const wtEl = document.getElementById('barbell-weight-val');
-  if (wtEl) wtEl.textContent = `${barbellWeight} kg`;
+g.updateRestTimerDisplay = () => {
+  const m = Math.floor(restTimerSeconds / 60);
+  const s = restTimerSeconds % 60;
+  const str = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+  document.querySelectorAll('#act-rest-digits').forEach(el => {
+    el.textContent = str;
+  });
+  document.querySelectorAll('#act-rest-banner').forEach(el => {
+    el.classList.toggle('active', isRestTimerRunning || workoutSet3Completed);
+  });
+};
 
-  const perSide = Math.max(0, (barbellWeight - BAR_WEIGHT) / 2);
-  const perSideEl = document.getElementById('barbell-perside-val');
-  if (perSideEl) perSideEl.textContent = `${perSide} kg / side (20 kg Olympic Bar)`;
+g.updateWorkoutUI = () => {
+  document.querySelectorAll('#act-weight-val').forEach(el => {
+    el.textContent = `${workoutWeight} kg`;
+  });
+  document.querySelectorAll('#act-reps-val').forEach(el => {
+    el.textContent = `${workoutReps} reps`;
+  });
 
-  const plateTypes = [
-    { weight: 25, color: '#ef4444', label: '25' },
-    { weight: 20, color: '#3b82f6', label: '20' },
-    { weight: 15, color: '#eab308', label: '15' },
-    { weight: 10, color: '#10b981', label: '10' },
-    { weight: 5, color: '#ffffff', textColor: '#1d1d1f', label: '5' },
-    { weight: 2.5, color: '#1d1d1f', textColor: '#ffffff', label: '2.5' }
-  ];
+  // Plate calculation: (weight - 20) / 2
+  const perSide = Math.max(0, (workoutWeight - 20) / 2);
+  document.querySelectorAll('#act-plate-val').forEach(el => {
+    el.textContent = `${perSide} kg / side (20 kg Bar)`;
+  });
 
-  let rem = perSide;
-  const plateStack = [];
-  for (const p of plateTypes) {
-    while (rem >= p.weight - 0.01) {
-      plateStack.push(p);
-      rem -= p.weight;
-    }
-  }
+  // Estimated 1RM (Epley Formula): w * (1 + r / 30)
+  const oneRM = Math.round(workoutWeight * (1 + workoutReps / 30));
+  document.querySelectorAll('#act-onerm-val').forEach(el => {
+    el.textContent = `${oneRM} kg`;
+  });
 
-  const stackEl = document.getElementById('barbell-plate-stack');
-  if (stackEl) {
-    if (plateStack.length === 0) {
-      stackEl.innerHTML = '<span style="font-size: 11.5px; color: var(--text-muted); font-weight: 600;">Empty Olympic Bar (20 kg)</span>';
+  // Set 3 completion state
+  document.querySelectorAll('#act-set-3-row').forEach(row => {
+    row.classList.toggle('completed', workoutSet3Completed);
+  });
+  document.querySelectorAll('#act-log-set-btn').forEach(btn => {
+    if (workoutSet3Completed) {
+      btn.textContent = 'Done ✓';
+      btn.classList.add('logged');
     } else {
-      stackEl.innerHTML = plateStack.map(p => `
-        <div class="plate-chip" style="background: ${p.color}; color: ${p.textColor || '#ffffff'};" title="${p.weight} kg plate">
-          ${p.label}
+      btn.textContent = 'Log ✓';
+      btn.classList.remove('logged');
+    }
+  });
+
+  g.updateRestTimerDisplay();
+};
+
+// Reusable Demo Renderers
+export const renderNutritionDemo = () => `
+  <!-- In-App Daily Fuel & Whole-Food Log Component -->
+  <div class="nutrition-app-card">
+    <div class="nutr-header-strip">
+      <div class="nutr-title-group">
+        <span class="nutr-badge-pill">TODAY'S FUEL &bull; TARGET</span>
+        <span class="nutr-cal-count"><strong id="nutr-cals-num">1,180</strong> / 2,100 kcal</span>
+      </div>
+      <span class="nutr-remain-pill" id="nutr-remain-pill">920 kcal remaining</span>
+    </div>
+
+    <div class="nutr-progress-bar-wrap">
+      <div class="nutr-progress-fill" id="nutr-progress-fill" style="width: 56%;"></div>
+    </div>
+
+    <div class="nutr-macros-grid">
+      <div class="nutr-macro-cell">
+        <span class="nutr-macro-lbl">Protein</span>
+        <span class="nutr-macro-val" id="nutr-p-val">84g / 150g</span>
+        <div class="nutr-mini-bar"><div class="nutr-mini-fill protein" id="nutr-p-bar" style="width: 56%;"></div></div>
+      </div>
+      <div class="nutr-macro-cell">
+        <span class="nutr-macro-lbl">Carbs</span>
+        <span class="nutr-macro-val" id="nutr-c-val">150g / 220g</span>
+        <div class="nutr-mini-bar"><div class="nutr-mini-fill carbs" id="nutr-c-bar" style="width: 68%;"></div></div>
+      </div>
+      <div class="nutr-macro-cell">
+        <span class="nutr-macro-lbl">Fats</span>
+        <span class="nutr-macro-val" id="nutr-f-val">22g / 65g</span>
+        <div class="nutr-mini-bar"><div class="nutr-mini-fill fats" id="nutr-f-bar" style="width: 34%;"></div></div>
+      </div>
+    </div>
+
+    <div class="nutr-meals-section">
+      <div class="nutr-meals-header">
+        <span class="nutr-section-title">Today's Food Log</span>
+        <span class="nutr-sub-hint">Tap to log / unlog</span>
+      </div>
+
+      <div class="nutr-meals-list">
+        <div class="nutr-meal-item logged" id="meal-oats" onclick="window.toggleNutrMeal('oats')">
+          <span class="nutr-meal-icon">🥣</span>
+          <div class="nutr-meal-info">
+            <span class="nutr-meal-name">Rolled Oats &amp; Whey</span>
+            <span class="nutr-meal-meta">380 kcal &bull; 32g P &bull; 48g C &bull; 6g F</span>
+          </div>
+          <div class="nutr-check-btn checked">✓</div>
         </div>
-      `).join('');
-    }
-  }
-};
+
+        <div class="nutr-meal-item logged" id="meal-chicken" onclick="window.toggleNutrMeal('chicken')">
+          <span class="nutr-meal-icon">🥗</span>
+          <div class="nutr-meal-info">
+            <span class="nutr-meal-name">Grilled Chicken &amp; Quinoa</span>
+            <span class="nutr-meal-meta">540 kcal &bull; 48g P &bull; 44g C &bull; 14g F</span>
+          </div>
+          <div class="nutr-check-btn checked">✓</div>
+        </div>
+
+        <div class="nutr-meal-item logged" id="meal-banana" onclick="window.toggleNutrMeal('banana')">
+          <span class="nutr-meal-icon">🍌</span>
+          <div class="nutr-meal-info">
+            <span class="nutr-meal-name">Banana &amp; Rice Cakes</span>
+            <span class="nutr-meal-meta">260 kcal &bull; 4g P &bull; 58g C &bull; 2g F</span>
+          </div>
+          <div class="nutr-check-btn checked">✓</div>
+        </div>
+
+        <div class="nutr-meal-item" id="meal-salmon" onclick="window.toggleNutrMeal('salmon')">
+          <span class="nutr-meal-icon">🥩</span>
+          <div class="nutr-meal-info">
+            <span class="nutr-meal-name">Salmon, Sweet Potato &amp; Greens</span>
+            <span class="nutr-meal-meta">520 kcal &bull; 44g P &bull; 36g C &bull; 18g F</span>
+          </div>
+          <div class="nutr-check-btn">+</div>
+        </div>
+
+        <div class="nutr-meal-item" id="meal-yogurt" onclick="window.toggleNutrMeal('yogurt')">
+          <span class="nutr-meal-icon">🫐</span>
+          <div class="nutr-meal-info">
+            <span class="nutr-meal-name">Greek Yogurt &amp; Blueberries</span>
+            <span class="nutr-meal-meta">200 kcal &bull; 22g P &bull; 18g C &bull; 3g F</span>
+          </div>
+          <div class="nutr-check-btn">+</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="nutr-fasting-footer">
+      <div class="nutr-fasting-row">
+        <span class="fasting-flame-icon">🔥</span>
+        <span class="nutr-fasting-text" id="nutr-fasting-status">16:8 Fast &bull; 14h 25m elapsed (1h 35m left)</span>
+        <button type="button" class="nutr-fast-toggle-btn" id="nutr-preset-btn" onclick="window.cycleNutrFastingPreset()" title="Switch Fasting Protocol">16:8</button>
+      </div>
+    </div>
+  </div>
+`;
+
+export const renderActivityDemo = () => `
+  <!-- In-App Live Workout Set Logger & Rest Timer Component -->
+  <div class="activity-workout-card">
+    <div class="act-header-strip">
+      <div class="act-title-group">
+        <span class="act-badge-pill">LIVE WORKOUT LOG &bull; SET 3 OF 4</span>
+        <h4 class="act-exercise-title">Barbell Bench Press</h4>
+      </div>
+      <span class="act-target-pill">Chest &amp; Triceps</span>
+    </div>
+
+    <div class="act-sets-table">
+      <div class="act-set-row completed">
+        <span class="act-set-index">Set 1</span>
+        <span class="act-set-values">80 kg &times; 10 reps</span>
+        <span class="act-set-tag">Warmup</span>
+        <span class="act-set-check">✓</span>
+      </div>
+
+      <div class="act-set-row completed">
+        <span class="act-set-index">Set 2</span>
+        <span class="act-set-values">90 kg &times; 8 reps</span>
+        <span class="act-set-tag">Working</span>
+        <span class="act-set-check">✓</span>
+      </div>
+
+      <div class="act-set-row active" id="act-set-3-row">
+        <span class="act-set-index">Set 3</span>
+        <div class="act-set-controls">
+          <div class="act-mini-stepper">
+            <button type="button" class="act-step-btn" onclick="window.adjWorkoutWeight(-5)">&minus;</button>
+            <span class="act-step-val" id="act-weight-val">100 kg</span>
+            <button type="button" class="act-step-btn" onclick="window.adjWorkoutWeight(5)">&#43;</button>
+          </div>
+          <span class="act-set-times">&times;</span>
+          <div class="act-mini-stepper">
+            <button type="button" class="act-step-btn" onclick="window.adjWorkoutReps(-1)">&minus;</button>
+            <span class="act-step-val" id="act-reps-val">8 reps</span>
+            <button type="button" class="act-step-btn" onclick="window.adjWorkoutReps(1)">&#43;</button>
+          </div>
+        </div>
+        <button type="button" class="act-log-btn" id="act-log-set-btn" onclick="window.logWorkoutSet()" title="Log Set">
+          Log ✓
+        </button>
+      </div>
+    </div>
+
+    <div class="act-telemetry-strip">
+      <div class="act-telemetry-item">
+        <span class="act-tele-lbl">Plate Loading Math</span>
+        <span class="act-tele-val" id="act-plate-val">40 kg / side (20 kg Bar)</span>
+      </div>
+      <div class="act-telemetry-item">
+        <span class="act-tele-lbl">Estimated 1RM (Epley)</span>
+        <span class="act-tele-val highlight" id="act-onerm-val">127 kg</span>
+      </div>
+    </div>
+
+    <div class="act-rest-banner" id="act-rest-banner">
+      <div class="act-rest-time-group">
+        <span class="act-timer-icon">⏱</span>
+        <div class="act-rest-time-text">
+          <span class="act-rest-title">Rest Timer</span>
+          <span class="act-rest-digits" id="act-rest-digits">01:30</span>
+        </div>
+      </div>
+      <div class="act-rest-actions">
+        <button type="button" class="act-rest-btn" onclick="window.adjRestTimer(30)">+30s</button>
+        <button type="button" class="act-rest-btn skip" onclick="window.skipRestTimer()">Skip</button>
+        <button type="button" class="act-rest-btn reset" onclick="window.resetWorkoutSets()" title="Reset set logger">↺</button>
+      </div>
+    </div>
+  </div>
+`;
 
 export const renderHome = () => {
   const ludo = gamesData.find(g => g.id === 'ludo-prince') || gamesData[0];
@@ -1100,25 +1426,7 @@ export const renderHome = () => {
           </div>
         </div>
 
-        <!-- Interactive 16:8 Fasting Telemetry Visualizer Card -->
-        <div class="fasting-card">
-          <div class="fasting-presets">
-            <button type="button" class="fasting-preset-btn active" id="fast-preset-16" onclick="window.setFastingPreset(16, 'fast-preset-16')">16:8 LeanGains</button>
-            <button type="button" class="fasting-preset-btn" id="fast-preset-18" onclick="window.setFastingPreset(18, 'fast-preset-18')">18:6 Fast</button>
-            <button type="button" class="fasting-preset-btn" id="fast-preset-20" onclick="window.setFastingPreset(20, 'fast-preset-20')">20:4 OMAD</button>
-          </div>
-
-          <div class="fasting-hero-circle">
-            <span class="fasting-elapsed-num">14h 25m</span>
-            <span class="fasting-elapsed-lbl" id="fasting-target-hours">16h Fast</span>
-          </div>
-
-          <div class="fasting-zone-banner">
-            <span style="font-size: 16px;">🔥</span>
-            <span id="fasting-zone-text">Peak Fat Burning Zone</span>
-          </div>
-          <span style="font-size: 11px; color: var(--text-muted); margin-top: 8px;" id="fasting-remaining-text">1h 35m remaining to target</span>
-        </div>
+        ${renderNutritionDemo()}
       </div>
 
       <!-- Panel 4: Activity -->
@@ -1167,27 +1475,7 @@ export const renderHome = () => {
           </div>
         </div>
 
-        <!-- Interactive Barbell Plate Math Assistant Card -->
-        <div class="barbell-card">
-          <div class="barbell-stepper-box">
-            <button type="button" class="barbell-step-btn" onclick="window.adjBarbellWeight(-5)">&minus;</button>
-            <span class="barbell-weight-display" id="barbell-weight-val">100 kg</span>
-            <button type="button" class="barbell-step-btn" onclick="window.adjBarbellWeight(5)">&#43;</button>
-          </div>
-          <span class="barbell-sub-calc" id="barbell-perside-val">40 kg / side (20 kg Olympic Bar)</span>
-
-          <div class="barbell-visual-bar" id="barbell-plate-stack">
-            <div class="plate-chip" style="background: #3b82f6; color: #ffffff;" title="20 kg plate">20</div>
-            <div class="plate-chip" style="background: #3b82f6; color: #ffffff;" title="20 kg plate">20</div>
-          </div>
-
-          <div class="barbell-quick-load">
-            <button type="button" class="barbell-quick-btn" onclick="window.setBarbellWeight(60)">60 kg</button>
-            <button type="button" class="barbell-quick-btn" onclick="window.setBarbellWeight(100)">100 kg</button>
-            <button type="button" class="barbell-quick-btn" onclick="window.setBarbellWeight(140)">140 kg</button>
-            <button type="button" class="barbell-quick-btn" onclick="window.setBarbellWeight(180)">180 kg</button>
-          </div>
-        </div>
+        ${renderActivityDemo()}
       </div>
     </div>
   </section>

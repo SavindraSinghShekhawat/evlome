@@ -523,6 +523,11 @@ const renderCurrentRoute = () => {
     }
   }
 
+  requestAnimationFrame(() => {
+    if (window.updateNutritionUI) window.updateNutritionUI();
+    if (window.updateWorkoutUI) window.updateWorkoutUI();
+  });
+
   // Handle anchor scroll
   if (window.location.hash && !window.location.hash.startsWith('#/')) {
     const hashId = window.location.hash.slice(1);

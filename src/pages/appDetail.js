@@ -1,4 +1,4 @@
-import { pawdokuConfig, petAvatarSvg, petCrossSvg, petMiniPawSvg, petMiniCrossSvg, pawdokuSvgDefs } from './home.js';
+import { pawdokuConfig, petAvatarSvg, petCrossSvg, petMiniPawSvg, petMiniCrossSvg, pawdokuSvgDefs, renderNutritionDemo, renderActivityDemo } from './home.js';
 
 // ============================================================================
 // Product Detail Page Renderer (Tactile Keynote View)
@@ -265,6 +265,18 @@ export const renderAppPage = (app) => {
               </div>
             </div>
           </div>
+        </div>
+      ` : ''}
+
+      ${app.id === 'nutrition' ? `
+        <div style="display: flex; justify-content: center; width: 100%;">
+          ${renderNutritionDemo()}
+        </div>
+      ` : ''}
+
+      ${app.id === 'activity' ? `
+        <div style="display: flex; justify-content: center; width: 100%;">
+          ${renderActivityDemo()}
         </div>
       ` : ''}
     </div>
