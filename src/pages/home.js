@@ -1765,11 +1765,13 @@ export const renderHome = () => {
   <!-- STAGE 5: The EVLOME Codex & Principles -->
   <section id="principles-section" class="codex-section">
     <div class="codex-container">
-      <span class="stage-badge">THE CODEX</span>
-      <h2 class="stage-title">Rigor &amp; Reverie.</h2>
-      <p style="color: var(--text-secondary); max-width: 600px; font-size: 1.05rem; line-height: 1.6; margin: 0 auto 2.5rem;">
-        Four foundational standards guiding every line of code we ship across health telemetry and game design.
-      </p>
+      <div class="codex-header-center">
+        <span class="stage-badge">THE CODEX</span>
+        <h2 class="stage-title">Rigor &amp; Reverie.</h2>
+        <p class="stage-subtitle-center">
+          Four foundational standards guiding every line of code we ship across health telemetry and game design.
+        </p>
+      </div>
 
       <div class="codex-grid">
         <div class="codex-card">
