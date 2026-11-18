@@ -1533,9 +1533,6 @@ export const renderHome = () => {
                 <span class="store-badge-main">Google Play</span>
               </div>
             </a>
-            <a href="/beta?app=${ludo.id}" class="btn-primary-glow" onclick="if(event){ event.preventDefault(); navigate('/beta?app=${ludo.id}'); }">
-              Join Beta &rarr;
-            </a>
             <a href="/${ludo.id}" class="btn-glass" onclick="if(event){ event.preventDefault(); navigate('/${ludo.id}'); }">
               Overview
             </a>
