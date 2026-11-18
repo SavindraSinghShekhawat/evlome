@@ -1091,14 +1091,14 @@ export const renderHome = () => {
     </div>
 
     <!-- Quiet Disciplines Strip -->
-    <div class="hero-matrix-bar">
-      <span><strong>Unified</strong> Sovereign Suite</span>
-      <span style="opacity: 0.3;">&bull;</span>
-      <span><strong>100%</strong> On-Device Sovereignty</span>
-      <span style="opacity: 0.3;">&bull;</span>
-      <span><strong>Zero</strong> Tracking Infrastructure</span>
-      <span style="opacity: 0.3;">&bull;</span>
-      <span><strong>Offline</strong> First</span>
+    <div class="hero-matrix-bar" role="region" aria-label="Ecosystem Standards">
+      <span class="hero-matrix-item"><span><strong>Unified</strong> Sovereign Suite</span></span>
+      <span class="hero-matrix-divider" aria-hidden="true">&bull;</span>
+      <span class="hero-matrix-item"><span><strong>100%</strong> On-Device Sovereignty</span></span>
+      <span class="hero-matrix-divider" aria-hidden="true">&bull;</span>
+      <span class="hero-matrix-item"><span><strong>Zero</strong> Tracking Infrastructure</span></span>
+      <span class="hero-matrix-divider" aria-hidden="true">&bull;</span>
+      <span class="hero-matrix-item"><span><strong>Offline</strong> First</span></span>
     </div>
   </section>
 
