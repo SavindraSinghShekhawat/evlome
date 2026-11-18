@@ -763,6 +763,25 @@ body.menu-open .burger-line.line-bottom {
   box-shadow: var(--shadow-card);
 }
 
+.btn-arrow-icon {
+  width: 13px;
+  height: 13px;
+  display: inline-block;
+  vertical-align: middle;
+  flex-shrink: 0;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-primary-glow:hover .btn-arrow-icon,
+.btn-glass:hover .btn-arrow-icon {
+  transform: translateY(2.5px);
+}
+
+.btn-primary-glow:active .btn-arrow-icon,
+.btn-glass:active .btn-arrow-icon {
+  transform: translateY(3.5px);
+}
+
 /* Production App Store & Google Play Download Badges */
 .store-badge-strip {
   display: flex;

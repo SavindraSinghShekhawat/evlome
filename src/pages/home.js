@@ -1089,9 +1089,17 @@ export const renderHome = () => {
     <div class="hero-actions-row">
       <button type="button" class="btn-primary-glow" onclick="window.scrollToSection('suite-stage')">
         <span>The Health Suite</span>
+        <svg class="btn-arrow-icon" width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="8" y1="2.5" x2="8" y2="13.5"></line>
+          <polyline points="3.5 9 8 13.5 12.5 9"></polyline>
+        </svg>
       </button>
       <button type="button" class="btn-glass" onclick="window.scrollToSection('games-stage')">
         <span>EVLOME Games</span>
+        <svg class="btn-arrow-icon" width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="8" y1="2.5" x2="8" y2="13.5"></line>
+          <polyline points="3.5 9 8 13.5 12.5 9"></polyline>
+        </svg>
       </button>
     </div>
 
