@@ -1071,6 +1071,7 @@ export const renderHome = () => {
       <div class="hero-orb hero-orb-indigo"></div>
       <div class="hero-orb hero-orb-cyan"></div>
       <div class="hero-orb hero-orb-emerald"></div>
+      <div class="hero-orb hero-orb-rose"></div>
     </div>
 
     <div class="stage-badge">
