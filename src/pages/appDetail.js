@@ -45,7 +45,7 @@ export const renderAppPage = (app) => {
 
       <!-- Direct Production Store Downloads (Above Stats Grid) -->
       ${app.status === 'production' && (app.appStoreUrl || app.playStoreUrl) ? `
-        <div class="store-badge-strip" style="display: flex; gap: 0.85rem; flex-wrap: wrap; justify-content: center; align-items: center; margin-top: 1.5rem; margin-bottom: 0.5rem;">
+        <div class="store-badge-strip">
           ${app.appStoreUrl ? `
             <a href="${app.appStoreUrl}" target="_blank" rel="noopener noreferrer" class="btn-store btn-app-store" title="Download ${app.title} on the Apple App Store">
               <svg class="store-icon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
@@ -84,7 +84,7 @@ export const renderAppPage = (app) => {
       ` : ''}
 
       <!-- Action & Navigation Buttons (Row 2) -->
-      <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; align-items: center; margin-top: 1.25rem;">
+      <div class="detail-actions-row">
         <a href="/beta?app=${app.id}" class="btn-primary-glow" style="${app.status !== 'production' ? `box-shadow: 0 4px 20px ${app.accentColor}35;` : ''}" onclick="if(event){ event.preventDefault(); navigate('/beta?app=${app.id}'); }">
           Join Beta &rarr;
         </a>
