@@ -1078,7 +1078,7 @@ export const renderHome = () => {
     </h1>
 
     <p class="hero-description">
-      Thoughtfully engineered health utilities and tactile board games.<br class="desktop-only"/>Encrypted on device. Designed to be lived with.
+      Precision health utilities and tactile board games.<br class="desktop-only"/>Encrypted on device. Zero tracking.
     </p>
 
     <div class="hero-actions-row">
@@ -1092,7 +1092,7 @@ export const renderHome = () => {
 
     <!-- Quiet Disciplines Strip -->
     <div class="hero-matrix-bar">
-      <span><strong>6</strong> Sovereign Apps</span>
+      <span><strong>Unified</strong> Sovereign Suite</span>
       <span style="opacity: 0.3;">&bull;</span>
       <span><strong>100%</strong> On-Device Sovereignty</span>
       <span style="opacity: 0.3;">&bull;</span>
@@ -1111,7 +1111,7 @@ export const renderHome = () => {
       </span>
       <h2 class="stage-title">Complete Health Telemetry. Sovereign on Device.</h2>
       <p class="stage-subtitle-center">
-        Four interconnected disciplines engineered to track metabolic energy, kinetic performance, biological rhythm, and clinical precision &mdash; encrypted 100% on device with zero cloud tracking.
+        Four interconnected disciplines for metabolic energy, strength, hormonal rhythm, and clinical precision &mdash; encrypted 100% on device.
       </p>
 
       <!-- 4-App Selector Tabs (With Official App Logos) -->
@@ -1174,7 +1174,7 @@ export const renderHome = () => {
 
           <div class="stage-subtitle" style="color: #e11d48;">Hormonal rhythm. On-device privacy.</div>
           <p class="stage-desc">
-            Track hormonal shifts across menstrual, follicular, ovulation, and luteal phases. Pair sympto-thermal basal temperature with cervical telemetry to confirm peak fertility windows.
+            Four-phase hormonal tracking with Roetzer sympto-thermal temperature shift and private ovulation forecasting.
           </p>
 
           <div class="stage-specs-grid">
@@ -1248,7 +1248,7 @@ export const renderHome = () => {
 
           <div class="stage-subtitle" style="color: #7c3aed;">Clinical biometrics and mathematical rigor.</div>
           <p class="stage-desc">
-            Dynamic energy expenditure calculated offline via personal biometric models. Balance macronutrient splits, analyze loan amortization schedules, and convert across 9 physical dimensions.
+            Mifflin-St Jeor energy expenditure, body composition, macro splits, and 9-dimensional conversions. Computed entirely offline.
           </p>
 
           <div class="stage-specs-grid">
@@ -1352,7 +1352,7 @@ export const renderHome = () => {
 
           <div class="stage-subtitle" style="color: #059669;">Metabolic balance and whole-food telemetry.</div>
           <p class="stage-desc">
-            Effortless whole-food logging, intermittent fasting telemetry, and personalized metabolic goals. Local nutritional database with zero commercial profiling.
+            Whole-food logging, fasting timers, and macro targets backed by an on-device database with zero commercial tracking.
           </p>
 
           <div class="stage-specs-grid">
@@ -1401,7 +1401,7 @@ export const renderHome = () => {
 
           <div class="stage-subtitle" style="color: #d97706;">Kinetic performance and workout logging.</div>
           <p class="stage-desc">
-            Versatile strength tracking for gym and home training. Set/rep logging, haptic rest countdown timers, barbell plate math, and progressive overload metrics.
+            Workout and strength tracking with barbell plate math, rest countdowns, and progressive overload metrics.
           </p>
 
           <div class="stage-specs-grid">
@@ -1443,7 +1443,7 @@ export const renderHome = () => {
       </span>
       <h2 class="stage-title">Pure Play. Zero Compromise.</h2>
       <p class="stage-subtitle-center">
-        Tactile physics, physical dice inertia, and mindful puzzle sanctuaries. 100% ad-free online and local multiplayer with zero predatory countdown timers.
+        Tactile physics, physical dice inertia, and mindful puzzle sanctuaries. Real-time online and local multiplayer with zero predatory countdown timers.
       </p>
 
       <!-- 2-Game Selector Tabs (With Official App Logos) -->
@@ -1659,12 +1659,12 @@ export const renderHome = () => {
     <div class="one-container">
       <div class="one-header-center">
         <span class="stage-badge">
-          <span class="badge-dot" style="background: #f59e0b; box-shadow: 0 0 8px rgba(245, 158, 11, 0.6);"></span>
-          EVLOME ONE &bull; UNIVERSAL MEMBERSHIP
+          <span class="badge-dot" style="background: #10b981; box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);"></span>
+          EVLOME ONE &bull; THE HEALTH MEMBERSHIP
         </span>
-        <h2 class="stage-title">All Apps. One Membership.</h2>
+        <h2 class="stage-title">The Health Suite.<br/>Games Included Free.</h2>
         <p class="stage-subtitle-center">
-          A single universal pass that unlocks every Pro capability, clinical health telemetry tool, and game across the entire EVLOME universe — with zero ads, private cloud sync, and all future app releases automatically included. Available directly inside any EVLOME app.
+          A single universal membership that unlocks every advanced tool across the EVLOME Health Suite — with private multi-device sync, and full access to EVLOME Games as a complimentary bonus. Available inside any EVLOME app.
         </p>
       </div>
 
@@ -1674,33 +1674,16 @@ export const renderHome = () => {
           <div class="one-card-icon-group">
             ${suiteApps.map(app => `<img src="${app.icon}" alt="${app.title} Logo" class="one-mini-logo" width="36" height="36" loading="lazy" decoding="async" />`).join('')}
           </div>
-          <span class="one-card-tag" style="color: #059669;">THE HEALTH SUITE</span>
-          <h3 class="one-card-title">Precision Health OS</h3>
+          <span class="one-card-tag" style="color: #059669;">PRIMARY DISCIPLINE</span>
+          <h3 class="one-card-title">The Full Health Suite</h3>
           <p class="one-card-desc">
             Complete telemetry across metabolic energy, strength training, hormonal rhythm, and clinical biometrics.
           </p>
           <ul class="one-card-perks">
-            <li>✓ Nutrition: Whole-food logging &amp; fasting telemetry</li>
+            <li>✓ Nutrition: Whole-food logging &amp; fasting tracking</li>
             <li>✓ Activity: Workout sets, plate math &amp; rest timers</li>
-            <li>✓ Cycle: Hormonal rhythm &amp; ovulation telemetry</li>
+            <li>✓ Cycle: Hormonal rhythm &amp; ovulation forecasting</li>
             <li>✓ Calculator+: 50+ clinical metabolic &amp; math models</li>
-          </ul>
-        </div>
-
-        <div class="one-card">
-          <div class="one-card-icon-group">
-            ${gamesData.map(app => `<img src="${app.icon}" alt="${app.title} Logo" class="one-mini-logo" width="36" height="36" loading="lazy" decoding="async" />`).join('')}
-          </div>
-          <span class="one-card-tag" style="color: #6366f1;">THE PLAY SUITE</span>
-          <h3 class="one-card-title">Pure Play &amp; Ad-Free</h3>
-          <p class="one-card-desc">
-            Multiplayer board classics and mindful puzzles. Enjoy 100% ad-free gameplay with royal cosmetics and VIP perks.
-          </p>
-          <ul class="one-card-perks">
-            <li>✓ 100% ad-free online &amp; pass-and-play</li>
-            <li>✓ Ludo Prince VIP: royal boards &amp; golden dice</li>
-            <li>✓ Monthly bonus coin grants &amp; VIP perks</li>
-            <li>✓ All future game releases automatically included</li>
           </ul>
         </div>
 
@@ -1711,12 +1694,30 @@ export const renderHome = () => {
           <span class="one-card-tag" style="color: #d97706;">TOOLS &amp; CLOUD VAULT</span>
           <h3 class="one-card-title">Private Cloud Sync</h3>
           <p class="one-card-desc">
-            Private multi-device sync across iPhone, iPad, and Android with zero-custody on-device encryption. Seamless continuity across your entire ecosystem.
+            Private multi-device sync across iPhone, iPad, and Android with zero-custody on-device encryption. Seamless continuity across your health logs.
           </p>
           <ul class="one-card-perks">
             <li>✓ Encrypted cross-device cloud sync</li>
             <li>✓ Offline-first architecture</li>
-            <li>✓ Zero tracking, ads, or data custody</li>
+            <li>✓ Zero tracking or data profiling</li>
+            <li>✓ Automatic backup for health entries</li>
+          </ul>
+        </div>
+
+        <div class="one-card" style="border-color: rgba(99, 102, 241, 0.25); background: linear-gradient(180deg, rgba(99, 102, 241, 0.03) 0%, rgba(255, 255, 255, 0.6) 100%);">
+          <div class="one-card-icon-group">
+            ${gamesData.map(app => `<img src="${app.icon}" alt="${app.title} Logo" class="one-mini-logo" width="36" height="36" loading="lazy" decoding="async" />`).join('')}
+          </div>
+          <span class="one-card-tag" style="color: #6366f1;">COMPLIMENTARY BONUS</span>
+          <h3 class="one-card-title">EVLOME Games Included</h3>
+          <p class="one-card-desc">
+            Every health membership includes EVLOME Games as a complimentary addition, with royal cosmetics and VIP perks.
+          </p>
+          <ul class="one-card-perks">
+            <li>✓ Ludo Prince: VIP royal boards &amp; golden dice</li>
+            <li>✓ Monthly bonus coin grants &amp; VIP perks</li>
+            <li>✓ Pawdoku cozy pet sanctuary decor unlocks</li>
+            <li>✓ All future game releases included free</li>
           </ul>
         </div>
       </div>
@@ -1727,7 +1728,7 @@ export const renderHome = () => {
           <div class="one-strip-eyebrow">ONE UNIFIED ACCOUNT</div>
           <h3 class="one-strip-title">Unlock Once. Enjoy Across Every Device.</h3>
           <p class="one-strip-desc">
-            Subscribe through Apple App Store or Google Play in any EVLOME app. Your membership instantly activates across every app and device linked to your EVLOME ID — with effortless cancellation directly in your device account settings. All future health tools, games, and suite features are automatically unlocked with zero upgrade fees.
+            Subscribe in any EVLOME app. Your membership instantly activates across every app and device linked to your EVLOME ID. Cancel anytime. All future health tools, suite features, and complimentary games are automatically included with zero upgrade fees.
           </p>
         </div>
         <div class="one-strip-pills">
@@ -1741,11 +1742,11 @@ export const renderHome = () => {
           </div>
           <div class="one-feature-badge">
             <svg class="badge-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            <span>Cancel Anytime in App Settings</span>
+            <span>Cancel Anytime</span>
           </div>
           <div class="one-feature-badge">
             <svg class="badge-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            <span>All Future Apps Automatically Included</span>
+            <span>Games &amp; Future Apps Included Free</span>
           </div>
         </div>
       </div>
@@ -1769,7 +1770,7 @@ export const renderHome = () => {
         <span class="stage-badge">THE CODEX</span>
         <h2 class="stage-title">Rigor &amp; Reverie.</h2>
         <p class="stage-subtitle-center">
-          Four foundational standards guiding every line of code we ship across health telemetry and game design.
+          Four standards guiding every line of code across health telemetry and game design.
         </p>
       </div>
 

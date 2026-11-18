@@ -57,9 +57,9 @@ export const suiteApps = [
     title: 'Cycle',
     eyebrow: 'REPRODUCTIVE PRIVACY',
     category: "Women's Health & Hormonal Rhythm",
-    tagline: 'Roetzer sympto-thermal telemetry and encrypted hormonal rhythm.',
+    tagline: 'Roetzer sympto-thermal tracking and encrypted hormonal rhythm.',
     heroTagline: 'Your rhythm. Your body. Encrypted on device.',
-    desc: 'Four-phase biological rhythm tracking and Roetzer sympto-thermal ovulation telemetry — encrypted locally with zero cloud servers or commercial trackers.',
+    desc: 'Four-phase hormonal tracking and Roetzer sympto-thermal ovulation forecasting — encrypted locally with zero cloud servers or commercial trackers.',
     stats: [
       { value: '4', label: 'Hormonal Rhythm Phases' },
       { value: '13', label: 'Symptom Trackers' },
@@ -137,9 +137,9 @@ export const suiteApps = [
     title: 'Nutrition',
     eyebrow: 'METABOLIC BALANCE',
     category: 'Metabolic & Vitality Balance',
-    tagline: 'Effortless caloric balance, whole-food logging, and fasting telemetry.',
+    tagline: 'Effortless caloric balance, whole-food logging, and fasting tracking.',
     heroTagline: 'Fuel your day with quiet clarity.',
-    desc: 'Effortless whole-food logging, fasting telemetry, and personalized metabolic goals. Local food database with zero cloud profiling.',
+    desc: 'Whole-food logging, fasting timers, and personalized metabolic goals backed by a local food database with zero commercial tracking.',
     stats: [
       { value: '16:8', label: 'Intermittent Fasting' },
       { value: '5', label: 'Macro & Micro Rings' },

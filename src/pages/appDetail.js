@@ -101,7 +101,7 @@ export const renderAppPage = (app) => {
         Signature Interaction
       </h2>
       <p style="text-align: center; color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 2.25rem;">
-        Authentic tactile mechanics, acoustic resonance, and local biometric computation.
+        Interactive preview engineered with on-device precision.
       </p>
 
       ${app.id === 'ludo-prince' ? `
