@@ -52,15 +52,50 @@ const pipMap = {
   6: [1, 3, 4, 6, 7, 9]
 };
 
+// True Cryptographic Fair Dice Roll (1 through 6 with zero bias)
+export const getFairDiceRoll = () => {
+  if (typeof crypto !== 'undefined' && crypto.getRandomValues) {
+    const buffer = new Uint32Array(1);
+    // Unbiased rejection sampling for exact 1-6 uniform distribution
+    // 4294967292 is (2^32 - (2^32 % 6)), the largest multiple of 6 <= 2^32 - 1
+    const maxUniform = 4294967292;
+    let rand;
+    do {
+      crypto.getRandomValues(buffer);
+      rand = buffer[0];
+    } while (rand >= maxUniform);
+    return (rand % 6) + 1;
+  }
+  return Math.floor(Math.random() * 6) + 1;
+};
+g.getFairDiceRoll = getFairDiceRoll;
+
 const updateDicePips = (num) => {
   const activePips = pipMap[num] || [1, 3, 4, 6, 7, 9];
-  for (let i = 1; i <= 9; i++) {
-    const dot = document.getElementById(`dice-pip-${i}`);
-    if (dot) {
-      if (activePips.includes(i)) {
-        dot.classList.add('active');
-      } else {
-        dot.classList.remove('active');
+  const diceBoxes = document.querySelectorAll('.interactive-dice');
+  if (diceBoxes.length > 0) {
+    diceBoxes.forEach(dice => {
+      dice.setAttribute('data-val', num);
+      for (let i = 1; i <= 9; i++) {
+        const dot = dice.querySelector(`#dice-pip-${i}`);
+        if (dot) {
+          if (activePips.includes(i)) {
+            dot.classList.add('active');
+          } else {
+            dot.classList.remove('active');
+          }
+        }
+      }
+    });
+  } else {
+    for (let i = 1; i <= 9; i++) {
+      const dot = document.getElementById(`dice-pip-${i}`);
+      if (dot) {
+        if (activePips.includes(i)) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
       }
     }
   }
@@ -68,14 +103,14 @@ const updateDicePips = (num) => {
 g.updateDicePips = updateDicePips;
 
 g.rollLudoDice = () => {
-  const dice = document.getElementById('interactive-dice-cube');
+  const diceElements = document.querySelectorAll('#interactive-dice-cube, .interactive-dice');
   const logDisplays = document.querySelectorAll('#dice-log-text, .dice-result-log');
-  if (!dice) return;
+  if (diceElements.length === 0) return;
 
   playSound('/audio/roll.wav');
-  dice.classList.add('rolling');
+  diceElements.forEach(d => d.classList.add('rolling'));
 
-  // Rapid face shuffle during roll
+  // Rapid face shuffle during roll (tactile inertia)
   let shuffles = 0;
   const shuffleTimer = setInterval(() => {
     const temp = Math.floor(Math.random() * 6) + 1;
@@ -86,14 +121,15 @@ g.rollLudoDice = () => {
 
   setTimeout(() => {
     clearInterval(shuffleTimer);
-    const rollOptions = [6, 4, 6, 5, 3, 2, 6];
-    const rolledNum = rollOptions[Math.floor(Math.random() * rollOptions.length)];
+    const rolledNum = getFairDiceRoll();
     updateDicePips(rolledNum);
 
     if (rolledNum === 6) {
       playSound('/audio/six.wav');
-      dice.classList.add('rolled-six');
-      setTimeout(() => dice.classList.remove('rolled-six'), 1200);
+      diceElements.forEach(d => {
+        d.classList.add('rolled-six');
+        setTimeout(() => d.classList.remove('rolled-six'), 1200);
+      });
       logDisplays.forEach(el => {
         el.innerHTML = `<span style="color:#0284c7;font-weight:700;">👑 Rolled 6</span> &bull; Bonus turn!`;
       });
@@ -102,7 +138,7 @@ g.rollLudoDice = () => {
         el.innerHTML = `Rolled <strong>${rolledNum}</strong>`;
       });
     }
-    dice.classList.remove('rolling');
+    diceElements.forEach(d => d.classList.remove('rolling'));
   }, 450);
 };
 
