@@ -21,23 +21,16 @@ export const renderAppPage = (app) => {
 
     <!-- Detail Hero Box -->
     <div class="detail-hero-box">
-      <!-- High-Visibility Lifecycle Status Banner -->
-      <div class="detail-lifecycle-banner ${app.status}">
-        ${app.status === 'production' 
-          ? '<span class="pulse-dot green"></span> <strong>LIVE IN PRODUCTION</strong> &bull; Available globally on iOS &amp; Android'
-          : app.status === 'beta'
-          ? '<span class="pulse-dot purple"></span> <strong>PUBLIC BETA</strong> &bull; Testing on Apple TestFlight &amp; Android'
-          : '<span class="pulse-dot amber"></span> <strong>IN ACTIVE DEVELOPMENT</strong> &bull; Engineering &amp; Architecture Roadmap'
-        }
-      </div>
-
       <div class="detail-icon-large" style="box-shadow: 0 12px 32px rgba(0,0,0,0.08), 0 0 30px ${app.accentColor}30;">
         <img src="${app.icon}" alt="${app.title} Icon" width="72" height="72" decoding="async">
       </div>
 
-      <span class="stage-badge" style="color: ${app.accentColor}; border-color: ${app.accentColor}40;">
-        ${app.eyebrow || app.category}
-      </span>
+      <div class="stage-badge" style="margin-bottom: 1.25rem;">
+        <span class="badge-dot" style="background: ${app.status === 'production' ? '#10b981' : '#8b5cf6'}; box-shadow: 0 0 8px ${app.status === 'production' ? 'rgba(16, 185, 129, 0.6)' : 'rgba(139, 92, 246, 0.6)'};"></span>
+        <span>${app.eyebrow || app.category}</span>
+        <span style="opacity: 0.35;">&bull;</span>
+        <span style="color: ${app.status === 'production' ? '#059669' : '#6d28d9'}; font-weight: 700;">${app.status === 'production' ? 'Live in Production' : 'Public Beta'}</span>
+      </div>
 
       <h1 class="detail-title">${app.title}</h1>
       <div class="detail-tagline">${app.heroTagline || app.tagline}</div>

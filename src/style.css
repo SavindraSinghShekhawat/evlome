@@ -1339,35 +1339,6 @@ body.menu-open .burger-line.line-bottom {
   color: var(--text-primary);
 }
 
-/* Product Detail Page Lifecycle Banner */
-.detail-lifecycle-banner {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 12px;
-  padding: 0.45rem 1.15rem;
-  border-radius: var(--radius-pill);
-  margin-bottom: 1.5rem;
-  letter-spacing: 0.02em;
-}
-
-.detail-lifecycle-banner.production {
-  background: #ecfdf5;
-  color: #047857;
-  border: 1px solid #a7f3d0;
-}
-
-.detail-lifecycle-banner.beta {
-  background: #f5f3ff;
-  color: #6d28d9;
-  border: 1px solid #ddd6fe;
-}
-
-.detail-lifecycle-banner.development {
-  background: #fffbeb;
-  color: #b45309;
-  border: 1px solid #fde68a;
-}
 
 .ludo-dice-halo {
   position: relative;

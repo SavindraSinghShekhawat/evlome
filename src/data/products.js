@@ -170,13 +170,13 @@ export const gamesData = [
     id: 'ludo-prince',
     type: 'game',
     title: 'Ludo Prince',
-    eyebrow: 'LIVE ON APP STORE & GOOGLE PLAY',
+    eyebrow: 'TACTILE STRATEGY',
     category: 'Real-Time Strategy & Board',
     tagline: 'Tactile multiplayer board play with genuine physical dice.',
     heroTagline: 'Classic board play. Pure tactile joy.',
-    desc: 'Classic board play engineered with physical dice inertia. Real-time multiplayer, local pass-and-play, and offline bot intelligence. Live now on iOS and Android.',
+    desc: 'Classic board play engineered with physical dice inertia. Real-time multiplayer, local pass-and-play, and offline bot intelligence.',
     stats: [
-      { value: 'LIVE', label: 'In Production' },
+      { value: '3D', label: 'Tactile Physics Dice' },
       { value: '0', label: 'Energy Timers or Paywalls' },
       { value: '4P', label: 'Real-Time Multiplayer' },
       { value: '100%', label: 'Offline Bot Play' }
