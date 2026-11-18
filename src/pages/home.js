@@ -1742,13 +1742,6 @@ export const renderHome = () => {
           </div>
         </div>
       </div>
-
-      <!-- Action Row -->
-      <div class="one-actions-row">
-        <a href="/beta" class="btn-primary-glow" onclick="if(event){ event.preventDefault(); navigate('/beta'); }">
-          Apply for Beta &rarr;
-        </a>
-      </div>
     </div>
   </section>
 
