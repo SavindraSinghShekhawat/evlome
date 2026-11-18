@@ -1693,15 +1693,14 @@ export const renderHome = () => {
             ${gamesData.map(app => `<img src="${app.icon}" alt="${app.title} Logo" class="one-mini-logo" width="36" height="36" loading="lazy" decoding="async" />`).join('')}
           </div>
           <span class="one-card-tag" style="color: #6366f1;">EVLOME GAME PASS &bull; INCLUDED</span>
-          <h3 class="one-card-title">Tactile Games Pass</h3>
+          <h3 class="one-card-title">Ad-Free Games Pass</h3>
           <p class="one-card-desc">
-            An ad-free gameplay experience across EVLOME Games, with exclusive VIP cosmetics, custom boards, and bonus perks.
+            A pure, uninterrupted ad-free experience across all EVLOME games.
           </p>
           <ul class="one-card-perks">
-            <li>✓ Ad-free experience across all EVLOME games</li>
-            <li>✓ Ludo Prince: VIP royal boards &amp; golden dice</li>
-            <li>✓ Monthly bonus coin drops &amp; VIP perks</li>
-            <li>✓ Pawdoku cozy pet haven &amp; sanctuary decor</li>
+            <li>✓ Ad-free gameplay across all EVLOME games</li>
+            <li>✓ Uninterrupted online multiplayer &amp; pass-and-play</li>
+            <li>✓ Zero commercial interruptions</li>
             <li>✓ All future game releases automatically included</li>
           </ul>
         </div>
