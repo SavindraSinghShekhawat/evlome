@@ -39,7 +39,7 @@ export const renderAppPage = (app) => {
         ${app.eyebrow || app.category}
       </span>
 
-      <h1 class="detail-title gradient-text">${app.title}</h1>
+      <h1 class="detail-title">${app.title}</h1>
       <div class="detail-tagline">${app.heroTagline || app.tagline}</div>
       <p class="detail-desc">${app.desc}</p>
 
@@ -97,7 +97,7 @@ export const renderAppPage = (app) => {
 
     <!-- Single Focused Interactive Experience -->
     <div style="margin-top: 3.5rem;">
-      <h2 style="font-size: 1.8rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 0.5rem; text-align: center;" class="gradient-text">
+      <h2 class="detail-section-title" style="text-align: center;">
         Signature Interaction
       </h2>
       <p style="text-align: center; color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 2.25rem;">
@@ -283,7 +283,7 @@ export const renderAppPage = (app) => {
 
     <!-- Highlights Grid -->
     <div style="margin-top: 4rem;">
-      <h2 style="font-size: 1.8rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 1.75rem;" class="gradient-text">
+      <h2 class="detail-section-title" style="margin-bottom: 1.75rem;">
         ${isGame ? 'Gameplay Dynamics & Mechanics' : 'Clinical & Technical Architecture'}
       </h2>
 

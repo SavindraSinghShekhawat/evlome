@@ -4338,8 +4338,17 @@ body.menu-open .burger-line.line-bottom {
   font-weight: 900;
   letter-spacing: -0.04em;
   line-height: 1.15;
+  color: var(--text-primary);
   margin-bottom: 0.85rem;
-  padding-bottom: 0.12em;
+}
+
+.detail-section-title {
+  font-size: clamp(1.6rem, 3.5vw, 2.1rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
 }
 
 .detail-tagline {
