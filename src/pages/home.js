@@ -1660,11 +1660,11 @@ export const renderHome = () => {
       <div class="one-header-center">
         <span class="stage-badge">
           <span class="badge-dot" style="background: #f59e0b; box-shadow: 0 0 8px rgba(245, 158, 11, 0.6);"></span>
-          EVLOME ONE &bull; UNIVERSAL MEMBERSHIP
+          UNIVERSAL MEMBERSHIP
         </span>
-        <h2 class="stage-title">All Health Disciplines.<br/>All Tactile Games. One Pass.</h2>
+        <h2 class="stage-title">EVLOME ONE</h2>
         <p class="stage-subtitle-center">
-          The all-access membership uniting the EVLOME Health Suite and EVLOME Games. Subscribe to individual <strong>Evlome Health Pass</strong> or <strong>Evlome Game Pass</strong> inside any app, or unlock everything with <strong>EVLOME ONE</strong>.
+          One membership for the entire suite. Subscribe to <strong>Evlome Health Pass</strong> or <strong>Evlome Game Pass</strong> in any app, or unlock everything with <strong>EVLOME ONE</strong>.
         </p>
       </div>
 
@@ -1727,9 +1727,9 @@ export const renderHome = () => {
       <div class="one-membership-strip">
         <div class="one-strip-col">
           <div class="one-strip-eyebrow">ONE UNIFIED ACCOUNT</div>
-          <h3 class="one-strip-title">Subscribe by Discipline or Unlock Everything.</h3>
+          <h3 class="one-strip-title">One Account. Every Device.</h3>
           <p class="one-strip-desc">
-            Subscribe to Evlome Health Pass or Evlome Game Pass inside any app, or unlock the entire ecosystem with EVLOME ONE. Your membership instantly activates across every app and device linked to your EVLOME ID. Cancel anytime.
+            Subscribe to Evlome Health Pass or Evlome Game Pass in any app, or unlock everything with EVLOME ONE. Cancel anytime.
           </p>
         </div>
         <div class="one-strip-pills">
