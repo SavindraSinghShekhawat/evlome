@@ -1056,7 +1056,72 @@ export const renderActivityDemo = () => `
   </div>
 `;
 
+let typewriterTimer = null;
+export const initHomeTypewriter = () => {
+  if (typeof window === 'undefined') return;
+  const target = document.getElementById('hero-typewriter');
+  if (!target) return;
+
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    target.textContent = 'encrypted on device \u2022 zero tracking';
+    return;
+  }
+
+  const statements = [
+    'encrypted on device \u2022 zero tracking',
+    'clinical biometrics \u2022 human rhythm',
+    'tactile board classics \u2022 physical dice inertia',
+    '100% offline-first \u2022 built to endure'
+  ];
+
+  let phraseIdx = 0;
+  let charIdx = 0;
+  let isDeleting = false;
+
+  if (typewriterTimer) clearTimeout(typewriterTimer);
+
+  const tick = () => {
+    const el = document.getElementById('hero-typewriter');
+    if (!el) return;
+
+    const fullText = statements[phraseIdx];
+
+    if (!isDeleting) {
+      charIdx++;
+      el.textContent = fullText.slice(0, charIdx);
+      if (charIdx >= fullText.length) {
+        isDeleting = true;
+        typewriterTimer = setTimeout(tick, 2200);
+        return;
+      }
+      typewriterTimer = setTimeout(tick, 50);
+    } else {
+      charIdx--;
+      el.textContent = fullText.slice(0, charIdx);
+      if (charIdx <= 0) {
+        isDeleting = false;
+        phraseIdx = (phraseIdx + 1) % statements.length;
+        typewriterTimer = setTimeout(tick, 400);
+        return;
+      }
+      typewriterTimer = setTimeout(tick, 25);
+    }
+  };
+
+  tick();
+};
+
+if (typeof window !== 'undefined') {
+  window.initHomeTypewriter = initHomeTypewriter;
+}
+
 export const renderHome = () => {
+  if (typeof window !== 'undefined') {
+    setTimeout(() => {
+      if (window.initHomeTypewriter) window.initHomeTypewriter();
+    }, 40);
+  }
+
   const ludo = gamesData.find(g => g.id === 'ludo-prince') || gamesData[0];
   const pawdoku = gamesData.find(g => g.id === 'pawdoku') || gamesData[1];
   const cycle = suiteApps.find(a => a.id === 'cycle') || suiteApps[1];
@@ -1077,8 +1142,14 @@ export const renderHome = () => {
       Calculated Precision.<br/>Mindful Play.
     </h1>
 
+    <div class="hero-telemetry-pill">
+      <span class="telemetry-prompt">&gt;</span>
+      <span id="hero-typewriter" class="telemetry-text">encrypted on device \u2022 zero tracking</span>
+      <span class="telemetry-cursor">_</span>
+    </div>
+
     <p class="hero-description">
-      Precision health utilities and tactile board games.<br class="desktop-only"/>Encrypted on device. Zero tracking.
+      Thoughtfully engineered health utilities and tactile board games.<br class="desktop-only"/>Crafted with mathematical rigor and physical inertia.
     </p>
 
     <div class="hero-actions-row">
@@ -1709,16 +1780,16 @@ export const renderHome = () => {
           <div class="one-card-icon-wrap" style="background: rgba(245, 158, 11, 0.1); color: #d97706;">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>
           </div>
-          <span class="one-card-tag" style="color: #d97706;">VAULT &amp; CONTINUITY &bull; INCLUDED</span>
-          <h3 class="one-card-title">Private Cloud Sync</h3>
+          <span class="one-card-tag" style="color: #d97706;">HEALTH VAULT &bull; INCLUDED</span>
+          <h3 class="one-card-title">Private Health Cloud Sync</h3>
           <p class="one-card-desc">
-            Private multi-device sync across iPhone, iPad, and Android with zero-custody on-device encryption. Seamless continuity across your health logs and game progress.
+            Encrypted multi-device sync built specifically for your private health, nutrition, workout, and cycle data. Zero-custody, zero tracking, and on-device decrypted.
           </p>
           <ul class="one-card-perks">
-            <li>✓ Encrypted cross-device cloud sync</li>
-            <li>✓ Offline-first architecture</li>
-            <li>✓ Zero tracking or data profiling</li>
-            <li>✓ Automatic backup for health entries</li>
+            <li>✓ Encrypted sync for private health history</li>
+            <li>✓ Seamless continuity across iPhone, iPad &amp; Android</li>
+            <li>✓ Zero tracking, profiling, or cloud custody</li>
+            <li>✓ 100% offline-first with background backup</li>
           </ul>
         </div>
       </div>
