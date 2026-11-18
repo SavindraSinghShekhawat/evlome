@@ -26,7 +26,6 @@ document.querySelector('#app').innerHTML = `
         <button type="button" class="nav-anchor-btn" onclick="window.scrollToSection('suite-stage')">The Health Suite</button>
         <button type="button" class="nav-anchor-btn" onclick="window.scrollToSection('games-stage')">EVLOME Games</button>
         <button type="button" class="nav-anchor-btn" onclick="window.scrollToSection('one-stage')">EVLOME One</button>
-        <button type="button" class="nav-anchor-btn" onclick="window.scrollToSection('principles-section')">The Codex</button>
         <a href="/beta" class="nav-cta-pill">Join Beta</a>
       </nav>
 
@@ -46,7 +45,6 @@ document.querySelector('#app').innerHTML = `
     <button type="button" class="mobile-sheet-link" onclick="window.scrollToSection('suite-stage')">The Health Suite</button>
     <button type="button" class="mobile-sheet-link" onclick="window.scrollToSection('games-stage')">EVLOME Games</button>
     <button type="button" class="mobile-sheet-link" onclick="window.scrollToSection('one-stage')">EVLOME One</button>
-    <button type="button" class="mobile-sheet-link" onclick="window.scrollToSection('principles-section')">The Codex</button>
     <a href="/beta" class="mobile-sheet-link" style="color: var(--accent-brand);" onclick="if(event){ event.preventDefault(); window.closeMobileMenu(); navigate('/beta'); }">Apply for Beta &rarr;</a>
   </aside>
 
@@ -78,9 +76,8 @@ document.querySelector('#app').innerHTML = `
         </div>
 
         <div>
-          <div class="footer-col-heading">The Codex</div>
+          <div class="footer-col-heading">Privacy &amp; Legal</div>
           <ul class="footer-links-list">
-            <li><a href="/#principles-section" onclick="if(event){ event.preventDefault(); window.scrollToSection('principles-section'); }">Our Principles</a></li>
             <li><a href="/privacy" onclick="if(event){ event.preventDefault(); navigate('/privacy'); }">Ecosystem Privacy</a></li>
             <li><a href="/ludo-prince/privacy" onclick="if(event){ event.preventDefault(); navigate('/ludo-prince/privacy'); }">Gaming Privacy</a></li>
             <li><a href="/terms" onclick="if(event){ event.preventDefault(); navigate('/terms'); }">Terms of Service</a></li>
@@ -468,10 +465,7 @@ const renderCurrentRoute = () => {
     });
   } else if (path === '/philosophy' || path === '/principles' || path === '/codex') {
     if (!isHomeMounted()) contentDiv.innerHTML = renderHome();
-    requestAnimationFrame(() => {
-      const el = document.getElementById('principles-section');
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
-    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   } else if (path === '/beta') {
     const appId = searchParams.get('app');
     const parentApp = appId ? getProductById(appId) : null;

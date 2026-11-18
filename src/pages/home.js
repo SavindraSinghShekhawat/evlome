@@ -1748,61 +1748,11 @@ export const renderHome = () => {
         <a href="/beta" class="btn-primary-glow" onclick="if(event){ event.preventDefault(); navigate('/beta'); }">
           Apply for Beta &rarr;
         </a>
-        <button type="button" class="btn-glass" onclick="window.scrollToSection('principles-section')">
-          The Codex &darr;
-        </button>
       </div>
     </div>
   </section>
 
-  <!-- STAGE 5: The EVLOME Codex & Principles -->
-  <section id="principles-section" class="codex-section">
-    <div class="codex-container">
-      <div class="codex-header-center">
-        <span class="stage-badge">THE CODEX</span>
-        <h2 class="stage-title">Rigor &amp; Reverie.</h2>
-        <p class="stage-subtitle-center">
-          Four principles guiding every line of code across health telemetry and game design.
-        </p>
-      </div>
-
-      <div class="codex-grid">
-        <div class="codex-card">
-          <span class="codex-num">01 / SOVEREIGNTY</span>
-          <h3 class="codex-title">On-Device Vault</h3>
-          <p class="codex-desc">
-            Health and metabolic telemetry reside strictly on your physical hardware. Zero tracking.
-          </p>
-        </div>
-
-        <div class="codex-card">
-          <span class="codex-num">02 / INTEGRITY</span>
-          <h3 class="codex-title">Deterministic Rigor</h3>
-          <p class="codex-desc">
-            Biometric equations and game physics operate transparently with mathematical integrity.
-          </p>
-        </div>
-
-        <div class="codex-card">
-          <span class="codex-num">03 / RESTRAINT</span>
-          <h3 class="codex-title">Mindful Interaction</h3>
-          <p class="codex-desc">
-            Zero synthetic urgency, dark patterns, or countdown timers. Distilled to essential craft.
-          </p>
-        </div>
-
-        <div class="codex-card">
-          <span class="codex-num">04 / AUTONOMY</span>
-          <h3 class="codex-title">100% Offline</h3>
-          <p class="codex-desc">
-            Engineered like physical instruments. Operates fully without network connectivity.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- STAGE 6: Beta Invitation Terminal -->
+  <!-- STAGE 5: Beta Invitation Terminal -->
   <section class="cinematic-stage beta-invite-stage">
     <span class="stage-badge">EARLY ACCESS PROGRAM</span>
     <h2 class="stage-title" style="max-width: 650px; margin: 0.5rem auto 1rem;">
