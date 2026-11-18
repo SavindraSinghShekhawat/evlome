@@ -29,7 +29,7 @@ export const renderAppPage = (app) => {
         <span class="badge-dot" style="background: ${app.status === 'production' ? '#10b981' : '#8b5cf6'}; box-shadow: 0 0 8px ${app.status === 'production' ? 'rgba(16, 185, 129, 0.6)' : 'rgba(139, 92, 246, 0.6)'};"></span>
         <span>${app.eyebrow || app.category}</span>
         <span style="opacity: 0.35;">&bull;</span>
-        <span style="color: ${app.status === 'production' ? '#059669' : '#6d28d9'}; font-weight: 700;">${app.status === 'production' ? 'Live in Production' : 'Public Beta'}</span>
+        <span style="color: ${app.status === 'production' ? '#059669' : '#6d28d9'}; font-weight: 700;">${app.status === 'production' ? 'Live in Production' : 'Beta'}</span>
       </div>
 
       <h1 class="detail-title">${app.title}</h1>
