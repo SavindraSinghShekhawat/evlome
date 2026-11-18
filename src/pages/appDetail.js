@@ -79,13 +79,16 @@ export const renderAppPage = (app) => {
               </div>
             </a>
           ` : ''}
+          <a href="/beta?app=${app.id}" class="btn-primary-glow" onclick="if(event){ event.preventDefault(); navigate('/beta?app=${app.id}'); }">
+            Join Beta &rarr;
+          </a>
           <a href="/#${parentStage}" class="btn-glass" onclick="window.handleBackToCategory(event, '${parentStage}')">
             Return to ${parentLabel}
           </a>
         </div>
       ` : `
         <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; align-items: center;">
-          <a href="/beta?app=${app.id}" class="btn-primary-glow" style="box-shadow: 0 4px 20px ${app.accentColor}35;">
+          <a href="/beta?app=${app.id}" class="btn-primary-glow" style="box-shadow: 0 4px 20px ${app.accentColor}35;" onclick="if(event){ event.preventDefault(); navigate('/beta?app=${app.id}'); }">
             Join Beta &rarr;
           </a>
           <a href="/#${parentStage}" class="btn-glass" onclick="window.handleBackToCategory(event, '${parentStage}')">
