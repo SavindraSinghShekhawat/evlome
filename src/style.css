@@ -94,9 +94,9 @@ body::before {
   width: 100%;
   height: 100%;
   background:
-    radial-gradient(circle 900px at 50% -120px, rgba(0, 113, 227, 0.03), transparent 70%),
-    radial-gradient(circle 700px at 90% 40%, rgba(2, 132, 199, 0.03), transparent 70%),
-    radial-gradient(circle 600px at 10% 75%, rgba(234, 88, 12, 0.03), transparent 70%);
+    radial-gradient(circle 900px at 50% -120px, rgba(99, 102, 241, 0.08), transparent 70%),
+    radial-gradient(circle 750px at 92% 38%, rgba(2, 132, 199, 0.07), transparent 70%),
+    radial-gradient(circle 700px at 8% 75%, rgba(16, 185, 129, 0.07), transparent 70%);
   z-index: -2;
   pointer-events: none;
 }
@@ -272,32 +272,51 @@ body.menu-open .burger-line.line-bottom {
   box-sizing: border-box;
   position: relative;
   width: 100%;
+  background:
+    radial-gradient(ellipse 1100px 600px at 50% 12%, rgba(99, 102, 241, 0.18) 0%, transparent 65%),
+    radial-gradient(circle 750px at 12% 40%, rgba(6, 182, 212, 0.16) 0%, transparent 60%),
+    radial-gradient(circle 750px at 88% 40%, rgba(16, 185, 129, 0.16) 0%, transparent 60%),
+    radial-gradient(circle 800px at 50% 88%, rgba(244, 63, 94, 0.12) 0%, transparent 60%),
+    #f8faff;
+  overflow: hidden;
 }
 
-/* Hero Ambient Aura */
+.hero-viewport > *:not(.hero-glow-aura) {
+  position: relative;
+  z-index: 1;
+}
+
+/* Multi-Chromatic Radiant Ambient Aura */
 .hero-glow-aura {
   position: absolute;
-  top: 15%;
+  top: 10%;
   left: 50%;
   transform: translateX(-50%);
-  width: 650px;
-  height: 400px;
-  background: radial-gradient(ellipse at center, rgba(79, 70, 229, 0.12), rgba(2, 132, 199, 0.06), transparent 70%);
-  filter: blur(60px);
+  width: 820px;
+  height: 520px;
+  background:
+    radial-gradient(circle at 35% 38%, rgba(99, 102, 241, 0.32), transparent 55%),
+    radial-gradient(circle at 68% 35%, rgba(6, 182, 212, 0.28), transparent 55%),
+    radial-gradient(circle at 45% 72%, rgba(16, 185, 129, 0.25), transparent 55%),
+    radial-gradient(circle at 75% 75%, rgba(244, 63, 94, 0.20), transparent 55%);
+  filter: blur(72px);
   pointer-events: none;
-  z-index: -1;
-  animation: pulseAura 8s ease-in-out infinite alternate;
+  z-index: 0;
+  animation: pulseAura 10s ease-in-out infinite alternate;
 }
 
 @keyframes pulseAura {
   0% {
-    transform: translateX(-50%) scale(0.9);
-    opacity: 0.5;
+    transform: translateX(-50%) scale(0.92) rotate(0deg);
+    opacity: 0.75;
   }
-
+  50% {
+    transform: translateX(-50%) scale(1.08) rotate(3deg);
+    opacity: 1;
+  }
   100% {
-    transform: translateX(-50%) scale(1.1);
-    opacity: 0.9;
+    transform: translateX(-50%) scale(0.96) rotate(-3deg);
+    opacity: 0.85;
   }
 }
 
@@ -356,7 +375,7 @@ body.menu-open .burger-line.line-bottom {
 }
 
 .gradient-text {
-  background: linear-gradient(180deg, #1d1d1f 30%, #434344 100%);
+  background: linear-gradient(135deg, #0284c7 0%, #6366f1 48%, #10b981 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   padding-bottom: 0.12em;
@@ -714,13 +733,15 @@ body.menu-open .burger-line.line-bottom {
   justify-content: center;
   gap: clamp(0.75rem, 1.4vw, 1.5rem);
   padding: clamp(0.55rem, 1.1vh, 0.75rem) clamp(1.2rem, 1.8vw, 2rem);
-  background: #ffffff;
-  border: 1px solid var(--border-subtle);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(16, 185, 129, 0.22);
   border-radius: var(--radius-pill);
   font-family: var(--font-mono);
   font-size: clamp(10.5px, 0.8vw + 0.2vh, 12px);
   color: var(--text-secondary);
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 4px 20px -2px rgba(99, 102, 241, 0.08), 0 2px 6px -1px rgba(16, 185, 129, 0.04);
   margin: 0 auto;
   max-width: 100%;
 }
@@ -747,6 +768,7 @@ body.menu-open .burger-line.line-bottom {
   .hero-viewport {
     padding: clamp(4.5rem, 8vh, 6rem) 1.25rem clamp(1.75rem, 4vh, 3rem);
   }
+
   .hero-matrix-bar {
     display: grid;
     grid-template-columns: repeat(2, auto);
@@ -1826,11 +1848,38 @@ body.menu-open .burger-line.line-bottom {
 }
 
 .health-suite-stage {
-  background: radial-gradient(circle 900px at 50% 12%, rgba(16, 185, 129, 0.05), transparent 70%);
+  background:
+    radial-gradient(ellipse 1100px 650px at 50% 2%, rgba(16, 185, 129, 0.18) 0%, transparent 65%),
+    radial-gradient(circle 850px at 90% 35%, rgba(244, 63, 94, 0.09) 0%, transparent 60%),
+    radial-gradient(circle 800px at 10% 65%, rgba(14, 165, 233, 0.09) 0%, transparent 60%),
+    radial-gradient(circle 700px at 50% 95%, rgba(245, 158, 11, 0.08) 0%, transparent 60%),
+    #f4fbf7;
+  border-top: 1px solid rgba(16, 185, 129, 0.16);
+  border-bottom: 1px solid rgba(16, 185, 129, 0.16);
+}
+
+.health-suite-stage .stage-badge {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(16, 185, 129, 0.32);
+  color: #047857;
+  box-shadow: 0 2px 10px rgba(16, 185, 129, 0.08);
 }
 
 .games-discipline-stage {
-  background: radial-gradient(circle 900px at 50% 12%, rgba(2, 132, 199, 0.05), transparent 70%);
+  background:
+    radial-gradient(ellipse 1100px 650px at 50% 2%, rgba(2, 132, 199, 0.20) 0%, transparent 65%),
+    radial-gradient(circle 850px at 88% 50%, rgba(234, 88, 12, 0.12) 0%, transparent 60%),
+    radial-gradient(circle 800px at 12% 70%, rgba(99, 102, 241, 0.12) 0%, transparent 60%),
+    #f0f7ff;
+  border-top: 1px solid rgba(2, 132, 199, 0.16);
+  border-bottom: 1px solid rgba(2, 132, 199, 0.16);
+}
+
+.games-discipline-stage .stage-badge {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(2, 132, 199, 0.32);
+  color: #0369a1;
+  box-shadow: 0 2px 10px rgba(2, 132, 199, 0.08);
 }
 
 .discipline-header-center {
@@ -3342,9 +3391,13 @@ body.menu-open .burger-line.line-bottom {
    EVLOME ONE — The Universal Membership Showcase (No Prices)
    ========================================================================== */
 .one-stage {
-  background: var(--bg-subtle);
-  border-top: 1px solid var(--border-subtle);
-  border-bottom: 1px solid var(--border-subtle);
+  background:
+    radial-gradient(ellipse 1200px 700px at 50% 0%, rgba(99, 102, 241, 0.20) 0%, transparent 65%),
+    radial-gradient(circle 850px at 85% 45%, rgba(245, 158, 11, 0.14) 0%, transparent 60%),
+    radial-gradient(circle 800px at 15% 65%, rgba(236, 72, 153, 0.10) 0%, transparent 60%),
+    #faf7fd;
+  border-top: 1px solid rgba(99, 102, 241, 0.18);
+  border-bottom: 1px solid rgba(99, 102, 241, 0.18);
   padding: 6.5rem 1.5rem;
   position: relative;
   overflow: hidden;
@@ -3356,10 +3409,18 @@ body.menu-open .burger-line.line-bottom {
   top: -180px;
   left: 50%;
   transform: translateX(-50%);
-  width: 900px;
-  height: 500px;
-  background: radial-gradient(ellipse at center, rgba(245, 158, 11, 0.08) 0%, rgba(0, 113, 227, 0.04) 50%, transparent 70%);
+  width: 960px;
+  height: 520px;
+  background: radial-gradient(ellipse at center, rgba(245, 158, 11, 0.15) 0%, rgba(99, 102, 241, 0.12) 50%, transparent 70%);
   pointer-events: none;
+  filter: blur(40px);
+}
+
+.one-stage .stage-badge {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(245, 158, 11, 0.35);
+  color: #b45309;
+  box-shadow: 0 2px 10px rgba(245, 158, 11, 0.1);
 }
 
 .one-container {
@@ -3483,12 +3544,12 @@ body.menu-open .burger-line.line-bottom {
 
 /* Membership Highlight Strip (Apple Bento Banner) */
 .one-membership-strip {
-  background: #ffffff;
-  border: 1px solid var(--border-subtle);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.96) 0%, rgba(248, 246, 255, 0.92) 100%);
+  border: 1.5px solid rgba(99, 102, 241, 0.22);
   border-radius: var(--radius-xxl);
   padding: 2.75rem 2.5rem;
   margin-bottom: 3rem;
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 10px 40px -10px rgba(99, 102, 241, 0.12), 0 2px 8px rgba(245, 158, 11, 0.05);
   display: grid;
   grid-template-columns: 1.2fr 1fr;
   gap: 32px;
@@ -3570,10 +3631,22 @@ body.menu-open .burger-line.line-bottom {
    Editorial Principles Section (The Codex)
    ========================================================================== */
 .codex-section {
-  background: var(--bg-subtle);
-  border-top: 1px solid var(--border-subtle);
-  border-bottom: 1px solid var(--border-subtle);
+  background:
+    radial-gradient(ellipse 1100px 600px at 50% 0%, rgba(16, 185, 129, 0.15) 0%, transparent 65%),
+    radial-gradient(circle 800px at 12% 50%, rgba(99, 102, 241, 0.10) 0%, transparent 60%),
+    radial-gradient(circle 800px at 88% 70%, rgba(2, 132, 199, 0.10) 0%, transparent 60%),
+    #f1f5f9;
+  border-top: 1px solid #cbd5e1;
+  border-bottom: 1px solid #cbd5e1;
   padding: 6.5rem 1.5rem;
+  position: relative;
+}
+
+.codex-section .stage-badge {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(51, 65, 85, 0.25);
+  color: #334155;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.06);
 }
 
 .codex-container {
@@ -3604,11 +3677,18 @@ body.menu-open .burger-line.line-bottom {
 }
 
 .codex-card {
-  background: #f5f5f7;
-  border: 1px solid var(--border-subtle);
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.09);
   border-radius: var(--radius-xl);
   padding: 2.25rem;
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04);
+  transition: all 0.25s ease;
+}
+
+.codex-card:hover {
+  border-color: rgba(16, 185, 129, 0.45);
+  box-shadow: 0 10px 32px -4px rgba(16, 185, 129, 0.14);
+  transform: translateY(-2px);
 }
 
 .codex-num {
@@ -3631,6 +3711,33 @@ body.menu-open .burger-line.line-bottom {
   font-size: 0.95rem;
   color: var(--text-secondary);
   line-height: 1.6;
+}
+
+/* ==========================================================================
+   Beta Invitation Stage (Home Terminal)
+   ========================================================================== */
+.beta-invite-stage {
+  min-height: 48vh;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 1000px 550px at 50% 30%, rgba(99, 102, 241, 0.16) 0%, rgba(16, 185, 129, 0.12) 45%, transparent 70%),
+    radial-gradient(circle 700px at 80% 80%, rgba(245, 158, 11, 0.11) 0%, transparent 60%),
+    #f8f9fe;
+  border-top: 1px solid rgba(99, 102, 241, 0.14);
+}
+
+.beta-invite-stage .stage-badge {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(99, 102, 241, 0.3);
+  color: #4338ca;
+  box-shadow: 0 2px 10px rgba(99, 102, 241, 0.08);
 }
 
 /* ==========================================================================

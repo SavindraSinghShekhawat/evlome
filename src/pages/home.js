@@ -1812,7 +1812,7 @@ export const renderHome = () => {
   </section>
 
   <!-- STAGE 6: Beta Invitation Terminal -->
-  <section class="cinematic-stage" style="min-height: 48vh; text-align: center; align-items: center; justify-content: center; padding: 4rem 1.5rem;">
+  <section class="cinematic-stage beta-invite-stage">
     <span class="stage-badge">EARLY ACCESS PROGRAM</span>
     <h2 class="stage-title" style="max-width: 650px; margin: 0.5rem auto 1rem;">
       Shape the Future of EVLOME.
