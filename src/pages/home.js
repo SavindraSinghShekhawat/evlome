@@ -1056,72 +1056,7 @@ export const renderActivityDemo = () => `
   </div>
 `;
 
-let typewriterTimer = null;
-export const initHomeTypewriter = () => {
-  if (typeof window === 'undefined') return;
-  const target = document.getElementById('hero-typewriter');
-  if (!target) return;
-
-  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    target.textContent = 'encrypted on device \u2022 zero tracking';
-    return;
-  }
-
-  const statements = [
-    'encrypted on device \u2022 zero tracking',
-    'clinical biometrics \u2022 human rhythm',
-    'tactile board classics \u2022 physical dice inertia',
-    '100% offline-first \u2022 built to endure'
-  ];
-
-  let phraseIdx = 0;
-  let charIdx = 0;
-  let isDeleting = false;
-
-  if (typewriterTimer) clearTimeout(typewriterTimer);
-
-  const tick = () => {
-    const el = document.getElementById('hero-typewriter');
-    if (!el) return;
-
-    const fullText = statements[phraseIdx];
-
-    if (!isDeleting) {
-      charIdx++;
-      el.textContent = fullText.slice(0, charIdx);
-      if (charIdx >= fullText.length) {
-        isDeleting = true;
-        typewriterTimer = setTimeout(tick, 2200);
-        return;
-      }
-      typewriterTimer = setTimeout(tick, 50);
-    } else {
-      charIdx--;
-      el.textContent = fullText.slice(0, charIdx);
-      if (charIdx <= 0) {
-        isDeleting = false;
-        phraseIdx = (phraseIdx + 1) % statements.length;
-        typewriterTimer = setTimeout(tick, 400);
-        return;
-      }
-      typewriterTimer = setTimeout(tick, 25);
-    }
-  };
-
-  tick();
-};
-
-if (typeof window !== 'undefined') {
-  window.initHomeTypewriter = initHomeTypewriter;
-}
-
 export const renderHome = () => {
-  if (typeof window !== 'undefined') {
-    setTimeout(() => {
-      if (window.initHomeTypewriter) window.initHomeTypewriter();
-    }, 40);
-  }
-
   const ludo = gamesData.find(g => g.id === 'ludo-prince') || gamesData[0];
   const pawdoku = gamesData.find(g => g.id === 'pawdoku') || gamesData[1];
   const cycle = suiteApps.find(a => a.id === 'cycle') || suiteApps[1];
@@ -1142,14 +1077,8 @@ export const renderHome = () => {
       Calculated Precision.<br/>Mindful Play.
     </h1>
 
-    <div class="hero-telemetry-pill">
-      <span class="telemetry-prompt">&gt;</span>
-      <span id="hero-typewriter" class="telemetry-text">encrypted on device \u2022 zero tracking</span>
-      <span class="telemetry-cursor">_</span>
-    </div>
-
     <p class="hero-description">
-      Thoughtfully engineered health utilities and tactile board games.<br class="desktop-only"/>Crafted with mathematical rigor and physical inertia.
+      Precision health utilities and tactile board games.<br class="desktop-only"/>Encrypted on device. Zero tracking.
     </p>
 
     <div class="hero-actions-row">
