@@ -1692,8 +1692,6 @@ export const renderHome = () => {
           </p>
           <ul class="one-card-perks">
             <li>✓ Zero ads or commercial interruptions</li>
-            <li>✓ Online multiplayer &amp; pass-and-play</li>
-            <li>✓ Offline AI bot intelligence</li>
             <li>✓ All future game releases included</li>
           </ul>
         </div>
