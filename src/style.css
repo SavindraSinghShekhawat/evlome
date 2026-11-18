@@ -819,6 +819,18 @@ body.menu-open .burger-line.line-bottom {
 
 .store-icon {
   flex-shrink: 0;
+  display: block;
+}
+
+.btn-app-store .store-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.btn-play-store .store-icon {
+  width: 20px;
+  height: 20px;
+  margin: 0 2px;
 }
 
 .store-badge-text {
