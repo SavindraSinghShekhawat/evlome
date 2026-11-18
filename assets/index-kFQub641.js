@@ -1,4 +1,4 @@
-(function(){let e=document.createElement(`link`).relList;if(e&&e.supports&&e.supports(`modulepreload`))return;for(let e of document.querySelectorAll(`link[rel="modulepreload"]`))n(e);new MutationObserver(e=>{for(let t of e)if(t.type===`childList`)for(let e of t.addedNodes)e.tagName===`LINK`&&e.rel===`modulepreload`&&n(e)}).observe(document,{childList:!0,subtree:!0});function t(e){let t={};return e.integrity&&(t.integrity=e.integrity),e.referrerPolicy&&(t.referrerPolicy=e.referrerPolicy),t.credentials=e.crossOrigin===`use-credentials`?`include`:e.crossOrigin===`anonymous`?`omit`:`same-origin`,t}function n(e){if(e.ep)return;e.ep=!0;let n=t(e);fetch(e.href,n)}})();var e=[{id:`calculator`,type:`utility`,title:`Calculator+`,eyebrow:`CLINICAL ACCURACY`,category:`Biometrics, Math & Precision`,tagline:`Clinical biometrics, metabolic models, and precision conversions.`,heroTagline:`Pure mathematical rigor. In your pocket.`,desc:`Mifflin-St Jeor metabolic expenditure, US Navy body composition, macronutrient distribution, loan schedules, and 9-dimensional conversions. Computed entirely offline.`,stats:[{value:`9`,label:`Conversion Dimensions`},{value:`4`,label:`Macro Split Frameworks`},{value:`0`,label:`Data Transmitted`},{value:`100%`,label:`On-Device Vault`}],highlights:[{title:`Mifflin-St Jeor TDEE & BMR`,desc:`Calculates Basal Metabolic Rate and Total Daily Energy Expenditure across five activity multipliers (1.2× to 1.9×) with deficit (-500 kcal) and surplus (+500 kcal) caloric targets.`},{title:`US Navy Body Fat & Clinical Metrics`,desc:`Precise body composition estimation using the US Navy circumference equations (neck, waist, hip, height) alongside metric and imperial BMI health classification thresholds.`},{title:`Target Macronutrient Distribution`,desc:`Generates tailored daily gram allocations for protein, carbohydrates, and fats across four metabolic frameworks: Balanced (30/40/30), High Protein (40/30/30), Low Carb (40/20/40), and Ketogenic (20/5/75).`},{title:`Hydration & 1RM Strength Forecasting`,desc:`Dynamic baseline fluid intake calculation adjusted for exercise volume (+0.35L per 30 mins) paired with Brzycki and Epley 1-Rep Max formulas with load percentages for progressive overload.`},{title:`Loan Amortization & Compound Interest`,desc:`Full financial schedule projections for personal and mortgage loans alongside multi-frequency compound interest growth models, tip splitting, discount/tax, and offline currency conversions.`},{title:`Multi-Category Converter & Daily Tools`,desc:`Nine-dimensional unit conversions (length, mass, volume, temperature, speed, area, data, energy), recipe scaling proportions, unit price comparisons, date math, base conversion, and haptic tally counting.`}],icon:`/icons/calculator.png`,accentColor:`#7c3aed`,categoryGradient:`linear-gradient(90deg, #a855f7 0%, #7c3aed 50%, #6d28d9 100%)`,status:`beta`,privacyLink:`/calculator/privacy`,termsLink:`/calculator/terms`},{id:`cycle`,type:`utility`,title:`Cycle`,eyebrow:`REPRODUCTIVE PRIVACY`,category:`Women's Health & Hormonal Rhythm`,tagline:`Roetzer sympto-thermal telemetry and encrypted hormonal rhythm.`,heroTagline:`Your rhythm. Your body. Encrypted on device.`,desc:`Four-phase biological rhythm tracking and Roetzer sympto-thermal ovulation telemetry — encrypted locally with zero cloud servers or commercial trackers.`,stats:[{value:`4`,label:`Hormonal Rhythm Phases`},{value:`13`,label:`Symptom Trackers`},{value:`BBT`,label:`Roetzer Thermal Shift`},{value:`0`,label:`Third-Party Trackers`}],highlights:[{title:`4-Phase Hormonal Rhythm Wheel`,desc:`Visualizes your real-time position within the menstrual cycle across four distinct hormonal stages: Menstrual (restorative), Follicular (rising estrogen), Ovulation (estrogen peak), and Luteal (progesterone dominance).`},{title:`Sympto-Thermal Ovulation Confirmation`,desc:`Validates true ovulation using clinical Roetzer biphasic Basal Body Temperature (BBT) thermal shift detection (3 high temps over 6 low temps) paired with Ovulation Predictor Kit (LH surge) verification.`},{title:`Personalized Luteal Phase Tracking`,desc:`Learns your individual luteal duration (10–18 days) from rolling historical averages instead of assuming a generic 14-day window, filtering irregular cycle anomalies for higher forecast accuracy.`},{title:`Cervical Telemetry & Fertility Windows`,desc:`Tracks cervical mucus consistency across five progressive stages from dry to peak fertile egg-white fluid, computing real-time Low, High, and Peak fertility probability windows.`},{title:`Holistic 13-Symptom & Mood Journal`,desc:`Multi-dimensional daily tracking covering flow intensity, 13 physical symptoms (cramps, bloating, tender breasts, ovulation pain, nausea), 12 mood states, sexual activity, and high-precision temperature logging.`},{title:`Phase-Synced Workout & Fuel Guidance`,desc:`Synchronizes with the EVLOME ecosystem to offer cycle-tailored fitness guidance (HIIT during follicular energy surges vs heavy lifts during ovulation) and metabolic nutrition advice (iron and magnesium support).`}],icon:`/icons/cycle.png`,accentColor:`#e11d48`,categoryGradient:`linear-gradient(90deg, #f43f5e 0%, #e11d48 50%, #be123c 100%)`,status:`beta`,privacyLink:`/cycle/privacy`,termsLink:`/cycle/terms`},{id:`activity`,type:`utility`,title:`Activity`,eyebrow:`KINETIC PERFORMANCE`,category:`Kinetic & Motion Logging`,tagline:`Versatile workout logging with barbell plate math and haptic rest timers.`,heroTagline:`Track every rep. Master every set.`,desc:`Versatile workout logging for gym and home training. Set/rep tracking, haptic rest timers, barbell plate math, and progressive overload metrics.`,stats:[{value:`1RM`,label:`Max Effort Calculations`},{value:`Plate`,label:`Barbell Math Assistant`},{value:`Haptic`,label:`Rest Interval Timers`},{value:`100%`,label:`Offline Gym Logging`}],highlights:[{title:`Custom Workout Routines`,desc:`Pre-loaded compound programs or design your own bespoke lifting splits, supersets, and HIIT rounds.`},{title:`Rest & Plate Math Assistant`,desc:`Integrated barbell plate math and background haptic countdown timers between sets.`}],icon:`/icons/activity.png`,accentColor:`#d97706`,categoryGradient:`linear-gradient(90deg, #f59e0b 0%, #d97706 50%, #b45309 100%)`,status:`development`,privacyLink:`/activity/privacy`,termsLink:`/activity/terms`},{id:`nutrition`,type:`utility`,title:`Nutrition`,eyebrow:`METABOLIC BALANCE`,category:`Metabolic & Vitality Balance`,tagline:`Effortless caloric balance, whole-food logging, and fasting telemetry.`,heroTagline:`Fuel your day with quiet clarity.`,desc:`Effortless whole-food logging, fasting telemetry, and personalized metabolic goals. Local food database with zero cloud profiling.`,stats:[{value:`16:8`,label:`Intermittent Fasting`},{value:`5`,label:`Macro & Micro Rings`},{value:`0`,label:`Cloud Profiling`},{value:`Local`,label:`Food Database`}],highlights:[{title:`Macro & Micronutrient Targets`,desc:`Visual telemetry rings for protein, carbohydrates, healthy fats, dietary fiber, and sodium.`},{title:`Intermittent Fasting Timer`,desc:`Preset 16:8, 18:6, and custom schedules with real-time zone stages and fasting telemetry.`}],icon:`/icons/nutrition.png`,accentColor:`#059669`,categoryGradient:`linear-gradient(90deg, #10b981 0%, #059669 50%, #047857 100%)`,status:`development`,privacyLink:`/nutrition/privacy`,termsLink:`/nutrition/terms`}],t=[{id:`ludo-prince`,type:`game`,title:`Ludo Prince`,eyebrow:`LIVE ON APP STORE & GOOGLE PLAY`,category:`Real-Time Strategy & Board`,tagline:`Tactile multiplayer board play with genuine physical dice.`,heroTagline:`Classic board play. Pure tactile joy.`,desc:`Classic board play engineered with physical dice inertia. Real-time multiplayer, local pass-and-play, and offline bot intelligence. Live now on iOS and Android.`,stats:[{value:`LIVE`,label:`In Production`},{value:`0`,label:`Energy Timers or Paywalls`},{value:`4P`,label:`Real-Time Multiplayer`},{value:`100%`,label:`Offline Bot Play`}],highlights:[{title:`Real-Time Online Multiplayer`,desc:`Create instant private lobbies with custom room codes, invite friends via dynamic deep links, or enter quick global matchmaking with seamless reconnects.`},{title:`Pass & Play Local Multiplayer`,desc:`Gather friends and family around a single device for 2, 3, or 4 player offline board gaming — complete with rotating seat markers and personal turn rings.`},{title:`Tactical AI Bot Play`,desc:`Sharpen your skills offline without waiting for opponents. Battle adaptive bot intelligence calibrated for engaging, competitive strategy.`},{title:`Classic & Team Match Modes`,desc:`Experience pure traditional race-to-home board play, or team up in 2v2 cooperative mode where teammates coordinate pawn maneuvers.`},{title:`Tactile Dice & Spatial Soundscapes`,desc:`Realistic physics-driven dice rolling, dynamic haptic vibrations on rolls and captures, and custom-composed audio effects for safe steps and home runs.`},{title:`Respectful, Player-First Design`,desc:`No aggressive pay-to-win boosters, no artificial energy timers, and no predatory micro-transactions. Pure, uncompromised board play.`}],icon:`/icons/ludo-prince.png`,accentColor:`#0284c7`,categoryGradient:`linear-gradient(90deg, #38bdf8 0%, #0284c7 50%, #0369a1 100%)`,status:`production`,appStoreUrl:`https://apps.apple.com/app/id6760012267`,playStoreUrl:`https://play.google.com/store/apps/details?id=com.paisphere.ludoprince`,privacyLink:`/ludo-prince/privacy`,termsLink:`/ludo-prince/terms`},{id:`pawdoku`,type:`game`,title:`Pawdoku`,eyebrow:`MINDFUL SANCTUARY`,category:`Mindful Puzzle & Cozy Sanctuary`,tagline:`Tranquil Star Battle logic in a cozy pet sanctuary.`,heroTagline:`Calm your mind. Nurture your haven.`,desc:`A mindful Star Battle puzzle in a cozy pastel sanctuary. One companion per row, column, and color region — 100% deductive strategy with zero rush.`,stats:[{value:`Star Battle`,label:`Aloof Queens Logic`},{value:`0`,label:`Stress or Timers`},{value:`Cozy Haven`,label:`Pet Sanctuary`},{value:`100%`,label:`Offline & Peaceful`}],highlights:[{title:`Aloof Pet Placement & Pure Logic`,desc:`One companion per row, column, and color region. Pets require personal space and cannot touch, even diagonally. 100% deductive, zero guesswork.`},{title:`Cozy Pet Haven & Sanctuary`,desc:`Adopt, cuddle, and feed aloof pet companions who respond with affectionate purrs, chirps, and floating heart reactions as your sanctuary flourishes.`},{title:`Sanctuary Decor & Warm Haven`,desc:`Earn cozy kibble through mindful play to collect warm rugs, fireplace accessories, cozy pet beds, and relaxing ambient lighting.`},{title:`Pressure-Free & Mindful Streaks`,desc:`No punitive countdown timers, no high-pressure game-overs, and no artificial stress. Track daily mindful streaks at your own peaceful pace.`}],icon:`/icons/pawdoku.png`,accentColor:`#ea580c`,categoryGradient:`linear-gradient(90deg, #fb923c 0%, #ea580c 50%, #c2410c 100%)`,status:`development`,privacyLink:`/pawdoku/privacy`,termsLink:`/pawdoku/terms`}],n=[...e,...t],r=e=>n.find(t=>t.id===e),i={},a=e=>{try{i[e]||(i[e]=new Audio(e)),i[e].currentTime=0,i[e].play().catch(()=>{})}catch{}},o=typeof window<`u`?window:globalThis,s={1:[5],2:[1,9],3:[1,5,9],4:[1,3,7,9],5:[1,3,5,7,9],6:[1,3,4,6,7,9]},c=e=>{let t=s[e]||[1,3,4,6,7,9];for(let e=1;e<=9;e++){let n=document.getElementById(`dice-pip-${e}`);n&&(t.includes(e)?n.classList.add(`active`):n.classList.remove(`active`))}};o.updateDicePips=c,o.rollLudoDice=()=>{let e=document.getElementById(`interactive-dice-cube`),t=document.querySelectorAll(`#dice-log-text, .dice-result-log`);if(!e)return;a(`/audio/roll.wav`),e.classList.add(`rolling`);let n=0,r=setInterval(()=>{c(Math.floor(Math.random()*6)+1),n++,n>=5&&clearInterval(r)},75);setTimeout(()=>{clearInterval(r);let n=[6,4,6,5,3,2,6],i=n[Math.floor(Math.random()*n.length)];c(i),i===6?(a(`/audio/six.wav`),e.classList.add(`rolled-six`),setTimeout(()=>e.classList.remove(`rolled-six`),1200),t.forEach(e=>{e.innerHTML=`<span style="color:#0284c7;font-weight:700;">👑 Rolled 6</span> &bull; Bonus turn!`})):t.forEach(e=>{e.innerHTML=`Rolled <strong>${i}</strong>`}),e.classList.remove(`rolling`)},450)};var l={size:4,regionMap:[[2,0,1,1],[2,0,1,1],[2,0,1,1],[2,3,3,3]],regionColors:[`#F87A63`,`#83CB96`,`#FFCD48`,`#F9D3B4`],solution:[[!1,!0,!1,!1],[!1,!1,!1,!0],[!0,!1,!1,!1],[!1,!1,!0,!1]]},u=[[``,`pet`,``,``],[``,``,``,``],[``,``,``,``],[``,``,``,``]],d=!1,f=``,p=`
+(function(){let e=document.createElement(`link`).relList;if(e&&e.supports&&e.supports(`modulepreload`))return;for(let e of document.querySelectorAll(`link[rel="modulepreload"]`))n(e);new MutationObserver(e=>{for(let t of e)if(t.type===`childList`)for(let e of t.addedNodes)e.tagName===`LINK`&&e.rel===`modulepreload`&&n(e)}).observe(document,{childList:!0,subtree:!0});function t(e){let t={};return e.integrity&&(t.integrity=e.integrity),e.referrerPolicy&&(t.referrerPolicy=e.referrerPolicy),t.credentials=e.crossOrigin===`use-credentials`?`include`:e.crossOrigin===`anonymous`?`omit`:`same-origin`,t}function n(e){if(e.ep)return;e.ep=!0;let n=t(e);fetch(e.href,n)}})();var e=[{id:`calculator`,type:`utility`,title:`Calculator+`,eyebrow:`CLINICAL ACCURACY`,category:`Biometrics, Math & Precision`,tagline:`Clinical biometrics, metabolic models, and precision conversions.`,heroTagline:`Pure mathematical rigor. In your pocket.`,desc:`Mifflin-St Jeor metabolic expenditure, US Navy body composition, macronutrient distribution, loan schedules, and 9-dimensional conversions. Computed entirely offline.`,stats:[{value:`9`,label:`Conversion Dimensions`},{value:`4`,label:`Macro Split Frameworks`},{value:`0`,label:`Data Transmitted`},{value:`100%`,label:`On-Device Vault`}],highlights:[{title:`Mifflin-St Jeor TDEE & BMR`,desc:`Calculates Basal Metabolic Rate and Total Daily Energy Expenditure across five activity multipliers (1.2× to 1.9×) with deficit (-500 kcal) and surplus (+500 kcal) caloric targets.`},{title:`US Navy Body Fat & Clinical Metrics`,desc:`Precise body composition estimation using the US Navy circumference equations (neck, waist, hip, height) alongside metric and imperial BMI health classification thresholds.`},{title:`Target Macronutrient Distribution`,desc:`Generates tailored daily gram allocations for protein, carbohydrates, and fats across four metabolic frameworks: Balanced (30/40/30), High Protein (40/30/30), Low Carb (40/20/40), and Ketogenic (20/5/75).`},{title:`Hydration & 1RM Strength Forecasting`,desc:`Dynamic baseline fluid intake calculation adjusted for exercise volume (+0.35L per 30 mins) paired with Brzycki and Epley 1-Rep Max formulas with load percentages for progressive overload.`},{title:`Loan Amortization & Compound Interest`,desc:`Full financial schedule projections for personal and mortgage loans alongside multi-frequency compound interest growth models, tip splitting, discount/tax, and offline currency conversions.`},{title:`Multi-Category Converter & Daily Tools`,desc:`Nine-dimensional unit conversions (length, mass, volume, temperature, speed, area, data, energy), recipe scaling proportions, unit price comparisons, date math, base conversion, and haptic tally counting.`}],icon:`/icons/calculator.png`,accentColor:`#7c3aed`,categoryGradient:`linear-gradient(90deg, #a855f7 0%, #7c3aed 50%, #6d28d9 100%)`,status:`beta`,privacyLink:`/calculator/privacy`,termsLink:`/calculator/terms`},{id:`cycle`,type:`utility`,title:`Cycle`,eyebrow:`REPRODUCTIVE PRIVACY`,category:`Women's Health & Hormonal Rhythm`,tagline:`Roetzer sympto-thermal tracking and encrypted hormonal rhythm.`,heroTagline:`Your rhythm. Your body. Encrypted on device.`,desc:`Four-phase hormonal tracking and Roetzer sympto-thermal ovulation forecasting — encrypted locally with zero cloud servers or commercial trackers.`,stats:[{value:`4`,label:`Hormonal Rhythm Phases`},{value:`13`,label:`Symptom Trackers`},{value:`BBT`,label:`Roetzer Thermal Shift`},{value:`0`,label:`Third-Party Trackers`}],highlights:[{title:`4-Phase Hormonal Rhythm Wheel`,desc:`Visualizes your real-time position within the menstrual cycle across four distinct hormonal stages: Menstrual (restorative), Follicular (rising estrogen), Ovulation (estrogen peak), and Luteal (progesterone dominance).`},{title:`Sympto-Thermal Ovulation Confirmation`,desc:`Validates true ovulation using clinical Roetzer biphasic Basal Body Temperature (BBT) thermal shift detection (3 high temps over 6 low temps) paired with Ovulation Predictor Kit (LH surge) verification.`},{title:`Personalized Luteal Phase Tracking`,desc:`Learns your individual luteal duration (10–18 days) from rolling historical averages instead of assuming a generic 14-day window, filtering irregular cycle anomalies for higher forecast accuracy.`},{title:`Cervical Telemetry & Fertility Windows`,desc:`Tracks cervical mucus consistency across five progressive stages from dry to peak fertile egg-white fluid, computing real-time Low, High, and Peak fertility probability windows.`},{title:`Holistic 13-Symptom & Mood Journal`,desc:`Multi-dimensional daily tracking covering flow intensity, 13 physical symptoms (cramps, bloating, tender breasts, ovulation pain, nausea), 12 mood states, sexual activity, and high-precision temperature logging.`},{title:`Phase-Synced Workout & Fuel Guidance`,desc:`Synchronizes with the EVLOME ecosystem to offer cycle-tailored fitness guidance (HIIT during follicular energy surges vs heavy lifts during ovulation) and metabolic nutrition advice (iron and magnesium support).`}],icon:`/icons/cycle.png`,accentColor:`#e11d48`,categoryGradient:`linear-gradient(90deg, #f43f5e 0%, #e11d48 50%, #be123c 100%)`,status:`beta`,privacyLink:`/cycle/privacy`,termsLink:`/cycle/terms`},{id:`activity`,type:`utility`,title:`Activity`,eyebrow:`KINETIC PERFORMANCE`,category:`Kinetic & Motion Logging`,tagline:`Versatile workout logging with barbell plate math and haptic rest timers.`,heroTagline:`Track every rep. Master every set.`,desc:`Versatile workout logging for gym and home training. Set/rep tracking, haptic rest timers, barbell plate math, and progressive overload metrics.`,stats:[{value:`1RM`,label:`Max Effort Calculations`},{value:`Plate`,label:`Barbell Math Assistant`},{value:`Haptic`,label:`Rest Interval Timers`},{value:`100%`,label:`Offline Gym Logging`}],highlights:[{title:`Custom Workout Routines`,desc:`Pre-loaded compound programs or design your own bespoke lifting splits, supersets, and HIIT rounds.`},{title:`Rest & Plate Math Assistant`,desc:`Integrated barbell plate math and background haptic countdown timers between sets.`}],icon:`/icons/activity.png`,accentColor:`#d97706`,categoryGradient:`linear-gradient(90deg, #f59e0b 0%, #d97706 50%, #b45309 100%)`,status:`development`,privacyLink:`/activity/privacy`,termsLink:`/activity/terms`},{id:`nutrition`,type:`utility`,title:`Nutrition`,eyebrow:`METABOLIC BALANCE`,category:`Metabolic & Vitality Balance`,tagline:`Effortless caloric balance, whole-food logging, and fasting tracking.`,heroTagline:`Fuel your day with quiet clarity.`,desc:`Whole-food logging, fasting timers, and personalized metabolic goals backed by a local food database with zero commercial tracking.`,stats:[{value:`16:8`,label:`Intermittent Fasting`},{value:`5`,label:`Macro & Micro Rings`},{value:`0`,label:`Cloud Profiling`},{value:`Local`,label:`Food Database`}],highlights:[{title:`Macro & Micronutrient Targets`,desc:`Visual telemetry rings for protein, carbohydrates, healthy fats, dietary fiber, and sodium.`},{title:`Intermittent Fasting Timer`,desc:`Preset 16:8, 18:6, and custom schedules with real-time zone stages and fasting telemetry.`}],icon:`/icons/nutrition.png`,accentColor:`#059669`,categoryGradient:`linear-gradient(90deg, #10b981 0%, #059669 50%, #047857 100%)`,status:`development`,privacyLink:`/nutrition/privacy`,termsLink:`/nutrition/terms`}],t=[{id:`ludo-prince`,type:`game`,title:`Ludo Prince`,eyebrow:`TACTILE STRATEGY`,category:`Real-Time Strategy & Board`,tagline:`Tactile multiplayer board play with genuine physical dice.`,heroTagline:`Classic board play. Pure tactile joy.`,desc:`Classic board play engineered with physical dice inertia. Real-time multiplayer, local pass-and-play, and offline bot intelligence.`,stats:[{value:`3D`,label:`Tactile Physics Dice`},{value:`0`,label:`Energy Timers or Paywalls`},{value:`4P`,label:`Real-Time Multiplayer`},{value:`100%`,label:`Offline Bot Play`}],highlights:[{title:`Real-Time Online Multiplayer`,desc:`Create instant private lobbies with custom room codes, invite friends via dynamic deep links, or enter quick global matchmaking with seamless reconnects.`},{title:`Pass & Play Local Multiplayer`,desc:`Gather friends and family around a single device for 2, 3, or 4 player offline board gaming — complete with rotating seat markers and personal turn rings.`},{title:`Tactical AI Bot Play`,desc:`Sharpen your skills offline without waiting for opponents. Battle adaptive bot intelligence calibrated for engaging, competitive strategy.`},{title:`Classic & Team Match Modes`,desc:`Experience pure traditional race-to-home board play, or team up in 2v2 cooperative mode where teammates coordinate pawn maneuvers.`},{title:`Tactile Dice & Spatial Soundscapes`,desc:`Realistic physics-driven dice rolling, dynamic haptic vibrations on rolls and captures, and custom-composed audio effects for safe steps and home runs.`},{title:`Respectful, Player-First Design`,desc:`No aggressive pay-to-win boosters, no artificial energy timers, and no predatory micro-transactions. Pure, uncompromised board play.`}],icon:`/icons/ludo-prince.png`,accentColor:`#0284c7`,categoryGradient:`linear-gradient(90deg, #38bdf8 0%, #0284c7 50%, #0369a1 100%)`,status:`production`,appStoreUrl:`https://apps.apple.com/app/id6760012267`,playStoreUrl:`https://play.google.com/store/apps/details?id=com.paisphere.ludoprince`,privacyLink:`/ludo-prince/privacy`,termsLink:`/ludo-prince/terms`},{id:`pawdoku`,type:`game`,title:`Pawdoku`,eyebrow:`MINDFUL SANCTUARY`,category:`Mindful Puzzle & Cozy Sanctuary`,tagline:`Tranquil Star Battle logic in a cozy pet sanctuary.`,heroTagline:`Calm your mind. Nurture your haven.`,desc:`A mindful Star Battle puzzle in a cozy pastel sanctuary. One companion per row, column, and color region — 100% deductive strategy with zero rush.`,stats:[{value:`Star Battle`,label:`Aloof Queens Logic`},{value:`0`,label:`Stress or Timers`},{value:`Cozy Haven`,label:`Pet Sanctuary`},{value:`100%`,label:`Offline & Peaceful`}],highlights:[{title:`Aloof Pet Placement & Pure Logic`,desc:`One companion per row, column, and color region. Pets require personal space and cannot touch, even diagonally. 100% deductive, zero guesswork.`},{title:`Cozy Pet Haven & Sanctuary`,desc:`Adopt, cuddle, and feed aloof pet companions who respond with affectionate purrs, chirps, and floating heart reactions as your sanctuary flourishes.`},{title:`Sanctuary Decor & Warm Haven`,desc:`Earn cozy kibble through mindful play to collect warm rugs, fireplace accessories, cozy pet beds, and relaxing ambient lighting.`},{title:`Pressure-Free & Mindful Streaks`,desc:`No punitive countdown timers, no high-pressure game-overs, and no artificial stress. Track daily mindful streaks at your own peaceful pace.`}],icon:`/icons/pawdoku.png`,accentColor:`#ea580c`,categoryGradient:`linear-gradient(90deg, #fb923c 0%, #ea580c 50%, #c2410c 100%)`,status:`development`,privacyLink:`/pawdoku/privacy`,termsLink:`/pawdoku/terms`}],n=[...e,...t],r=e=>n.find(t=>t.id===e),i={},a=e=>{try{if(typeof Audio>`u`)return;i[e]||(i[e]=new Audio(e),i[e].preload=`auto`);let t=i[e];if(t.paused||t.ended){t.currentTime=0;let e=t.play();e&&typeof e.catch==`function`&&e.catch(()=>{})}else try{let e=t.cloneNode().play();e&&typeof e.catch==`function`&&e.catch(()=>{t.currentTime=0,t.play().catch(()=>{})})}catch{t.currentTime=0,t.play().catch(()=>{})}}catch{}},o=typeof window<`u`?window:globalThis;o.playSound=a;var s={1:[5],2:[1,9],3:[1,5,9],4:[1,3,7,9],5:[1,3,5,7,9],6:[1,3,4,6,7,9]},c=()=>{if(typeof crypto<`u`&&crypto.getRandomValues){let e=new Uint32Array(1),t;do crypto.getRandomValues(e),t=e[0];while(t>=4294967292);return t%6+1}return Math.floor(Math.random()*6)+1};o.getFairDiceRoll=c;var l=e=>{let t=s[e]||[1,3,4,6,7,9],n=document.querySelectorAll(`.interactive-dice`);if(n.length>0)n.forEach(n=>{n.setAttribute(`data-val`,e);for(let e=1;e<=9;e++){let r=n.querySelector(`#dice-pip-${e}`);r&&(t.includes(e)?r.classList.add(`active`):r.classList.remove(`active`))}});else for(let e=1;e<=9;e++){let n=document.getElementById(`dice-pip-${e}`);n&&(t.includes(e)?n.classList.add(`active`):n.classList.remove(`active`))}};o.updateDicePips=l,o.rollLudoDice=()=>{let e=document.querySelectorAll(`#interactive-dice-cube, .interactive-dice`),t=document.querySelectorAll(`#dice-log-text, .dice-result-log`);if(e.length===0)return;a(`/audio/roll.wav`),e.forEach(e=>e.classList.add(`rolling`));let n=0,r=setInterval(()=>{l(Math.floor(Math.random()*6)+1),n++,n>=5&&clearInterval(r)},75);setTimeout(()=>{clearInterval(r);let n=c();l(n),n===6?(a(`/audio/six.wav`),e.forEach(e=>{e.classList.add(`rolled-six`),setTimeout(()=>e.classList.remove(`rolled-six`),1200)}),t.forEach(e=>{e.innerHTML=`<span style="color:#0284c7;font-weight:700;">👑 Rolled 6</span> &bull; Bonus turn!`})):t.forEach(e=>{e.innerHTML=`Rolled <strong>${n}</strong>`}),e.forEach(e=>e.classList.remove(`rolling`))},450)};var u={size:4,regionMap:[[2,0,1,1],[2,0,1,1],[2,0,1,1],[2,3,3,3]],regionColors:[`#F87A63`,`#83CB96`,`#FFCD48`,`#F9D3B4`],solution:[[!1,!0,!1,!1],[!1,!1,!1,!0],[!0,!1,!1,!1],[!1,!1,!0,!1]]},d=[[``,`pet`,``,``],[``,``,``,``],[``,``,``,``],[``,``,``,``]],f=!1,p=`
 <svg viewBox="4 4 44 44" class="paw-pet-glyph" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="pet-head-g" x1="26" y1="12" x2="26" y2="44" gradientUnits="userSpaceOnUse">
@@ -102,10 +102,206 @@
     <rect x="6" y="17" width="32" height="10" rx="5" fill="#FFFFFF" stroke="#D5C4B1" stroke-width="1.8"/>
     <rect x="17.5" y="17.5" width="9" height="9" fill="#FFFFFF"/>
   </g>
-</svg>`;o.setPawdokuTool=e=>{};var _=!1,v=!1,y=null,b=null,x=`cross`,S=new Set;o.pawdokuPointerDown=e=>{let t=e.target.closest(`.paw-cell`);if(!t)return;let n=t.getAttribute(`data-paw-cell`);if(!n)return;_=!0,v=!1,y={x:e.clientX,y:e.clientY},b=n;let[r,i]=n.split(`-`).map(Number);x=u[r][i]===`cross`?`clear`:`cross`,S=new Set,S.add(n)},o.pawdokuPointerMove=e=>{if(_&&Math.hypot(e.clientX-y.x,e.clientY-y.y)>8){if(!v){v=!0;let[e,t]=b.split(`-`).map(Number);u[e][t]!==`pet`&&(u[e][t]=x===`cross`?`cross`:``,a(`/audio/cross_tap.wav`),o.updatePawdokuUI())}let t=document.elementFromPoint(e.clientX,e.clientY),n=t?t.closest(`.paw-cell`):null;if(n){let e=n.getAttribute(`data-paw-cell`);if(e&&!S.has(e)){S.add(e);let[t,n]=e.split(`-`).map(Number);u[t][n]!==`pet`&&(u[t][n]=x===`cross`?`cross`:``,a(`/audio/cross_tap.wav`),o.updatePawdokuUI())}}}},o.pawdokuPointerUp=e=>{if(_){if(_=!1,!v&&b){let[e,t]=b.split(`-`).map(Number);o.pawdokuCellTap(e,t)}b=null}},typeof window<`u`&&(window.addEventListener(`pointerup`,e=>{o.pawdokuPointerUp&&o.pawdokuPointerUp(e)}),window.addEventListener(`pointercancel`,e=>{o.pawdokuPointerUp&&o.pawdokuPointerUp(e)}));var C={};o.pawdokuCellTap=(e,t)=>{let n=`${e}-${t}`,r=Date.now(),i=r-(C[n]||0);C[n]=r;let s=u[e][t];if(s===`pet`){u[e][t]=``,a(`/audio/cross_tap.wav`),C[n]=0,o.updatePawdokuUI();return}if(i>0&&i<350){u[e][t]=`pet`,a(`/audio/pet_place.wav`),C[n]=0,o.updatePawdokuUI();return}s===`cross`?(u[e][t]=``,a(`/audio/cross_tap.wav`)):(u[e][t]=`cross`,a(`/audio/cross_tap.wav`)),o.updatePawdokuUI()},o.restartPawdoku=()=>{u=[[``,`pet`,``,``],[``,``,``,``],[``,``,``,``],[``,``,``,``]],d=!1,C={},a(`/audio/cross_tap.wav`),o.updatePawdokuUI()},o.hintPawdoku=()=>{for(let[e,t]of[[0,1],[1,3],[2,0],[3,2]])if(u[e][t]!==`pet`){u[e][t]=`pet`,a(`/audio/pet_place.wav`),o.updatePawdokuUI();return}},o.updatePawdokuUI=()=>{let e=[];for(let t=0;t<4;t++)for(let n=0;n<4;n++)u[t][n]===`pet`&&e.push({r:t,c:n});let t=new Set;for(let n=0;n<e.length;n++)for(let r=n+1;r<e.length;r++){let i=e[n],a=e[r],o=i.r===a.r,s=i.c===a.c,c=l.regionMap[i.r][i.c]===l.regionMap[a.r][a.c],u=Math.abs(i.r-a.r)<=1&&Math.abs(i.c-a.c)<=1;(o||s||c||u)&&(t.add(`${i.r},${i.c}`),t.add(`${a.r},${a.c}`))}for(let e=0;e<4;e++)for(let n=0;n<4;n++){let r=document.querySelectorAll(`[data-paw-cell="${e}-${n}"]`),i=u[e][n],a=t.has(`${e},${n}`);r.forEach(e=>{e.classList.contains(`cell-conflict`)!==a&&e.classList.toggle(`cell-conflict`,a),(e.getAttribute(`data-val`)||``)!==i&&(e.setAttribute(`data-val`,i),e.innerHTML=i===`pet`?`<div class="pet-drop-marker">${p}</div>`:i===`cross`?`<div class="paw-cross-marker">${m}</div>`:``)})}let n=e.length===4&&t.size===0&&l.solution.every((e,t)=>e.every((e,n)=>u[t][n]===`pet`===e)),r=document.querySelectorAll(`.pawdoku-feedback-bar, .pawdoku-status-bar`);n?(d||(d=!0,a(`/audio/victory.wav`)),r.forEach(e=>{e.innerHTML=`<span style="color:#10B981;font-weight:700;">🌟 Sanctuary Complete!</span>`})):t.size>0?r.forEach(e=>{e.innerHTML=`<span style="color:#EF4444;font-weight:600;">⚠️ Companions cannot touch</span>`}):r.forEach(t=>{t.innerHTML=`<span><strong>${e.length} of 4</strong> companions placed</span>`})};var w={menstrual:{day:`Day 2 of 28`,title:`Menstrual Phase`,readiness:`Cellular Renewal`,daysUntil:`26 days`,accent:`#e11d48`},follicular:{day:`Day 9 of 28`,title:`Follicular Phase`,readiness:`Rising Energy`,daysUntil:`19 days`,accent:`#7c3aed`},ovulation:{day:`Day 14 of 28`,title:`Ovulation Peak`,readiness:`Optimal Strength PRs`,daysUntil:`14 days`,accent:`#0284c7`},luteal:{day:`Day 22 of 28`,title:`Luteal Phase`,readiness:`Metabolic Surge`,daysUntil:`6 days`,accent:`#ea580c`}};o.switchCyclePhase=e=>{let t=w[e];t&&(document.querySelectorAll(`.phase-btn`).forEach(t=>{t.classList.toggle(`active`,t.id===`phase-btn-${e}`)}),document.querySelectorAll(`#cycle-ring-glow`).forEach(e=>{e.style.borderColor=t.accent,e.style.boxShadow=`0 0 36px ${t.accent}40, inset 0 0 24px ${t.accent}20`}),document.querySelectorAll(`#phase-day-text`).forEach(e=>{e.innerText=t.day}),document.querySelectorAll(`#phase-title-text`).forEach(e=>{e.innerText=t.title,e.style.color=t.accent}),document.querySelectorAll(`#phase-readiness-text`).forEach(e=>{e.innerText=t.readiness,e.style.color=t.accent}),document.querySelectorAll(`#cycle-countdown-days, .cycle-forecast-days`).forEach(e=>{e.innerText=t.daysUntil}))};var T={weight:74,activity:1.55,goal:`cut`};o.adjCalcWeight=e=>{T.weight=Math.max(45,Math.min(140,T.weight+e));let t=document.getElementById(`calc-val-weight`);t&&(t.innerText=T.weight),o.calculateTdeeResults()},o.setCalcActivity=(e,t)=>{T.activity=e,document.querySelectorAll(`.calc-act-chip`).forEach(e=>e.classList.remove(`active`));let n=document.getElementById(t);n&&n.classList.add(`active`),o.calculateTdeeResults()},o.setCalcGoal=(e,t)=>{T.goal=e,document.querySelectorAll(`.calc-goal-btn`).forEach(e=>e.classList.remove(`active`));let n=document.getElementById(t);n&&n.classList.add(`active`),o.calculateTdeeResults()},o.calculateTdeeResults=()=>{let{weight:e,activity:t,goal:n}=T,r=10*e+1112.5-140+5,i=Math.round(r*t),a=i,o=`Maintenance`;n===`cut`?(a=Math.max(1200,i-500),o=`Fat Loss (-500 kcal)`):n===`bulk`&&(a=i+300,o=`Muscle Surplus (+300 kcal)`);let s=Math.round(a*.3/4),c=Math.round(a*.4/4),l=Math.round(a*.3/9),u=document.querySelectorAll(`#calc-res-tdee`),d=document.querySelectorAll(`#calc-res-goal-sub`),f=document.querySelectorAll(`#calc-res-protein`),p=document.querySelectorAll(`#calc-res-carb`),m=document.querySelectorAll(`#calc-res-fat`);u.forEach(e=>e.innerText=a.toLocaleString()),d.forEach(e=>e.innerHTML=`kcal / day &bull; ${o}`),f.forEach(e=>e.innerText=`${s}g`),p.forEach(e=>e.innerText=`${c}g`),m.forEach(e=>e.innerText=`${l}g`)};var E=`1250 × 1.08`,D=`1350`;o.setCalcMode=e=>{document.querySelectorAll(`.calc-mode-btn`).forEach(e=>e.classList.remove(`active`));let t=document.getElementById(`calc-mode-btn-${e}`);t&&t.classList.add(`active`);let n=document.getElementById(`calc-everyday-view`),r=document.getElementById(`calc-clinical-view`);n&&r&&(e===`everyday`?(n.style.display=`block`,r.style.display=`none`):(n.style.display=`none`,r.style.display=`block`))},o.calcKeyPress=e=>{if(a(`/audio/cross_tap.wav`),e===`AC`)E=``,D=`0`;else if(e===`⌫`)E=E.slice(0,-1),E||(D=`0`);else if(e===`=`)try{let e=E.replace(/×/g,`*`).replace(/÷/g,`/`),t=Function(`'use strict'; return (${e})`)();D=Number.isFinite(t)?Number(t.toFixed(4)).toString():`Error`}catch{D=`Error`}else{E+=e;try{let e=E.replace(/×/g,`*`).replace(/÷/g,`/`),t=Function(`'use strict'; return (${e})`)();Number.isFinite(t)&&(D=Number(t.toFixed(4)).toString())}catch{}}let t=document.getElementById(`calc-screen-expr`),n=document.getElementById(`calc-screen-res`);t&&(t.textContent=E||`0`),n&&(n.textContent=D||`0`)},o.filterMatrix=e=>{document.querySelectorAll(`.matrix-filter-btn`).forEach(e=>e.classList.remove(`active`));let t=document.getElementById(`filter-btn-${e}`);t&&t.classList.add(`active`),document.querySelectorAll(`.matrix-card`).forEach(t=>{let n=t.getAttribute(`data-category`),r=t.getAttribute(`data-status`);e===`all`||n===e||r===e?t.style.display=`flex`:t.style.display=`none`})};var O=()=>{let r=t.find(e=>e.id===`ludo-prince`)||t[0],i=t.find(e=>e.id===`pawdoku`)||t[1];e.find(e=>e.id===`cycle`)||e[1];let a=e.find(e=>e.id===`calculator`)||e[0];return`
+</svg>`;o.setPawdokuTool=e=>{};var _=!1,v=!1,y=null,b=null,x=`cross`,S=new Set;o.pawdokuPointerDown=e=>{let t=e.target.closest(`.paw-cell`);if(!t)return;let n=t.getAttribute(`data-paw-cell`);if(!n)return;_=!0,v=!1,y={x:e.clientX,y:e.clientY},b=n;let[r,i]=n.split(`-`).map(Number);x=d[r][i]===`cross`?`clear`:`cross`,S=new Set,S.add(n)},o.pawdokuPointerMove=e=>{if(_&&Math.hypot(e.clientX-y.x,e.clientY-y.y)>8){if(!v){v=!0;let[e,t]=b.split(`-`).map(Number);d[e][t]!==`pet`&&(d[e][t]=x===`cross`?`cross`:``,a(`/audio/cross_tap.wav`),o.updatePawdokuUI())}let t=document.elementFromPoint(e.clientX,e.clientY),n=t?t.closest(`.paw-cell`):null;if(n){let e=n.getAttribute(`data-paw-cell`);if(e&&!S.has(e)){S.add(e);let[t,n]=e.split(`-`).map(Number);d[t][n]!==`pet`&&(d[t][n]=x===`cross`?`cross`:``,a(`/audio/cross_tap.wav`),o.updatePawdokuUI())}}}},o.pawdokuPointerUp=e=>{if(_){if(_=!1,!v&&b){let[e,t]=b.split(`-`).map(Number);o.pawdokuCellTap(e,t)}b=null}},typeof window<`u`&&(window.addEventListener(`pointerup`,e=>{o.pawdokuPointerUp&&o.pawdokuPointerUp(e)}),window.addEventListener(`pointercancel`,e=>{o.pawdokuPointerUp&&o.pawdokuPointerUp(e)}));var C={};o.pawdokuCellTap=(e,t)=>{let n=`${e}-${t}`,r=Date.now(),i=r-(C[n]||0);C[n]=r;let s=d[e][t];if(s===`pet`){d[e][t]=``,a(`/audio/cross_tap.wav`),C[n]=0,o.updatePawdokuUI();return}if(i>0&&i<350){d[e][t]=`pet`,a(`/audio/pet_place.wav`),C[n]=0,o.updatePawdokuUI();return}s===`cross`?(d[e][t]=``,a(`/audio/cross_tap.wav`)):(d[e][t]=`cross`,a(`/audio/cross_tap.wav`)),o.updatePawdokuUI()},o.restartPawdoku=()=>{d=[[``,`pet`,``,``],[``,``,``,``],[``,``,``,``],[``,``,``,``]],f=!1,C={},a(`/audio/cross_tap.wav`),o.updatePawdokuUI()},o.hintPawdoku=()=>{for(let[e,t]of[[0,1],[1,3],[2,0],[3,2]])if(d[e][t]!==`pet`){d[e][t]=`pet`,a(`/audio/pet_place.wav`),o.updatePawdokuUI();return}},o.updatePawdokuUI=()=>{let e=[];for(let t=0;t<4;t++)for(let n=0;n<4;n++)d[t][n]===`pet`&&e.push({r:t,c:n});let t=new Set;for(let n=0;n<e.length;n++)for(let r=n+1;r<e.length;r++){let i=e[n],a=e[r],o=i.r===a.r,s=i.c===a.c,c=u.regionMap[i.r][i.c]===u.regionMap[a.r][a.c],l=Math.abs(i.r-a.r)<=1&&Math.abs(i.c-a.c)<=1;(o||s||c||l)&&(t.add(`${i.r},${i.c}`),t.add(`${a.r},${a.c}`))}for(let e=0;e<4;e++)for(let n=0;n<4;n++){let r=document.querySelectorAll(`[data-paw-cell="${e}-${n}"]`),i=d[e][n],a=t.has(`${e},${n}`);r.forEach(e=>{e.classList.contains(`cell-conflict`)!==a&&e.classList.toggle(`cell-conflict`,a),(e.getAttribute(`data-val`)||``)!==i&&(e.setAttribute(`data-val`,i),e.innerHTML=i===`pet`?`<div class="pet-drop-marker">${p}</div>`:i===`cross`?`<div class="paw-cross-marker">${m}</div>`:``)})}let n=e.length===4&&t.size===0&&u.solution.every((e,t)=>e.every((e,n)=>d[t][n]===`pet`===e)),r=document.querySelectorAll(`.pawdoku-feedback-bar, .pawdoku-status-bar`);n?(f||(f=!0,a(`/audio/victory.wav`)),r.forEach(e=>{e.innerHTML=`<span style="color:#10B981;font-weight:700;">🌟 Sanctuary Complete!</span>`})):t.size>0?r.forEach(e=>{e.innerHTML=`<span style="color:#EF4444;font-weight:600;">⚠️ Companions cannot touch</span>`}):r.forEach(t=>{t.innerHTML=`<span><strong>${e.length} of 4</strong> companions placed</span>`})};var ee={menstrual:{day:`Day 2 of 28`,title:`Menstrual Phase`,readiness:`Cellular Renewal`,daysUntil:`26 days`,accent:`#e11d48`},follicular:{day:`Day 9 of 28`,title:`Follicular Phase`,readiness:`Rising Energy`,daysUntil:`19 days`,accent:`#7c3aed`},ovulation:{day:`Day 14 of 28`,title:`Ovulation Peak`,readiness:`Optimal Strength PRs`,daysUntil:`14 days`,accent:`#0284c7`},luteal:{day:`Day 22 of 28`,title:`Luteal Phase`,readiness:`Metabolic Surge`,daysUntil:`6 days`,accent:`#ea580c`}};o.switchCyclePhase=e=>{let t=ee[e];t&&(document.querySelectorAll(`.phase-btn`).forEach(t=>{t.classList.toggle(`active`,t.id===`phase-btn-${e}`)}),document.querySelectorAll(`#cycle-ring-glow`).forEach(e=>{e.style.borderColor=t.accent,e.style.boxShadow=`0 0 36px ${t.accent}40, inset 0 0 24px ${t.accent}20`}),document.querySelectorAll(`#phase-day-text`).forEach(e=>{e.innerText=t.day}),document.querySelectorAll(`#phase-title-text`).forEach(e=>{e.innerText=t.title,e.style.color=t.accent}),document.querySelectorAll(`#phase-readiness-text`).forEach(e=>{e.innerText=t.readiness,e.style.color=t.accent}),document.querySelectorAll(`#cycle-countdown-days, .cycle-forecast-days`).forEach(e=>{e.innerText=t.daysUntil}))};var w={weight:74,activity:1.55,goal:`cut`};o.adjCalcWeight=e=>{w.weight=Math.max(45,Math.min(140,w.weight+e));let t=document.getElementById(`calc-val-weight`);t&&(t.innerText=w.weight),o.calculateTdeeResults()},o.setCalcActivity=(e,t)=>{w.activity=e,document.querySelectorAll(`.calc-act-chip`).forEach(e=>e.classList.remove(`active`));let n=document.getElementById(t);n&&n.classList.add(`active`),o.calculateTdeeResults()},o.setCalcGoal=(e,t)=>{w.goal=e,document.querySelectorAll(`.calc-goal-btn`).forEach(e=>e.classList.remove(`active`));let n=document.getElementById(t);n&&n.classList.add(`active`),o.calculateTdeeResults()},o.calculateTdeeResults=()=>{let{weight:e,activity:t,goal:n}=w,r=10*e+1112.5-140+5,i=Math.round(r*t),a=i,o=`Maintenance`;n===`cut`?(a=Math.max(1200,i-500),o=`Fat Loss (-500 kcal)`):n===`bulk`&&(a=i+300,o=`Muscle Surplus (+300 kcal)`);let s=Math.round(a*.3/4),c=Math.round(a*.4/4),l=Math.round(a*.3/9),u=document.querySelectorAll(`#calc-res-tdee`),d=document.querySelectorAll(`#calc-res-goal-sub`),f=document.querySelectorAll(`#calc-res-protein`),p=document.querySelectorAll(`#calc-res-carb`),m=document.querySelectorAll(`#calc-res-fat`);u.forEach(e=>e.innerText=a.toLocaleString()),d.forEach(e=>e.innerHTML=`kcal / day &bull; ${o}`),f.forEach(e=>e.innerText=`${s}g`),p.forEach(e=>e.innerText=`${c}g`),m.forEach(e=>e.innerText=`${l}g`)};var T=`1250 × 1.08`,E=`1350`;o.setCalcMode=e=>{document.querySelectorAll(`.calc-mode-btn`).forEach(e=>e.classList.remove(`active`));let t=document.getElementById(`calc-mode-btn-${e}`);t&&t.classList.add(`active`);let n=document.getElementById(`calc-everyday-view`),r=document.getElementById(`calc-clinical-view`);n&&r&&(e===`everyday`?(n.style.display=`block`,r.style.display=`none`):(n.style.display=`none`,r.style.display=`block`))},o.calcKeyPress=e=>{if(e===`AC`)T=``,E=`0`;else if(e===`⌫`)T=T.slice(0,-1),T||(E=`0`);else if(e===`=`)try{let e=T.replace(/×/g,`*`).replace(/÷/g,`/`),t=Function(`'use strict'; return (${e})`)();E=Number.isFinite(t)?Number(t.toFixed(4)).toString():`Error`}catch{E=`Error`}else{T+=e;try{let e=T.replace(/×/g,`*`).replace(/÷/g,`/`),t=Function(`'use strict'; return (${e})`)();Number.isFinite(t)&&(E=Number(t.toFixed(4)).toString())}catch{}}let t=document.getElementById(`calc-screen-expr`),n=document.getElementById(`calc-screen-res`);t&&(t.textContent=T||`0`),n&&(n.textContent=E||`0`)},o.filterMatrix=e=>{document.querySelectorAll(`.matrix-filter-btn`).forEach(e=>e.classList.remove(`active`));let t=document.getElementById(`filter-btn-${e}`);t&&t.classList.add(`active`),document.querySelectorAll(`.matrix-card`).forEach(t=>{let n=t.getAttribute(`data-category`),r=t.getAttribute(`data-status`);e===`all`||n===e||r===e?t.style.display=`flex`:t.style.display=`none`})},o.switchHealthTab=e=>{[`cycle`,`calculator`,`nutrition`,`activity`].forEach(t=>{let n=document.getElementById(`health-tab-${t}`),r=document.getElementById(`health-panel-${t}`);n&&n.classList.toggle(`active`,t===e),r&&(r.style.display=t===e?`grid`:`none`,t===e&&r.classList.add(`fade-in-active`))}),e===`nutrition`&&o.updateNutritionUI&&o.updateNutritionUI(),e===`activity`&&o.updateWorkoutUI&&o.updateWorkoutUI()},o.switchGameTab=e=>{[`ludo-prince`,`pawdoku`].forEach(t=>{let n=document.getElementById(`game-tab-${t}`),r=document.getElementById(`game-panel-${t}`);n&&n.classList.toggle(`active`,t===e),r&&(r.style.display=t===e?`grid`:`none`,t===e&&r.classList.add(`fade-in-active`))})};var te={oats:{name:`Steel-Cut Oatmeal & Berries`,meta:`1 bowl (250g) • 08:15 AM`,icon:`🥣`,cal:380,p:14,c:62,f:7,meal:`bf`},eggs:{name:`Pasture-Raised Eggs & Sourdough`,meta:`2 eggs, 1 slice • 08:35 AM`,icon:`🥚`,cal:260,p:20,c:16,f:14,meal:`bf`},salmon:{name:`Grilled Salmon & Quinoa Bowl`,meta:`1 bowl (340g) • 01:15 PM`,icon:`🥗`,cal:540,p:42,c:45,f:18,meal:`lunch`}},D={oats:!0,eggs:!0,salmon:!1},O={cal:2100,p:150,c:220,f:65};o.toggleNutrMeal=e=>{D[e]!==void 0&&(D[e]=!D[e],o.updateNutritionUI())},o.updateNutritionUI=()=>{let e=440,t=16,n=44,r=9,i=0,a=0;for(let[o,s]of Object.entries(D)){let c=te[o];c&&(s&&(e+=c.cal,t+=c.p,n+=c.c,r+=c.f,c.meal===`bf`&&(i+=c.cal),c.meal===`lunch`&&(a+=c.cal)),document.querySelectorAll(`.nutr-diary-row-${o}`).forEach(e=>{e.classList.toggle(`logged`,s);let t=e.querySelector(`.nutr-row-check`);t&&(t.textContent=s?`✓`:`+`)}))}document.querySelectorAll(`#nutr-cals-num`).forEach(t=>{t.textContent=e.toLocaleString()});let o=Math.max(0,O.cal-e);document.querySelectorAll(`#nutr-remain-pill`).forEach(e=>{e.textContent=o>0?`${o} kcal left`:`Goal Met 🎯`});let s=Math.min(100,Math.round(e/O.cal*100));document.querySelectorAll(`#nutr-progress-fill`).forEach(e=>{e.style.width=`${s}%`}),document.querySelectorAll(`#nutr-p-val`).forEach(e=>e.textContent=`${t}g`),document.querySelectorAll(`#nutr-c-val`).forEach(e=>e.textContent=`${n}g`),document.querySelectorAll(`#nutr-f-val`).forEach(e=>e.textContent=`${r}g`),document.querySelectorAll(`#nutr-bf-cals`).forEach(e=>e.textContent=`${i} kcal`),document.querySelectorAll(`#nutr-lunch-cals`).forEach(e=>e.textContent=`${a} kcal`)};var k=100,A=8,j={1:!0,2:!0,3:!1},M=90,N=null;o.adjWorkoutWeight=e=>{k=Math.max(20,Math.min(250,k+e)),o.updateWorkoutUI()},o.adjWorkoutReps=e=>{A=Math.max(1,Math.min(30,A+e)),o.updateWorkoutUI()},o.toggleWorkoutSet=e=>{j[e]!==void 0&&(j[e]=!j[e],e===3&&(j[3]?o.startSimpleRestTimer(90):o.stopSimpleRestTimer()),o.updateWorkoutUI())},o.toggleLogWorkoutSet=()=>{o.toggleWorkoutSet(3)},o.startSimpleRestTimer=e=>{N&&clearInterval(N),M=e,N=setInterval(()=>{M>0?(M--,o.updateTimerText()):clearInterval(N)},1e3),o.updateTimerText()},o.stopSimpleRestTimer=()=>{N&&clearInterval(N),M=90,o.updateTimerText()},o.updateTimerText=()=>{let e=Math.floor(M/60),t=M%60,n=`${String(e).padStart(2,`0`)}:${String(t).padStart(2,`0`)}`;document.querySelectorAll(`#act-timer-digits, .act-timer-live`).forEach(e=>{e.textContent=n})},o.updateWorkoutUI=()=>{document.querySelectorAll(`#act-weight-val`).forEach(e=>{e.textContent=k}),document.querySelectorAll(`#act-reps-val`).forEach(e=>{e.textContent=A});let e=Math.max(0,(k-20)/2);document.querySelectorAll(`#act-plate-val`).forEach(t=>{t.textContent=`${e} kg/side`});let t=Math.round(k*(1+A/30));document.querySelectorAll(`#act-onerm-val`).forEach(e=>{e.textContent=`${t} kg`}),[1,2,3].forEach(e=>{let t=!!j[e];document.querySelectorAll(`#act-set-${e}-row`).forEach(e=>{e.classList.toggle(`completed`,t)}),document.querySelectorAll(`#act-check-toggle-${e}`).forEach(e=>{e.classList.toggle(`checked`,t);let n=e.querySelector(`.act-check-mark`);n&&(n.textContent=t?`✓`:``)})});let n=[1,2,3].filter(e=>j[e]).length;document.querySelectorAll(`#act-rest-indicator`).forEach(e=>{e.classList.toggle(`active`,j[3])}),document.querySelectorAll(`#act-header-badge`).forEach(e=>{j[3]?(e.textContent=`Set 3 Done ✓`,e.classList.add(`completed`)):(e.textContent=`${n} of 4 Done`,e.classList.remove(`completed`))}),o.updateTimerText()};var P=()=>`
+  <!-- Authentic EVLOME Nutrition Food Diary Card -->
+  <div class="nutrition-app-card">
+    <div class="nutr-diary-head">
+      <div class="nutr-diary-title-wrap">
+        <span class="nutr-diary-eyebrow">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          FOOD DIARY &bull; TODAY
+        </span>
+        <div class="nutr-cals-display"><strong id="nutr-cals-num">1,080</strong> <span class="nutr-cal-target">/ 2,100 kcal</span></div>
+      </div>
+      <span class="nutr-remain-badge" id="nutr-remain-pill">1,020 kcal left</span>
+    </div>
+
+    <div class="nutr-simple-bar-wrap">
+      <div class="nutr-simple-bar-fill" id="nutr-progress-fill" style="width: 51%;"></div>
+    </div>
+
+    <div class="nutr-simple-macros">
+      <div class="nutr-macro-pill">
+        <span class="macro-dot protein"></span>
+        <span class="macro-lbl">Protein</span>
+        <strong id="nutr-p-val">50g</strong><span class="macro-target">/150g</span>
+      </div>
+      <div class="nutr-macro-pill">
+        <span class="macro-dot carbs"></span>
+        <span class="macro-lbl">Carbs</span>
+        <strong id="nutr-c-val">122g</strong><span class="macro-target">/220g</span>
+      </div>
+      <div class="nutr-macro-pill">
+        <span class="macro-dot fats"></span>
+        <span class="macro-lbl">Fats</span>
+        <strong id="nutr-f-val">30g</strong><span class="macro-target">/65g</span>
+      </div>
+    </div>
+
+    <!-- Meals Diary List Items -->
+    <div class="nutr-diary-list">
+      <!-- Breakfast Group -->
+      <div class="nutr-section-label">
+        <div class="nutr-sec-name-wrap">
+          <span class="nutr-meal-dot breakfast"></span>
+          <span class="nutr-sec-title">Breakfast</span>
+        </div>
+        <span class="nutr-sec-cals" id="nutr-bf-cals">640 kcal</span>
+      </div>
+
+      <div class="nutr-diary-row nutr-diary-row-oats logged" onclick="window.toggleNutrMeal('oats')">
+        <div class="nutr-row-icon">🥣</div>
+        <div class="nutr-row-main">
+          <span class="nutr-row-name">Steel-Cut Oatmeal &amp; Berries</span>
+          <span class="nutr-row-meta">1 bowl (250g) &bull; 08:15 AM &bull; 14g P</span>
+        </div>
+        <div class="nutr-row-end">
+          <span class="nutr-row-cals">380 kcal</span>
+          <span class="nutr-row-check">✓</span>
+        </div>
+      </div>
+
+      <div class="nutr-diary-row nutr-diary-row-eggs logged" onclick="window.toggleNutrMeal('eggs')">
+        <div class="nutr-row-icon">🥚</div>
+        <div class="nutr-row-main">
+          <span class="nutr-row-name">Pasture-Raised Eggs &amp; Sourdough</span>
+          <span class="nutr-row-meta">2 eggs, 1 slice &bull; 08:35 AM &bull; 20g P</span>
+        </div>
+        <div class="nutr-row-end">
+          <span class="nutr-row-cals">260 kcal</span>
+          <span class="nutr-row-check">✓</span>
+        </div>
+      </div>
+
+      <!-- Lunch Group -->
+      <div class="nutr-section-label">
+        <div class="nutr-sec-name-wrap">
+          <span class="nutr-meal-dot lunch"></span>
+          <span class="nutr-sec-title">Lunch</span>
+        </div>
+        <span class="nutr-sec-cals" id="nutr-lunch-cals">0 kcal</span>
+      </div>
+
+      <div class="nutr-diary-row nutr-diary-row-salmon" onclick="window.toggleNutrMeal('salmon')">
+        <div class="nutr-row-icon">🥗</div>
+        <div class="nutr-row-main">
+          <span class="nutr-row-name">Grilled Salmon &amp; Quinoa Bowl</span>
+          <span class="nutr-row-meta">1 bowl (340g) &bull; 01:15 PM &bull; 42g P</span>
+        </div>
+        <div class="nutr-row-end">
+          <span class="nutr-row-cals">540 kcal</span>
+          <span class="nutr-row-check">+</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Diary Footer -->
+    <div class="nutr-diary-foot">
+      <span class="nutr-fasting-pill">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        16:8 Fasting Window Active
+      </span>
+      <span class="nutr-diary-tip">Tap meal to toggle</span>
+    </div>
+  </div>
+`,F=()=>`
+  <!-- Authentic EVLOME Activity Active Workout Exercise Card -->
+  <div class="activity-workout-card">
+    <div class="act-workout-head">
+      <div class="act-workout-title-wrap">
+        <span class="act-workout-eyebrow">ACTIVE WORKOUT &bull; CHEST &amp; TRICEPS</span>
+        <h4 class="act-workout-ex">Barbell Bench Press</h4>
+      </div>
+      <span class="act-header-badge" id="act-header-badge">2 of 4 Done</span>
+    </div>
+
+    <!-- Active Exercise Set Table -->
+    <div class="act-set-table">
+      <div class="act-table-head">
+        <span class="act-th-set">SET</span>
+        <span class="act-th-prev">PREV</span>
+        <span class="act-th-weight">KG</span>
+        <span class="act-th-reps">REPS</span>
+        <span class="act-th-check">✓</span>
+      </div>
+
+      <!-- Set 1 -->
+      <div class="act-set-row completed" id="act-set-1-row">
+        <span class="act-cell-set">1</span>
+        <span class="act-cell-prev">80 kg &times; 10</span>
+        <span class="act-cell-weight">80</span>
+        <span class="act-cell-reps">10</span>
+        <div class="act-cell-check">
+          <button type="button" class="act-check-toggle checked" id="act-check-toggle-1" onclick="window.toggleWorkoutSet(1)" title="Toggle Set 1">
+            <span class="act-check-mark">✓</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Set 2 -->
+      <div class="act-set-row completed" id="act-set-2-row">
+        <span class="act-cell-set">2</span>
+        <span class="act-cell-prev">90 kg &times; 8</span>
+        <span class="act-cell-weight">90</span>
+        <span class="act-cell-reps">8</span>
+        <div class="act-cell-check">
+          <button type="button" class="act-check-toggle checked" id="act-check-toggle-2" onclick="window.toggleWorkoutSet(2)" title="Toggle Set 2">
+            <span class="act-check-mark">✓</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Set 3: Active Interactive Stepper Row -->
+      <div class="act-set-row active" id="act-set-3-row">
+        <span class="act-cell-set act-active-num">3</span>
+        <span class="act-cell-prev">100 kg &times; 6</span>
+        <div class="act-cell-weight">
+          <div class="act-inline-stepper">
+            <button type="button" class="act-step-btn" onclick="window.adjWorkoutWeight(-5)" title="-5 kg">&minus;</button>
+            <span id="act-weight-val" class="act-stepper-num">100</span>
+            <button type="button" class="act-step-btn" onclick="window.adjWorkoutWeight(5)" title="+5 kg">&#43;</button>
+          </div>
+        </div>
+        <div class="act-cell-reps">
+          <div class="act-inline-stepper">
+            <button type="button" class="act-step-btn" onclick="window.adjWorkoutReps(-1)" title="-1 rep">&minus;</button>
+            <span id="act-reps-val" class="act-stepper-num">8</span>
+            <button type="button" class="act-step-btn" onclick="window.adjWorkoutReps(1)" title="+1 rep">&#43;</button>
+          </div>
+        </div>
+        <div class="act-cell-check">
+          <button type="button" class="act-check-toggle" id="act-check-toggle-3" onclick="window.toggleWorkoutSet(3)" title="Log Set 3">
+            <span class="act-check-mark"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Table Action Bar -->
+    <div class="act-table-actions">
+      <div class="act-rest-indicator" id="act-rest-indicator">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <span>Rest: <strong id="act-timer-digits">01:30</strong></span>
+      </div>
+      <span class="act-rest-hint">Tap ✓ to complete set</span>
+    </div>
+
+    <!-- Telemetry Footer -->
+    <div class="act-telemetry-bar">
+      <span>Plate: <strong id="act-plate-val">40 kg/side</strong> (20 kg Bar)</span>
+      <span class="act-telemetry-sep">&bull;</span>
+      <span>Est. 1RM: <strong id="act-onerm-val">127 kg</strong></span>
+    </div>
+  </div>
+`,I=()=>{let n=t.find(e=>e.id===`ludo-prince`)||t[0],r=t.find(e=>e.id===`pawdoku`)||t[1],i=e.find(e=>e.id===`cycle`)||e[1],a=e.find(e=>e.id===`calculator`)||e[0],o=e.find(e=>e.id===`nutrition`)||e[3],s=e.find(e=>e.id===`activity`)||e[2];return`
   <!-- STAGE 1: Cinematic Studio Hero Viewport -->
   <section class="cinematic-stage hero-viewport">
-    <div class="hero-glow-aura"></div>
+    <div class="hero-glow-aura" aria-hidden="true">
+      <div class="hero-orb hero-orb-indigo"></div>
+      <div class="hero-orb hero-orb-cyan"></div>
+      <div class="hero-orb hero-orb-emerald"></div>
+      <div class="hero-orb hero-orb-rose"></div>
+    </div>
 
     <div class="stage-badge">
       <span>EVLOME STUDIO</span>
@@ -116,563 +312,720 @@
     </h1>
 
     <p class="hero-description">
-      Thoughtfully engineered utilities and tactile board games.<br class="desktop-only"/>Encrypted on device. Designed to be lived with.
+      Precision health utilities and tactile board games.<br class="desktop-only"/>Encrypted on device. Zero tracking.
     </p>
 
     <div class="hero-actions-row">
-      <button type="button" class="btn-primary-glow" onclick="window.scrollToSection('ludo-stage')">
-        <span>Explore Games</span> &darr;
+      <button type="button" class="btn-primary-glow" onclick="window.scrollToSection('suite-stage')">
+        <span>The Health Suite</span>
+        <svg class="btn-arrow-icon" width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="8" y1="2.5" x2="8" y2="13.5"></line>
+          <polyline points="3.5 9 8 13.5 12.5 9"></polyline>
+        </svg>
       </button>
-      <button type="button" class="btn-glass" onclick="window.scrollToSection('suite-stage')">
-        <span>The Health Suite</span> &darr;
+      <button type="button" class="btn-glass" onclick="window.scrollToSection('games-stage')">
+        <span>EVLOME Games</span>
+        <svg class="btn-arrow-icon" width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="8" y1="2.5" x2="8" y2="13.5"></line>
+          <polyline points="3.5 9 8 13.5 12.5 9"></polyline>
+        </svg>
       </button>
     </div>
 
     <!-- Quiet Disciplines Strip -->
-    <div class="hero-matrix-bar">
-      <span><strong>6</strong> Products</span>
-      <span style="opacity: 0.3;">&bull;</span>
-      <span><strong>100%</strong> On-Device Sovereignty</span>
-      <span style="opacity: 0.3;">&bull;</span>
-      <span><strong>Zero</strong> Tracking Infrastructure</span>
-      <span style="opacity: 0.3;">&bull;</span>
-      <span><strong>Offline</strong> First</span>
+    <div class="hero-matrix-bar" role="region" aria-label="Ecosystem Standards">
+      <span class="hero-matrix-item"><span><strong>Unified</strong> Sovereign Suite</span></span>
+      <span class="hero-matrix-divider" aria-hidden="true">&bull;</span>
+      <span class="hero-matrix-item"><span><strong>Offline</strong> First</span></span>
+      <span class="hero-matrix-divider" aria-hidden="true">&bull;</span>
+      <span class="hero-matrix-item"><span><strong>100%</strong> On-Device Sovereignty</span></span>
+      <span class="hero-matrix-divider" aria-hidden="true">&bull;</span>
+      <span class="hero-matrix-item"><span><strong>Zero</strong> Tracking Infrastructure</span></span>
     </div>
   </section>
 
-  <!-- STAGE 2: EVLOME Games Arena Viewport (Ludo Prince) -->
-  <section id="ludo-stage" class="cinematic-stage arena-stage">
-    <div class="stage-split-grid">
-      <div class="stage-info-col">
-        <!-- App Lifecycle Status & Category Header -->
-        <div class="stage-status-badge-row">
-          <span class="status-pill status-pill-production">
-            <span class="pulse-dot green"></span>
-            LIVE
-          </span>
-          <span class="stage-discipline-badge">EVLOME Games</span>
-        </div>
-
-        <div class="stage-app-title-row">
-          <img src="${r.icon}" alt="${r.title} Logo" class="stage-app-icon" width="58" height="58" loading="lazy" decoding="async" style="box-shadow: 0 10px 28px rgba(2, 132, 199, 0.28);" />
-          <h2 class="stage-title">${r.title}</h2>
-        </div>
-
-        <div class="stage-subtitle" style="color: #0284c7;">Classic board play. Pure tactile physics.</div>
-        <p class="stage-desc">
-          The traditional race to home, engineered with physical dice inertia. Real-time multiplayer, local pass-and-play, and adaptive offline bot intelligence.
-        </p>
-
-        <!-- Architectural Micro-Specs -->
-        <div class="stage-specs-grid">
-          <div class="spec-item">
-            <span class="spec-label">Multiplayer</span>
-            <span class="spec-val">Online &amp; Pass-and-Play</span>
-          </div>
-          <div class="spec-item">
-            <span class="spec-label">Physics</span>
-            <span class="spec-val">Fair Tactile Inertia</span>
-          </div>
-          <div class="spec-item">
-            <span class="spec-label">Platforms</span>
-            <span class="spec-val">iOS &amp; Android</span>
-          </div>
-        </div>
-
-        <!-- Store Download Badges -->
-        <div class="store-badge-strip">
-          <a href="${r.appStoreUrl}" target="_blank" rel="noopener noreferrer" class="btn-store btn-app-store" title="Download Ludo Prince on the Apple App Store">
-            <svg class="store-icon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-              <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.63-.77 1.06-1.84.94-2.92-1 .04-2.14.67-2.81 1.45-.59.67-1.1 1.76-.96 2.82 1.11.09 2.21-.58 2.83-1.35z"/>
-            </svg>
-            <div class="store-badge-text">
-              <span class="store-badge-sub">Download on the</span>
-              <span class="store-badge-main">App Store</span>
-            </div>
-          </a>
-
-          <a href="${r.playStoreUrl}" target="_blank" rel="noopener noreferrer" class="btn-store btn-play-store" title="Get Ludo Prince on Google Play">
-            <svg class="store-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-              <path d="M3.609 1.814L13.793 12 3.61 22.186c-.368-.344-.61-.88-.61-1.56V3.374c0-.68.242-1.216.61-1.56zm11.24 11.243l2.296 2.296-11.83 6.83 9.534-9.126zm0-2.114L5.315 1.817l11.83 6.83-2.296 2.296zm1.488 1.057l3.65 2.108c.848.49.848 1.294 0 1.784l-3.65 2.108-2.072-2.072 2.072-2.028z"/>
-            </svg>
-            <div class="store-badge-text">
-              <span class="store-badge-sub">GET IT ON</span>
-              <span class="store-badge-main">Google Play</span>
-            </div>
-          </a>
-
-          <a href="/${r.id}" class="btn-glass" onclick="if(event){ event.preventDefault(); navigate('/${r.id}'); }">
-            Rules &amp; Specs &rarr;
-          </a>
-        </div>
-      </div>
-
-      <!-- Right Column: Royal Dice Signature Interaction -->
-      <div class="interactive-arena-card ludo-dice-only-card">
-        <!-- Tactile Dice Halo with Orbital Ring -->
-        <div class="ludo-dice-halo" style="margin: 0.5rem auto 1.5rem;">
-          <div class="dice-stage-box" onclick="window.rollLudoDice()" title="Tap dice to roll">
-            <div class="interactive-dice ludo-metallic-dice" id="interactive-dice-cube" data-val="6">
-              <div class="dice-pips-grid">
-                <span class="dice-pip active" id="dice-pip-1"></span>
-                <span class="dice-pip" id="dice-pip-2"></span>
-                <span class="dice-pip active" id="dice-pip-3"></span>
-                <span class="dice-pip active" id="dice-pip-4"></span>
-                <span class="dice-pip" id="dice-pip-5"></span>
-                <span class="dice-pip active" id="dice-pip-6"></span>
-                <span class="dice-pip active" id="dice-pip-7"></span>
-                <span class="dice-pip" id="dice-pip-8"></span>
-                <span class="dice-pip active" id="dice-pip-9"></span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <button type="button" class="btn-roll-dice-lg" onclick="window.rollLudoDice()">
-          Roll Dice
-        </button>
-
-        <div class="dice-result-log" id="dice-log-text">
-          <span style="color: var(--text-muted);">Click to roll</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- STAGE 3: Pawdoku Cozy Sanctuary Viewport -->
-  <section id="pawdoku-stage" class="cinematic-stage sanctuary-stage">
-    <div class="stage-split-grid">
-      <!-- Left Column: Cozy Sanctuary Star Battle Board Widget -->
-      <div class="interactive-sanctuary-card">
-        ${f}
-        <!-- Sanctuary Controls Bar -->
-        <div class="pawdoku-controls-strip">
-          <div class="pawdoku-gesture-pill">
-            <span class="gesture-step">Tap ${g}</span>
-            <span class="gesture-divider">•</span>
-            <span class="gesture-step">Double-tap ${h}</span>
-            <span class="gesture-divider">•</span>
-            <span class="gesture-step" style="color: #EA580C; font-weight: 700;">Swipe line</span>
-          </div>
-          <button type="button" class="pawdoku-action-btn" onclick="window.restartPawdoku()" title="Reset board">
-            <span>↺</span> Reset
-          </button>
-        </div>
-
-        <!-- 4x4 Tactile Clay Star Battle Grid -->
-        <div class="pawdoku-board-wrapper">
-          <div class="pawdoku-board-4x4"
-               onpointerdown="window.pawdokuPointerDown(event)"
-               onpointermove="window.pawdokuPointerMove(event)"
-               onpointerup="window.pawdokuPointerUp(event)">
-            ${[0,1,2,3].map(e=>[0,1,2,3].map(t=>{let n=l.regionMap[e][t],r=e===0&&t===1;return`
-                <div class="paw-cell" data-paw-cell="${e}-${t}" data-region="${n}" data-val="${r?`pet`:``}" ondblclick="event.preventDefault()">
-                  ${r?`<div class="pet-drop-marker">${p}</div>`:``}
-                </div>
-              `}).join(``)).join(``)}
-          </div>
-        </div>
-
-        <div class="pawdoku-feedback-bar" id="pawdoku-feedback-text">
-          <span><strong>1 of 4</strong> companions placed</span>
-        </div>
-      </div>
-
-      <!-- Right Column: Pawdoku Info -->
-      <div class="stage-info-col">
-        <!-- App Lifecycle Status & Category Header -->
-        <div class="stage-status-badge-row">
-          <span class="status-pill status-pill-development">
-            <span class="pulse-dot amber"></span>
-            DEV
-          </span>
-          <span class="stage-discipline-badge">EVLOME Games</span>
-        </div>
-
-        <div class="stage-app-title-row">
-          <img src="${i.icon}" alt="${i.title} Logo" class="stage-app-icon" width="58" height="58" loading="lazy" decoding="async" style="box-shadow: 0 10px 28px rgba(234, 88, 12, 0.28);" />
-          <h2 class="stage-title">${i.title}</h2>
-        </div>
-
-        <div class="stage-subtitle" style="color: #ea580c;">Star Battle logic. Zero rush.</div>
-        <p class="stage-desc">
-          One companion per row, column, and color region. Pure deductive strategy in a tranquil pastel pet sanctuary.
-        </p>
-
-        <!-- Architectural Micro-Specs -->
-        <div class="stage-specs-grid">
-          <div class="spec-item">
-            <span class="spec-label">Engine</span>
-            <span class="spec-val">Aloof Queens Logic</span>
-          </div>
-          <div class="spec-item">
-            <span class="spec-label">Pacing</span>
-            <span class="spec-val">Zero Timers or Stress</span>
-          </div>
-          <div class="spec-item">
-            <span class="spec-label">Access</span>
-            <span class="spec-val">Early Beta Preview</span>
-          </div>
-        </div>
-
-        <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; margin-top: 1.5rem;">
-          <a href="/beta?app=${i.id}" class="btn-primary-glow" style="box-shadow: 0 4px 16px rgba(234, 88, 12, 0.25);">
-            Request Early Preview &rarr;
-          </a>
-          <a href="/${i.id}" class="btn-glass" onclick="if(event){ event.preventDefault(); navigate('/${i.id}'); }">
-            Sanctuary Overview
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- STAGE 4: The Health Suite — Hormonal Rhythm & Clinical Biometrics (Cycle) -->
-  <section id="suite-stage" class="cinematic-stage suite-stage">
-    <div class="stage-split-grid">
-      <div class="stage-info-col">
-        <!-- App Lifecycle Status & Category Header -->
-        <div class="stage-status-badge-row">
-          <span class="status-pill status-pill-beta">
-            <span class="pulse-dot purple"></span>
-            BETA
-          </span>
-          <span class="stage-discipline-badge">The Health Suite</span>
-        </div>
-
-        <div class="stage-app-title-row">
-          <img src="/icons/cycle.png" alt="Cycle Logo" class="stage-app-icon" width="58" height="58" loading="lazy" decoding="async" style="box-shadow: 0 10px 28px rgba(225, 29, 72, 0.28);" />
-          <h2 class="stage-title">Cycle</h2>
-        </div>
-
-        <div class="stage-subtitle" style="color: #e11d48;">Hormonal rhythm. On-device privacy.</div>
-        <p class="stage-desc">
-          Four-phase biological rhythm tracking and Roetzer sympto-thermal ovulation telemetry — encrypted locally with zero cloud servers or commercial trackers.
-        </p>
-
-        <!-- Architectural Micro-Specs -->
-        <div class="stage-specs-grid">
-          <div class="spec-item">
-            <span class="spec-label">Clinical Core</span>
-            <span class="spec-val">Roetzer BBT Shift</span>
-          </div>
-          <div class="spec-item">
-            <span class="spec-label">Sovereignty</span>
-            <span class="spec-val">100% On-Device Vault</span>
-          </div>
-          <div class="spec-item">
-            <span class="spec-label">Integration</span>
-            <span class="spec-val">Training &amp; Fuel Sync</span>
-          </div>
-        </div>
-
-        <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
-          <a href="/cycle" class="btn-primary-glow" onclick="if(event){ event.preventDefault(); navigate('/cycle'); }">
-            Explore Cycle Architecture &rarr;
-          </a>
-          <a href="/beta?app=cycle" class="btn-glass" onclick="if(event){ event.preventDefault(); navigate('/beta?app=cycle'); }">
-            Join Beta
-          </a>
-        </div>
-      </div>
-
-      <!-- Right Column: Concentric Hormonal Rhythm Signature Wheel -->
-      <div class="phase-display-card cycle-dashboard-viewport">
-        <!-- Phase Switcher Tabs -->
-        <div class="phase-switcher-nav" style="margin: 0 auto 1.25rem;">
-          <button type="button" class="phase-btn" id="phase-btn-menstrual" onclick="window.switchCyclePhase('menstrual')">Menstrual</button>
-          <button type="button" class="phase-btn" id="phase-btn-follicular" onclick="window.switchCyclePhase('follicular')">Follicular</button>
-          <button type="button" class="phase-btn active" id="phase-btn-ovulation" onclick="window.switchCyclePhase('ovulation')">Ovulation</button>
-          <button type="button" class="phase-btn" id="phase-btn-luteal" onclick="window.switchCyclePhase('luteal')">Luteal</button>
-        </div>
-
-        <!-- Concentric Radiant Glowing Phase Wheel -->
-        <div class="cycle-wheel-container">
-          <div class="cycle-ring-outer" id="cycle-ring-glow">
-            <div class="cycle-ring-inner">
-              <div class="cycle-ring-center-content">
-                <span class="cycle-center-day" id="phase-day-text">Day 14 of 28</span>
-                <h4 class="cycle-center-phase" id="phase-title-text" style="color: #0284c7;">Ovulation Peak</h4>
-                <span class="cycle-center-readiness" id="phase-readiness-text" style="color: #0284c7;">Optimal Strength PRs</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Period Forecast Card -->
-        <div class="cycle-period-forecast-card">
-          <span class="cycle-forecast-drop">🩸</span>
-          <span class="cycle-forecast-text">Next period expected in <strong id="cycle-countdown-days" class="cycle-forecast-days">14 days</strong></span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- STAGE 5: The Health Suite — Clinical Biometrics & TDEE (Calculator+) -->
-  <section id="calculator-stage" class="cinematic-stage calculator-stage">
-    <div class="stage-split-grid">
-      <div class="stage-info-col">
-        <!-- App Lifecycle Status & Category Header -->
-        <div class="stage-status-badge-row">
-          <span class="status-pill status-pill-beta">
-            <span class="pulse-dot purple"></span>
-            BETA
-          </span>
-          <span class="stage-discipline-badge">The Health Suite</span>
-        </div>
-
-        <div class="stage-app-title-row">
-          <img src="${a.icon}" alt="${a.title} Logo" class="stage-app-icon" width="58" height="58" loading="lazy" decoding="async" style="box-shadow: 0 10px 28px rgba(124, 58, 237, 0.28);" />
-          <h2 class="stage-title">${a.title}</h2>
-        </div>
-
-        <div class="stage-subtitle" style="color: #7c3aed;">Clinical biometrics and mathematical rigor.</div>
-        <p class="stage-desc">
-          Mifflin-St Jeor metabolic expenditure, US Navy body composition, macronutrient distribution, loan schedules, and 9-dimensional conversions. Computed entirely offline.
-        </p>
-
-        <!-- Architectural Micro-Specs -->
-        <div class="stage-specs-grid">
-          <div class="spec-item">
-            <span class="spec-label">Biometrics</span>
-            <span class="spec-val">Mifflin-St Jeor &amp; US Navy</span>
-          </div>
-          <div class="spec-item">
-            <span class="spec-label">Conversions</span>
-            <span class="spec-val">9 Physical Dimensions</span>
-          </div>
-          <div class="spec-item">
-            <span class="spec-label">Execution</span>
-            <span class="spec-val">100% Local &amp; Private</span>
-          </div>
-        </div>
-
-        <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
-          <a href="/beta?app=${a.id}" class="btn-primary-glow" style="box-shadow: 0 4px 16px rgba(124, 58, 237, 0.25);">
-            Join the Beta &rarr;
-          </a>
-          <a href="/${a.id}" class="btn-glass" onclick="if(event){ event.preventDefault(); navigate('/${a.id}'); }">
-            Specifications
-          </a>
-        </div>
-      </div>
-
-      <!-- Right Column: Goal-Adaptive TDEE & Macro Allocation Engine -->
-      <div class="interactive-calculator-card">
-        <!-- Goal Selection Chips -->
-        <div class="calc-goal-strip">
-          <button type="button" class="calc-goal-btn active" id="calc-goal-cut" onclick="window.setCalcGoal('cut', 'calc-goal-cut')">
-            <span>Fat Loss</span>
-            <span class="calc-goal-pace">-500 kcal</span>
-          </button>
-          <button type="button" class="calc-goal-btn" id="calc-goal-maintain" onclick="window.setCalcGoal('maintain', 'calc-goal-maintain')">
-            <span>Maintain</span>
-            <span class="calc-goal-pace">Equilibrium</span>
-          </button>
-          <button type="button" class="calc-goal-btn" id="calc-goal-bulk" onclick="window.setCalcGoal('bulk', 'calc-goal-bulk')">
-            <span>Build Muscle</span>
-            <span class="calc-goal-pace">+300 kcal</span>
-          </button>
-        </div>
-
-        <!-- Biometric Controls Bar -->
-        <div class="calc-control-bar">
-          <div class="calc-weight-stepper">
-            <span class="calc-stepper-lbl">Weight</span>
-            <div class="calc-weight-box">
-              <button type="button" class="calc-step-btn" onclick="window.adjCalcWeight(-1)">&minus;</button>
-              <span class="calc-step-val"><strong id="calc-val-weight">74</strong> kg</span>
-              <button type="button" class="calc-step-btn" onclick="window.adjCalcWeight(1)">&#43;</button>
-            </div>
-          </div>
-
-          <div class="calc-act-strip">
-            <button type="button" class="calc-act-chip" id="calc-act-sedentary" onclick="window.setCalcActivity(1.2, 'calc-act-sedentary')">Sedentary</button>
-            <button type="button" class="calc-act-chip active" id="calc-act-moderate" onclick="window.setCalcActivity(1.55, 'calc-act-moderate')">Moderate</button>
-            <button type="button" class="calc-act-chip" id="calc-act-active" onclick="window.setCalcActivity(1.725, 'calc-act-active')">Active</button>
-          </div>
-        </div>
-
-        <!-- Calculated Output Bento -->
-        <div class="calc-output-bento">
-          <div class="calc-hero-result">
-            <div class="calc-hero-result-num" id="calc-res-tdee">2,162</div>
-            <div class="calc-hero-result-sub" id="calc-res-goal-sub">kcal / day &bull; Fat Loss (-500 kcal)</div>
-          </div>
-
-          <!-- Free Macro Splits -->
-          <div class="calc-macros-grid">
-            <div class="calc-macro-tile">
-              <span class="calc-macro-gram" id="calc-res-protein" style="color: #7c3aed;">162g</span>
-              <span class="calc-macro-name">Protein</span>
-            </div>
-            <div class="calc-macro-tile">
-              <span class="calc-macro-gram" id="calc-res-carb" style="color: #0284c7;">216g</span>
-              <span class="calc-macro-name">Carbs</span>
-            </div>
-            <div class="calc-macro-tile">
-              <span class="calc-macro-gram" id="calc-res-fat" style="color: #ea580c;">72g</span>
-              <span class="calc-macro-name">Fats</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- STAGE 6: The Product Matrix (Full Ecosystem Bento Grid) -->
-  <section id="matrix-stage" class="matrix-stage">
-    <div class="matrix-header">
-      <span class="stage-badge">ECOSYSTEM MATRIX</span>
-      <h2 class="stage-title">Two Disciplines. One Ecosystem.</h2>
-      <p style="color: var(--text-secondary); max-width: 520px; margin: 0 auto 2rem; font-size: 1.05rem;">
-        An expanding collection of precision utilities and mindful games.
+  <!-- STAGE 2: The Health Suite — Sovereign Vitality OS (Discipline 1) -->
+  <section id="suite-stage" class="discipline-stage health-suite-stage">
+    <div class="discipline-header-center">
+      <span class="stage-badge">
+        <span class="badge-dot" style="background: #10b981; box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);"></span>
+        THE HEALTH SUITE
+      </span>
+      <h2 class="stage-title">Health Telemetry. On Device.</h2>
+      <p class="stage-subtitle-center">
+        Four interconnected disciplines for metabolic energy, strength, hormonal rhythm, and clinical precision.
       </p>
 
-      <!-- Segmented Control Filter by Discipline -->
-      <div class="matrix-filter-nav" role="tablist" aria-label="Product discipline filter">
-        <button type="button" class="matrix-filter-btn active" id="filter-btn-all" onclick="window.filterMatrix('all')">
-          All
+      <!-- 4-App Selector Tabs (With Official App Logos) -->
+      <div class="discipline-tabs-nav" role="tablist" aria-label="Health Suite disciplines">
+        <button type="button" class="discipline-tab-btn active" id="health-tab-cycle" onclick="window.switchHealthTab('cycle')">
+          <img src="${i.icon}" alt="Cycle" class="tab-btn-icon" width="32" height="32" loading="lazy" decoding="async" />
+          <span class="tab-btn-text">
+            <span class="tab-btn-title">Cycle</span>
+            <span class="tab-btn-sub">Hormonal Rhythm</span>
+          </span>
+          <span class="tab-status-pill status-beta">BETA</span>
         </button>
-        <button type="button" class="matrix-filter-btn" id="filter-btn-health" onclick="window.filterMatrix('health')">
-          The Health Suite
+
+        <button type="button" class="discipline-tab-btn" id="health-tab-calculator" onclick="window.switchHealthTab('calculator')">
+          <img src="${a.icon}" alt="Calculator+" class="tab-btn-icon" width="32" height="32" loading="lazy" decoding="async" />
+          <span class="tab-btn-text">
+            <span class="tab-btn-title">Calculator+</span>
+            <span class="tab-btn-sub">Clinical Biometrics</span>
+          </span>
+          <span class="tab-status-pill status-beta">BETA</span>
         </button>
-        <button type="button" class="matrix-filter-btn" id="filter-btn-games" onclick="window.filterMatrix('games')">
-          EVLOME Games
+
+        <button type="button" class="discipline-tab-btn" id="health-tab-nutrition" onclick="window.switchHealthTab('nutrition')">
+          <img src="${o.icon}" alt="Nutrition" class="tab-btn-icon" width="32" height="32" loading="lazy" decoding="async" />
+          <span class="tab-btn-text">
+            <span class="tab-btn-title">Nutrition</span>
+            <span class="tab-btn-sub">Fasting &amp; Fuel</span>
+          </span>
+          <span class="tab-status-pill status-development">DEV</span>
+        </button>
+
+        <button type="button" class="discipline-tab-btn" id="health-tab-activity" onclick="window.switchHealthTab('activity')">
+          <img src="${s.icon}" alt="Activity" class="tab-btn-icon" width="32" height="32" loading="lazy" decoding="async" />
+          <span class="tab-btn-text">
+            <span class="tab-btn-title">Activity</span>
+            <span class="tab-btn-sub">Kinetic &amp; Lifting</span>
+          </span>
+          <span class="tab-status-pill status-development">DEV</span>
         </button>
       </div>
     </div>
 
-    <div class="matrix-grid" id="matrix-grid-container">
-      ${n.map(e=>`
-        <a href="/${e.id}" class="matrix-card" data-category="${e.type===`game`?`games`:`health`}" data-status="${e.status}" style="--card-accent: ${e.accentColor};" onclick="if(event){ event.preventDefault(); navigate('/${e.id}'); }">
-          <div class="card-top-row">
-            <div class="card-identity-header">
-              <div class="card-app-icon" style="box-shadow: 0 0 20px ${e.accentColor}30;">
-                <img src="${e.icon}" alt="${e.title} Icon" width="44" height="44" loading="lazy" decoding="async" />
-              </div>
-              <div class="card-identity-titles">
-                <div class="card-category" style="color: ${e.accentColor};">${e.category}</div>
-                <h3 class="card-title">${e.title}</h3>
-              </div>
-            </div>
-            <span class="matrix-status-pill ${e.status===`production`?`status-production`:e.status===`beta`?`status-beta`:`status-development`}">
-              <span class="pulse-dot ${e.status===`production`?`green`:e.status===`beta`?`purple`:`amber`}"></span>
-              ${e.status===`production`?`LIVE`:e.status===`beta`?`BETA`:`DEV`}
+    <!-- Health Panels Container -->
+    <div class="discipline-panels-wrap">
+      <!-- Panel 1: Cycle -->
+      <div id="health-panel-cycle" class="stage-split-grid discipline-panel fade-in-active" style="display: grid;">
+        <div class="stage-info-col">
+          <div class="stage-status-badge-row">
+            <span class="status-pill status-pill-beta">
+              <span class="pulse-dot purple"></span>
+              BETA
             </span>
           </div>
 
-          <p class="card-desc">${e.tagline||e.desc}</p>
-
-          <div class="card-action-btn ${e.status===`production`?`card-action-live`:e.status===`beta`?`card-action-beta`:`card-action-dev`}">
-            <span>${e.status===`production`?`Get App`:e.status===`beta`?`Join Beta`:`Preview`}</span> &rarr;
+          <div class="stage-app-title-row">
+            <img src="${i.icon}" alt="Cycle Logo" class="stage-app-icon" width="58" height="58" loading="lazy" decoding="async" style="box-shadow: 0 10px 28px rgba(225, 29, 72, 0.28);" />
+            <h3 class="stage-title">${i.title}</h3>
           </div>
-        </a>
-      `).join(``)}
+
+          <div class="stage-subtitle" style="color: #e11d48;">Hormonal rhythm. On-device privacy.</div>
+          <p class="stage-desc">
+            Four-phase hormonal tracking with Roetzer sympto-thermal BBT shift and private ovulation forecasting.
+          </p>
+
+          <div class="stage-specs-grid">
+            <div class="spec-item">
+              <span class="spec-label">Clinical Core</span>
+              <span class="spec-val">Roetzer BBT Shift</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Sovereignty</span>
+              <span class="spec-val">100% On-Device Vault</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Integration</span>
+              <span class="spec-val">Training &amp; Fuel Sync</span>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
+            <a href="/beta?app=cycle" class="btn-primary-glow" onclick="if(event){ event.preventDefault(); navigate('/beta?app=cycle'); }">
+              Join Beta &rarr;
+            </a>
+            <a href="/cycle" class="btn-glass" onclick="if(event){ event.preventDefault(); navigate('/cycle'); }">
+              Overview
+            </a>
+          </div>
+        </div>
+
+        <!-- Concentric Hormonal Rhythm Signature Wheel -->
+        <div class="phase-display-card cycle-dashboard-viewport">
+          <div class="phase-switcher-nav" style="margin: 0 auto 1.25rem;">
+            <button type="button" class="phase-btn" id="phase-btn-menstrual" onclick="window.switchCyclePhase('menstrual')">Menstrual</button>
+            <button type="button" class="phase-btn" id="phase-btn-follicular" onclick="window.switchCyclePhase('follicular')">Follicular</button>
+            <button type="button" class="phase-btn active" id="phase-btn-ovulation" onclick="window.switchCyclePhase('ovulation')">Ovulation</button>
+            <button type="button" class="phase-btn" id="phase-btn-luteal" onclick="window.switchCyclePhase('luteal')">Luteal</button>
+          </div>
+
+          <div class="cycle-wheel-container">
+            <div class="cycle-ring-outer" id="cycle-ring-glow">
+              <div class="cycle-ring-inner">
+                <div class="cycle-ring-center-content">
+                  <span class="cycle-center-day" id="phase-day-text">Day 14 of 28</span>
+                  <h4 class="cycle-center-phase" id="phase-title-text" style="color: #0284c7;">Ovulation Peak</h4>
+                  <span class="cycle-center-readiness" id="phase-readiness-text" style="color: #0284c7;">Optimal Strength PRs</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cycle-period-forecast-card">
+            <span class="cycle-forecast-drop">🩸</span>
+            <span class="cycle-forecast-text">Next period expected in <strong id="cycle-countdown-days" class="cycle-forecast-days">14 days</strong></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 2: Calculator+ -->
+      <div id="health-panel-calculator" class="stage-split-grid discipline-panel" style="display: none;">
+        <div class="stage-info-col">
+          <div class="stage-status-badge-row">
+            <span class="status-pill status-pill-beta">
+              <span class="pulse-dot purple"></span>
+              BETA
+            </span>
+          </div>
+
+          <div class="stage-app-title-row">
+            <img src="${a.icon}" alt="${a.title} Logo" class="stage-app-icon" width="58" height="58" loading="lazy" decoding="async" style="box-shadow: 0 10px 28px rgba(124, 58, 237, 0.28);" />
+            <h3 class="stage-title">${a.title}</h3>
+          </div>
+
+          <div class="stage-subtitle" style="color: #7c3aed;">Clinical biometrics and mathematical rigor.</div>
+          <p class="stage-desc">
+            Mifflin-St Jeor energy expenditure, body composition, macro splits, and 9-dimensional conversions. Computed entirely offline.
+          </p>
+
+          <div class="stage-specs-grid">
+            <div class="spec-item">
+              <span class="spec-label">Biometrics</span>
+              <span class="spec-val">Mifflin-St Jeor &amp; US Navy</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Conversions</span>
+              <span class="spec-val">9 Physical Dimensions</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Execution</span>
+              <span class="spec-val">100% Local &amp; Private</span>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
+            <a href="/beta?app=${a.id}" class="btn-primary-glow" onclick="if(event){ event.preventDefault(); navigate('/beta?app=${a.id}'); }">
+              Join Beta &rarr;
+            </a>
+            <a href="/${a.id}" class="btn-glass" onclick="if(event){ event.preventDefault(); navigate('/${a.id}'); }">
+              Overview
+            </a>
+          </div>
+        </div>
+
+        <!-- Goal-Adaptive TDEE & Macro Allocation Engine -->
+        <div class="interactive-calculator-card">
+          <div class="calc-goal-strip">
+            <button type="button" class="calc-goal-btn active" id="calc-goal-cut" onclick="window.setCalcGoal('cut', 'calc-goal-cut')">
+              <span>Fat Loss</span>
+              <span class="calc-goal-pace">-500 kcal</span>
+            </button>
+            <button type="button" class="calc-goal-btn" id="calc-goal-maintain" onclick="window.setCalcGoal('maintain', 'calc-goal-maintain')">
+              <span>Maintain</span>
+              <span class="calc-goal-pace">Equilibrium</span>
+            </button>
+            <button type="button" class="calc-goal-btn" id="calc-goal-bulk" onclick="window.setCalcGoal('bulk', 'calc-goal-bulk')">
+              <span>Build Muscle</span>
+              <span class="calc-goal-pace">+300 kcal</span>
+            </button>
+          </div>
+
+          <div class="calc-control-bar">
+            <div class="calc-weight-stepper">
+              <span class="calc-stepper-lbl">Weight</span>
+              <div class="calc-weight-box">
+                <button type="button" class="calc-step-btn" onclick="window.adjCalcWeight(-1)">&minus;</button>
+                <span class="calc-step-val"><strong id="calc-val-weight">74</strong> kg</span>
+                <button type="button" class="calc-step-btn" onclick="window.adjCalcWeight(1)">&#43;</button>
+              </div>
+            </div>
+
+            <div class="calc-act-strip">
+              <button type="button" class="calc-act-chip" id="calc-act-sedentary" onclick="window.setCalcActivity(1.2, 'calc-act-sedentary')">Sedentary</button>
+              <button type="button" class="calc-act-chip active" id="calc-act-moderate" onclick="window.setCalcActivity(1.55, 'calc-act-moderate')">Moderate</button>
+              <button type="button" class="calc-act-chip" id="calc-act-active" onclick="window.setCalcActivity(1.725, 'calc-act-active')">Active</button>
+            </div>
+          </div>
+
+          <div class="calc-output-bento">
+            <div class="calc-hero-result">
+              <div class="calc-hero-result-num" id="calc-res-tdee">2,162</div>
+              <div class="calc-hero-result-sub" id="calc-res-goal-sub">kcal / day &bull; Fat Loss (-500 kcal)</div>
+            </div>
+
+            <div class="calc-macros-grid">
+              <div class="calc-macro-tile">
+                <span class="calc-macro-gram" id="calc-res-protein" style="color: #7c3aed;">162g</span>
+                <span class="calc-macro-name">Protein</span>
+              </div>
+              <div class="calc-macro-tile">
+                <span class="calc-macro-gram" id="calc-res-carb" style="color: #0284c7;">216g</span>
+                <span class="calc-macro-name">Carbs</span>
+              </div>
+              <div class="calc-macro-tile">
+                <span class="calc-macro-gram" id="calc-res-fat" style="color: #ea580c;">72g</span>
+                <span class="calc-macro-name">Fats</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 3: Nutrition -->
+      <div id="health-panel-nutrition" class="stage-split-grid discipline-panel" style="display: none;">
+        <div class="stage-info-col">
+          <div class="stage-status-badge-row">
+            <span class="status-pill status-pill-development">
+              <span class="pulse-dot amber"></span>
+              DEV
+            </span>
+          </div>
+
+          <div class="stage-app-title-row">
+            <img src="${o.icon}" alt="${o.title} Logo" class="stage-app-icon" width="58" height="58" loading="lazy" decoding="async" style="box-shadow: 0 10px 28px rgba(5, 150, 105, 0.28);" />
+            <h3 class="stage-title">${o.title}</h3>
+          </div>
+
+          <div class="stage-subtitle" style="color: #059669;">Metabolic balance and whole-food telemetry.</div>
+          <p class="stage-desc">
+            Whole-food logging, fasting timers, and macro targets backed by an on-device database with zero commercial tracking.
+          </p>
+
+          <div class="stage-specs-grid">
+            <div class="spec-item">
+              <span class="spec-label">Fasting</span>
+              <span class="spec-val">16:8, 18:6 &amp; OMAD</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Macro Rings</span>
+              <span class="spec-val">5 Essential Targets</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Database</span>
+              <span class="spec-val">100% On-Device Vault</span>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
+            <a href="/beta?app=nutrition" class="btn-primary-glow" onclick="if(event){ event.preventDefault(); navigate('/beta?app=nutrition'); }">
+              Join Beta &rarr;
+            </a>
+            <a href="/nutrition" class="btn-glass" onclick="if(event){ event.preventDefault(); navigate('/nutrition'); }">
+              Overview
+            </a>
+          </div>
+        </div>
+
+        ${P()}
+      </div>
+
+      <!-- Panel 4: Activity -->
+      <div id="health-panel-activity" class="stage-split-grid discipline-panel" style="display: none;">
+        <div class="stage-info-col">
+          <div class="stage-status-badge-row">
+            <span class="status-pill status-pill-development">
+              <span class="pulse-dot amber"></span>
+              DEV
+            </span>
+          </div>
+
+          <div class="stage-app-title-row">
+            <img src="${s.icon}" alt="${s.title} Logo" class="stage-app-icon" width="58" height="58" loading="lazy" decoding="async" style="box-shadow: 0 10px 28px rgba(217, 119, 6, 0.28);" />
+            <h3 class="stage-title">${s.title}</h3>
+          </div>
+
+          <div class="stage-subtitle" style="color: #d97706;">Kinetic performance and workout logging.</div>
+          <p class="stage-desc">
+            Workout and strength tracking with barbell plate math, rest countdowns, and progressive overload metrics.
+          </p>
+
+          <div class="stage-specs-grid">
+            <div class="spec-item">
+              <span class="spec-label">Formulas</span>
+              <span class="spec-val">Brzycki &amp; Epley 1RM</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Assistant</span>
+              <span class="spec-val">Barbell Plate Math</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Pacing</span>
+              <span class="spec-val">Haptic Rest Timers</span>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
+            <a href="/beta?app=activity" class="btn-primary-glow" onclick="if(event){ event.preventDefault(); navigate('/beta?app=activity'); }">
+              Join Beta &rarr;
+            </a>
+            <a href="/activity" class="btn-glass" onclick="if(event){ event.preventDefault(); navigate('/activity'); }">
+              Overview
+            </a>
+          </div>
+        </div>
+
+        ${F()}
+      </div>
     </div>
   </section>
 
-  <!-- STAGE 7: The EVLOME Codex & Principles -->
-  <section id="principles-section" class="codex-section">
-    <div class="codex-container">
-      <span class="stage-badge">THE CODEX</span>
-      <h2 class="stage-title">Rigor &amp; Reverie.</h2>
-      <p style="color: var(--text-secondary); max-width: 600px; font-size: 1.05rem; line-height: 1.6; margin: 0 auto 2.5rem;">
-        Four foundational standards guiding every line of code we ship across health telemetry and game design.
+  <!-- STAGE 3: EVLOME Games — Tactile Joy & Mindful Play (Discipline 2) -->
+  <section id="games-stage" class="cinematic-stage discipline-stage games-discipline-stage">
+    <div class="discipline-header-center">
+      <span class="stage-badge">
+        <span class="badge-dot" style="background: #0284c7; box-shadow: 0 0 8px rgba(2, 132, 199, 0.6);"></span>
+        EVLOME GAMES
+      </span>
+      <h2 class="stage-title">Pure Play. Zero Compromise.</h2>
+      <p class="stage-subtitle-center">
+        Tactile physics, physical dice inertia, and mindful puzzles. Zero ads or artificial countdowns.
       </p>
 
-      <div class="codex-grid">
-        <div class="codex-card">
-          <span class="codex-num">01 / SOVEREIGNTY</span>
-          <h3 class="codex-title">On-Device Vault</h3>
-          <p class="codex-desc">
-            Your health, metabolic, and personal telemetry reside strictly on your physical hardware. We operate zero user-tracking infrastructure.
+      <!-- 2-Game Selector Tabs (With Official App Logos) -->
+      <div class="discipline-tabs-nav games-tabs-nav" role="tablist" aria-label="EVLOME Games">
+        <button type="button" class="discipline-tab-btn active" id="game-tab-ludo-prince" onclick="window.switchGameTab('ludo-prince')">
+          <img src="${n.icon}" alt="Ludo Prince" class="tab-btn-icon" width="32" height="32" loading="lazy" decoding="async" />
+          <span class="tab-btn-text">
+            <span class="tab-btn-title">Ludo Prince</span>
+            <span class="tab-btn-sub">Tactile Multiplayer Board</span>
+          </span>
+          <span class="tab-status-pill status-production">LIVE</span>
+        </button>
+
+        <button type="button" class="discipline-tab-btn" id="game-tab-pawdoku" onclick="window.switchGameTab('pawdoku')">
+          <img src="${r.icon}" alt="Pawdoku" class="tab-btn-icon" width="32" height="32" loading="lazy" decoding="async" />
+          <span class="tab-btn-text">
+            <span class="tab-btn-title">Pawdoku</span>
+            <span class="tab-btn-sub">Star Battle Sanctuary</span>
+          </span>
+          <span class="tab-status-pill status-development">DEV</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Games Panels Container -->
+    <div class="discipline-panels-wrap">
+      <!-- Panel 1: Ludo Prince -->
+      <div id="game-panel-ludo-prince" class="stage-split-grid discipline-panel fade-in-active" style="display: grid;">
+        <div class="stage-info-col">
+          <div class="stage-status-badge-row">
+            <span class="status-pill status-pill-production">
+              <span class="pulse-dot green"></span>
+              LIVE
+            </span>
+          </div>
+
+          <div class="stage-app-title-row">
+            <img src="${n.icon}" alt="${n.title} Logo" class="stage-app-icon" width="58" height="58" loading="lazy" decoding="async" style="box-shadow: 0 10px 28px rgba(2, 132, 199, 0.28);" />
+            <h3 class="stage-title">${n.title}</h3>
+          </div>
+
+          <div class="stage-subtitle" style="color: #0284c7;">Classic board play. Pure tactile physics.</div>
+          <p class="stage-desc">
+            The classic race to home with physical dice inertia. Real-time multiplayer, local pass-and-play, and offline bot intelligence.
           </p>
+
+          <div class="stage-specs-grid">
+            <div class="spec-item">
+              <span class="spec-label">Multiplayer</span>
+              <span class="spec-val">Online &amp; Pass-and-Play</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Physics</span>
+              <span class="spec-val">Fair Tactile Inertia</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Platforms</span>
+              <span class="spec-val">iOS &amp; Android</span>
+            </div>
+          </div>
+
+          <div class="store-badge-strip" style="margin-top: 1.5rem;">
+            <a href="${n.appStoreUrl}" target="_blank" rel="noopener noreferrer" class="btn-store btn-app-store" title="Download Ludo Prince on the Apple App Store">
+              <svg class="store-icon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.63-.77 1.06-1.84.94-2.92-1 .04-2.14.67-2.81 1.45-.59.67-1.1 1.76-.96 2.82 1.11.09 2.21-.58 2.83-1.35z"/>
+              </svg>
+              <div class="store-badge-text">
+                <span class="store-badge-sub">Download on the</span>
+                <span class="store-badge-main">App Store</span>
+              </div>
+            </a>
+            <a href="${n.playStoreUrl}" target="_blank" rel="noopener noreferrer" class="btn-store btn-play-store" title="Get Ludo Prince on Google Play">
+              <svg class="store-icon" viewBox="0 0 16 16" width="20" height="20" fill="currentColor">
+                <path d="M14.222 9.374c1.037-.61 1.037-2.137 0-2.748L11.528 5.04 8.32 8l3.207 2.96 2.694-1.586Zm-3.595 2.116L7.583 8.68 1.03 14.73c.201 1.029 1.36 1.61 2.303 1.055l7.294-4.295ZM1 13.396V2.603L6.846 8 1 13.396ZM1.03 1.27l6.553 6.05 3.044-2.81L3.333.215C2.39-.341 1.231.24 1.03 1.27Z"/>
+              </svg>
+              <div class="store-badge-text">
+                <span class="store-badge-sub">GET IT ON</span>
+                <span class="store-badge-main">Google Play</span>
+              </div>
+            </a>
+            <a href="/${n.id}" class="btn-glass" onclick="if(event){ event.preventDefault(); navigate('/${n.id}'); }">
+              Overview
+            </a>
+          </div>
         </div>
 
-        <div class="codex-card">
-          <span class="codex-num">02 / INTEGRITY</span>
-          <h3 class="codex-title">Deterministic Rigor</h3>
-          <p class="codex-desc">
-            Clinical biometric equations and physical board mechanics operate transparently with complete mathematical integrity.
+        <!-- 3D Inertia Dice Interactive Viewport -->
+        <div class="interactive-arena-card ludo-dice-only-card">
+          <div class="arena-room-pill">
+            <span class="pulse-green"></span>
+            ROYAL DICE ARENA
+          </div>
+
+          <!-- Tactile Dice Halo with Orbital Ring -->
+          <div class="ludo-dice-halo">
+            <div class="dice-stage-box" onclick="window.rollLudoDice()" title="Tap dice to roll">
+              <div class="interactive-dice ludo-metallic-dice" id="interactive-dice-cube" data-val="6">
+                <div class="dice-pips-grid">
+                  <span class="dice-pip active" id="dice-pip-1"></span>
+                  <span class="dice-pip" id="dice-pip-2"></span>
+                  <span class="dice-pip active" id="dice-pip-3"></span>
+                  <span class="dice-pip active" id="dice-pip-4"></span>
+                  <span class="dice-pip" id="dice-pip-5"></span>
+                  <span class="dice-pip active" id="dice-pip-6"></span>
+                  <span class="dice-pip active" id="dice-pip-7"></span>
+                  <span class="dice-pip" id="dice-pip-8"></span>
+                  <span class="dice-pip active" id="dice-pip-9"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button type="button" class="btn-roll-dice-lg" onclick="window.rollLudoDice()">
+            Roll Dice
+          </button>
+
+          <div class="dice-result-log" id="dice-log-text">
+            <span style="color: var(--text-muted);">Tap dice to roll &bull; Physical inertia</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 2: Pawdoku -->
+      <div id="game-panel-pawdoku" class="stage-split-grid discipline-panel" style="display: none;">
+        <div class="stage-info-col">
+          <div class="stage-status-badge-row">
+            <span class="status-pill status-pill-development">
+              <span class="pulse-dot amber"></span>
+              DEV
+            </span>
+          </div>
+
+          <div class="stage-app-title-row">
+            <img src="${r.icon}" alt="${r.title} Logo" class="stage-app-icon" width="58" height="58" loading="lazy" decoding="async" style="box-shadow: 0 10px 28px rgba(234, 88, 12, 0.28);" />
+            <h3 class="stage-title">${r.title}</h3>
+          </div>
+
+          <div class="stage-subtitle" style="color: #ea580c;">Star Battle logic. Zero rush.</div>
+          <p class="stage-desc">
+            One companion per row, column, and color region. Pure deductive strategy in a tranquil pet sanctuary.
           </p>
+
+          <div class="stage-specs-grid">
+            <div class="spec-item">
+              <span class="spec-label">Engine</span>
+              <span class="spec-val">Aloof Queens Logic</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Pacing</span>
+              <span class="spec-val">Zero Timers or Stress</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Access</span>
+              <span class="spec-val">Early Beta Preview</span>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; margin-top: 1.5rem;">
+            <a href="/beta?app=${r.id}" class="btn-primary-glow" onclick="if(event){ event.preventDefault(); navigate('/beta?app=${r.id}'); }">
+              Join Beta &rarr;
+            </a>
+            <a href="/${r.id}" class="btn-glass" onclick="if(event){ event.preventDefault(); navigate('/${r.id}'); }">
+              Overview
+            </a>
+          </div>
         </div>
 
-        <div class="codex-card">
-          <span class="codex-num">03 / RESTRAINT</span>
-          <h3 class="codex-title">Mindful Interaction</h3>
-          <p class="codex-desc">
-            Zero synthetic urgency, deceptive close buttons, or artificial countdowns. Interfaces distilled strictly to essential craft.
-          </p>
-        </div>
+        <!-- 4x4 Tactile Clay Star Battle Board (Contained Component Card) -->
+        <div class="interactive-sanctuary-card">
+          <!-- Sanctuary Gesture Controls Bar -->
+          <div class="pawdoku-controls-strip">
+            <div class="pawdoku-gesture-pill" title="Tap to cross • Double-tap to place pet • Drag to paint crosses">
+              <span class="gesture-step">Tap ${g}</span>
+              <span class="gesture-divider">•</span>
+              <span class="gesture-step">Double-tap ${h}</span>
+              <span class="gesture-divider">•</span>
+              <span class="gesture-step" style="color: #EA580C; font-weight: 700;">Swipe line</span>
+            </div>
+            <button type="button" class="pawdoku-action-btn" onclick="window.restartPawdoku()" title="Reset board">
+              <span>↺</span> Reset
+            </button>
+          </div>
 
-        <div class="codex-card">
-          <span class="codex-num">04 / AUTONOMY</span>
-          <h3 class="codex-title">100% Offline</h3>
-          <p class="codex-desc">
-            Built like physical instruments. Every formula, health journal, and bot match operates completely without network connectivity.
-          </p>
+          <div class="pawdoku-board-wrapper">
+            <div class="pawdoku-board-4x4"
+                 onpointerdown="window.pawdokuPointerDown(event)"
+                 onpointermove="window.pawdokuPointerMove(event)"
+                 onpointerup="window.pawdokuPointerUp(event)">
+              ${[0,1,2,3].map(e=>[0,1,2,3].map(t=>{let n=u.regionMap[e][t],r=e===0&&t===1;return`
+                  <div class="paw-cell" data-paw-cell="${e}-${t}" data-region="${n}" data-val="${r?`pet`:``}" ondblclick="event.preventDefault()">
+                    ${r?`<div class="pet-drop-marker">${p}</div>`:``}
+                  </div>
+                `}).join(``)).join(``)}
+            </div>
+          </div>
+
+          <div class="pawdoku-feedback-bar" id="pawdoku-feedback-text">
+            <span><strong>1 of 4</strong> companions placed</span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- STAGE 8: Beta Invitation Terminal -->
-  <section class="cinematic-stage" style="min-height: 50vh; text-align: center; align-items: center; justify-content: center; padding: 4rem 1.5rem;">
+  <!-- STAGE 4: EVLOME ONE — The Universal Membership Showcase (No Prices) -->
+  <section id="one-stage" class="one-stage">
+    <div class="one-container">
+      <div class="one-header-center">
+        <span class="stage-badge">
+          <span class="badge-dot" style="background: #f59e0b; box-shadow: 0 0 8px rgba(245, 158, 11, 0.6);"></span>
+          UNIVERSAL MEMBERSHIP
+        </span>
+        <h2 class="stage-title">EVLOME ONE</h2>
+        <p class="stage-subtitle-center">
+          One membership for the entire suite. Subscribe to Health Pass, Game Pass, or unlock everything with EVLOME ONE.
+        </p>
+      </div>
+
+      <!-- 3 Ecosystem Pillars Bento -->
+      <div class="one-grid">
+        <div class="one-card">
+          <div class="one-card-icon-group">
+            ${e.map(e=>`<img src="${e.icon}" alt="${e.title} Logo" class="one-mini-logo" width="36" height="36" loading="lazy" decoding="async" />`).join(``)}
+          </div>
+          <span class="one-card-tag" style="color: #059669;">EVLOME HEALTH PASS</span>
+          <h3 class="one-card-title">Precision Health Suite</h3>
+          <p class="one-card-desc">
+            Unified access across Nutrition, Activity, Cycle, and Calculator+ with clinical biometrics and private telemetry.
+          </p>
+          <ul class="one-card-perks">
+            <li>✓ Whole-food logging &amp; fasting timers</li>
+            <li>✓ Barbell plate math &amp; rest timers</li>
+            <li>✓ Roetzer cycle &amp; ovulation tracking</li>
+            <li>✓ 50+ clinical metabolic models</li>
+          </ul>
+        </div>
+
+        <div class="one-card" style="border-color: rgba(99, 102, 241, 0.25); background: linear-gradient(180deg, rgba(99, 102, 241, 0.03) 0%, rgba(255, 255, 255, 0.6) 100%);">
+          <div class="one-card-icon-group">
+            ${t.map(e=>`<img src="${e.icon}" alt="${e.title} Logo" class="one-mini-logo" width="36" height="36" loading="lazy" decoding="async" />`).join(``)}
+          </div>
+          <span class="one-card-tag" style="color: #6366f1;">EVLOME GAME PASS</span>
+          <h3 class="one-card-title">Ad-Free Games Pass</h3>
+          <p class="one-card-desc">
+            Pure, uninterrupted play across all current and future EVLOME board games and mindful puzzle sanctuaries.
+          </p>
+          <ul class="one-card-perks">
+            <li>✓ Zero ads or commercial interruptions</li>
+            <li>✓ All future game releases included</li>
+          </ul>
+        </div>
+
+        <div class="one-card">
+          <div class="one-card-icon-wrap" style="background: rgba(245, 158, 11, 0.1); color: #d97706;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>
+          </div>
+          <span class="one-card-tag" style="color: #d97706;">HEALTH VAULT</span>
+          <h3 class="one-card-title">Private Cloud Sync</h3>
+          <p class="one-card-desc">
+            Encrypted multi-device continuity for your health, workout, and cycle telemetry. Zero custody, on-device decrypted.
+          </p>
+          <ul class="one-card-perks">
+            <li>✓ Continuity across iPhone, iPad &amp; Android</li>
+            <li>✓ End-to-end encrypted backup</li>
+            <li>✓ Zero profiling or third-party custody</li>
+            <li>✓ 100% offline-first availability</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Feature Highlight Strip (Apple Bento Banner - No Prices) -->
+      <div class="one-membership-strip">
+        <div class="one-strip-col">
+          <div class="one-strip-eyebrow">UNIVERSAL ACCESS</div>
+          <h3 class="one-strip-title">One Pass. Every Device.</h3>
+          <p class="one-strip-desc">
+            Start a 7-day free trial in any app. Choose Health Pass, Game Pass, or EVLOME ONE.
+          </p>
+        </div>
+        <div class="one-strip-pills">
+          <div class="one-feature-badge">
+            <svg class="badge-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>7-Day Free Trial</span>
+          </div>
+          <div class="one-feature-badge">
+            <svg class="badge-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Monthly &amp; Annual Options</span>
+          </div>
+          <div class="one-feature-badge">
+            <svg class="badge-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Cancel Anytime</span>
+          </div>
+          <div class="one-feature-badge">
+            <svg class="badge-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Cross-Platform Sync</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STAGE 5: Beta Invitation Terminal -->
+  <section class="cinematic-stage beta-invite-stage">
     <span class="stage-badge">EARLY ACCESS PROGRAM</span>
     <h2 class="stage-title" style="max-width: 650px; margin: 0.5rem auto 1rem;">
       Shape the Future of EVLOME.
     </h2>
-    <p style="color: var(--text-secondary); max-width: 480px; font-size: 1.05rem; line-height: 1.6; margin: 0 auto 2rem;">
-      TestFlight and Google Play preview slots are open for upcoming builds across the Suite and EVLOME Games.
+    <p style="color: var(--text-secondary); max-width: 460px; font-size: 1.05rem; line-height: 1.6; margin: 0 auto 2rem;">
+      Preview slots are open on TestFlight and Google Play for upcoming health and game builds.
     </p>
     <a href="/beta" class="btn-primary-glow" style="font-size: 14.5px; padding: 0.9rem 2.25rem;">
       Apply for Beta Testing &rarr;
     </a>
   </section>
-  `},k=e=>{let t=e.type===`game`,n=t?`ludo-stage`:`suite-stage`;return`
+  `},ne=e=>{let t=e.type===`game`,n=t?`games-stage`:`suite-stage`,r=t?`EVLOME Games`:`The Health Suite`;return`
   <div class="detail-view">
     <a href="/#${n}" class="detail-nav-back" onclick="window.handleBackToCategory(event, '${n}')">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
         <line x1="19" y1="12" x2="5" y2="12"></line>
         <polyline points="12 19 5 12 12 5"></polyline>
       </svg>
-      <span>Return to ${t?`EVLOME Games`:`The Suite`}</span>
+      <span>Return to ${r}</span>
     </a>
 
     <!-- Detail Hero Box -->
     <div class="detail-hero-box">
-      <!-- High-Visibility Lifecycle Status Banner -->
-      <div class="detail-lifecycle-banner ${e.status}">
-        ${e.status===`production`?`<span class="pulse-dot green"></span> <strong>LIVE IN PRODUCTION</strong> &bull; Available globally on iOS &amp; Android`:e.status===`beta`?`<span class="pulse-dot purple"></span> <strong>PUBLIC BETA</strong> &bull; Testing on Apple TestFlight &amp; Android`:`<span class="pulse-dot amber"></span> <strong>IN ACTIVE DEVELOPMENT</strong> &bull; Engineering &amp; Architecture Roadmap`}
-      </div>
-
       <div class="detail-icon-large" style="box-shadow: 0 12px 32px rgba(0,0,0,0.08), 0 0 30px ${e.accentColor}30;">
         <img src="${e.icon}" alt="${e.title} Icon" width="72" height="72" decoding="async">
       </div>
 
-      <span class="stage-badge" style="color: ${e.accentColor}; border-color: ${e.accentColor}40;">
-        ${e.eyebrow||e.category}
-      </span>
+      <div class="stage-badge" style="margin-bottom: 1.25rem;">
+        <span class="badge-dot" style="background: ${e.status===`production`?`#10b981`:`#8b5cf6`}; box-shadow: 0 0 8px ${e.status===`production`?`rgba(16, 185, 129, 0.6)`:`rgba(139, 92, 246, 0.6)`};"></span>
+        <span>${e.eyebrow||e.category}</span>
+        <span style="opacity: 0.35;">&bull;</span>
+        <span style="color: ${e.status===`production`?`#059669`:`#6d28d9`}; font-weight: 700;">${e.status===`production`?`Live in Production`:`Beta`}</span>
+      </div>
 
-      <h1 class="detail-title gradient-text">${e.title}</h1>
+      <h1 class="detail-title">${e.title}</h1>
       <div class="detail-tagline">${e.heroTagline||e.tagline}</div>
       <p class="detail-desc">${e.desc}</p>
 
-      <!-- Stat Counters Grid -->
-      ${e.stats&&e.stats.length?`
-        <div class="detail-stats-grid">
-          ${e.stats.map(t=>`
-            <div class="stat-item">
-              <span class="stat-val" style="color: ${e.accentColor};">${t.value}</span>
-              <span class="stat-lbl">${t.label}</span>
-            </div>
-          `).join(``)}
-        </div>
-      `:``}
-
-      ${e.status===`production`?`
-        <div class="store-badge-strip" style="display: flex; gap: 0.85rem; flex-wrap: wrap; justify-content: center; align-items: center; margin-top: 1rem;">
+      <!-- Direct Production Store Downloads (Above Stats Grid) -->
+      ${e.status===`production`&&(e.appStoreUrl||e.playStoreUrl)?`
+        <div class="store-badge-strip">
           ${e.appStoreUrl?`
             <a href="${e.appStoreUrl}" target="_blank" rel="noopener noreferrer" class="btn-store btn-app-store" title="Download ${e.title} on the Apple App Store">
               <svg class="store-icon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
@@ -686,8 +1039,8 @@
           `:``}
           ${e.playStoreUrl?`
             <a href="${e.playStoreUrl}" target="_blank" rel="noopener noreferrer" class="btn-store btn-play-store" title="Get ${e.title} on Google Play">
-              <svg class="store-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-                <path d="M3.609 1.814L13.793 12 3.61 22.186c-.368-.344-.61-.88-.61-1.56V3.374c0-.68.242-1.216.61-1.56zm11.24 11.243l2.296 2.296-11.83 6.83 9.534-9.126zm0-2.114L5.315 1.817l11.83 6.83-2.296 2.296zm1.488 1.057l3.65 2.108c.848.49.848 1.294 0 1.784l-3.65 2.108-2.072-2.072 2.072-2.028z"/>
+              <svg class="store-icon" viewBox="0 0 16 16" width="20" height="20" fill="currentColor">
+                <path d="M14.222 9.374c1.037-.61 1.037-2.137 0-2.748L11.528 5.04 8.32 8l3.207 2.96 2.694-1.586Zm-3.595 2.116L7.583 8.68 1.03 14.73c.201 1.029 1.36 1.61 2.303 1.055l7.294-4.295ZM1 13.396V2.603L6.846 8 1 13.396ZM1.03 1.27l6.553 6.05 3.044-2.81L3.333.215C2.39-.341 1.231.24 1.03 1.27Z"/>
               </svg>
               <div class="store-badge-text">
                 <span class="store-badge-sub">GET IT ON</span>
@@ -695,29 +1048,39 @@
               </div>
             </a>
           `:``}
-          <a href="/#matrix-stage" class="btn-glass" onclick="window.handleBackToCategory(event, 'matrix-stage')">
-            All Products Matrix
-          </a>
         </div>
-      `:`
-        <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; align-items: center;">
-          <a href="/beta?app=${e.id}" class="btn-primary-glow" style="box-shadow: 0 4px 20px ${e.accentColor}35;">
-            ${e.status===`beta`?`Join the Beta &rarr;`:`Request Early Preview &rarr;`}
-          </a>
-          <a href="/#matrix-stage" class="btn-glass" onclick="window.handleBackToCategory(event, 'matrix-stage')">
-            All Products Matrix
-          </a>
+      `:``}
+
+      <!-- Stat Counters Grid -->
+      ${e.stats&&e.stats.length?`
+        <div class="detail-stats-grid">
+          ${e.stats.map(t=>`
+            <div class="stat-item">
+              <span class="stat-val" style="color: ${e.accentColor};">${t.value}</span>
+              <span class="stat-lbl">${t.label}</span>
+            </div>
+          `).join(``)}
         </div>
-      `}
+      `:``}
+
+      <!-- Action & Navigation Buttons (Row 2) -->
+      <div class="detail-actions-row">
+        <a href="/beta?app=${e.id}" class="btn-primary-glow" style="${e.status===`production`?``:`box-shadow: 0 4px 20px ${e.accentColor}35;`}" onclick="if(event){ event.preventDefault(); navigate('/beta?app=${e.id}'); }">
+          Join Beta &rarr;
+        </a>
+        <a href="/#${n}" class="btn-glass" onclick="window.handleBackToCategory(event, '${n}')">
+          Return to ${r}
+        </a>
+      </div>
     </div>
 
     <!-- Single Focused Interactive Experience -->
     <div style="margin-top: 3.5rem;">
-      <h2 style="font-size: 1.8rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 0.5rem; text-align: center;" class="gradient-text">
+      <h2 class="detail-section-title" style="text-align: center;">
         Signature Interaction
       </h2>
       <p style="text-align: center; color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 2.25rem;">
-        Authentic tactile mechanics, acoustic resonance, and local biometric computation.
+        Interactive preview engineered with on-device precision.
       </p>
 
       ${e.id===`ludo-prince`?`
@@ -753,7 +1116,6 @@
 
       ${e.id===`pawdoku`?`
         <div class="interactive-sanctuary-card">
-          ${f}
           <!-- Sanctuary Controls Bar -->
           <div class="pawdoku-controls-strip">
             <div class="pawdoku-gesture-pill">
@@ -774,7 +1136,7 @@
                  onpointerdown="window.pawdokuPointerDown(event)"
                  onpointermove="window.pawdokuPointerMove(event)"
                  onpointerup="window.pawdokuPointerUp(event)">
-              ${[0,1,2,3].map(e=>[0,1,2,3].map(t=>{let n=l.regionMap[e][t],r=e===0&&t===1;return`
+              ${[0,1,2,3].map(e=>[0,1,2,3].map(t=>{let n=u.regionMap[e][t],r=e===0&&t===1;return`
                   <div class="paw-cell" data-paw-cell="${e}-${t}" data-region="${n}" data-val="${r?`pet`:``}" ondblclick="event.preventDefault()">
                     ${r?`<div class="pet-drop-marker">${p}</div>`:``}
                   </div>
@@ -880,11 +1242,23 @@
           </div>
         </div>
       `:``}
+
+      ${e.id===`nutrition`?`
+        <div style="display: flex; justify-content: center; width: 100%;">
+          ${P()}
+        </div>
+      `:``}
+
+      ${e.id===`activity`?`
+        <div style="display: flex; justify-content: center; width: 100%;">
+          ${F()}
+        </div>
+      `:``}
     </div>
 
     <!-- Highlights Grid -->
     <div style="margin-top: 4rem;">
-      <h2 style="font-size: 1.8rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 1.75rem;" class="gradient-text">
+      <h2 class="detail-section-title" style="margin-bottom: 1.75rem;">
         ${t?`Gameplay Dynamics & Mechanics`:`Clinical & Technical Architecture`}
       </h2>
 
@@ -913,7 +1287,7 @@
       `:``}
     </div>
   </div>
-`},A=(e=null)=>{let t=`/`,n=`Home`;return e&&(t=`/${e.id}`,n=e.title),`
+`},re=(e=null)=>{let t=`/`,n=`Home`;return e&&(t=`/${e.id}`,n=e.title),`
   <div class="beta-page-container">
     <nav class="detail-nav" aria-label="Navigation">
       <a href="${t}" class="detail-nav-back" onclick="window.handleHierarchicalBack(event, '${t}')" aria-label="Return to ${n}">
@@ -1195,7 +1569,7 @@
       </div>
     </div>
   </div>
-`},j=(e=null,t=``,r=!1)=>{let i=`/`,a=`Home`;if(e)t===`/privacy`||t===`/terms`?(i=t,a=t===`/terms`?`Terms of Service`:`Ecosystem Privacy`):(i=`/${e.id}`,a=e.title);else if(t&&t!==`/`&&t!==(r?`/terms`:`/privacy`)){let e=t.replace(/^\//,``).split(`/`)[0].split(`?`)[0],r=n.find(t=>t.id===e);r?(i=t,a=r.title):t===`/beta`?(i=`/beta`,a=`Beta Access`):(i=t,a=`Previous Page`)}return`
+`},L=(e=null,t=``,r=!1)=>{let i=`/`,a=`Home`;if(e)t===`/privacy`||t===`/terms`?(i=t,a=t===`/terms`?`Terms of Service`:`Ecosystem Privacy`):(i=`/${e.id}`,a=e.title);else if(t&&t!==`/`&&t!==(r?`/terms`:`/privacy`)){let e=t.replace(/^\//,``).split(`/`)[0].split(`?`)[0],r=n.find(t=>t.id===e);r?(i=t,a=r.title):t===`/beta`?(i=`/beta`,a=`Beta Access`):(i=t,a=`Previous Page`)}return`
     <nav class="detail-nav" aria-label="Navigation">
       <a href="${i}" class="detail-nav-back" onclick="window.handleHierarchicalBack(event, \"${i}\")" aria-label="Return to ${a}">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -1205,9 +1579,9 @@
         <span>Return to ${a}</span>
       </a>
     </nav>
-  `},M=(e=``)=>`
+  `},R=(e=``)=>`
     <div class="privacy-wrap">
-      ${j(n.find(e=>e.id===`calculator`),e,!1)}
+      ${L(n.find(e=>e.id===`calculator`),e,!1)}
         <div class="privacy-hero">
           <span class="section-label">LEGAL & PRIVACY &bull; CALCULATOR+</span>
           <h1 class="privacy-title">Privacy Policy for EVLOME Calculator+</h1>
@@ -1278,9 +1652,9 @@
           </p>
         </div>
       </div>
-  `,N=(e=``)=>`
+  `,z=(e=``)=>`
     <div class="privacy-wrap">
-      ${j(n.find(e=>e.id===`calculator`),e,!0)}
+      ${L(n.find(e=>e.id===`calculator`),e,!0)}
         <div class="privacy-hero">
           <span class="section-label">LEGAL & TERMS &bull; CALCULATOR+</span>
           <h1 class="privacy-title">Terms of Service for EVLOME Calculator+</h1>
@@ -1359,9 +1733,9 @@
           </p>
         </div>
       </div>
-  `,P=(e=``)=>`
+  `,B=(e=``)=>`
     <div class="privacy-wrap">
-      ${j(n.find(e=>e.id===`cycle`),e,!1)}
+      ${L(n.find(e=>e.id===`cycle`),e,!1)}
         <div class="privacy-hero">
           <span class="section-label">LEGAL & PRIVACY &bull; CYCLE</span>
           <h1 class="privacy-title">Privacy Policy for EVLOME Cycle</h1>
@@ -1432,9 +1806,9 @@
           </p>
         </div>
       </div>
-  `,ee=(e=``)=>`
+  `,V=(e=``)=>`
     <div class="privacy-wrap">
-      ${j(n.find(e=>e.id===`cycle`),e,!0)}
+      ${L(n.find(e=>e.id===`cycle`),e,!0)}
         <div class="privacy-hero">
           <span class="section-label">LEGAL & TERMS &bull; CYCLE</span>
           <h1 class="privacy-title">Terms of Service for EVLOME Cycle</h1>
@@ -1515,9 +1889,9 @@
           </p>
         </div>
       </div>
-  `,te=(e=``)=>`
+  `,ie=(e=``)=>`
     <div class="privacy-wrap">
-      ${j(n.find(e=>e.id===`ludo-prince`),e,!1)}
+      ${L(n.find(e=>e.id===`ludo-prince`),e,!1)}
         <div class="privacy-hero">
           <span class="section-label">LEGAL & PRIVACY &bull; LUDO PRINCE</span>
           <h1 class="privacy-title">Privacy Policy for EVLOME Ludo Prince</h1>
@@ -1588,9 +1962,9 @@
           </p>
         </div>
       </div>
-  `,ne=(e=``)=>`
+  `,ae=(e=``)=>`
     <div class="privacy-wrap">
-      ${j(n.find(e=>e.id===`ludo-prince`),e,!0)}
+      ${L(n.find(e=>e.id===`ludo-prince`),e,!0)}
         <div class="privacy-hero">
           <span class="section-label">LEGAL & TERMS &bull; LUDO PRINCE</span>
           <h1 class="privacy-title">Terms of Service for EVLOME Ludo Prince</h1>
@@ -1659,9 +2033,9 @@
           </p>
         </div>
       </div>
-  `,re=(e=``)=>`
+  `,oe=(e=``)=>`
     <div class="privacy-wrap">
-      ${j(n.find(e=>e.id===`pawdoku`),e,!1)}
+      ${L(n.find(e=>e.id===`pawdoku`),e,!1)}
         <div class="privacy-hero">
           <span class="section-label">LEGAL & PRIVACY &bull; PAWDOKU</span>
           <h1 class="privacy-title">Privacy Policy for EVLOME Pawdoku</h1>
@@ -1724,9 +2098,9 @@
           </p>
         </div>
       </div>
-  `,ie=(e=``)=>`
+  `,se=(e=``)=>`
     <div class="privacy-wrap">
-      ${j(n.find(e=>e.id===`pawdoku`),e,!0)}
+      ${L(n.find(e=>e.id===`pawdoku`),e,!0)}
         <div class="privacy-hero">
           <span class="section-label">LEGAL & TERMS &bull; PAWDOKU</span>
           <h1 class="privacy-title">Terms of Service for EVLOME Pawdoku</h1>
@@ -1789,9 +2163,9 @@
           </p>
         </div>
       </div>
-  `,ae=(e=``)=>`
+  `,ce=(e=``)=>`
     <div class="privacy-wrap">
-      ${j(null,e,!1)}
+      ${L(null,e,!1)}
         <div class="privacy-hero">
           <span class="section-label">LEGAL & PRIVACY &bull; EVLOME ECOSYSTEM</span>
           <h1 class="privacy-title">EVLOME Ecosystem Privacy Policy</h1>
@@ -1878,9 +2252,9 @@
           </p>
         </div>
       </div>
-  `,oe=(e=``)=>`
+  `,le=(e=``)=>`
     <div class="privacy-wrap">
-      ${j(null,e,!0)}
+      ${L(null,e,!0)}
         <div class="privacy-hero">
           <span class="section-label">LEGAL & TERMS &bull; EVLOME ECOSYSTEM</span>
           <h1 class="privacy-title">EVLOME Ecosystem Terms of Service</h1>
@@ -1974,7 +2348,7 @@
           </p>
         </div>
       </div>
-  `,F=(e=null,t=``)=>{if(e){if(e.id===`calculator`)return M(t);if(e.id===`cycle`)return P(t);if(e.id===`ludo-prince`)return te(t);if(e.id===`pawdoku`)return re(t)}return ae(t)},I=(e=null,t=``)=>{if(e){if(e.id===`calculator`)return N(t);if(e.id===`cycle`)return ee(t);if(e.id===`ludo-prince`)return ne(t);if(e.id===`pawdoku`)return ie(t)}return oe(t)},L={firstName:`entry.1026423473`,lastName:`entry.2072277110`,devicePlatform:`entry.261106749`,email:`entry.1247363008`,testingPreference:`entry.923244053`,specificApps:`entry.610551536`,testingFrequency:`entry.454575922`,feedback:`entry.1265301105`},R=[`iOS`,`Android`],z=[`The Entire EVLOME Suite (All Apps)`,`Specific Apps Only`],B=[`Calculator+`,`Cycle`,`Nutrition`,`Activity`,`Ludo Prince`,`Pawdoku`],V=[`Daily`,`A few times a week`,`Once a week`,`Occasionally`],H={calculator:`Calculator+`,cycle:`Cycle`,nutrition:`Nutrition`,activity:`Activity`,"ludo-prince":`Ludo Prince`,pawdoku:`Pawdoku`};Object.fromEntries(Object.entries(H).map(([e,t])=>[t,e]));var U=/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;function W(e={}){let t={},n=(e.firstName||``).trim();n||(t.firstName=`Please enter your first name`);let r=(e.lastName||``).trim();r||(t.lastName=`Please enter your last name`);let i=(e.email||``).trim();i?U.test(i)||(t.email=`Please enter a valid email address`):t.email=`Please enter your email address`;let a=(Array.isArray(e.platforms)?e.platforms:[]).filter(e=>R.includes(e));a.length===0&&(t.platforms=`Please select at least one device platform (iOS or Android)`);let o=(e.preference||``).trim();!o||!z.includes(o)?t.preference=`Please select your testing preference`:o===`Specific Apps Only`&&(Array.isArray(e.selectedApps)?e.selectedApps:[]).filter(e=>B.includes(e)).length===0&&(t.selectedApps=`Please select at least one app or game to test`);let s=(e.frequency||``).trim();(!s||!V.includes(s))&&(t.frequency=`Please select your testing availability`);let c=Object.keys(t).length===0,l=null;return c&&(l=new URLSearchParams,l.append(L.firstName,n),l.append(L.lastName,r),l.append(L.email,i),a.forEach(e=>{l.append(L.devicePlatform,e)}),l.append(L.testingPreference,o),o===`The Entire EVLOME Suite (All Apps)`?B.forEach(e=>{l.append(L.specificApps,e)}):(Array.isArray(e.selectedApps)?e.selectedApps:[]).filter(e=>B.includes(e)).forEach(e=>{l.append(L.specificApps,e)}),l.append(L.testingFrequency,s),e.feedback&&e.feedback.trim()&&l.append(L.feedback,e.feedback.trim())),{isValid:c,errors:t,payload:l}}document.querySelector(`#app`).innerHTML=`
+  `,ue=(e=null,t=``)=>{if(e){if(e.id===`calculator`)return R(t);if(e.id===`cycle`)return B(t);if(e.id===`ludo-prince`)return ie(t);if(e.id===`pawdoku`)return oe(t)}return ce(t)},de=(e=null,t=``)=>{if(e){if(e.id===`calculator`)return z(t);if(e.id===`cycle`)return V(t);if(e.id===`ludo-prince`)return ae(t);if(e.id===`pawdoku`)return se(t)}return le(t)},H={firstName:`entry.1026423473`,lastName:`entry.2072277110`,devicePlatform:`entry.261106749`,email:`entry.1247363008`,testingPreference:`entry.923244053`,specificApps:`entry.610551536`,testingFrequency:`entry.454575922`,feedback:`entry.1265301105`},fe=[`iOS`,`Android`],pe=[`The Entire EVLOME Suite (All Apps)`,`Specific Apps Only`],U=[`Calculator+`,`Cycle`,`Nutrition`,`Activity`,`Ludo Prince`,`Pawdoku`],me=[`Daily`,`A few times a week`,`Once a week`,`Occasionally`],W={calculator:`Calculator+`,cycle:`Cycle`,nutrition:`Nutrition`,activity:`Activity`,"ludo-prince":`Ludo Prince`,pawdoku:`Pawdoku`};Object.fromEntries(Object.entries(W).map(([e,t])=>[t,e]));var he=/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;function ge(e={}){let t={},n=(e.firstName||``).trim();n||(t.firstName=`Please enter your first name`);let r=(e.lastName||``).trim();r||(t.lastName=`Please enter your last name`);let i=(e.email||``).trim();i?he.test(i)||(t.email=`Please enter a valid email address`):t.email=`Please enter your email address`;let a=(Array.isArray(e.platforms)?e.platforms:[]).filter(e=>fe.includes(e));a.length===0&&(t.platforms=`Please select at least one device platform (iOS or Android)`);let o=(e.preference||``).trim();!o||!pe.includes(o)?t.preference=`Please select your testing preference`:o===`Specific Apps Only`&&(Array.isArray(e.selectedApps)?e.selectedApps:[]).filter(e=>U.includes(e)).length===0&&(t.selectedApps=`Please select at least one app or game to test`);let s=(e.frequency||``).trim();(!s||!me.includes(s))&&(t.frequency=`Please select your testing availability`);let c=Object.keys(t).length===0,l=null;return c&&(l=new URLSearchParams,l.append(H.firstName,n),l.append(H.lastName,r),l.append(H.email,i),a.forEach(e=>{l.append(H.devicePlatform,e)}),l.append(H.testingPreference,o),o===`The Entire EVLOME Suite (All Apps)`?U.forEach(e=>{l.append(H.specificApps,e)}):(Array.isArray(e.selectedApps)?e.selectedApps:[]).filter(e=>U.includes(e)).forEach(e=>{l.append(H.specificApps,e)}),l.append(H.testingFrequency,s),e.feedback&&e.feedback.trim()&&l.append(H.feedback,e.feedback.trim())),{isValid:c,errors:t,payload:l}}document.querySelector(`#app`).innerHTML=`
   <!-- Floating Precision Header Island -->
   <header class="site-header">
     <div class="header-island">
@@ -1985,9 +2359,8 @@
       <!-- Desktop Nav -->
       <nav class="nav-links-row" aria-label="Primary Navigation">
         <button type="button" class="nav-anchor-btn" onclick="window.scrollToSection('suite-stage')">The Health Suite</button>
-        <button type="button" class="nav-anchor-btn" onclick="window.scrollToSection('ludo-stage')">EVLOME Games</button>
-        <button type="button" class="nav-anchor-btn" onclick="window.scrollToSection('matrix-stage')">Ecosystem Matrix</button>
-        <button type="button" class="nav-anchor-btn" onclick="window.scrollToSection('principles-section')">The Codex</button>
+        <button type="button" class="nav-anchor-btn" onclick="window.scrollToSection('games-stage')">EVLOME Games</button>
+        <button type="button" class="nav-anchor-btn" onclick="window.scrollToSection('one-stage')">EVLOME One</button>
         <a href="/beta" class="nav-cta-pill">Join Beta</a>
       </nav>
 
@@ -2005,9 +2378,8 @@
   <!-- Mobile Slide-down Sheet -->
   <aside class="mobile-sheet" id="mobile-sheet" aria-label="Mobile Navigation">
     <button type="button" class="mobile-sheet-link" onclick="window.scrollToSection('suite-stage')">The Health Suite</button>
-    <button type="button" class="mobile-sheet-link" onclick="window.scrollToSection('ludo-stage')">EVLOME Games</button>
-    <button type="button" class="mobile-sheet-link" onclick="window.scrollToSection('matrix-stage')">Ecosystem Matrix</button>
-    <button type="button" class="mobile-sheet-link" onclick="window.scrollToSection('principles-section')">The Codex</button>
+    <button type="button" class="mobile-sheet-link" onclick="window.scrollToSection('games-stage')">EVLOME Games</button>
+    <button type="button" class="mobile-sheet-link" onclick="window.scrollToSection('one-stage')">EVLOME One</button>
     <a href="/beta" class="mobile-sheet-link" style="color: var(--accent-brand);" onclick="if(event){ event.preventDefault(); window.closeMobileMenu(); navigate('/beta'); }">Apply for Beta &rarr;</a>
   </aside>
 
@@ -2025,6 +2397,7 @@
             <li><a href="/cycle" onclick="if(event){ event.preventDefault(); navigate('/cycle'); }">Cycle <span style="font-size:10px; color:#7c3aed; font-weight:700;">(Beta)</span></a></li>
             <li><a href="/activity" onclick="if(event){ event.preventDefault(); navigate('/activity'); }">Activity <span style="font-size:10px; color:#b45309; font-weight:700;">(In Dev)</span></a></li>
             <li><a href="/nutrition" onclick="if(event){ event.preventDefault(); navigate('/nutrition'); }">Nutrition <span style="font-size:10px; color:#b45309; font-weight:700;">(In Dev)</span></a></li>
+            <li><a href="/one" onclick="if(event){ event.preventDefault(); window.scrollToSection('one-stage'); }">EVLOME One <span style="font-size:10px; color:#f59e0b; font-weight:800;">(Pass)</span></a></li>
           </ul>
         </div>
 
@@ -2038,9 +2411,8 @@
         </div>
 
         <div>
-          <div class="footer-col-heading">The Codex</div>
+          <div class="footer-col-heading">Privacy &amp; Legal</div>
           <ul class="footer-links-list">
-            <li><a href="/#principles-section" onclick="if(event){ event.preventDefault(); window.scrollToSection('principles-section'); }">Our Principles</a></li>
             <li><a href="/privacy" onclick="if(event){ event.preventDefault(); navigate('/privacy'); }">Ecosystem Privacy</a></li>
             <li><a href="/ludo-prince/privacy" onclick="if(event){ event.preventDefault(); navigate('/ludo-prince/privacy'); }">Gaming Privacy</a></li>
             <li><a href="/terms" onclick="if(event){ event.preventDefault(); navigate('/terms'); }">Terms of Service</a></li>
@@ -2067,4 +2439,4 @@
       </div>
     </div>
   </footer>
-`,window.handlePlatformToggle=function(e){let t=e.closest(`.platform-tile`);t&&(e.checked?t.classList.add(`active`):t.classList.remove(`active`));let n=e.closest(`.form-group`);if(n){let e=n.querySelector(`.error-msg`);e&&e.remove()}},window.handlePreferenceToggle=function(e){let t=document.getElementById(`tile-pref-all`),n=document.getElementById(`tile-pref-specific`),r=document.getElementById(`specific-apps-list`);e===`all`?(t&&t.classList.add(`active`),n&&n.classList.remove(`active`),r&&(r.style.display=`none`),document.querySelectorAll(`.specific-app-checkbox`).forEach(e=>{e.checked=!1;let t=e.closest(`.app-select-card`);t&&t.classList.remove(`active`)})):(t&&t.classList.remove(`active`),n&&n.classList.add(`active`),r&&(r.style.display=`block`));let i=document.querySelector(`.preference-tiles-group`)?.closest(`.form-group`);if(i){let e=i.querySelector(`.error-msg`);e&&e.remove()}},window.handleAppCardToggle=function(e){let t=e.closest(`.app-select-card`);t&&(e.checked?t.classList.add(`active`):t.classList.remove(`active`));let n=e.closest(`.specific-apps-container`);if(n){let e=n.querySelector(`.error-msg`);e&&e.remove()}},window.handleBetaSubmit=function(e){e.preventDefault();let t=e.target,n=null;t.querySelectorAll(`.error-msg`).forEach(e=>e.remove()),t.querySelectorAll(`.has-error`).forEach(e=>e.classList.remove(`has-error`));let r=(e,t)=>{let r=document.createElement(`div`);r.className=`error-msg`,r.setAttribute(`role`,`alert`),r.innerHTML=`<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> <span>${t}</span>`;let i=e.closest(`.form-group`)||e;i.appendChild(r),e.classList.contains(`form-input`)&&e.classList.add(`has-error`),n||=i},i={firstName:t.querySelector(`#beta-first-name`)?.value||``,lastName:t.querySelector(`#beta-last-name`)?.value||``,email:t.querySelector(`#beta-email`)?.value||``,platforms:Array.from(t.querySelectorAll(`input[name="${L.devicePlatform}"]:checked`)).map(e=>e.value),preference:t.querySelector(`input[name="${L.testingPreference}"]:checked`)?.value||``,selectedApps:Array.from(t.querySelectorAll(`input[name="${L.specificApps}"]:checked`)).map(e=>e.value),frequency:t.querySelector(`#beta-frequency`)?.value||``,feedback:t.querySelector(`#beta-feedback`)?.value||``},a=W(i);if(!a.isValid)return a.errors.firstName&&r(t.querySelector(`#beta-first-name`)||t,a.errors.firstName),a.errors.lastName&&r(t.querySelector(`#beta-last-name`)||t,a.errors.lastName),a.errors.email&&r(t.querySelector(`#beta-email`)||t,a.errors.email),a.errors.platforms&&r(t.querySelector(`.platform-selection-grid`)||t,a.errors.platforms),a.errors.preference&&r(t.querySelector(`.preference-tiles-group`)||t,a.errors.preference),a.errors.selectedApps&&r(t.querySelector(`#specific-apps-list`)||t,a.errors.selectedApps),a.errors.frequency&&r(t.querySelector(`#beta-frequency`)||t,a.errors.frequency),n&&n.scrollIntoView({behavior:`smooth`,block:`center`}),!1;i.preference===`The Entire EVLOME Suite (All Apps)`&&t.querySelectorAll(`input[name="${L.specificApps}"]`).forEach(e=>{e.checked=!0}),window.betaSubmitted=!0;let o=document.getElementById(`submit-btn`);o&&(o.innerHTML=`<span>Submitting Application...</span>`,o.style.opacity=`0.75`,o.disabled=!0),window.betaTimeout=setTimeout(()=>{if(window.betaSubmitted&&document.getElementById(`beta-form-wrap`)?.style.display!==`none`){let e=document.getElementById(`beta-form-wrap`),t=document.getElementById(`success-message`);e&&t&&(e.style.display=`none`,t.style.display=`flex`,window.scrollTo({top:0,behavior:`smooth`}))}},4500),t.submit()},window.clearBetaError=function(e){let t=e.target,n=t.closest(`.form-group`);if(n){let e=n.querySelector(`.error-msg`);e&&e.remove()}t.classList.remove(`has-error`)};var G=new Map,K=()=>window.location.pathname||`/`,q=!1;window.addEventListener(`scroll`,()=>{q||=(requestAnimationFrame(()=>{G.set(K(),window.scrollY),q=!1}),!0)},{passive:!0});var J=()=>document.getElementById(`ludo-stage`)!==null,Y=e=>{if(G.has(e)){let t=G.get(e);requestAnimationFrame(()=>{window.scrollTo({top:t,left:0,behavior:`instant`}),setTimeout(()=>{window.scrollTo({top:t,left:0,behavior:`instant`})},30)})}else e===`/`||e===``?requestAnimationFrame(()=>{window.scrollTo({top:0,left:0,behavior:`instant`})}):window.scrollTo({top:0,left:0,behavior:`instant`})},X=[window.location.pathname+window.location.search],Z=``,Q=e=>{if(!e)return;let t=K();if(G.set(t,window.scrollY),e.startsWith(`/#`)||e.startsWith(`#`)){let t=e.replace(/^\/?#/,``);if(window.location.pathname===`/`||window.location.pathname===``){let e=document.getElementById(t);e&&e.scrollIntoView({behavior:`smooth`});return}}if(e===`/`&&J()){window.scrollTo({top:0,left:0,behavior:`smooth`});return}Z=window.location.pathname,window.history.pushState({},``,e),X.push(window.location.pathname+window.location.search),$();let n=K();e.includes(`#`)||Y(n)};window.handleHierarchicalBack=(e,t=`/`)=>{e&&e.preventDefault();let n=t||`/`;if(X.length>1&&((X[X.length-2]||``).split(`?`)[0].split(`#`)[0]||`/`)===(n.split(`?`)[0].split(`#`)[0]||`/`)){X.pop(),window.history.back();return}Q(n)},window.handleBackToCategory=(e,t=`matrix-stage`)=>{e&&e.preventDefault(),Q(`/`),setTimeout(()=>{let e=document.getElementById(t);e&&e.scrollIntoView({behavior:`smooth`})},100)},window.scrollToSection=e=>{window.closeMobileMenu();let t=window.location.pathname,n=()=>document.getElementById(e);t!==`/`&&t!==``?(Q(`/`),setTimeout(()=>{let e=n();e&&e.scrollIntoView({behavior:`smooth`})},150)):setTimeout(()=>{let e=n();e&&e.scrollIntoView({behavior:`smooth`})},60)},window.toggleMobileMenu=()=>{let e=document.body.classList.toggle(`menu-open`);document.body.style.overflow=e?`hidden`:``},window.closeMobileMenu=()=>{document.body.classList.remove(`menu-open`),document.body.style.overflow=``},window.addEventListener(`keydown`,e=>{e.key===`Escape`&&window.closeMobileMenu()}),window.handleLogoClick=e=>{e&&e.preventDefault(),window.closeMobileMenu();let t=window.location.pathname;t===`/`||t===``?window.scrollTo({top:0,left:0,behavior:`smooth`}):(Q(`/`),window.scrollTo({top:0,left:0,behavior:`instant`}))};var $=()=>{let e=window.location.pathname;if(e.length>1&&e.endsWith(`/`)&&(e=e.slice(0,-1)),window.location.hash&&window.location.hash.startsWith(`#/`)){let t=window.location.hash.slice(1).split(`?`)[0];window.history.replaceState({},``,t),e=t}let t=new URLSearchParams(window.location.search),n=document.getElementById(`content-area`);if(n){if(e===``||e===`/`)n.innerHTML=O();else if(e===`/ecosystem`||e===`/suite`)J()||(n.innerHTML=O()),requestAnimationFrame(()=>{let e=document.getElementById(`suite-stage`);e&&e.scrollIntoView({behavior:`smooth`})});else if(e===`/games`)J()||(n.innerHTML=O()),requestAnimationFrame(()=>{let e=document.getElementById(`ludo-stage`);e&&e.scrollIntoView({behavior:`smooth`})});else if(e===`/matrix`)J()||(n.innerHTML=O()),requestAnimationFrame(()=>{let e=document.getElementById(`matrix-stage`);e&&e.scrollIntoView({behavior:`smooth`})});else if(e===`/philosophy`||e===`/principles`||e===`/codex`)J()||(n.innerHTML=O()),requestAnimationFrame(()=>{let e=document.getElementById(`principles-section`);e&&e.scrollIntoView({behavior:`smooth`})});else if(e===`/beta`){let e=t.get(`app`);if(n.innerHTML=A(e?r(e):null),e){let t=H;if(t[e]){let n=document.getElementById(`specific-apps-radio`);n&&(n.checked=!0,window.handlePreferenceToggle(`specific`));let r=document.querySelector(`input[value="${t[e]}"]`);r&&(r.checked=!0,window.handleAppCardToggle(r))}}}else if(e===`/privacy`||e.endsWith(`/privacy`)||e.startsWith(`/privacy/`)){let t=``;t=e===`/privacy`?``:e.endsWith(`/privacy`)?e.slice(1).replace(/\/privacy$/,``):e.replace(`/privacy/`,``),n.innerHTML=F(r(t)||null,Z)}else if(e===`/terms`||e.endsWith(`/terms`)||e.startsWith(`/terms/`)){let t=``;t=e===`/terms`?``:e.endsWith(`/terms`)?e.slice(1).replace(/\/terms$/,``):e.replace(`/terms/`,``),n.innerHTML=I(r(t)||null,Z)}else{let t=r(e.slice(1));n.innerHTML=t?k(t):O()}if(window.location.hash&&!window.location.hash.startsWith(`#/`)){let e=window.location.hash.slice(1),t=document.getElementById(e);t&&setTimeout(()=>{t.scrollIntoView({behavior:`smooth`})},50)}}};`scrollRestoration`in history&&(history.scrollRestoration=`manual`),window.addEventListener(`popstate`,()=>{let e=window.location.pathname+window.location.search;X.length>1&&X[X.length-2]===e?X.pop():X.push(e),$(),Y(K())}),document.addEventListener(`click`,e=>{let t=e.target.closest(`a`);if(!t)return;let n=t.getAttribute(`href`);if(n&&!(t.target===`_blank`||n.startsWith(`http://`)||n.startsWith(`https://`)||n.startsWith(`mailto:`)||n.startsWith(`tel:`)||n.startsWith(`javascript:`))){if(n.startsWith(`#`)||n.startsWith(`/#`)){let t=n.replace(/^\/?#/,``);if(window.location.pathname===`/`||window.location.pathname===``){e.preventDefault();let n=document.getElementById(t);n&&n.scrollIntoView({behavior:`smooth`});return}}if((n===`/`||n===`/#`)&&(window.location.pathname===`/`||window.location.pathname===``)){e.preventDefault(),window.scrollTo({top:0,left:0,behavior:`smooth`});return}n.startsWith(`/`)&&(e.preventDefault(),Q(n))}}),$();
+`,window.handlePlatformToggle=function(e){let t=e.closest(`.platform-tile`);t&&(e.checked?t.classList.add(`active`):t.classList.remove(`active`));let n=e.closest(`.form-group`);if(n){let e=n.querySelector(`.error-msg`);e&&e.remove()}},window.handlePreferenceToggle=function(e){let t=document.getElementById(`tile-pref-all`),n=document.getElementById(`tile-pref-specific`),r=document.getElementById(`specific-apps-list`);e===`all`?(t&&t.classList.add(`active`),n&&n.classList.remove(`active`),r&&(r.style.display=`none`),document.querySelectorAll(`.specific-app-checkbox`).forEach(e=>{e.checked=!1;let t=e.closest(`.app-select-card`);t&&t.classList.remove(`active`)})):(t&&t.classList.remove(`active`),n&&n.classList.add(`active`),r&&(r.style.display=`block`));let i=document.querySelector(`.preference-tiles-group`)?.closest(`.form-group`);if(i){let e=i.querySelector(`.error-msg`);e&&e.remove()}},window.handleAppCardToggle=function(e){let t=e.closest(`.app-select-card`);t&&(e.checked?t.classList.add(`active`):t.classList.remove(`active`));let n=e.closest(`.specific-apps-container`);if(n){let e=n.querySelector(`.error-msg`);e&&e.remove()}},window.handleBetaSubmit=function(e){e.preventDefault();let t=e.target,n=null;t.querySelectorAll(`.error-msg`).forEach(e=>e.remove()),t.querySelectorAll(`.has-error`).forEach(e=>e.classList.remove(`has-error`));let r=(e,t)=>{let r=document.createElement(`div`);r.className=`error-msg`,r.setAttribute(`role`,`alert`),r.innerHTML=`<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> <span>${t}</span>`;let i=e.closest(`.form-group`)||e;i.appendChild(r),e.classList.contains(`form-input`)&&e.classList.add(`has-error`),n||=i},i={firstName:t.querySelector(`#beta-first-name`)?.value||``,lastName:t.querySelector(`#beta-last-name`)?.value||``,email:t.querySelector(`#beta-email`)?.value||``,platforms:Array.from(t.querySelectorAll(`input[name="${H.devicePlatform}"]:checked`)).map(e=>e.value),preference:t.querySelector(`input[name="${H.testingPreference}"]:checked`)?.value||``,selectedApps:Array.from(t.querySelectorAll(`input[name="${H.specificApps}"]:checked`)).map(e=>e.value),frequency:t.querySelector(`#beta-frequency`)?.value||``,feedback:t.querySelector(`#beta-feedback`)?.value||``},a=ge(i);if(!a.isValid)return a.errors.firstName&&r(t.querySelector(`#beta-first-name`)||t,a.errors.firstName),a.errors.lastName&&r(t.querySelector(`#beta-last-name`)||t,a.errors.lastName),a.errors.email&&r(t.querySelector(`#beta-email`)||t,a.errors.email),a.errors.platforms&&r(t.querySelector(`.platform-selection-grid`)||t,a.errors.platforms),a.errors.preference&&r(t.querySelector(`.preference-tiles-group`)||t,a.errors.preference),a.errors.selectedApps&&r(t.querySelector(`#specific-apps-list`)||t,a.errors.selectedApps),a.errors.frequency&&r(t.querySelector(`#beta-frequency`)||t,a.errors.frequency),n&&n.scrollIntoView({behavior:`smooth`,block:`center`}),!1;i.preference===`The Entire EVLOME Suite (All Apps)`&&t.querySelectorAll(`input[name="${H.specificApps}"]`).forEach(e=>{e.checked=!0}),window.betaSubmitted=!0;let o=document.getElementById(`submit-btn`);o&&(o.innerHTML=`<span>Submitting Application...</span>`,o.style.opacity=`0.75`,o.disabled=!0),window.betaTimeout=setTimeout(()=>{if(window.betaSubmitted&&document.getElementById(`beta-form-wrap`)?.style.display!==`none`){let e=document.getElementById(`beta-form-wrap`),t=document.getElementById(`success-message`);e&&t&&(e.style.display=`none`,t.style.display=`flex`,window.scrollTo({top:0,behavior:`smooth`}))}},4500),t.submit()},window.clearBetaError=function(e){let t=e.target,n=t.closest(`.form-group`);if(n){let e=n.querySelector(`.error-msg`);e&&e.remove()}t.classList.remove(`has-error`)};var G=new Map,K=()=>window.location.pathname||`/`,q=!1;window.addEventListener(`scroll`,()=>{q||=(requestAnimationFrame(()=>{G.set(K(),window.scrollY),q=!1}),!0)},{passive:!0});var J=()=>document.getElementById(`ludo-stage`)!==null,Y=e=>{if(G.has(e)){let t=G.get(e);requestAnimationFrame(()=>{window.scrollTo({top:t,left:0,behavior:`instant`}),setTimeout(()=>{window.scrollTo({top:t,left:0,behavior:`instant`})},30)})}else e===`/`||e===``?requestAnimationFrame(()=>{window.scrollTo({top:0,left:0,behavior:`instant`})}):window.scrollTo({top:0,left:0,behavior:`instant`})},X=[window.location.pathname+window.location.search],Z=``,Q=e=>{if(!e)return;let t=K();if(G.set(t,window.scrollY),e.startsWith(`/#`)||e.startsWith(`#`)){let t=e.replace(/^\/?#/,``);if(window.location.pathname===`/`||window.location.pathname===``){let e=document.getElementById(t);e&&e.scrollIntoView({behavior:`smooth`});return}}if(e===`/`&&J()){window.scrollTo({top:0,left:0,behavior:`smooth`});return}Z=window.location.pathname,window.history.pushState({},``,e),X.push(window.location.pathname+window.location.search),$();let n=K();e.includes(`#`)||Y(n)};window.handleHierarchicalBack=(e,t=`/`)=>{e&&e.preventDefault();let n=t||`/`;if(X.length>1&&((X[X.length-2]||``).split(`?`)[0].split(`#`)[0]||`/`)===(n.split(`?`)[0].split(`#`)[0]||`/`)){X.pop(),window.history.back();return}Q(n)},window.handleBackToCategory=(e,t=`matrix-stage`)=>{e&&e.preventDefault(),Q(`/`),setTimeout(()=>{let e=document.getElementById(t);e&&e.scrollIntoView({behavior:`smooth`})},100)},window.scrollToSection=e=>{window.closeMobileMenu();let t=window.location.pathname,n=()=>document.getElementById(e);t!==`/`&&t!==``?(Q(`/`),setTimeout(()=>{let e=n();e&&e.scrollIntoView({behavior:`smooth`})},150)):setTimeout(()=>{let e=n();e&&e.scrollIntoView({behavior:`smooth`})},60)},window.toggleMobileMenu=()=>{let e=document.body.classList.toggle(`menu-open`);document.body.style.overflow=e?`hidden`:``},window.closeMobileMenu=()=>{document.body.classList.remove(`menu-open`),document.body.style.overflow=``},window.addEventListener(`keydown`,e=>{e.key===`Escape`&&window.closeMobileMenu()}),window.handleLogoClick=e=>{e&&e.preventDefault(),window.closeMobileMenu();let t=window.location.pathname;t===`/`||t===``?window.scrollTo({top:0,left:0,behavior:`smooth`}):(Q(`/`),window.scrollTo({top:0,left:0,behavior:`instant`}))};var $=()=>{let e=window.location.pathname;if(e.length>1&&e.endsWith(`/`)&&(e=e.slice(0,-1)),window.location.hash&&window.location.hash.startsWith(`#/`)){let t=window.location.hash.slice(1).split(`?`)[0];window.history.replaceState({},``,t),e=t}let t=new URLSearchParams(window.location.search),n=document.getElementById(`content-area`);if(n){if(e===``||e===`/`)n.innerHTML=I();else if(e===`/ecosystem`||e===`/suite`)J()||(n.innerHTML=I()),requestAnimationFrame(()=>{let e=document.getElementById(`suite-stage`);e&&e.scrollIntoView({behavior:`smooth`})});else if(e===`/games`)J()||(n.innerHTML=I()),requestAnimationFrame(()=>{let e=document.getElementById(`games-stage`);e&&e.scrollIntoView({behavior:`smooth`})});else if(e===`/matrix`||e===`/health`||e===`/apps`)J()||(n.innerHTML=I()),requestAnimationFrame(()=>{let e=document.getElementById(`suite-stage`);e&&e.scrollIntoView({behavior:`smooth`})});else if(e===`/one`||e===`/evlome-one`)J()||(n.innerHTML=I()),requestAnimationFrame(()=>{let e=document.getElementById(`one-stage`);e&&e.scrollIntoView({behavior:`smooth`})});else if(e===`/philosophy`||e===`/principles`||e===`/codex`)J()||(n.innerHTML=I()),window.scrollTo({top:0,behavior:`smooth`});else if(e===`/beta`){let e=t.get(`app`);if(n.innerHTML=re(e?r(e):null),e){let t=W;if(t[e]){let n=document.getElementById(`specific-apps-radio`);n&&(n.checked=!0,window.handlePreferenceToggle(`specific`));let r=document.querySelector(`input[value="${t[e]}"]`);r&&(r.checked=!0,window.handleAppCardToggle(r))}}}else if(e===`/privacy`||e.endsWith(`/privacy`)||e.startsWith(`/privacy/`)){let t=``;t=e===`/privacy`?``:e.endsWith(`/privacy`)?e.slice(1).replace(/\/privacy$/,``):e.replace(`/privacy/`,``),n.innerHTML=ue(r(t)||null,Z)}else if(e===`/terms`||e.endsWith(`/terms`)||e.startsWith(`/terms/`)){let t=``;t=e===`/terms`?``:e.endsWith(`/terms`)?e.slice(1).replace(/\/terms$/,``):e.replace(`/terms/`,``),n.innerHTML=de(r(t)||null,Z)}else{let t=r(e.slice(1));n.innerHTML=t?ne(t):I()}if(requestAnimationFrame(()=>{window.updateNutritionUI&&window.updateNutritionUI(),window.updateWorkoutUI&&window.updateWorkoutUI()}),window.location.hash&&!window.location.hash.startsWith(`#/`)){let e=window.location.hash.slice(1),t=document.getElementById(e);t&&setTimeout(()=>{t.scrollIntoView({behavior:`smooth`})},50)}}};`scrollRestoration`in history&&(history.scrollRestoration=`manual`),window.addEventListener(`popstate`,()=>{let e=window.location.pathname+window.location.search;X.length>1&&X[X.length-2]===e?X.pop():X.push(e),$(),Y(K())}),document.addEventListener(`click`,e=>{let t=e.target.closest(`a`);if(!t)return;let n=t.getAttribute(`href`);if(n&&!(t.target===`_blank`||n.startsWith(`http://`)||n.startsWith(`https://`)||n.startsWith(`mailto:`)||n.startsWith(`tel:`)||n.startsWith(`javascript:`))){if(n.startsWith(`#`)||n.startsWith(`/#`)){let t=n.replace(/^\/?#/,``);if(window.location.pathname===`/`||window.location.pathname===``){e.preventDefault();let n=document.getElementById(t);n&&n.scrollIntoView({behavior:`smooth`});return}}if((n===`/`||n===`/#`)&&(window.location.pathname===`/`||window.location.pathname===``)){e.preventDefault(),window.scrollTo({top:0,left:0,behavior:`smooth`});return}n.startsWith(`/`)&&(e.preventDefault(),Q(n))}}),$();
