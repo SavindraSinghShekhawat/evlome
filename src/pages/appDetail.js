@@ -79,17 +79,17 @@ export const renderAppPage = (app) => {
               </div>
             </a>
           ` : ''}
-          <a href="/#matrix-stage" class="btn-glass" onclick="window.handleBackToCategory(event, 'matrix-stage')">
-            All Products Matrix
+          <a href="/#${parentStage}" class="btn-glass" onclick="window.handleBackToCategory(event, '${parentStage}')">
+            Return to ${parentLabel}
           </a>
         </div>
       ` : `
         <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; align-items: center;">
           <a href="/beta?app=${app.id}" class="btn-primary-glow" style="box-shadow: 0 4px 20px ${app.accentColor}35;">
-            ${app.status === 'beta' ? 'Join the Beta &rarr;' : 'Request Early Preview &rarr;'}
+            Join Beta &rarr;
           </a>
-          <a href="/#matrix-stage" class="btn-glass" onclick="window.handleBackToCategory(event, 'matrix-stage')">
-            All Products Matrix
+          <a href="/#${parentStage}" class="btn-glass" onclick="window.handleBackToCategory(event, '${parentStage}')">
+            Return to ${parentLabel}
           </a>
         </div>
       `}

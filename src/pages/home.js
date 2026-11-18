@@ -1192,11 +1192,11 @@ export const renderHome = () => {
           </div>
 
           <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
-            <a href="/cycle" class="btn-primary-glow" onclick="if(event){ event.preventDefault(); navigate('/cycle'); }">
-              Explore Architecture &rarr;
+            <a href="/beta?app=cycle" class="btn-primary-glow" onclick="if(event){ event.preventDefault(); navigate('/beta?app=cycle'); }">
+              Join Beta &rarr;
             </a>
-            <a href="/beta?app=cycle" class="btn-glass" onclick="if(event){ event.preventDefault(); navigate('/beta?app=cycle'); }">
-              Join Beta
+            <a href="/cycle" class="btn-glass" onclick="if(event){ event.preventDefault(); navigate('/cycle'); }">
+              Overview
             </a>
           </div>
         </div>
@@ -1265,7 +1265,7 @@ export const renderHome = () => {
           </div>
 
           <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
-            <a href="/beta?app=${calc.id}" class="btn-primary-glow" style="box-shadow: 0 4px 16px rgba(124, 58, 237, 0.25);">
+            <a href="/beta?app=${calc.id}" class="btn-primary-glow" onclick="if(event){ event.preventDefault(); navigate('/beta?app=${calc.id}'); }">
               Join Beta &rarr;
             </a>
             <a href="/${calc.id}" class="btn-glass" onclick="if(event){ event.preventDefault(); navigate('/${calc.id}'); }">
@@ -1368,11 +1368,11 @@ export const renderHome = () => {
           </div>
 
           <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
-            <a href="/nutrition" class="btn-primary-glow" onclick="if(event){ event.preventDefault(); navigate('/nutrition'); }">
-              Explore Architecture &rarr;
+            <a href="/beta?app=nutrition" class="btn-primary-glow" onclick="if(event){ event.preventDefault(); navigate('/beta?app=nutrition'); }">
+              Join Beta &rarr;
             </a>
-            <a href="/beta?app=nutrition" class="btn-glass" onclick="if(event){ event.preventDefault(); navigate('/beta?app=nutrition'); }">
-              Join Beta
+            <a href="/nutrition" class="btn-glass" onclick="if(event){ event.preventDefault(); navigate('/nutrition'); }">
+              Overview
             </a>
           </div>
         </div>
@@ -1416,11 +1416,11 @@ export const renderHome = () => {
           </div>
 
           <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
-            <a href="/activity" class="btn-primary-glow" onclick="if(event){ event.preventDefault(); navigate('/activity'); }">
-              Explore Architecture &rarr;
+            <a href="/beta?app=activity" class="btn-primary-glow" onclick="if(event){ event.preventDefault(); navigate('/beta?app=activity'); }">
+              Join Beta &rarr;
             </a>
-            <a href="/beta?app=activity" class="btn-glass" onclick="if(event){ event.preventDefault(); navigate('/beta?app=activity'); }">
-              Join Beta
+            <a href="/activity" class="btn-glass" onclick="if(event){ event.preventDefault(); navigate('/activity'); }">
+              Overview
             </a>
           </div>
         </div>
@@ -1598,8 +1598,8 @@ export const renderHome = () => {
           </div>
 
           <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; margin-top: 1.5rem;">
-            <a href="/beta?app=${pawdoku.id}" class="btn-primary-glow" style="box-shadow: 0 4px 16px rgba(234, 88, 12, 0.25);">
-              Request Preview &rarr;
+            <a href="/beta?app=${pawdoku.id}" class="btn-primary-glow" onclick="if(event){ event.preventDefault(); navigate('/beta?app=${pawdoku.id}'); }">
+              Join Beta &rarr;
             </a>
             <a href="/${pawdoku.id}" class="btn-glass" onclick="if(event){ event.preventDefault(); navigate('/${pawdoku.id}'); }">
               Overview
