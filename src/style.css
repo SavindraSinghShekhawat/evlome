@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap');
-
 /* ==========================================================================
    EVLOME Design Tokens — Apple-Grade Aesthetic (#f5f5f7 & Porcelain White)
    ========================================================================== */
@@ -37,8 +35,8 @@
   --radius-md: 12px;
   --radius-sm: 8px;
 
-  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-mono: 'JetBrains Mono', SFMono-Regular, monospace;
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
   --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
   --transition-fast: all 0.2s ease;
@@ -73,8 +71,10 @@ body {
   overflow-x: hidden;
   position: relative;
   line-height: 1.6;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.012em;
   text-rendering: optimizeLegibility;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  font-optical-sizing: auto;
 }
 
 /* Delicate Ambient Light Aura */
@@ -274,10 +274,10 @@ body.menu-open .burger-line.line-bottom {
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-pill);
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 10.5px;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.09em;
   color: var(--text-secondary);
   margin-bottom: 1.5rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
@@ -290,14 +290,32 @@ body.menu-open .burger-line.line-bottom {
   box-shadow: 0 0 6px #10b981;
 }
 
+/* Global Tabular Figures for All Health Telemetry, Timers & Metrics */
+.stat-val,
+.spec-val,
+.act-stat-val,
+.act-weight-input,
+.act-reps-input,
+.calc-screen-display,
+.calc-output-val,
+.nutr-circle-stat,
+.nutr-cal-current,
+.time-val,
+.dice-result-log,
+.hero-matrix-bar strong,
+.codex-num {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
 .hero-headline {
   font-size: clamp(3.2rem, 7vw, 6.2rem);
-  font-weight: 900;
-  line-height: 1.15;
-  letter-spacing: -0.045em;
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.04em;
   max-width: 980px;
   margin-bottom: 1.5rem;
-  padding-bottom: 0.18em;
+  padding-bottom: 0.12em;
 }
 
 .gradient-text {
