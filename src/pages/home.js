@@ -1083,10 +1083,10 @@ export const renderHome = () => {
 
     <div class="hero-actions-row">
       <button type="button" class="btn-primary-glow" onclick="window.scrollToSection('suite-stage')">
-        <span>The Health Suite</span> &darr;
+        <span>The Health Suite</span>
       </button>
       <button type="button" class="btn-glass" onclick="window.scrollToSection('games-stage')">
-        <span>EVLOME Games</span> &darr;
+        <span>EVLOME Games</span>
       </button>
     </div>
 
