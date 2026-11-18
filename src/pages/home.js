@@ -1659,12 +1659,12 @@ export const renderHome = () => {
     <div class="one-container">
       <div class="one-header-center">
         <span class="stage-badge">
-          <span class="badge-dot" style="background: #10b981; box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);"></span>
-          EVLOME ONE &bull; THE HEALTH MEMBERSHIP
+          <span class="badge-dot" style="background: #f59e0b; box-shadow: 0 0 8px rgba(245, 158, 11, 0.6);"></span>
+          EVLOME ONE &bull; UNIVERSAL MEMBERSHIP
         </span>
-        <h2 class="stage-title">The Health Suite.<br/>Games Included Free.</h2>
+        <h2 class="stage-title">All Health Disciplines.<br/>All Tactile Games. One Pass.</h2>
         <p class="stage-subtitle-center">
-          A single universal membership that unlocks every advanced tool across the EVLOME Health Suite — with private multi-device sync, and full access to EVLOME Games as a complimentary bonus. Available inside any EVLOME app.
+          The all-access membership uniting the EVLOME Health Suite and EVLOME Games. Subscribe to individual <strong>Evlome Health Pass</strong> or <strong>Evlome Game Pass</strong> inside any app, or unlock everything with <strong>EVLOME ONE</strong>.
         </p>
       </div>
 
@@ -1674,12 +1674,13 @@ export const renderHome = () => {
           <div class="one-card-icon-group">
             ${suiteApps.map(app => `<img src="${app.icon}" alt="${app.title} Logo" class="one-mini-logo" width="36" height="36" loading="lazy" decoding="async" />`).join('')}
           </div>
-          <span class="one-card-tag" style="color: #059669;">PRIMARY DISCIPLINE</span>
-          <h3 class="one-card-title">The Full Health Suite</h3>
+          <span class="one-card-tag" style="color: #059669;">EVLOME HEALTH PASS &bull; INCLUDED</span>
+          <h3 class="one-card-title">Precision Health Suite</h3>
           <p class="one-card-desc">
-            Complete telemetry across metabolic energy, strength training, hormonal rhythm, and clinical biometrics.
+            Complete access across Nutrition, Activity, Cycle, and Calculator+ with upgraded insights, clinical biometrics, and upcoming health features.
           </p>
           <ul class="one-card-perks">
+            <li>✓ Advanced health insights &amp; upcoming features</li>
             <li>✓ Nutrition: Whole-food logging &amp; fasting tracking</li>
             <li>✓ Activity: Workout sets, plate math &amp; rest timers</li>
             <li>✓ Cycle: Hormonal rhythm &amp; ovulation forecasting</li>
@@ -1687,14 +1688,32 @@ export const renderHome = () => {
           </ul>
         </div>
 
+        <div class="one-card" style="border-color: rgba(99, 102, 241, 0.25); background: linear-gradient(180deg, rgba(99, 102, 241, 0.03) 0%, rgba(255, 255, 255, 0.6) 100%);">
+          <div class="one-card-icon-group">
+            ${gamesData.map(app => `<img src="${app.icon}" alt="${app.title} Logo" class="one-mini-logo" width="36" height="36" loading="lazy" decoding="async" />`).join('')}
+          </div>
+          <span class="one-card-tag" style="color: #6366f1;">EVLOME GAME PASS &bull; INCLUDED</span>
+          <h3 class="one-card-title">Tactile Games Pass</h3>
+          <p class="one-card-desc">
+            An ad-free gameplay experience across EVLOME Games, with exclusive VIP cosmetics, custom boards, and bonus perks.
+          </p>
+          <ul class="one-card-perks">
+            <li>✓ Ad-free experience across all EVLOME games</li>
+            <li>✓ Ludo Prince: VIP royal boards &amp; golden dice</li>
+            <li>✓ Monthly bonus coin drops &amp; VIP perks</li>
+            <li>✓ Pawdoku cozy pet haven &amp; sanctuary decor</li>
+            <li>✓ All future game releases automatically included</li>
+          </ul>
+        </div>
+
         <div class="one-card">
           <div class="one-card-icon-wrap" style="background: rgba(245, 158, 11, 0.1); color: #d97706;">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>
           </div>
-          <span class="one-card-tag" style="color: #d97706;">TOOLS &amp; CLOUD VAULT</span>
+          <span class="one-card-tag" style="color: #d97706;">VAULT &amp; CONTINUITY &bull; INCLUDED</span>
           <h3 class="one-card-title">Private Cloud Sync</h3>
           <p class="one-card-desc">
-            Private multi-device sync across iPhone, iPad, and Android with zero-custody on-device encryption. Seamless continuity across your health logs.
+            Private multi-device sync across iPhone, iPad, and Android with zero-custody on-device encryption. Seamless continuity across your health logs and game progress.
           </p>
           <ul class="one-card-perks">
             <li>✓ Encrypted cross-device cloud sync</li>
@@ -1703,32 +1722,15 @@ export const renderHome = () => {
             <li>✓ Automatic backup for health entries</li>
           </ul>
         </div>
-
-        <div class="one-card" style="border-color: rgba(99, 102, 241, 0.25); background: linear-gradient(180deg, rgba(99, 102, 241, 0.03) 0%, rgba(255, 255, 255, 0.6) 100%);">
-          <div class="one-card-icon-group">
-            ${gamesData.map(app => `<img src="${app.icon}" alt="${app.title} Logo" class="one-mini-logo" width="36" height="36" loading="lazy" decoding="async" />`).join('')}
-          </div>
-          <span class="one-card-tag" style="color: #6366f1;">COMPLIMENTARY BONUS</span>
-          <h3 class="one-card-title">EVLOME Games Included</h3>
-          <p class="one-card-desc">
-            Every health membership includes EVLOME Games as a complimentary addition, with royal cosmetics and VIP perks.
-          </p>
-          <ul class="one-card-perks">
-            <li>✓ Ludo Prince: VIP royal boards &amp; golden dice</li>
-            <li>✓ Monthly bonus coin grants &amp; VIP perks</li>
-            <li>✓ Pawdoku cozy pet sanctuary decor unlocks</li>
-            <li>✓ All future game releases included free</li>
-          </ul>
-        </div>
       </div>
 
       <!-- Feature Highlight Strip (Apple Bento Banner - No Prices) -->
       <div class="one-membership-strip">
         <div class="one-strip-col">
           <div class="one-strip-eyebrow">ONE UNIFIED ACCOUNT</div>
-          <h3 class="one-strip-title">Unlock Once. Enjoy Across Every Device.</h3>
+          <h3 class="one-strip-title">Subscribe by Discipline or Unlock Everything.</h3>
           <p class="one-strip-desc">
-            Subscribe in any EVLOME app. Your membership instantly activates across every app and device linked to your EVLOME ID. Cancel anytime. All future health tools, suite features, and complimentary games are automatically included with zero upgrade fees.
+            Subscribe to Evlome Health Pass or Evlome Game Pass inside any app, or unlock the entire ecosystem with EVLOME ONE. Your membership instantly activates across every app and device linked to your EVLOME ID. Cancel anytime.
           </p>
         </div>
         <div class="one-strip-pills">
@@ -1746,7 +1748,7 @@ export const renderHome = () => {
           </div>
           <div class="one-feature-badge">
             <svg class="badge-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            <span>Games &amp; Future Apps Included Free</span>
+            <span>Health &amp; Games Combined</span>
           </div>
         </div>
       </div>
