@@ -1107,11 +1107,11 @@ export const renderHome = () => {
     <div class="discipline-header-center">
       <span class="stage-badge">
         <span class="badge-dot" style="background: #10b981; box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);"></span>
-        THE HEALTH SUITE &bull; SOVEREIGN VITALITY OS
+        THE HEALTH SUITE
       </span>
-      <h2 class="stage-title">Complete Health Telemetry. Sovereign on Device.</h2>
+      <h2 class="stage-title">Health Telemetry. On Device.</h2>
       <p class="stage-subtitle-center">
-        Four interconnected disciplines for metabolic energy, strength, hormonal rhythm, and clinical precision &mdash; encrypted 100% on device.
+        Four interconnected disciplines for metabolic energy, strength, hormonal rhythm, and clinical precision.
       </p>
 
       <!-- 4-App Selector Tabs (With Official App Logos) -->
@@ -1164,7 +1164,6 @@ export const renderHome = () => {
               <span class="pulse-dot purple"></span>
               BETA
             </span>
-            <span class="stage-discipline-badge" style="color: #e11d48; border-color: rgba(225, 29, 72, 0.25);">The Health Suite &bull; Biological Rhythm</span>
           </div>
 
           <div class="stage-app-title-row">
@@ -1174,7 +1173,7 @@ export const renderHome = () => {
 
           <div class="stage-subtitle" style="color: #e11d48;">Hormonal rhythm. On-device privacy.</div>
           <p class="stage-desc">
-            Four-phase hormonal tracking with Roetzer sympto-thermal temperature shift and private ovulation forecasting.
+            Four-phase hormonal tracking with Roetzer sympto-thermal BBT shift and private ovulation forecasting.
           </p>
 
           <div class="stage-specs-grid">
@@ -1194,7 +1193,7 @@ export const renderHome = () => {
 
           <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
             <a href="/cycle" class="btn-primary-glow" onclick="if(event){ event.preventDefault(); navigate('/cycle'); }">
-              Explore Cycle Architecture &rarr;
+              Explore Architecture &rarr;
             </a>
             <a href="/beta?app=cycle" class="btn-glass" onclick="if(event){ event.preventDefault(); navigate('/beta?app=cycle'); }">
               Join Beta
@@ -1238,7 +1237,6 @@ export const renderHome = () => {
               <span class="pulse-dot purple"></span>
               BETA
             </span>
-            <span class="stage-discipline-badge" style="color: #7c3aed; border-color: rgba(124, 58, 237, 0.25);">The Health Suite &bull; Clinical Biometrics</span>
           </div>
 
           <div class="stage-app-title-row">
@@ -1268,10 +1266,10 @@ export const renderHome = () => {
 
           <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
             <a href="/beta?app=${calc.id}" class="btn-primary-glow" style="box-shadow: 0 4px 16px rgba(124, 58, 237, 0.25);">
-              Join the Beta &rarr;
+              Join Beta &rarr;
             </a>
             <a href="/${calc.id}" class="btn-glass" onclick="if(event){ event.preventDefault(); navigate('/${calc.id}'); }">
-              Specifications
+              Overview
             </a>
           </div>
         </div>
@@ -1342,7 +1340,6 @@ export const renderHome = () => {
               <span class="pulse-dot amber"></span>
               DEV
             </span>
-            <span class="stage-discipline-badge" style="color: #059669; border-color: rgba(5, 150, 105, 0.25);">The Health Suite &bull; Metabolic Balance</span>
           </div>
 
           <div class="stage-app-title-row">
@@ -1372,7 +1369,7 @@ export const renderHome = () => {
 
           <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
             <a href="/nutrition" class="btn-primary-glow" onclick="if(event){ event.preventDefault(); navigate('/nutrition'); }">
-              Explore Nutrition Architecture &rarr;
+              Explore Architecture &rarr;
             </a>
             <a href="/beta?app=nutrition" class="btn-glass" onclick="if(event){ event.preventDefault(); navigate('/beta?app=nutrition'); }">
               Join Beta
@@ -1391,7 +1388,6 @@ export const renderHome = () => {
               <span class="pulse-dot amber"></span>
               DEV
             </span>
-            <span class="stage-discipline-badge" style="color: #d97706; border-color: rgba(217, 119, 6, 0.25);">The Health Suite &bull; Kinetic Performance</span>
           </div>
 
           <div class="stage-app-title-row">
@@ -1421,7 +1417,7 @@ export const renderHome = () => {
 
           <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
             <a href="/activity" class="btn-primary-glow" onclick="if(event){ event.preventDefault(); navigate('/activity'); }">
-              Explore Activity Architecture &rarr;
+              Explore Architecture &rarr;
             </a>
             <a href="/beta?app=activity" class="btn-glass" onclick="if(event){ event.preventDefault(); navigate('/beta?app=activity'); }">
               Join Beta
@@ -1439,11 +1435,11 @@ export const renderHome = () => {
     <div class="discipline-header-center">
       <span class="stage-badge">
         <span class="badge-dot" style="background: #0284c7; box-shadow: 0 0 8px rgba(2, 132, 199, 0.6);"></span>
-        EVLOME GAMES &bull; TACTILE JOY &amp; MINDFUL PLAY
+        EVLOME GAMES
       </span>
       <h2 class="stage-title">Pure Play. Zero Compromise.</h2>
       <p class="stage-subtitle-center">
-        Tactile physics, physical dice inertia, and mindful puzzle sanctuaries. Real-time online and local multiplayer with zero predatory countdown timers.
+        Tactile physics, physical dice inertia, and mindful puzzles. Zero ads or artificial countdowns.
       </p>
 
       <!-- 2-Game Selector Tabs (With Official App Logos) -->
@@ -1478,7 +1474,6 @@ export const renderHome = () => {
               <span class="pulse-dot green"></span>
               LIVE
             </span>
-            <span class="stage-discipline-badge">EVLOME Games</span>
           </div>
 
           <div class="stage-app-title-row">
@@ -1488,7 +1483,7 @@ export const renderHome = () => {
 
           <div class="stage-subtitle" style="color: #0284c7;">Classic board play. Pure tactile physics.</div>
           <p class="stage-desc">
-            The traditional race to home, engineered with physical dice inertia. Real-time multiplayer, local pass-and-play, and adaptive offline bot intelligence.
+            The classic race to home with physical dice inertia. Real-time multiplayer, local pass-and-play, and offline bot intelligence.
           </p>
 
           <div class="stage-specs-grid">
@@ -1535,7 +1530,7 @@ export const renderHome = () => {
         <div class="interactive-arena-card ludo-dice-only-card">
           <div class="arena-room-pill">
             <span class="pulse-green"></span>
-            ROYAL DICE ARENA &bull; LIVE ENGINE
+            ROYAL DICE ARENA
           </div>
 
           <!-- Tactile Dice Halo with Orbital Ring -->
@@ -1562,7 +1557,7 @@ export const renderHome = () => {
           </button>
 
           <div class="dice-result-log" id="dice-log-text">
-            <span style="color: var(--text-muted);">Tap dice or button to roll &bull; Physical inertia</span>
+            <span style="color: var(--text-muted);">Tap dice to roll &bull; Physical inertia</span>
           </div>
         </div>
       </div>
@@ -1575,7 +1570,6 @@ export const renderHome = () => {
               <span class="pulse-dot amber"></span>
               DEV
             </span>
-            <span class="stage-discipline-badge">EVLOME Games</span>
           </div>
 
           <div class="stage-app-title-row">
@@ -1585,7 +1579,7 @@ export const renderHome = () => {
 
           <div class="stage-subtitle" style="color: #ea580c;">Star Battle logic. Zero rush.</div>
           <p class="stage-desc">
-            One companion per row, column, and color region. Pure deductive strategy in a tranquil pastel pet sanctuary.
+            One companion per row, column, and color region. Pure deductive strategy in a tranquil pet sanctuary.
           </p>
 
           <div class="stage-specs-grid">
@@ -1605,10 +1599,10 @@ export const renderHome = () => {
 
           <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; margin-top: 1.5rem;">
             <a href="/beta?app=${pawdoku.id}" class="btn-primary-glow" style="box-shadow: 0 4px 16px rgba(234, 88, 12, 0.25);">
-              Request Early Preview &rarr;
+              Request Preview &rarr;
             </a>
             <a href="/${pawdoku.id}" class="btn-glass" onclick="if(event){ event.preventDefault(); navigate('/${pawdoku.id}'); }">
-              Sanctuary Overview
+              Overview
             </a>
           </div>
         </div>
@@ -1664,7 +1658,7 @@ export const renderHome = () => {
         </span>
         <h2 class="stage-title">EVLOME ONE</h2>
         <p class="stage-subtitle-center">
-          One membership for the entire suite. Subscribe to <strong>Evlome Health Pass</strong> or <strong>Evlome Game Pass</strong> in any app, or unlock everything with <strong>EVLOME ONE</strong>.
+          One membership for the entire suite. Subscribe to Health Pass, Game Pass, or unlock everything with EVLOME ONE.
         </p>
       </div>
 
@@ -1674,17 +1668,16 @@ export const renderHome = () => {
           <div class="one-card-icon-group">
             ${suiteApps.map(app => `<img src="${app.icon}" alt="${app.title} Logo" class="one-mini-logo" width="36" height="36" loading="lazy" decoding="async" />`).join('')}
           </div>
-          <span class="one-card-tag" style="color: #059669;">EVLOME HEALTH PASS &bull; INCLUDED</span>
+          <span class="one-card-tag" style="color: #059669;">EVLOME HEALTH PASS</span>
           <h3 class="one-card-title">Precision Health Suite</h3>
           <p class="one-card-desc">
-            Complete access across Nutrition, Activity, Cycle, and Calculator+ with upgraded insights, clinical biometrics, and upcoming health features.
+            Unified access across Nutrition, Activity, Cycle, and Calculator+ with clinical biometrics and private telemetry.
           </p>
           <ul class="one-card-perks">
-            <li>✓ Advanced health insights &amp; upcoming features</li>
-            <li>✓ Nutrition: Whole-food logging &amp; fasting tracking</li>
-            <li>✓ Activity: Workout sets, plate math &amp; rest timers</li>
-            <li>✓ Cycle: Hormonal rhythm &amp; ovulation forecasting</li>
-            <li>✓ Calculator+: 50+ clinical metabolic &amp; math models</li>
+            <li>✓ Whole-food logging &amp; fasting timers</li>
+            <li>✓ Barbell plate math &amp; rest timers</li>
+            <li>✓ Roetzer cycle &amp; ovulation tracking</li>
+            <li>✓ 50+ clinical metabolic models</li>
           </ul>
         </div>
 
@@ -1692,16 +1685,16 @@ export const renderHome = () => {
           <div class="one-card-icon-group">
             ${gamesData.map(app => `<img src="${app.icon}" alt="${app.title} Logo" class="one-mini-logo" width="36" height="36" loading="lazy" decoding="async" />`).join('')}
           </div>
-          <span class="one-card-tag" style="color: #6366f1;">EVLOME GAME PASS &bull; INCLUDED</span>
+          <span class="one-card-tag" style="color: #6366f1;">EVLOME GAME PASS</span>
           <h3 class="one-card-title">Ad-Free Games Pass</h3>
           <p class="one-card-desc">
-            A pure, uninterrupted ad-free experience across all EVLOME games.
+            Pure, uninterrupted play across all current and future EVLOME board games and mindful puzzle sanctuaries.
           </p>
           <ul class="one-card-perks">
-            <li>✓ Ad-free gameplay across all EVLOME games</li>
-            <li>✓ Uninterrupted online multiplayer &amp; pass-and-play</li>
-            <li>✓ Zero commercial interruptions</li>
-            <li>✓ All future game releases automatically included</li>
+            <li>✓ Zero ads or commercial interruptions</li>
+            <li>✓ Online multiplayer &amp; pass-and-play</li>
+            <li>✓ Offline AI bot intelligence</li>
+            <li>✓ All future game releases included</li>
           </ul>
         </div>
 
@@ -1709,16 +1702,16 @@ export const renderHome = () => {
           <div class="one-card-icon-wrap" style="background: rgba(245, 158, 11, 0.1); color: #d97706;">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>
           </div>
-          <span class="one-card-tag" style="color: #d97706;">HEALTH VAULT &bull; INCLUDED</span>
-          <h3 class="one-card-title">Private Health Cloud Sync</h3>
+          <span class="one-card-tag" style="color: #d97706;">HEALTH VAULT</span>
+          <h3 class="one-card-title">Private Cloud Sync</h3>
           <p class="one-card-desc">
-            Encrypted multi-device sync built specifically for your private health, nutrition, workout, and cycle data. Zero-custody, zero tracking, and on-device decrypted.
+            Encrypted multi-device continuity for your health, workout, and cycle telemetry. Zero custody, on-device decrypted.
           </p>
           <ul class="one-card-perks">
-            <li>✓ Encrypted sync for private health history</li>
-            <li>✓ Seamless continuity across iPhone, iPad &amp; Android</li>
-            <li>✓ Zero tracking, profiling, or cloud custody</li>
-            <li>✓ 100% offline-first with background backup</li>
+            <li>✓ Continuity across iPhone, iPad &amp; Android</li>
+            <li>✓ End-to-end encrypted backup</li>
+            <li>✓ Zero profiling or third-party custody</li>
+            <li>✓ 100% offline-first availability</li>
           </ul>
         </div>
       </div>
@@ -1726,20 +1719,20 @@ export const renderHome = () => {
       <!-- Feature Highlight Strip (Apple Bento Banner - No Prices) -->
       <div class="one-membership-strip">
         <div class="one-strip-col">
-          <div class="one-strip-eyebrow">ONE UNIFIED ACCOUNT</div>
-          <h3 class="one-strip-title">One Account. Every Device.</h3>
+          <div class="one-strip-eyebrow">UNIVERSAL ACCESS</div>
+          <h3 class="one-strip-title">One Pass. Every Device.</h3>
           <p class="one-strip-desc">
-            Subscribe to Evlome Health Pass or Evlome Game Pass in any app, or unlock everything with EVLOME ONE. Cancel anytime.
+            Start a 7-day free trial in any app. Choose Health Pass, Game Pass, or EVLOME ONE.
           </p>
         </div>
         <div class="one-strip-pills">
           <div class="one-feature-badge">
             <svg class="badge-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            <span>7-Day Free Trial Included</span>
+            <span>7-Day Free Trial</span>
           </div>
           <div class="one-feature-badge">
             <svg class="badge-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            <span>Annual &amp; Monthly Plans Available</span>
+            <span>Monthly &amp; Annual Options</span>
           </div>
           <div class="one-feature-badge">
             <svg class="badge-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
@@ -1747,7 +1740,7 @@ export const renderHome = () => {
           </div>
           <div class="one-feature-badge">
             <svg class="badge-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            <span>Health &amp; Games Combined</span>
+            <span>Cross-Platform Sync</span>
           </div>
         </div>
       </div>
@@ -1755,10 +1748,10 @@ export const renderHome = () => {
       <!-- Action Row -->
       <div class="one-actions-row">
         <a href="/beta" class="btn-primary-glow" onclick="if(event){ event.preventDefault(); navigate('/beta'); }">
-          Join Early Access &rarr;
+          Apply for Beta &rarr;
         </a>
         <button type="button" class="btn-glass" onclick="window.scrollToSection('principles-section')">
-          Explore The Codex &darr;
+          The Codex &darr;
         </button>
       </div>
     </div>
@@ -1771,7 +1764,7 @@ export const renderHome = () => {
         <span class="stage-badge">THE CODEX</span>
         <h2 class="stage-title">Rigor &amp; Reverie.</h2>
         <p class="stage-subtitle-center">
-          Four standards guiding every line of code across health telemetry and game design.
+          Four principles guiding every line of code across health telemetry and game design.
         </p>
       </div>
 
@@ -1780,7 +1773,7 @@ export const renderHome = () => {
           <span class="codex-num">01 / SOVEREIGNTY</span>
           <h3 class="codex-title">On-Device Vault</h3>
           <p class="codex-desc">
-            Your health, metabolic, and personal telemetry reside strictly on your physical hardware. We operate zero user-tracking infrastructure.
+            Health and metabolic telemetry reside strictly on your physical hardware. Zero tracking.
           </p>
         </div>
 
@@ -1788,7 +1781,7 @@ export const renderHome = () => {
           <span class="codex-num">02 / INTEGRITY</span>
           <h3 class="codex-title">Deterministic Rigor</h3>
           <p class="codex-desc">
-            Clinical biometric equations and physical board mechanics operate transparently with complete mathematical integrity.
+            Biometric equations and game physics operate transparently with mathematical integrity.
           </p>
         </div>
 
@@ -1796,7 +1789,7 @@ export const renderHome = () => {
           <span class="codex-num">03 / RESTRAINT</span>
           <h3 class="codex-title">Mindful Interaction</h3>
           <p class="codex-desc">
-            Zero synthetic urgency, deceptive close buttons, or artificial countdowns. Interfaces distilled strictly to essential craft.
+            Zero synthetic urgency, dark patterns, or countdown timers. Distilled to essential craft.
           </p>
         </div>
 
@@ -1804,7 +1797,7 @@ export const renderHome = () => {
           <span class="codex-num">04 / AUTONOMY</span>
           <h3 class="codex-title">100% Offline</h3>
           <p class="codex-desc">
-            Built like physical instruments. Every formula, health journal, and bot match operates completely without network connectivity.
+            Engineered like physical instruments. Operates fully without network connectivity.
           </p>
         </div>
       </div>
@@ -1817,8 +1810,8 @@ export const renderHome = () => {
     <h2 class="stage-title" style="max-width: 650px; margin: 0.5rem auto 1rem;">
       Shape the Future of EVLOME.
     </h2>
-    <p style="color: var(--text-secondary); max-width: 480px; font-size: 1.05rem; line-height: 1.6; margin: 0 auto 2rem;">
-      TestFlight and Google Play preview slots are open for upcoming builds across the Suite and EVLOME Games.
+    <p style="color: var(--text-secondary); max-width: 460px; font-size: 1.05rem; line-height: 1.6; margin: 0 auto 2rem;">
+      Preview slots are open on TestFlight and Google Play for upcoming health and game builds.
     </p>
     <a href="/beta" class="btn-primary-glow" style="font-size: 14.5px; padding: 0.9rem 2.25rem;">
       Apply for Beta Testing &rarr;
