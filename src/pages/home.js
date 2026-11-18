@@ -1067,7 +1067,11 @@ export const renderHome = () => {
   return `
   <!-- STAGE 1: Cinematic Studio Hero Viewport -->
   <section class="cinematic-stage hero-viewport">
-    <div class="hero-glow-aura"></div>
+    <div class="hero-glow-aura" aria-hidden="true">
+      <div class="hero-orb hero-orb-indigo"></div>
+      <div class="hero-orb hero-orb-cyan"></div>
+      <div class="hero-orb hero-orb-emerald"></div>
+    </div>
 
     <div class="stage-badge">
       <span>EVLOME STUDIO</span>

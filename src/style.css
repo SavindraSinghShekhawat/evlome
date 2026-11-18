@@ -267,12 +267,9 @@ body.menu-open .burger-line.line-bottom {
   padding: clamp(4.5rem, 8vh, 6.5rem) clamp(1rem, 3.5vw, 2.5rem) clamp(2rem, 5vh, 4rem);
   box-sizing: border-box;
   position: relative;
-  background:
-    radial-gradient(ellipse 1400px 750px at 50% 12%, rgba(99, 102, 241, 0.20) 0%, transparent 65%),
-    radial-gradient(circle 900px at 10% 45%, rgba(6, 182, 212, 0.18) 0%, transparent 60%),
-    radial-gradient(circle 900px at 90% 45%, rgba(16, 185, 129, 0.18) 0%, transparent 60%),
-    radial-gradient(circle 900px at 50% 90%, rgba(244, 63, 94, 0.14) 0%, transparent 60%),
-    #fafbfd;
+  background-color: #fafbfd;
+  background-image:
+    radial-gradient(ellipse 1200px 700px at 50% 15%, rgba(244, 246, 252, 0.9) 0%, transparent 75%);
   overflow: hidden;
 }
 
@@ -281,37 +278,103 @@ body.menu-open .burger-line.line-bottom {
   z-index: 1;
 }
 
-/* Multi-Chromatic Radiant Ambient Aura */
+/* Luminous Living Ambient Aura */
 .hero-glow-aura {
   position: absolute;
-  top: 10%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: min(1100px, 95vw);
-  height: 560px;
-  background:
-    radial-gradient(circle at 35% 38%, rgba(99, 102, 241, 0.32), transparent 55%),
-    radial-gradient(circle at 68% 35%, rgba(6, 182, 212, 0.28), transparent 55%),
-    radial-gradient(circle at 45% 72%, rgba(16, 185, 129, 0.25), transparent 55%),
-    radial-gradient(circle at 75% 75%, rgba(244, 63, 94, 0.20), transparent 55%);
-  filter: blur(75px);
+  inset: 0;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
+  overflow: hidden;
   z-index: 0;
-  animation: pulseAura 10s ease-in-out infinite alternate;
 }
 
-@keyframes pulseAura {
+.hero-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(85px);
+  will-change: transform, opacity;
+  pointer-events: none;
+}
+
+/* Orb 1: Ethereal Iris / Indigo (Top Left & Center) */
+.hero-orb-indigo {
+  width: min(680px, 85vw);
+  height: min(620px, 80vw);
+  top: 2%;
+  left: 12%;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.22) 0%, rgba(99, 102, 241, 0.08) 50%, transparent 70%);
+  animation: heroFloatIndigo 20s ease-in-out infinite alternate;
+}
+
+/* Orb 2: Serene Cyan / Ice Blue (Right & Upper-Mid) */
+.hero-orb-cyan {
+  width: min(620px, 80vw);
+  height: min(580px, 75vw);
+  top: 18%;
+  right: 8%;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.19) 0%, rgba(6, 182, 212, 0.06) 50%, transparent 70%);
+  animation: heroFloatCyan 24s ease-in-out infinite alternate;
+}
+
+/* Orb 3: Quiet Emerald / Mint (Center & Lower-Mid) */
+.hero-orb-emerald {
+  width: min(560px, 75vw);
+  height: min(520px, 70vw);
+  bottom: 8%;
+  left: 32%;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.16) 0%, rgba(16, 185, 129, 0.05) 50%, transparent 70%);
+  animation: heroFloatEmerald 28s ease-in-out infinite alternate;
+}
+
+@keyframes heroFloatIndigo {
   0% {
-    transform: translateX(-50%) scale(0.92) rotate(0deg);
-    opacity: 0.75;
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.8;
   }
   50% {
-    transform: translateX(-50%) scale(1.08) rotate(3deg);
+    transform: translate3d(45px, 25px, 0) scale(1.08);
     opacity: 1;
   }
   100% {
-    transform: translateX(-50%) scale(0.96) rotate(-3deg);
+    transform: translate3d(-25px, 40px, 0) scale(0.94);
     opacity: 0.85;
+  }
+}
+
+@keyframes heroFloatCyan {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.75;
+  }
+  50% {
+    transform: translate3d(-50px, 35px, 0) scale(1.1);
+    opacity: 0.95;
+  }
+  100% {
+    transform: translate3d(25px, -30px, 0) scale(0.92);
+    opacity: 0.8;
+  }
+}
+
+@keyframes heroFloatEmerald {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translate3d(35px, -30px, 0) scale(1.06);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate3d(-35px, -15px, 0) scale(0.96);
+    opacity: 0.75;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-orb {
+    animation: none !important;
   }
 }
 
@@ -5052,6 +5115,10 @@ body.menu-open .burger-line.line-bottom {
     min-height: 100vh;
     min-height: 100dvh;
     padding: clamp(5.2rem, 11vh, 6.25rem) 1.15rem clamp(1.75rem, 4vh, 2.5rem);
+  }
+
+  .hero-orb {
+    filter: blur(60px);
   }
 
   .stage-badge {
