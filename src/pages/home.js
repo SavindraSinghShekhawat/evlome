@@ -1748,7 +1748,7 @@ export const renderHome = () => {
     <div class="one-container">
       <div class="one-header-center">
         <span class="stage-badge">
-          <span class="badge-dot" style="background: linear-gradient(135deg, #10b981 0%, #6366f1 50%, #f59e0b 100%); box-shadow: 0 0 8px rgba(99, 102, 241, 0.6);"></span>
+          <span class="badge-dot" style="background: linear-gradient(135deg, #6366f1 0%, #ec4899 50%, #f59e0b 100%); box-shadow: 0 0 8px rgba(236, 72, 153, 0.6);"></span>
           UNIVERSAL MEMBERSHIP
         </span>
         <h2 class="stage-title">EVLOME ONE</h2>
@@ -1793,11 +1793,11 @@ export const renderHome = () => {
           </ul>
         </div>
 
-        <div class="one-card" style="border-color: rgba(99, 102, 241, 0.28); background: linear-gradient(180deg, rgba(16, 185, 129, 0.03) 0%, rgba(99, 102, 241, 0.03) 50%, rgba(245, 158, 11, 0.04) 100%);">
-          <div class="one-card-icon-wrap" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(99, 102, 241, 0.12) 50%, rgba(245, 158, 11, 0.12) 100%); color: #6366f1;">
+        <div class="one-card" style="border-color: rgba(236, 72, 153, 0.28); background: linear-gradient(180deg, rgba(99, 102, 241, 0.04) 0%, rgba(236, 72, 153, 0.03) 50%, rgba(245, 158, 11, 0.04) 100%);">
+          <div class="one-card-icon-wrap" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.12) 0%, rgba(236, 72, 153, 0.12) 50%, rgba(245, 158, 11, 0.12) 100%); color: #ec4899;">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
           </div>
-          <span class="one-card-tag" style="background: linear-gradient(135deg, #10b981 0%, #6366f1 50%, #f59e0b 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800;">EVLOME ONE</span>
+          <span class="one-card-tag" style="background: linear-gradient(135deg, #6366f1 0%, #ec4899 50%, #f59e0b 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800;">EVLOME ONE</span>
           <h3 class="one-card-title">Universal All-Access Pass</h3>
           <p class="one-card-desc">
             Everything in the Health Suite, all EVLOME Games, end-to-end encrypted cloud vault, and every future application.
