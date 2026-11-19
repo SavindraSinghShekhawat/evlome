@@ -1765,14 +1765,18 @@ export const renderHome = () => {
           </div>
           <span class="one-card-tag" style="color: #059669;">EVLOME HEALTH PASS</span>
           <h3 class="one-card-title">Precision Health Suite</h3>
+          <div class="one-card-price">
+            <span class="one-card-price-val">$2.49</span>
+            <span class="one-card-price-sub">/ mo ($29.99/yr) &bull; 7-day trial</span>
+          </div>
           <p class="one-card-desc">
             Unified access across Nutrition, Activity, Cycle, and Calculator+ with clinical biometrics and private telemetry.
           </p>
           <ul class="one-card-perks">
-            <li>✓ Whole-food logging &amp; fasting timers</li>
-            <li>✓ Barbell plate math &amp; rest timers</li>
-            <li>✓ Roetzer cycle &amp; ovulation tracking</li>
-            <li>✓ 50+ clinical metabolic models</li>
+            <li>✓ 50+ clinical &amp; metabolic models (Calculator+)</li>
+            <li>✓ Roetzer sympto-thermal cycle tracking (Cycle)</li>
+            <li>✓ Whole-food logging &amp; metabolic targets (Nutrition)</li>
+            <li>✓ 1RM strength progression &amp; barbell math (Activity)</li>
           </ul>
         </div>
 
@@ -1781,59 +1785,69 @@ export const renderHome = () => {
             ${gamesData.map(app => `<img src="${app.icon}" alt="${app.title} Logo" class="one-mini-logo" width="36" height="36" loading="lazy" decoding="async" />`).join('')}
           </div>
           <span class="one-card-tag" style="color: #6366f1;">EVLOME GAME PASS</span>
-          <h3 class="one-card-title">Ad-Free Games Pass</h3>
+          <h3 class="one-card-title">Mindful Game Pass</h3>
+          <div class="one-card-price">
+            <span class="one-card-price-val">$1.99</span>
+            <span class="one-card-price-sub">/ mo ($23.99/yr) &bull; 7-day trial</span>
+          </div>
           <p class="one-card-desc">
             Pure, uninterrupted play across all current and future EVLOME board games and mindful puzzle sanctuaries.
           </p>
           <ul class="one-card-perks">
-            <li>✓ Zero ads or commercial interruptions</li>
-            <li>✓ All future game releases included</li>
+            <li>✓ Exclusive VIP boards &amp; fair physics dice</li>
+            <li>✓ Pawdoku pet sanctuaries &amp; cozy decors</li>
+            <li>✓ Real-time multiplayer &amp; private lobbies</li>
+            <li>✓ All upcoming board &amp; mindful games included</li>
           </ul>
         </div>
 
-        <div class="one-card">
+        <div class="one-card" style="border-color: rgba(245, 158, 11, 0.28); background: linear-gradient(180deg, rgba(245, 158, 11, 0.03) 0%, rgba(255, 255, 255, 0.6) 100%);">
           <div class="one-card-icon-wrap" style="background: rgba(245, 158, 11, 0.1); color: #d97706;">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
           </div>
-          <span class="one-card-tag" style="color: #d97706;">HEALTH VAULT</span>
-          <h3 class="one-card-title">Private Cloud Sync</h3>
+          <span class="one-card-tag" style="color: #d97706;">EVLOME ONE</span>
+          <h3 class="one-card-title">Universal All-Access Pass</h3>
+          <div class="one-card-price">
+            <span class="one-card-price-val">$3.33</span>
+            <span class="one-card-price-sub">/ mo ($39.99/yr) &bull; 7-day trial</span>
+          </div>
           <p class="one-card-desc">
-            Encrypted multi-device continuity for your health, workout, and cycle telemetry. Zero custody, on-device decrypted.
+            Everything in the Health Suite, all EVLOME Games, end-to-end encrypted cloud vault, and every future application.
           </p>
           <ul class="one-card-perks">
-            <li>✓ Continuity across iPhone, iPad &amp; Android</li>
-            <li>✓ End-to-end encrypted backup</li>
-            <li>✓ Zero profiling or third-party custody</li>
-            <li>✓ 100% offline-first availability</li>
+            <li>✓ Complete Health Suite (all 4 apps &amp; telemetry)</li>
+            <li>✓ Complete Games Pass (all current &amp; future games)</li>
+            <li>✓ Zero-custody encrypted multi-device cloud vault</li>
+            <li>✓ All future apps automatically included</li>
           </ul>
         </div>
       </div>
 
-      <!-- Feature Highlight Strip (Apple Bento Banner - No Prices) -->
+      <!-- Feature Highlight Strip (Apple Bento Banner) -->
       <div class="one-membership-strip">
         <div class="one-strip-col">
-          <div class="one-strip-eyebrow">UNIVERSAL ACCESS</div>
-          <h3 class="one-strip-title">One Pass. Every Device.</h3>
+          <div class="one-strip-eyebrow">TRANSPARENT PASS ARCHITECTURE</div>
+          <h3 class="one-strip-title">Dedicated Passes or Complete All-Access.</h3>
           <p class="one-strip-desc">
-            Start a 7-day free trial in any app. Choose Health Pass, Game Pass, or EVLOME ONE.
+            Choose the pass tailored to your routine — or unlock the complete EVLOME ecosystem of health apps, tactile games, and encrypted cloud continuity with EVLOME ONE.
           </p>
         </div>
         <div class="one-strip-pills">
           <div class="one-feature-badge">
             <svg class="badge-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            <span>7-Day Free Trial</span>
+            <span><strong>Health Pass:</strong>&nbsp;$2.49/mo ($29.99/yr)</span>
           </div>
           <div class="one-feature-badge">
             <svg class="badge-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            <span>Monthly &amp; Annual Options</span>
+            <span><strong>Game Pass:</strong>&nbsp;$1.99/mo ($23.99/yr)</span>
           </div>
           <div class="one-feature-badge">
             <svg class="badge-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            <span>Cancel Anytime</span>
+            <span><strong>EVLOME ONE:</strong>&nbsp;$3.33/mo ($39.99/yr)</span>
           </div>
-          <div class="one-feature-badge">
-            <svg class="badge-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            <span>Cross-Platform Sync</span>
+          <div class="one-feature-badge" style="background: rgba(16, 185, 129, 0.08); border-color: rgba(16, 185, 129, 0.25);">
+            <svg class="badge-check-icon" style="color: #059669;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span style="color: #065f46; font-weight: 700;">7-Day Free Trial &bull; Cancel Anytime &bull; Cross-Device</span>
           </div>
         </div>
       </div>
