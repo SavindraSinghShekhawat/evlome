@@ -4,36 +4,107 @@
 
 import { suiteApps, gamesData } from '../data/products.js';
 
-// Interactive Audio Engine (Tactile sound effects with user-gesture safety and rapid-tap overlap)
-let audioCache = {};
+// Interactive Audio Engine (Ultra-low latency Web Audio API with pre-warmed ring-buffer fallback)
+let webAudioCtx = null;
+const audioBufferCache = {};
+const audioPool = {};
+const poolIndices = {};
+const POOL_SIZE = 8;
+
+const initWebAudio = () => {
+  try {
+    if (typeof window === 'undefined') return null;
+    if (!webAudioCtx) {
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+      if (AudioContextClass) {
+        webAudioCtx = new AudioContextClass();
+      }
+    }
+    if (webAudioCtx && webAudioCtx.state === 'suspended') {
+      webAudioCtx.resume().catch(() => {});
+    }
+    return webAudioCtx;
+  } catch (_) {
+    return null;
+  }
+};
+
+// Auto-unlock Web Audio on first user interaction across touch, click, pointer, and keyboard
+if (typeof window !== 'undefined') {
+  const unlockEvents = ['pointerdown', 'touchstart', 'mousedown', 'keydown'];
+  const unlock = () => {
+    initWebAudio();
+    unlockEvents.forEach((ev) => window.removeEventListener(ev, unlock, true));
+  };
+  unlockEvents.forEach((ev) => window.addEventListener(ev, unlock, { capture: true, once: true }));
+}
+
+const loadAudioBuffer = async (path) => {
+  const ctx = initWebAudio();
+  if (!ctx || audioBufferCache[path]) return audioBufferCache[path];
+  try {
+    const res = await fetch(path);
+    if (!res.ok) return null;
+    const arrayBuffer = await res.arrayBuffer();
+    const decoded = await ctx.decodeAudioData(arrayBuffer);
+    audioBufferCache[path] = decoded;
+    return decoded;
+  } catch (_) {
+    return null;
+  }
+};
+
+// Pre-warm tactile game sound effects for instantaneous zero-latency triggers
+if (typeof window !== 'undefined') {
+  const commonSounds = [
+    '/audio/cross_slide.wav',
+    '/audio/cross_tap.wav',
+    '/audio/pet_place.wav',
+    '/audio/roll.wav',
+    '/audio/six.wav',
+    '/audio/victory.wav',
+  ];
+  commonSounds.forEach((p) => {
+    loadAudioBuffer(p).catch(() => {});
+  });
+}
+
 export const playSound = (path) => {
   try {
-    if (typeof Audio === 'undefined') return;
-    if (!audioCache[path]) {
-      audioCache[path] = new Audio(path);
-      audioCache[path].preload = 'auto';
+    const ctx = initWebAudio();
+    // 1. Primary: Web Audio API (Zero latency, true polyphony, zero dropped sounds during rapid slides)
+    if (ctx && audioBufferCache[path]) {
+      const source = ctx.createBufferSource();
+      source.buffer = audioBufferCache[path];
+      source.connect(ctx.destination);
+      source.start(0);
+      return;
     }
-    const primary = audioCache[path];
-    if (primary.paused || primary.ended) {
-      primary.currentTime = 0;
-      const p = primary.play();
-      if (p && typeof p.catch === 'function') {
-        p.catch(() => {});
-      }
-    } else {
-      try {
-        const clone = primary.cloneNode();
-        const cp = clone.play();
-        if (cp && typeof cp.catch === 'function') {
-          cp.catch(() => {
-            primary.currentTime = 0;
-            primary.play().catch(() => {});
-          });
-        }
-      } catch (e) {
-        primary.currentTime = 0;
-        primary.play().catch(() => {});
-      }
+
+    // Trigger asynchronous buffer load for subsequent triggers
+    if (ctx && !audioBufferCache[path]) {
+      loadAudioBuffer(path).catch(() => {});
+    }
+
+    // 2. Fallback: Pre-allocated circular ring buffer of HTML5 Audio elements
+    // Avoids cloneNode() restrictions in pointermove and prevents audio dropouts
+    if (typeof Audio === 'undefined') return;
+    if (!audioPool[path]) {
+      audioPool[path] = Array.from({ length: POOL_SIZE }, () => {
+        const a = new Audio(path);
+        a.preload = 'auto';
+        return a;
+      });
+      poolIndices[path] = 0;
+    }
+
+    const pool = audioPool[path];
+    const idx = (poolIndices[path] = ((poolIndices[path] || 0) + 1) % pool.length);
+    const player = pool[idx];
+    player.currentTime = 0;
+    const p = player.play();
+    if (p && typeof p.catch === 'function') {
+      p.catch(() => {});
     }
   } catch (e) {}
 };
@@ -308,10 +379,28 @@ let isPawdokuSwiping = false;
 let pawdokuSwipeMoved = false;
 let pawdokuSwipeStart = null;
 let pawdokuStartCoord = null;
+let pawdokuLastCoord = null;
 let pawdokuSwipeMode = 'cross'; // 'cross' | 'clear'
 let pawdokuSwipeTouched = new Set();
 
+// Intermediate cell interpolation to ensure rapid swipes never skip any cell along the drag path
+const interpolatePawdokuCells = (startCoord, endCoord) => {
+  const [r1, c1] = startCoord.split('-').map(Number);
+  const [r2, c2] = endCoord.split('-').map(Number);
+  const cells = [];
+  const dr = r2 - r1;
+  const dc = c2 - c1;
+  const steps = Math.max(Math.abs(dr), Math.abs(dc));
+  for (let i = 1; i <= steps; i++) {
+    const r = Math.round(r1 + (dr * i) / steps);
+    const c = Math.round(c1 + (dc * i) / steps);
+    cells.push(`${r}-${c}`);
+  }
+  return cells;
+};
+
 g.pawdokuPointerDown = (e) => {
+  initWebAudio();
   const target = e.target.closest('.paw-cell');
   if (!target) return;
   const coord = target.getAttribute('data-paw-cell');
@@ -321,6 +410,7 @@ g.pawdokuPointerDown = (e) => {
   pawdokuSwipeMoved = false;
   pawdokuSwipeStart = { x: e.clientX, y: e.clientY };
   pawdokuStartCoord = coord;
+  pawdokuLastCoord = coord;
 
   const [r, c] = coord.split('-').map(Number);
   pawdokuSwipeMode = (pawdokuGrid[r][c] === 'cross') ? 'clear' : 'cross';
@@ -336,9 +426,12 @@ g.pawdokuPointerMove = (e) => {
       pawdokuSwipeMoved = true;
       const [sr, sc] = pawdokuStartCoord.split('-').map(Number);
       if (pawdokuGrid[sr][sc] !== 'pet') {
-        pawdokuGrid[sr][sc] = (pawdokuSwipeMode === 'cross' ? 'cross' : '');
-        playSound('/audio/cross_tap.wav');
-        g.updatePawdokuUI();
+        const nextVal = (pawdokuSwipeMode === 'cross' ? 'cross' : '');
+        if (pawdokuGrid[sr][sc] !== nextVal) {
+          pawdokuGrid[sr][sc] = nextVal;
+          playSound('/audio/cross_slide.wav');
+          g.updatePawdokuUI();
+        }
       }
     }
 
@@ -346,13 +439,25 @@ g.pawdokuPointerMove = (e) => {
     const cell = el ? el.closest('.paw-cell') : null;
     if (cell) {
       const coord = cell.getAttribute('data-paw-cell');
-      if (coord && !pawdokuSwipeTouched.has(coord)) {
-        pawdokuSwipeTouched.add(coord);
-        const [cr, cc] = coord.split('-').map(Number);
-        if (pawdokuGrid[cr][cc] !== 'pet') {
-          pawdokuGrid[cr][cc] = (pawdokuSwipeMode === 'cross' ? 'cross' : '');
-          playSound('/audio/cross_tap.wav');
-          g.updatePawdokuUI();
+      if (coord) {
+        const pathCells = pawdokuLastCoord && pawdokuLastCoord !== coord
+          ? interpolatePawdokuCells(pawdokuLastCoord, coord)
+          : [coord];
+        pawdokuLastCoord = coord;
+
+        for (const pCoord of pathCells) {
+          if (!pawdokuSwipeTouched.has(pCoord)) {
+            pawdokuSwipeTouched.add(pCoord);
+            const [cr, cc] = pCoord.split('-').map(Number);
+            if (cr >= 0 && cr < 4 && cc >= 0 && cc < 4 && pawdokuGrid[cr][cc] !== 'pet') {
+              const nextVal = (pawdokuSwipeMode === 'cross' ? 'cross' : '');
+              if (pawdokuGrid[cr][cc] !== nextVal) {
+                pawdokuGrid[cr][cc] = nextVal;
+                playSound('/audio/cross_slide.wav');
+                g.updatePawdokuUI();
+              }
+            }
+          }
         }
       }
     }
@@ -369,6 +474,7 @@ g.pawdokuPointerUp = (e) => {
     g.pawdokuCellTap(r, c);
   }
   pawdokuStartCoord = null;
+  pawdokuLastCoord = null;
 };
 
 if (typeof window !== 'undefined') {
