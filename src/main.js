@@ -40,12 +40,43 @@ document.querySelector('#app').innerHTML = `
     </div>
   </header>
 
-  <!-- Mobile Slide-down Sheet -->
+  <!-- Mobile Navigation Sheet Backdrop -->
+  <div class="mobile-sheet-backdrop" id="mobile-sheet-backdrop" onclick="window.closeMobileMenu()" aria-hidden="true"></div>
+
+  <!-- Mobile Navigation Sheet -->
   <aside class="mobile-sheet" id="mobile-sheet" aria-label="Mobile Navigation">
-    <button type="button" class="mobile-sheet-link" onclick="window.scrollToSection('suite-stage')">The Health Suite</button>
-    <button type="button" class="mobile-sheet-link" onclick="window.scrollToSection('games-stage')">EVLOME Games</button>
-    <button type="button" class="mobile-sheet-link" onclick="window.scrollToSection('one-stage')">EVLOME One</button>
-    <a href="/beta" class="mobile-sheet-link" style="color: var(--accent-brand);" onclick="if(event){ event.preventDefault(); window.closeMobileMenu(); navigate('/beta'); }">Apply for Beta &rarr;</a>
+    <nav class="mobile-sheet-nav" aria-label="Mobile Navigation Links">
+      <button type="button" class="mobile-sheet-link" onclick="window.scrollToSection('suite-stage')">
+        <span class="sheet-link-label">The Health Suite</span>
+        <svg class="sheet-chevron" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="6 3.5 10.5 8 6 12.5"></polyline>
+        </svg>
+      </button>
+
+      <button type="button" class="mobile-sheet-link" onclick="window.scrollToSection('games-stage')">
+        <span class="sheet-link-label">EVLOME Games</span>
+        <svg class="sheet-chevron" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="6 3.5 10.5 8 6 12.5"></polyline>
+        </svg>
+      </button>
+
+      <button type="button" class="mobile-sheet-link" onclick="window.scrollToSection('one-stage')">
+        <span class="sheet-link-label">EVLOME One</span>
+        <svg class="sheet-chevron" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="6 3.5 10.5 8 6 12.5"></polyline>
+        </svg>
+      </button>
+
+      <div class="mobile-sheet-divider" aria-hidden="true"></div>
+
+      <a href="/beta" class="mobile-sheet-cta-btn" onclick="if(event){ event.preventDefault(); window.closeMobileMenu(); navigate('/beta'); }">
+        <span>Join Beta</span>
+        <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="2.5" y1="8" x2="13.5" y2="8"></line>
+          <polyline points="9 3.5 13.5 8 9 12.5"></polyline>
+        </svg>
+      </a>
+    </nav>
   </aside>
 
   <!-- Dynamic Content Stage -->
